@@ -1,0 +1,35 @@
+This is the repo for the PHP Fog Documentation site at http://docs.phpfog.com.
+
+### [Jekyll](https://github.com/mojombo/jekyll)
+
+The site is generated in [Jekyll](https://github.com/mojombo/jekyll), so [install that](https://github.com/mojombo/jekyll/wiki/install) first.
+
+Then clone this repo and rename the file "_config.yml.example" to "_config.yml".
+
+Jekyll is a static site generator. It converts the markdown files into a static site under the "_site" directory.
+
+The markdown file structure is pretty straightforward and self-explanatory. You can make your changes, then test them by running the following command from the repo's root directory:
+
+    $ jekyll --server
+
+or:
+
+    $ jekyll --server --auto
+
+which will regenerate the site automatically whenever you make a change. 
+
+Go to 0.0.0.0:4000 in your browser to see a live version. 
+
+When you're done, add and commit your changes and make a pull request. 
+
+### PF Docs Style Guide
+
+* Capitalization in Titles Like This
+* command line formatting: "$ pf clone"
+* SSH key
+* PHP Fog user console: "app console"
+* local terminal: "terminal"
+* WordPress
+* "log in" and "set up" are verbs
+* "login" and "setup" are nouns
+* "Add-ons" or "add-ons", not "Add-Ons" or "Addons"

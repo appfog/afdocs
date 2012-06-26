@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>PHP Fog &mdash; Documentation SSH</title> 
+
+		<link rel="stylesheet" href="http://appfog.com/css/style.css">
+		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
+		<link href="/css/phpfogdocs.css" rel="stylesheet">
+		<!-- typekit -->
+		<script type="text/javascript" src="http://use.typekit.com/abw3xjt.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+				
+		<!-- css -->
+
+		<!-- modernizr -->
+		<script src="http://appfog.com/js/libs/modernizr-2.5.3.min.js"></script>
+
+		<script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+		
+		<link rel="icon" type="image/png" href="https://phpfog.com/favicon.ico" />
+	</head>
+	<body id="blog" onload="prettyPrint()">
+	<div id="header">
+		<div class="container">
+			<a href="http://appfog.com/" id="app_fog"><img src="http://appfog.com/img/app-fog.png" width="189" height="47" alt="App Fog"></a>
+			<ul id="main_nav">
+				<li id="nproducts">
+					<a href="#" title="Products" class="parent"><span>Products</span></a>
+					<ul>
+						<li><a href="http://appfog.com/products/appfog">AppFog</a></li>
+						<li><a href="http://appfog.com/products/phpfog">PHP Fog</a></li>
+					</ul>
+				</li>
+				<li id="npricing">
+					<a href="#" title="Pricing" class="parent"><span>Pricing</span></a>
+					<ul>
+						<li><a href="https://console.appfog.com/pricing">AppFog</a></li>
+						<li><a href="http://appfog.com/products/phpfog/pricing/">PhpFog</a></li>
+					</ul>
+				</li>
+				<li id="nshowcase"><a href="http://appfog.com/showcase/" title="Showcase">Showcase</a></li>
+				<li id="nabout"><a href="http://appfog.com/about/" title="About">About</a></li>
+				<li id="nsupport"><a href="http://appfog.com/support/" title="Support">Support</a></li>
+				<li id="nblog"><a href="http://blog.appfog.com/" title="Blog">Blog</a></li>
+
+				<li id="nlogin">
+						  <a href="#" title="Log In" class="btn gray">Log In <i class="icon-chevron-down"></i></a>
+						  <form id="log_in_form" class="dropdown">
+							<div class="container">
+							  <!-- <div class="half">
+								<div class="radio_btn" id="log_in_product_php_fog">
+								  <span>
+									<input type="radio" name="products" value="" id="log_in_php_fog" checked>
+								  </span>
+								  <label for="log_in_php_fog">Php Fog</label>
+								</div>
+							  </div>
+							  <div class="half">
+								<div class="radio_btn" id="log_in_product_appfog">
+								  <span>
+									<input type="radio" name="products" value="" id="log_in_appfog">
+								  </span>
+								  <label for="log_in_appfog">AppFog</label>
+								</div>
+								
+							  </div>
+							</div> -->
+										
+							<!-- <hr> -->
+
+							<!-- <div class="container appfog">
+							  <input type="email" name="email" value="" id="appfog_log_in_email" placeholder="Email" class="text">
+							  <input type="password" name="password" value="" id="appfog_log_in_password" placeholder="Password" class="text">
+							</div>
+							
+							<div class="container php_fog">
+							  <input type="email" name="email" value="" id="php_fog_log_in_email" placeholder="Email" class="text">
+							  <input type="password" name="password" value="" id="php_fog_log_in_password" placeholder="Password" class="text">
+							</div> -->
+										
+
+										
+							<!-- <div class="container">  
+							  <div class="half">
+								<div class="checkbox">
+								  <span class="active">
+									<input type="checkbox" name="remember_me" value="" id="log_in_remember_me" checked>
+								  </span>
+								</div>
+								<label for="log_in_remember_me" class="remember_me">Remember Me</label>
+							  </div>
+
+							  <div class="half forgot_password">
+								<a href="#">Forgot Password?</a>
+							  </div>
+							</div> -->
+										<a href="https://phpfog.com/login" class="btn bright_green submit" style="font-size: 13px;">Log In to PHP Fog</a>
+										<hr>
+										<a href="https://console.appfog.com/login" class="btn bright_green submit" style="font-size: 13px;">Log In to AppFog</a>
+									</form>
+								</li>
+								<li id="nsignup">
+									<a href="#" title="Sign Up" class="btn bright_green">Sign Up <i class="icon-chevron-down"></i></a>
+									<form id="sign_up_form" class="dropdown">
+							<!-- <div class="container">
+							  <div class="half">
+								<div class="radio_btn" id="sign_up_product_php_fog">
+								  <span>
+									<input type="radio" name="products" value="" id="sign_up_php_fog" checked>
+								  </span>
+								  <label for="sign_up_php_fog">Php Fog</label>
+								</div>
+							  </div>
+							  <div class="half">
+								<div class="radio_btn" id="sign_up_product_appfog">
+								  <span>
+									<input type="radio" name="products" value="" id="sign_up_appfog">
+								  </span>
+								  <label for="sign_up_appfog">AppFog</label>
+								</div>
+								
+							  </div>
+							</div> -->
+										
+										<!-- <hr>
+													
+													<div class="container php_fog">
+													  <input type="email" name="email" value="" id="sign_up_php_fog_email" placeholder="Email" class="text">
+													  <input type="password" name="password" value="" id="sign_up_password" placeholder="Password" class="text">
+													  <input type="password" name="password_confirmation" value="" id="sign_up_password_confirmation" placeholder="Password Confirmation" class="text">
+													</div>
+													
+													<div class="container appfog">
+													  <input type="email" name="email" value="" id="sign_up_appfog_email" placeholder="Email" class="text">
+													</div> -->
+										
+										<a href="https://phpfog.com/signup" class="btn bright_green submit" style="font-size: 13px;">Register for PHP Fog</a>
+										<hr>
+										<a href="http://appfog.com/signup.php" class="btn bright_green submit" style="font-size: 13px;">Register for AppFog</a>
+									</form>
+								</li>
+
+			</ul>
+		</div> 
+	</div>
+	<div id="main_content">
+		<div class='container'>
+
+			
+			<div id="top_bar" class="row gray_blue margin_bottom">
+				<div class="span12">
+					<a href="/"><h1 class="title">PHP Fog Docs</h1></a>
+					<ul id="docs_nav">
+						
+						<li class="breadcrumb-separator">&raquo;</li>
+						<li><a href="/getting-started">Getting Started</a></li>
+						
+						<li class="breadcrumb-separator">&raquo;</li>
+						<li><a href="#">SSH</a></li>
+					</ul>
+					<!--<ul id="secondary_nav">
+						<li><a href="http://docs.appfog.com">AppFog Docs</a></li>
+					</ul>-->
+				</div>
+
+			</div>
+			
+					
+
+
+			<div id="content" class="row white">
+				<div class="span8 main_content">
+					<div class="row entries">
+	<div class="span8">
+		<div class="row">
+			<div class="span8">
+				<h1>SSH</h1>
+				<p>In order to access and modify your source code on PHP Fog, you&rsquo;ll need to generate an SSH key and add it to your PHP Fog account. This tutorial will walk you through that process for Mac OS X. </p>
+
+<p>Looking for a way to handle multiple SSH keys? <a href="#handling-multiple-ssh-keys-for-a-single-account">Click here</a>.</p>
+
+<p>Multiple PHP Fog accounts? <a href="#multiple">Here</a>. </p>
+
+<p>Running into problems? Try <a href="/troubleshooting#ssh">our Troubleshooting Guide for SSH</a>.</p>
+
+<h3 id="first-make-sure-you-dont-have-a-key-already">1. First, make sure you don&rsquo;t have a key already.</h3>
+
+<pre class="prettyprint"><code>$ cd ~/.ssh
+</code></pre>
+
+<p>If you get &ldquo;no such file or directory&rdquo;, create the directory: </p>
+
+<pre class="prettyprint"><code>$ mkdir ~/.ssh
+</code></pre>
+
+<p>Then, <a href="#generate">skip ahead to &ldquo;3. Generate Your Key&rdquo;</a>.</p>
+
+<h3 id="backup-and-remove-existing-ssh-keys">2. Backup and remove existing SSH keys.</h3>
+
+<p>If the directory exists, check to see if you already have a keypair in it: </p>
+
+<pre class="prettyprint"><code>$ ls
+</code></pre>
+
+<p>If you don&rsquo;t see any files named &ldquo;id_rsa&rdquo; or &ldquo;id_rsa.pub&rdquo; <a href="#generate">skip ahead to &ldquo;3. Generate Your Key&rdquo;</a>. </p>
+
+<p>If they exist, you&rsquo;ll you need to back them up by creating a new directory and moving those files there.</p>
+
+<pre class="prettyprint"><code>$ mkdir key_backup
+$ mv id_rsa* key_backup/
+</code></pre>
+
+<h3 id="generate">3. Generate your key.</h3>
+
+<p>Run this command: </p>
+
+<pre class="prettyprint"><code>$ ssh-keygen -t rsa
+</code></pre>
+
+<p>Terminal will start the key generation process and you should see this:</p>
+
+<pre><code>Generating public/private rsa key pair.
+</code></pre>
+
+<p>Terminal will prompt you for the name of the file in which to save the key.</p>
+
+<pre><code>Enter file in which to save the key (/Users/PHPFog/.ssh/id_rsa):
+</code></pre>
+
+<p>When asked about the directory, we recommend using the default name and location (<code>id_rsa</code>). Just hit &lsquo;Enter&rsquo; to use the default filename.</p>
+
+<p>Note: Git and other tools generally look for keys in the default directory, so using a different directory may have unintended consequences.</p>
+
+<h3 id="enter-a-passphrase-for-your-new-key">4. Enter a passphrase for your new key.</h3>
+
+<pre><code>Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+This password is used to protect the private key.
+</code></pre>
+
+<p>If the passphrases match, you&rsquo;ll get a keypair.</p>
+
+<pre><code>Your identification has been saved in /Users/PHPFog/.ssh/id_rsa.
+Your public key has been saved in /Users/PHPFog/.ssh/id_rsa.pub.
+The key fingerprint is:
+31:be:4f:13:d4:68:f1:43:ea:97:9b:33:ad:b6:e5:85 us@phpfog.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|                 |
+|         .       |
+|        . o      |
+|       . * = .   |
+|        S B E .  |
+|       o = o o   |
+|        o o o .  |
+|         . . o o.|
+|             .+.*|
++-----------------+
+</code></pre>
+
+<p>Note: On Windows the path &ldquo;/Users/PHPFog/.ssh/&rdquo; is going to be different.</p>
+
+<h3 id="copy-the-public-key-and-add-it-to-your-php-fog-account">5. Copy the public key and add it to your PHP Fog account.</h3>
+
+<p>Open your public key with a text editor and copy the entire text.</p>
+
+<p>A real key will look like:</p>
+
+<pre><code>ssh-rsa
+AAAAB3NzaC1yc2EAAAADAQABAAABAQDgMaD2kOEQAq0ir0C/U3880mFmpv
+K0/7/qaYx8Uu2GFnsBabIsPJttndqAl6/k1Du4c2s2S+Aem0qS+R4hbSDDuWqjZbEH
+ks5qiAjD64vCavRwl96pKk/bvNB4sCe0MTsrPEU0rzI/MFDkCp8UkwonJkDVGafkhGIu
+UtVrXlCd5JrZFUUvYmLQoLdiTTjCJeBlfG46VqdX2qg4LRN2tMWecYhXrb+ghXsk
+7MfVo+RGQ9pQsiozbd2oROWOsoy2XKPsE2wXXINMpHAg/r6XUzddkW3mAfLAJ
+D7Te78lX+AImxPYhOQccODJlswTTlxKNZuqa9znAGaiyf1pYigHLVD5
+us@phpfog.com
+</code></pre>
+
+<p>Now log in to the PHP Fog App Console and click on the &ldquo;SSH Keys&rdquo; tab. Hit the &ldquo;Add another SSH key&rdquo; button and paste the public key into the &ldquo;SSH Public Key&rdquo; field, give it a name, and hit &ldquo;Save Changes&rdquo;.</p>
+
+<p><img class="screenshot" src="/img/screenshots/ssh.png" alt="SSH" /></p>
+
+<p>That&rsquo;s it, you&rsquo;ve generated a new SSH key and added it to PHP Fog! </p>
+
+<p><a href="/getting-started/git">Continue on to our tutorial on git</a>.</p>
+
+<p>Running into problems? Check out our guide on <a href="/troubleshooting#ssh">troubleshooting ssh</a>.</p>
+
+<h2 id="handling-multiple-ssh-keys-for-a-single-account">Handling Multiple SSH Keys for a Single Account</h2>
+
+<p>Sometimes you need to give more than one person SSH access to your PHP Fog git repository. Fortunately, adding more SSH keys to your account is easy. </p>
+
+<p>Just go to your PHP Fog account, click on the &ldquo;SSH Keys&rdquo; tab, and hit the &ldquo;Add another SSH key&rdquo; button. </p>
+
+<p>Give the new key a name, paste in the contents of the public key, hit &ldquo;Save SSH Key&rdquo;, and you&rsquo;re done!</p>
+
+<h2 id="multiple">Handling SSH Keys for Multiple Accounts</h2>
+
+<p>Sometimes you need SSH access to multiple PHP Fog accounts. Unfortunately, you can&rsquo;t use the same key with multiple accounts, so you&rsquo;ll have to generate a new key for each account you want access to. </p>
+
+<p>If you don&rsquo;t have any SSH keys set up with PHP Fog yet, head to the top of this page and follow the guide on creating and adding an SSH key. If you already have one set up, read on:</p>
+
+<h3 id="generate-a-second-key">1. Generate a second key.</h3>
+
+<p>In your terminal application, make the following commands:</p>
+
+<pre class="prettyprint"><code>$ cd ~/.ssh
+$ ssh-keygen -t rsa
+</code></pre>
+
+<p>You should see something like this:</p>
+
+<pre><code>Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/&lt;your username&gt;/.ssh/id_rsa): 
+</code></pre>
+
+<p>That filename should already be taken by your first key, so enter this one instead:</p>
+
+<pre class="prettyprint"><code>/Users/&lt;your username&gt;/.ssh/id_rsa_1 
+</code></pre>
+
+<p>After you enter your passphrase (twice), you should see output that looks like this: </p>
+
+<pre><code>Your identification has been saved in /Users/&lt;your username&gt;/.ssh/id_rsa_1.
+Your public key has been saved in /Users/&lt;your username&gt;/.ssh/id_rsa_1.pub.
+The key fingerprint is:
+fc:c2:61:19:ed:49:ff:df:fb:e8:0c:46:4a:96:dc:2d &lt;your username&gt;@&lt;your computer's name&gt;
+The key's randomart image is:
++--[ RSA 2048]----+
+|                 |
+|         .       |
+|        . o      |
+|       . * = .   |
+|        S B E .  |
+|       o = o o   |
+|        o o o .  |
+|         . . o o.|
+|             .+.*|
++-----------------+
+</code></pre>
+
+<p>Finally, run the following:</p>
+
+<pre class="prettyprint"><code>$ ssh-add ~/.ssh/id_rsa_1
+</code></pre>
+
+<h3 id="add-your-new-ssh-key-to-the-second-account">2. Add your new SSH key to the second account.</h3>
+
+<p>Now go to your PHP Fog account, click on the &ldquo;SSH Keys&rdquo; tab, and hit the &ldquo;Add another SSH key&rdquo; button. </p>
+
+<p>Give the new key a name, paste in the contents of the public key, and hit &ldquo;Save SSH Key&rdquo;.</p>
+
+<h3 id="edit-your-ssh-configuration-file">3. Edit your SSH configuration file.</h3>
+
+<p>Open &ldquo;<code>~/.ssh/config</code>&rdquo; in your favorite text editor.</p>
+
+<pre class="prettyprint"><code>$ vim ~/.ssh/config
+</code></pre>
+
+<p>Note: You might have to create this file if it doesn&rsquo;t exist already.</p>
+
+<p>Add the following to the config file: </p>
+
+<pre class="prettyprint linenums"><code># Default PHP Fog user (name)
+Host phpfog
+HostName git01.phpfog.com
+User git
+IdentityFile /Users/&lt;your username&gt;/.ssh/id_rsa
+</code></pre>
+
+<pre class="prettyprint linenums:6 linenums">
+# 2nd PHP Fog user (name2)
+Host phpfog-1
+HostName git01.phpfog.com
+User git
+IdentityFile /Users/\&lt;your username\&gt;/.ssh/id_rsa_1
+</pre>
+
+<p>Save and quit. </p>
+
+<h3 id="your-new-git-workflow">4. Your new git workflow.</h3>
+
+<p>From now on, you&rsquo;ll have to modify the way you interact with PHP Fog git repositories slightly. Because you have multiple hosts, you&rsquo;ll have to specify the host&rsquo;s name when you work with these remote repositories. For example:</p>
+
+<p>To clone your first app:</p>
+
+<pre><code>git clone git@phpfog:&lt;your app's git repository&gt;
+</code></pre>
+
+<p>And your second:</p>
+
+<pre><code>git clone git@phpfog-1:&lt;your second app's git repository&gt;
+</code></pre>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+				</div>
+
+				<div class="span3 sidebar padding accordion" id="accordion2">
+					<div class="row border-bottom">
+						<div class="span3">
+							<form id="search-form" action="/search">
+								<input type="search" placeholder="Search" id="search" name="q" size="30" />
+								<input class="btn gray_blue search" type="submit" value="Go" />
+							</form>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon icon-chevron-down"></i> Getting Started</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse in" id="collapseOne" style="height: auto;">
+						
+							<div class="accordion-inner">
+								
+								<li><a href="/getting-started/jumpstarts.html" >Jumpstarts</a></li>
+								
+								<li><a href="/getting-started/pf-command-line-tool.html" >PF Command Line Tool</a></li>
+								
+								<li><a href="/getting-started/ssh.html" class="on">SSH</a></li>
+								
+								<li><a href="/getting-started/git.html" >Git</a></li>
+								
+								<li><a href="/getting-started/env-vars.html" >Environment Variables</a></li>
+								
+								<li><a href="/getting-started/development.html" >Development</a></li>
+								
+							</div>
+						</ul>
+					</div>
+
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+						<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-right"></i> Customize Your App</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse" id="collapseTwo" style="height: 0;">
+						
+							<div class="accordion-inner">
+							
+							<li><a href="/customize/add-ons.html" >Add-ons</a></li>
+							
+							<li><a href="/customize/custom-domain-names.html" >Custom Domain Names</a></li>
+							
+							<li><a href="/customize/ssl.html" >SSL for Custom Domain Names</a></li>
+							
+							<li><a href="/customize/permissions.html" >Permissions</a></li>
+							
+							<li><a href="/customize/cron.html" >Cron Jobs</a></li>
+							
+							<li><a href="/customize/logs.html" >Logs</a></li>
+							
+							<li><a href="/customize/database.html" >Database</a></li>
+							
+							<li><a href="/customize/email.html" >Email</a></li>
+							
+							<li><a href="/customize/php_ini.html" >php.ini</a></li>
+							
+							</div>
+						</ul>
+					</div>
+
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Best Practices</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
+						
+							<div class="accordion-inner">
+							
+							<li><a href="/best-practices/caching.html" >Caching</a></li>
+							
+							<li><a href="/best-practices/storage.html" >Storage</a></li>
+							
+							<li><a href="/best-practices/scaling.html" >Scaling</a></li>
+							
+							</div>
+						</ul>
+					</div>
+
+						<div class="row border-bottom"><div class="span3"><a href="/faqs.html" ><h6>FAQ</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="http://phpfog.com/pricing"><h6>Pricing</h6></a></div></div>
+						<div class="row border-bottom"><div class="span3"><a href="/billing.html" ><h6>Billing</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/reliability.html" ><h6>Reliability</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/security.html" ><h6>Security</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting.html" ><h6>Troubleshooting</h6></div></a></div>
+
+					</div>
+				</div>
+			</div><!-- content -->
+		</div><!-- container -->
+	</div><!-- main_content -->
+
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span1">
+					<img src="http://appfog.com/img/bydevfordev_95.png" width="95" height="79" alt="By Developers For Developers" id="badge">
+				</div>
+				<div class="span3">
+					<h4>About AppFog</h4>
+					<p>Easily build and deploy fast, scalable, and reliable applications to the cloud in seconds. Yeah, it’s that easy.</p>					
+				</div>
+				<div class="span2">
+					<h4>Info</h4>
+					<ul>
+						<li><a href="http://appfog.com/support/">Support</a></li>
+						<li><a href="https://appfog.com/about/">About</a></li>
+						<li><a href="http://dev.appfog.com/">Documentation</a></li>
+					</ul>
+				</div>
+				<div class="span2 offsettop">
+					<ul>
+						<li>Phone: 1.888.974.7364</li>
+						<li>&copy; <script>document.write(new Date().getFullYear());</script> AppFog.</li>
+						<li>All Rights Reserved.</li>
+					</ul>
+				</div>
+				<div class="span4">
+					<h4>Social</h4>
+					<ul id="social">
+						<li id="facebook"><a href="http://www.facebook.com/pages/AppFog/159333004147490">Facebook</a></li>
+						<li id="twitter"><a href="https://twitter.com/#!/appfog">Twitter</a></li>
+						<li id="linkedin"><a href="http://www.linkedin.com/company/appfog">LinkedIn</a></li>
+					</ul>
+				</div>
+			</div>
+		</div> <!-- / .container -->
+	</div>
+	
+	
+<!-- scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://appfog.com/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="http://appfog.com/js/plugins.js"></script>
+<script src="http://appfog.com/js/script.js"></script>
+<script type="text/javascript" src="/js/phpfogdocs.js"></script>
+
+</body>
+</html>

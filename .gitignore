@@ -1,0 +1,4 @@
+*.swp
+*.sw*
+_config.yml
+jekyll_indextank.rb

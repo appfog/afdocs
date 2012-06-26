@@ -1,0 +1,52 @@
+---
+title: Xeround
+layout: doc-page
+weight: 18
+---
+
+#### Install Xeround
+
+In the "Add-ons" tab in your app console click "Install" for the Xeround add-on. That's it!
+
+Installing the Xeround add-on automatically sets the following environment variables for your app: 
+
+* `XEROUND_DATABASE_URL`
+* `XEROUND_DATABASE_INTERNAL_URL`
+
+The first URL is used for connecting to your database from outside the datacenter (Amazon-EC2-US-East), and the "`INTERNAL`" URL is translated to internal IP addresses and should be used when accessing your database from within the same datacenter. The `INTERNAL` URL is what you’d most often use for connecting to your cloud database.
+
+Each of the URLs contains a string of the following syntax:
+
+{: .prettyprint}
+	mysql://username:password@host:port/database
+
+The different parts of the URL are also set in separate environment variables:
+
+* `XEROUND_DATABASE_ADAPTER`
+* `XEROUND_DATABASE_USERNAME`
+* `XEROUND_DATABASE_PASSWORD`
+* `XEROUND_DATABASE_HOST`
+* `XEROUND_DATABASE_PORT`
+* `XEROUND_DATABASE_NAME`
+^
+* `XEROUND_DATABASE_INTERNAL_ADAPTER`
+* `XEROUND_DATABASE_INTERNAL_USERNAME`
+* `XEROUND_DATABASE_INTERNAL_PASSWORD`
+* `XEROUND_DATABASE_INTERNAL_HOST`
+* `XEROUND_DATABASE_INTERNAL_PORT`
+* `XEROUND_DATABASE_INTERNAL_NAME`
+
+Here's an example of how to use these environment variables in your code:
+
+{: .prettyprint .linenums}
+	<?php
+		$ip = getenv('XEROUND_DATABASE_INTERNAL_HOST');
+	?>
+
+You can find more information on using your Xeround database [here](http://xeround.com/developers/mysql-cloud-database-manager-user-guide/).
+
+#### Xeround Manager
+
+In the "Add-ons" tab in your app console, click on the "Manage" button for the Xeround add-on. This will take you to your Xeround account where you can make configuration changes and upgrade your Xeround account. 
+
+You can find pricing information about the different levels of service [here](http://xeround.com/mysql-cloud-db-overview/pricing/).

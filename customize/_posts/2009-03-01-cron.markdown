@@ -1,0 +1,39 @@
+---
+title: Cron Jobs
+layout: doc-page
+weight: 7
+description: "Schedule your tasks."
+---
+
+Sometimes you need to run a task periodically. You can do that quickly and easily on PHP Fog Dedicated Clouds with Cron Jobs. 
+
+Running cron jobs is dead simple. Just create a php file with the script you want to run and place it somewhere in your app. 
+
+Then go to your PHP Fog app console and click on the "Cron Jobs" tab. 
+
+<img class="screenshot" src="/img/screenshots/cron-1.jpg" alt="Cron Jobs tab"/>
+
+Set the path to your script in the "Command Path" field and pick your schedule. 
+
+<img class="screenshot" src="/img/screenshots/cron-2.jpg" alt="Cron Jobs"/>
+
+Hit "Save Changes" and you're done!
+
+### Frameworks
+
+For frameworks like Drupal, there's one more step. Because the cron jobs run as if executed from the shell, the framework environment isn't loaded. 
+
+To work around this, you can have your cron job simply make an external HTTP request to run the actual code. Here's how: 
+
+<ol>
+<li>Create another file called <code>"/<your cron job 2/>.php"</code> and add the following line to it: </li>
+</ol>
+
+{: .prettyprint}
+    <?php file_get_contents('http://<your app url>/<cron script>');
+
+<ol start="2">
+<li>Change the "Command Path" in your app console to "<code><your cron job 2>.php</code>". </li>
+</ol>
+
+For more on using cron with Drupal, including how to keep your script secure, check out [this page](http://drupal.org/node/23714). 

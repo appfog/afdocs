@@ -1,0 +1,117 @@
+---
+title: Database
+layout: doc-page
+weight: 8
+description: "Everything you need to know about your PHP Fog Database."
+---
+
+PHP Fog provides each app with a MySQL database of 20MB.
+
+### Accessing the Database through phpMyAdmin
+
+1. Go to your PHP Fog app console.
+2. Click on the "Database" tab on the left.
+3. Click on the "Launch phpMyAdmin" button.
+4. Log in with your MySQL credentials.
+
+<img class="screenshot" src="/img/screenshots/database.png" alt="Database"/>
+
+### Increasing Database Capacity
+
+Database capacity beyond the initial 20MB costs $2/GB per month. 
+
+1. Go to your PHP Fog app console.
+2. Click on the "Database" tab on the left.
+3. Use the slider to increase the capacity to suit your needs.
+3. Click on "Save Changes".
+
+<img class="screenshot" src="/img/screenshots/database-cap.png" alt="Database Capacity"/>
+
+### Backups
+
+You can perform manual backups of your app's database by exporting it through phpMyAdmin. We don't support automated backups to users' systems yet, but that feature is on our road map. 
+
+PHP Fog also backs up your app's database on a daily basis and keeps the backups for one week. You can contact <a href="mailto:support@appfog.com">support@appfog.com</a> for access to these.
+
+### Remote Database Access
+
+Access to an app's database is currently restricted to your PHP app and phpMyAdmin. 
+
+### Third-Party Databases
+
+You can configure your app to use a third-party database, e.g. an Amazon RDS instance, which is a cloud-based relational database that's easy to set up, operate, and scale. Read more about it [here](http://aws.amazon.com/rds/).
+
+Let's walk through the configuration of an RDS instance. 
+
+#### 1. Back up your database through phpMyAdmin.
+
+#### 2. Create an Amazon Web Services account if you don't already have one.
+
+Sign up [here](http://aws.amazon.com/).
+
+#### 3. Set up RDS.
+
+Make sure to note your database's name, user ID, password, and host name.
+
+#### 4. Set up your Security Group.
+
+a. In the "RDS" tab of your AWS Management Console, click on "DB Security Groups" in the "Navigation" menu on the left.
+
+b. Click on the "Create DB Security Group" button, and give your new group a name and description.
+
+c. Select the security group you just created. 
+
+d. In the "Description" tab at the bottom: 
+
+Set the drop down to "EC2 Security Group". 
+
+Change the "AWS Account ID" to "512617943067".
+
+Set the "EC2 Security Group" field to "fog_user".
+
+e. Wait for the status to change to "authorized".
+
+#### 5. Change your app's database configuration.
+
+We'll use WordPress as an example.
+
+a. In your WordPress app's git repository, find the file `wp-config.php` and open it in your favorite text editor.
+
+b. Find the following code and input the information from your RDS database:
+
+{: .prettyprint .linenums}
+    define('DB_NAME', '<your RDS database's name>');
+    
+    /** MySQL database username */
+    define('DB_USER', '<your RDS user ID>');
+
+    /** MySQL database password */
+    define('DB_PASSWORD', '<your RDS password>');
+
+    /** MySQL hostname */
+    define('DB_HOST', '<your RDS host name>');
+
+    /** Database Charset to use in creating database tables. */
+    define('DB_CHARSET', 'utf8');
+
+    /** The Database Collate type. Don't change this if in doubt. */
+    define('DB_COLLATE', '');
+
+c. Save and quit.
+
+d. Commit your changes to git (but don't push yet).
+
+#### 6. Synchronize your databases.
+
+a. Log in to your phpMyAdmin and click on the "Synchronize" tab at the top.
+
+b. Under "Source database", set the drop down menu to "Current connection".
+
+c. Under "Target database", enter your RDS database information. (Leave the "Socket" field blank.)
+
+d. Hit the "Go" button.
+
+
+#### 7. Push your code to PHP Fog.
+
+You're done!

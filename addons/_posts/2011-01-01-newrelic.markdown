@@ -1,0 +1,11 @@
+---
+title: New Relic
+layout: doc-page
+weight: 16
+---
+
+New Relic offers app performance monitoring and alerts for your apps and app servers. 
+
+It's automatically installed for free on all Silver, Gold and Platinum Clouds. Just go to the "Stats" tab in your app console and click on the "New Relic Admin Dashboard" link. 
+
+You can log in with the email address that you use with PHP Fog and your original MySQL password.

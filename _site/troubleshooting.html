@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>AppFog &mdash; Documentation Troubleshooting</title> 
+
+		<link rel="stylesheet" href="http://appfog.com/css/style.css">
+		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
+		<link href="/css/table.css" rel="stylesheet">
+		<link href="/css/phpfogdocs.css" rel="stylesheet">
+		<!-- typekit -->
+		<script type="text/javascript" src="http://use.typekit.com/abw3xjt.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+				
+		<!-- css -->
+
+		<!-- modernizr -->
+		<script src="http://appfog.com/js/libs/modernizr-2.5.3.min.js"></script>
+
+		<script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+		
+		<link rel="icon" type="image/png" href="http://appfog.com/favicon.ico" />
+	</head>
+	<body id="blog" onload="prettyPrint()">
+	<div id="header">
+		<div class="container">
+			<a href="http://appfog.com/" id="app_fog"><img src="http://appfog.com/img/app-fog.png" width="189" height="47" alt="App Fog"></a>
+			<ul id="main_nav">
+				<li id="nproducts">
+					<a href="#" title="Products" class="parent"><span>Products</span></a>
+					<ul>
+						<li><a href="http://appfog.com/products/appfog">AppFog</a></li>
+						<li><a href="http://appfog.com/products/phpfog">PHP Fog</a></li>
+					</ul>
+				</li>
+				<li id="npricing">
+					<a href="#" title="Pricing" class="parent"><span>Pricing</span></a>
+					<ul>
+						<li><a href="https://console.appfog.com/pricing">AppFog</a></li>
+						<li><a href="http://appfog.com/products/phpfog/pricing/">PhpFog</a></li>
+					</ul>
+				</li>
+				<li id="nshowcase"><a href="http://appfog.com/showcase/" title="Showcase">Showcase</a></li>
+				<li id="nabout"><a href="http://appfog.com/about/" title="About">About</a></li>
+				<li id="nsupport"><a href="http://appfog.com/support/" title="Support">Support</a></li>
+				<li id="nblog"><a href="http://blog.appfog.com/" title="Blog">Blog</a></li>
+
+				<li id="nlogin">
+						  <a href="#" title="Log In" class="btn gray">Log In <i class="icon-chevron-down"></i></a>
+						  <form id="log_in_form" class="dropdown">
+							<div class="container">
+							  <!-- <div class="half">
+								<div class="radio_btn" id="log_in_product_php_fog">
+								  <span>
+									<input type="radio" name="products" value="" id="log_in_php_fog" checked>
+								  </span>
+								  <label for="log_in_php_fog">Php Fog</label>
+								</div>
+							  </div>
+							  <div class="half">
+								<div class="radio_btn" id="log_in_product_appfog">
+								  <span>
+									<input type="radio" name="products" value="" id="log_in_appfog">
+								  </span>
+								  <label for="log_in_appfog">AppFog</label>
+								</div>
+								
+							  </div>
+							</div> -->
+										
+							<!-- <hr> -->
+
+							<!-- <div class="container appfog">
+							  <input type="email" name="email" value="" id="appfog_log_in_email" placeholder="Email" class="text">
+							  <input type="password" name="password" value="" id="appfog_log_in_password" placeholder="Password" class="text">
+							</div>
+							
+							<div class="container php_fog">
+							  <input type="email" name="email" value="" id="php_fog_log_in_email" placeholder="Email" class="text">
+							  <input type="password" name="password" value="" id="php_fog_log_in_password" placeholder="Password" class="text">
+							</div> -->
+										
+
+										
+							<!-- <div class="container">  
+							  <div class="half">
+								<div class="checkbox">
+								  <span class="active">
+									<input type="checkbox" name="remember_me" value="" id="log_in_remember_me" checked>
+								  </span>
+								</div>
+								<label for="log_in_remember_me" class="remember_me">Remember Me</label>
+							  </div>
+
+							  <div class="half forgot_password">
+								<a href="#">Forgot Password?</a>
+							  </div>
+							</div> -->
+										<a href="https://phpfog.com/login" class="btn bright_green submit" style="font-size: 13px;">Log In to PHP Fog</a>
+										<hr>
+										<a href="https://console.appfog.com/login" class="btn bright_green submit" style="font-size: 13px;">Log In to AppFog</a>
+									</form>
+								</li>
+								<li id="nsignup">
+									<a href="#" title="Sign Up" class="btn bright_green">Sign Up <i class="icon-chevron-down"></i></a>
+									<form id="sign_up_form" class="dropdown">
+							<!-- <div class="container">
+							  <div class="half">
+								<div class="radio_btn" id="sign_up_product_php_fog">
+								  <span>
+									<input type="radio" name="products" value="" id="sign_up_php_fog" checked>
+								  </span>
+								  <label for="sign_up_php_fog">Php Fog</label>
+								</div>
+							  </div>
+							  <div class="half">
+								<div class="radio_btn" id="sign_up_product_appfog">
+								  <span>
+									<input type="radio" name="products" value="" id="sign_up_appfog">
+								  </span>
+								  <label for="sign_up_appfog">AppFog</label>
+								</div>
+								
+							  </div>
+							</div> -->
+										
+										<!-- <hr>
+													
+													<div class="container php_fog">
+													  <input type="email" name="email" value="" id="sign_up_php_fog_email" placeholder="Email" class="text">
+													  <input type="password" name="password" value="" id="sign_up_password" placeholder="Password" class="text">
+													  <input type="password" name="password_confirmation" value="" id="sign_up_password_confirmation" placeholder="Password Confirmation" class="text">
+													</div>
+													
+													<div class="container appfog">
+													  <input type="email" name="email" value="" id="sign_up_appfog_email" placeholder="Email" class="text">
+													</div> -->
+										
+										<a href="https://phpfog.com/signup" class="btn bright_green submit" style="font-size: 13px;">Register for PHP Fog</a>
+										<hr>
+										<a href="http://appfog.com/signup.php" class="btn bright_green submit" style="font-size: 13px;">Register for AppFog</a>
+									</form>
+								</li>
+
+			</ul>
+		</div> 
+	</div>
+	<div id="main_content">
+		<div class='container'>
+
+			
+			<div id="top_bar" class="row gray_blue margin_bottom">
+				<div class="span12">
+					<a href="/"><h1 class="title">AppFog Docs</h1></a>
+					<ul id="docs_nav">
+						
+						<li class="breadcrumb-separator">&raquo;</li>
+						<li><a href="#">Troubleshooting</a></li>
+					</ul>
+					<ul id="secondary_nav">
+						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
+					</ul>
+				</div>
+
+			</div>
+			
+					
+
+
+			<div id="content" class="row white">
+				<div class="span8 main_content">
+					<div class="row entries">
+	<div class="span8">
+		<div class="row">
+			<div class="span8">
+				<h1>Troubleshooting</h1>
+				<p>Here are some of the most common issues and how to deal with them. </p>
+
+<p>Don’t see your issue here? Try our <a href="http://community.phpfog.com/">community</a> or <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#097;&#112;&#112;&#102;&#111;&#103;&#046;&#099;&#111;&#109;">&#101;&#109;&#097;&#105;&#108;&#032;&#111;&#117;&#114;&#032;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#032;&#100;&#101;&#115;&#107;</a>.</p>
+
+<ul>
+  <li><a href="#ssh">SSH, Git, and PF Command Line Tool</a></li>
+  <li><a href="#500">HTTP 500, 502, 503, and 504 Errors</a></li>
+  <li><a href="#ssl">SSL</a></li>
+  <li><a href="#https">Forcing HTTPS</a></li>
+</ul>
+
+<h3 id="ssh">SSH, Git, and PF Command Line Tool</h3>
+
+<h4 id="permission-denied-publickey">“Permission denied (publickey)”</h4>
+
+<ol>
+  <li>Follow our <a href="/getting-started/ssh">guide to generating your SSH key</a>.</li>
+  <li>Make sure you’re copying your <em>public</em> key into the PHP Fog app console, not your private key. </li>
+  <li>
+    <p>Flush your ssh-agent cache:</p>
+
+    <p>$ ssh-add -D
+ All identities removed.</p>
+  </li>
+</ol>
+
+<h4 id="unauthorized-access-for-user">“Unauthorized access for user”</h4>
+
+<p>This error occurs when you try to use the same SSH key for multiple accounts. You’ll have to generate a new key for each account. Check out <a href="/getting-started/ssh#multiple">our guide on using SSH keys with multiple account</a>.</p>
+
+<p>If you continue to see this error, flush your ssh-agent cache:</p>
+
+<pre><code>$ ssh-add -D
+All identities removed.
+</code></pre>
+
+<h3 id="500">HTTP 500, 502, 503, and 504 Errors</h3>
+
+<h4 id="internal-server-error">500: Internal Server Error</h4>
+
+<p>HTTP 500 is a generic “catch-all” that indicates that the web server was unable to fulfill the HTTP/S request. This is usually caused by syntax errors, script run times, or deployment issues. </p>
+
+<p>You can usually diagnose this issue by turning on PHP error reporting. Just go to your PHP Fog app console, click on the “Settings” tab, and click the “Display Errors” button. Then go back to your app and you should get a stack trace of where your app is hitting an error. </p>
+
+<p>If you still don’t get anything besides an HTTP 500, it’s probably an issue with your <code>.htaccess</code> file. Check that file for syntax errors. </p>
+
+<h4 id="bad-gateway">502: Bad Gateway</h4>
+
+<p>HTTP 502 errors are extremely rare and generally due to an infrastructure failure. If you receive this error, wait a few minutes and try again. If you experience this issue for longer than a few minutes, <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#097;&#112;&#112;&#102;&#111;&#103;&#046;&#099;&#111;&#109;">&#101;&#109;&#097;&#105;&#108;&#032;&#117;&#115;</a> and we’ll work to resolve the issue as fast as possible.</p>
+
+<h4 id="service-unavailable">503: Service Unavailable</h4>
+
+<p>HTTP 503 errors are specified by your app.</p>
+
+<h4 id="gateway-timeout">504: Gateway Timeout</h4>
+
+<p>HTTP 504 errors mean your app is unable to service requests. The load balancers that sit between your app and its HTTP clients are configured to timeout requests after 60 seconds. So after the load balancer receives the initial request and forwards it to your app server, if the load balancer doesn’t receive anything for 60 seconds, it returns a 504 error to the client.</p>
+
+<p>Timeouts can be caused by a a variety of reasons, but the two most common are: 1. CPU over-utilization, and 2. blocking sync calls to other services. </p>
+
+<h4 id="cpu">CPU</h4>
+
+<p>If your app is on a Shared or Silver Cloud, the CPU utilization is throttled in “Bursts”. These plans provide a small amount of consistent CPU resources and allow your application to burst CPU capacity when additional cycles are available. They are well suited for lower throughput applications and web sites that consume significant compute cycles periodically. If the processing takes longer than a burst, the processing gets heavily throttled. This means something that can take just a few seconds on your desktop might take much longer on these plans and therefore cause the HTTP request to timeout.</p>
+
+<p>Processes that can cause this include: </p>
+
+<ul>
+  <li>Rendering an image or PDF</li>
+  <li>XML parsing of a large file</li>
+  <li>Heavy calculations (e.g. Fourier transform of an MP3)</li>
+</ul>
+
+<h4 id="blocking-calls-to-other-services">Blocking calls to other services</h4>
+
+<p>If your application makes calls to third-party services these calls may be blocking. That is, when your applications make a call to a method like file_get_contents() it won’t finish until the full HTTP transaction is complete. Making too many calls like this may cause the time to complete all the transactions longer than the timeout period.</p>
+
+<p>Calls that can cause this include:</p>
+
+<ul>
+  <li>Sending email</li>
+  <li>Calling remote APIs (e.g. Twitter, Facebook, etc)</li>
+  <li>Web-scraping</li>
+</ul>
+
+<h4 id="solutions">Solutions</h4>
+
+<ul>
+  <li>
+    <p>Take full advantage of <a href="/best-practices/caching">caching</a>.</p>
+  </li>
+  <li>
+    <p>Upgrade your Cloud. </p>
+
+    <p>Gold and Platinum Clouds provide consistent processing power. This is a simple answer, but it’s not necessarily the right one for every case. If your app’s processes consistently take too long, this might not help. </p>
+  </li>
+  <li>
+    <p>Use asynchronous calls instead of synchronous calls. </p>
+
+    <p>This only makes sense when your application doesn’t need the returned value. Check out <a href="http://stackoverflow.com/questions/124462/asynchronous-php-calls">this StackOverflow question on asynchronous PHP calls</a> for more information.</p>
+  </li>
+  <li>
+    <p>Off-load heavy processing to an external service. </p>
+
+    <p>Try our <a href="http://phpfog.com/addons">IronWorker</a> add-on to take some of the asynchronous processing load from your app server. Or, you can create a new Amazon EC2 server dedicated to the heavy processing (the “worker”), and use <a href="http://aws.amazon.com/sqs/">Amazon’s Simple Queue Service</a> to queue jobs. This allows your app to add jobs to the queue and then the worker can pull and process them as it becomes available. </p>
+  </li>
+</ul>
+
+<h3 id="ssl">SSL</h3>
+
+<h4 id="doman-name-mismatch">“Doman name mismatch”</h4>
+
+<p>A domain name mismatch means that the domain name on your certificate doesn’t match your app’s actual URL. For example, your certificate might say “<code>foo.com</code>” while your app’s domain is actually “<code>www.foo.com</code>”.</p>
+
+<p>Solution: Change your app’s domain name to match the certificate. Alternatively, you can have a new certificate issued to match your app’s domain name (this includes wildcard certificates, e.g. “<code>\*.foo.com</code>”).</p>
+
+<h4 id="cannot-verify">“Cannot verify”</h4>
+
+<p>The most common reason your browser cannot verify your app is an expired certificate. </p>
+
+<p>Solution: Have your Certificate Authority update your certificate.</p>
+
+<h4 id="certificate-authority-says-i-need-a-csr">Certificate Authority says I need a CSR.</h4>
+
+<p>Solution: To generate a CSR on your local machine for PHP Fog check out <a href="http://www.globalsign.com/support/csr/serversign_apache.php">this document</a>.</p>
+
+<h4 id="not-a-valid-rsa-key">“Not a valid RSA key”</h4>
+
+<p>PHP Fog takes certifications in RSA and DSA formats.</p>
+
+<p>If you’re getting this error, you can run your key through a converter:</p>
+
+<pre class="prettyprint"><code>$ openssl rsa -in domain.key -out domain_new.key
+</code></pre>
+
+<p>After running this command, your new file format should look like this: </p>
+
+<pre><code>-----BEGIN RSA PRIVATE KEY----- 
+encrypted text 
+-----END RSA PRIVATE KEY-----
+</code></pre>
+
+<h3 id="https">Forcing HTTPS</h3>
+
+<p>Using <code>.htaccess</code> rules to force HTTPS is complicated by the presence of the load balancers. If you’re running into a redirect loop, try forwarding by protocol instead of by port:</p>
+
+<pre class="prettyprint"><code>RewriteCond %{HTTP:X-Forwarded-Proto} https
+</code></pre>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+				</div>
+
+				<div class="span3 sidebar padding accordion" id="accordion2">
+					<div class="row border-bottom">
+						<div class="span3">
+							<form id="search-form" action="/search">
+								<input type="search" placeholder="Search" id="search" name="q" size="30" />
+								<input class="btn gray_blue search" type="submit" value="Go" />
+							</form>
+						</div>
+					</div>
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon icon-chevron-right"></i> Getting Started</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse" id="collapseOne" style="height: 0;">
+						
+							<div class="accordion-inner">
+								
+								<li><a href="/getting-started/jumpstarts.html" >Jumpstarts</a></li>
+								
+								<li><a href="/getting-started/app-console.html" >App Console</a></li>
+								
+								<li><a href="/getting-started/af-cli.html" >AF Command Line Tool</a></li>
+								
+							</div>
+						</ul>
+					</div>
+<!--
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+						<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-right"></i> Customize Your App</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse" id="collapseTwo" style="height: 0;">
+						
+							<div class="accordion-inner">
+							
+							</div>
+						</ul>
+					</div>
+
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Best Practices</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
+						
+							<div class="accordion-inner">
+							
+							</div>
+						</ul>
+					</div>
+
+					-->
+						<div class="row border-bottom"><div class="span3"><a href="/faqs.html" ><h6>FAQ</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
+						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting.html" class="on"><h6>Troubleshooting</h6></div></a></div>
+
+					</div>
+				</div>
+			</div><!-- content -->
+		</div><!-- container -->
+	</div><!-- main_content -->
+
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span1">
+					<img src="http://appfog.com/img/bydevfordev_95.png" width="95" height="79" alt="By Developers For Developers" id="badge">
+				</div>
+				<div class="span3">
+					<h4>About AppFog</h4>
+					<p>Easily build and deploy fast, scalable, and reliable applications to the cloud in seconds. Yeah, it’s that easy.</p>					
+				</div>
+				<div class="span2">
+					<h4>Info</h4>
+					<ul>
+						<li><a href="http://appfog.com/support/">Support</a></li>
+						<li><a href="https://appfog.com/about/">About</a></li>
+						<li><a href="http://dev.appfog.com/">Documentation</a></li>
+					</ul>
+				</div>
+				<div class="span2 offsettop">
+					<ul>
+						<li>Phone: 1.888.974.7364</li>
+						<li>&copy; <script>document.write(new Date().getFullYear());</script> AppFog.</li>
+						<li>All Rights Reserved.</li>
+					</ul>
+				</div>
+				<div class="span4">
+					<h4>Social</h4>
+					<ul id="social">
+						<li id="facebook"><a href="http://www.facebook.com/pages/AppFog/159333004147490">Facebook</a></li>
+						<li id="twitter"><a href="https://twitter.com/#!/appfog">Twitter</a></li>
+						<li id="linkedin"><a href="http://www.linkedin.com/company/appfog">LinkedIn</a></li>
+					</ul>
+				</div>
+			</div>
+		</div> <!-- / .container -->
+	</div>
+	
+	
+<!-- scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://appfog.com/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="http://appfog.com/js/plugins.js"></script>
+<script src="http://appfog.com/js/script.js"></script>
+<script type="text/javascript" src="/js/phpfogdocs.js"></script>
+
+</body>
+</html>

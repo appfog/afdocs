@@ -225,3 +225,14 @@ div.accordion-inner > li > a {
 div.accordion-inner > li > a.on {
 	background-color: #E2EEF6;
 }
+
+.table td {
+	width: 50%;
+	padding: 20px 0 20px 20px;
+
+}
+
+
+td code {
+	font-size: 11px;
+}

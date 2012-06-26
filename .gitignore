@@ -1,4 +1,5 @@
 *.swp
 *.sw*
 _config.yml
+_site
 jekyll_indextank.rb

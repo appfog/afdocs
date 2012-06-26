@@ -2,31 +2,25 @@
 layout: doc-page
 title: Jumpstarts
 weight: 1
-description: "The easiest way to spin up a PHP app. Quick and dead simple."
+description: "The easiest way to spin up a web app. Quick and dead simple."
 ---
 
-### 1. Create an account.
+If you haven’t already, [create an account](http://console.appfog.com/signup).
 
-Go to [www.phpfog.com](http://www.phpfog.com) and create an account.
+### 1. Choose an application.
 
-### 2. Create your app.
-
-Choose from our App or Framework Jumpstarts. 
+Take your pick from our App or Framework Jumpstarts.
 
 <img class="screenshot" src="/img/screenshots/apps-frameworks.png" alt="App and Framework Jumpstarts"/>
 
-Or start from scratch with your own custom PHP app.
+### 2. Choose an infrastructure.
 
-<img class="screenshot" src="/img/screenshots/custom.png" alt="Custom Jumpstart"/>
+Host your app on your choice of infrastructure vendor at your choice of locations.
 
-### 3. Enter the details.
+### 3. Choose your sub-domain.
 
-Enter your Application Details and choose a domain name. 
+You’ll be able to use a custom domain after you create your app.
 
-<img class="screenshot" src="/img/screenshots/details.png" alt="App Details"/>
+### 4. There is no step 4.
 
-### 4. There is no step 4. 
-
-You're done! Give us a couple of minutes to deploy your new app. When your app's status changes to "running," hit the "View Live Site" button.
-
-Ready to dig into code? [Read on](/getting-started/pf-command-line-tool).
+You’re done! Give us a couple of minutes to deploy your new app. Once you’re in the app console, hit the “Visit Live Site” button.

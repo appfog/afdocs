@@ -1,0 +1,28 @@
+DirectoryIndex index.html index.xml
+
+Options +FollowSymlinks
+RewriteEngine On
+DirectorySlash Off
+
+# Append trailing slash to directories
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_URI} !(.*)/$
+RewriteRule ^_site/(.*)$ http://%{HTTP_HOST}/$1/ [L,R=301]
+
+# Remove .html extension
+RewriteCond %{THE_REQUEST} ^(GET|HEAD)\ /.+\.html\ HTTP
+RewriteRule ^_site/(.+)\.html$ http://%{HTTP_HOST}/$1 [R=301,L]
+
+# add .html file extension (if such file does exist)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^.+$ %{REQUEST_FILENAME}.html [L]
+
+<FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif)$">
+  Header set Cache-Control "max-age=864000, public"
+  Header unset Last-Modified
+</FilesMatch>
+
+<FilesMatch "\.(html|htm|xml|txt|xsl)$">
+  Header set Cache-Control "max-age=7200"
+</FilesMatch>

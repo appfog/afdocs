@@ -236,3 +236,12 @@ div.accordion-inner > li > a.on {
 td code {
 	font-size: 11px;
 }
+
+
+blockquote {
+	background-color: #E2EEF6;
+	border: 1px solid #E2EEF6;
+	padding: 20px;
+	margin-top: 0;
+	border-radius: 5px;
+}

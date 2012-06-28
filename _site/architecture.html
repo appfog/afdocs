@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation {{ page.title }}</title> 
+		<title>AppFog &mdash; Documentation Architecture</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -21,7 +21,7 @@
 		<script type="text/javascript" src="/js/jquery.js"></script>
 		<script type="text/javascript" src="/js/bootstrap.js"></script>
 
-		<!-- {% if page.url == "/search.html" %}<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>{% endif %} -->
+		<!--  -->
 		<link rel="icon" type="image/png" href="http://appfog.com/favicon.ico" />
 	</head>
 	<body id="blog" onload="prettyPrint()">
@@ -151,26 +151,14 @@
 	<div id="main_content">
 		<div class='container'>
 
-			{% if page.url == "/index.html" %}
-			<div id="top_bar" class="row gray_blue margin_bottom">
-				<div class="span12">
-					<a href="/"><h1 class="title">AppFog Docs</h1></a>
-					<ul id="secondary_nav">
-						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
-					</ul>
-				</div>
-			</div>
-			{% else %}
+			
 			<div id="top_bar" class="row gray_blue margin_bottom">
 				<div class="span12">
 					<a href="/"><h1 class="title">AppFog Docs</h1></a>
 					<ul id="docs_nav">
-						{% if page.categories %}
+						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/{{ page.categories }}">{% if page.categories[0] == "getting-started" %}Getting Started{% endif %}{% if page.categories[0] == "customize" %}Customize Your App{% endif %}{% if page.categories[0] == "best-practices" %}Best Practices{% endif %}{% if page.categories[0] == "other" %}Other{% endif %}{% if page.categories[0] == "addons" %}Add-ons{% endif %}</a></li>
-						{% endif %}
-						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">{{ page.title }}</a></li>
+						<li><a href="#">Architecture</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -178,13 +166,26 @@
 				</div>
 
 			</div>
-			{% endif %}
+			
 					
 
 
 			<div id="content" class="row white">
 				<div class="span8 main_content">
-					{{ content }}
+					<div class="row entries">
+	<div class="span8">
+		<div class="row">
+			<div class="span8">
+				<h1>Architecture</h1>
+				<p>AppFog is built on the open source project <a href="http://www.cloudfoundry.com/faq">Cloud Foundry</a>.</p>
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
 				</div>
 
 				<div class="span3 sidebar padding accordion" id="accordion2">
@@ -200,18 +201,20 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon {% if page.categories contains 'getting-started' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Getting Started</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon icon-chevron-right"></i> Getting Started</h6></a>
 							</div>
 						</div>
-						{% if page.categories contains 'getting-started' %}
-						<ul class="pages accordion-body collapse in" id="collapseOne" style="height: auto;">
-						{% else %}
+						
 						<ul class="pages accordion-body collapse" id="collapseOne" style="height: 0;">
-						{% endif %}
+						
 							<div class="accordion-inner">
-								{% for current in site.categories.getting-started %}
-								<li><a href="{{ current.url | remove: ".html" }}" {% if current.url == page.url %}class="on"{% endif %}>{{ current.title }}</a></li>
-								{% endfor %}
+								
+								<li><a href="/getting-started/jumpstarts" >Jumpstarts</a></li>
+								
+								<li><a href="/getting-started/app-console" >App Console</a></li>
+								
+								<li><a href="/getting-started/af-cli" >AF Command Line Tool</a></li>
+								
 							</div>
 						</ul>
 					</div>
@@ -219,18 +222,14 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 						<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon {% if page.categories contains 'customize' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Customize Your App</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-right"></i> Customize Your App</h6></a>
 							</div>
 						</div>
-						{% if page.categories contains 'customize' %}
-						<ul class="pages accordion-body collapse in" id="collapseTwo" style="height: auto;">
-						{% else %}
+						
 						<ul class="pages accordion-body collapse" id="collapseTwo" style="height: 0;">
-						{% endif %}
+						
 							<div class="accordion-inner">
-							{% for current in site.categories.customize %}
-							<li><a href="{{ current.url | remove: ".html" }}" {% if current.url == page.url %}class="on"{% endif %}>{{ current.title }}</a></li>
-							{% endfor %}
+							
 							</div>
 						</ul>
 					</div>
@@ -238,27 +237,23 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon {% if page.categories contains 'best-practices' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Best Practices</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Best Practices</h6></a>
 							</div>
 						</div>
-						{% if page.categories contains 'best-practices' %}
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
-						{% else %}
+						
 						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
-						{% endif %}
+						
 							<div class="accordion-inner">
-							{% for current in site.categories.best-practices %}
-							<li><a href="{{ current.url | remove: ".html" }}" {% if current.url == page.url %}class="on"{% endif %}>{{ current.title }}</a></li>
-							{% endfor %}
+							
 							</div>
 						</ul>
 					</div>
 
 					-->
-						<div class="row border-bottom"><div class="span3"><a href="/faqs" {% if page.url == "/faqs.html" %}class="on"{% endif %}><h6>FAQ</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/faqs" ><h6>FAQ</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
-						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" {% if page.url == "/troubleshooting.html" %}class="on"{% endif %}><h6>Troubleshooting</h6></div></a></div>
-						<div class="row border-bottom"><div class="span3"><a href="/architecture" {% if page.url == "/architecture.html" %}class="on"{% endif %}><h6>Architecture</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/architecture" class="on"><h6>Architecture</h6></div></a></div>
 
 					</div>
 				</div>

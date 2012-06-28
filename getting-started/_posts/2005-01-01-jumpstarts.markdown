@@ -17,9 +17,13 @@ Take your pick from our App or Framework Jumpstarts.
 
 Host your app on your choice of infrastructure vendor at your choice of locations.
 
+<img class="screenshot" src="/img/screenshots/infrastructure.png" alt="Available Infrastructures"/>
+
 ### 3. Choose your sub-domain.
 
 You’ll be able to use a custom domain after you create your app.
+
+<img class="screenshot" src="/img/screenshots/subdomain.png" alt="Subdomain"/>
 
 ### 4. There is no step 4.
 

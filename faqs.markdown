@@ -13,9 +13,6 @@ weight: 14
 * [How secure is AppFog?](#secure)
 * [Does AppFog support SSL?](#ssl)
 * [Is AppFog PCI compliant? ](#pci)
-* [Do I have to modify my app to run on AppFog?](#modify)
-* [Can I get SSH access?](#ssh)
-* [Can I get FTP access?](#ftp)
 * [Can my app access third party services?](#3rdparty)
 
 #### What is AppFog? {#reliable}
@@ -26,9 +23,7 @@ weight: 14
 
 #### How reliable is AppFog? {#reliable}
 
-
 #### What type of SLA does AppFog offer? {#sla}
-
 
 #### Is my app still running when AppFog is under maintenance? {#maintenance}
 
@@ -41,11 +36,3 @@ We take security very seriously. For a full walkthrough of our security precauti
 #### Does AppFog support SSL? {#ssl}
 
 #### Is AppFog PCI compliant? {#pci}
-
-#### Can I get SSH access? {#ssh}
-
-To maintain security across our service, we don't offer SSH access. 
-
-#### Can I get FTP access? {#ftp}
-
-We have an SFTP feature on our roadmap, but no ETA. Meanwhile, you can access your source code using our [PF Command Line Tool](/getting-started/pf-command-line-tool) or [Git](/getting-started/git).

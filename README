@@ -24,6 +24,8 @@ Go to 0.0.0.0:4000 in your browser to see a live version.
 
 When you're done, add, commit, and push your changes. 
 
+Note: In the local jekyll server, clean URLs don't work right, so you might have to append ".html" to generated links.
+
 ### AF Docs Style Guide
 
 * Capitalization in Titles Like This

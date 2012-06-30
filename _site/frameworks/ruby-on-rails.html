@@ -180,7 +180,192 @@
 		<div class="row">
 			<div class="span8">
 				<h1>Ruby on Rails</h1>
-				
+				<ul>
+  <li><a href="#rubyversions">Supported Ruby Versions</a></li>
+  <li><a href="#gems">Gems and Gemfiles</a></li>
+  <li><a href="#bundler">Bundler</a></li>
+  <li><a href="#rails30">Rails 3.0</a></li>
+  <li><a href="#rails31">Rails 3.1</a></li>
+  <li><a href="#autoreconfig">Auto-reconfiguration</a></li>
+</ul>
+
+<h3 id="rubyversions">Supported Ruby Versions</h3>
+
+<p>AppFog supports:</p>
+
+<ul>
+  <li>Ruby 1.8.7-p302 or higher</li>
+  <li>Ruby 1.9.2-p174 or higher </li>
+</ul>
+
+<p>Ruby 1.8.7 is the default. </p>
+
+<p>To use Ruby 1.9.2, add the <code>af  --runtime ruby19</code> option when you push your code:</p>
+
+<pre class="prettyprint"><code>$ af push &lt;appname&gt; --runtime ruby19
+</code></pre>
+
+<h1 id="gems">Gems and Gemfiles</h1>
+
+<p>AppFog requires a <code>Gemfile</code> in your app’s root directory. This should list the gems your app needs to run. </p>
+
+<p>The following Gemfile feature aren’t supported yet: </p>
+
+<ul>
+  <li>gem dependencies on git <code>URL</code>s or branches</li>
+  <li>gem :path =&gt; “some/path”</li>
+  <li>platform-conditional gems</li>
+</ul>
+
+<p>AppFog currently only offers one app server for Sinatra and Rails apps: Thin. If you’re using Bundler, and nothing in your app’s bundle requires Thin, VCAP cannot safely start your app using it. In such cases, it will fall back to running your app using ‘<code>rails server</code>’, which uses WEBrick. For best performance and results, use Thin.</p>
+
+<h1 id="bundler">Bundler</h1>
+
+<p>You should use <a href="http://gembundler.com/">Bundler</a> to package your apps. Run <code>bundle package; bundle install</code> each time you modify your Gemfile and before you make an <code>af push </code> or <code>af update</code> command.</p>
+
+<h3 id="gems-with-known-issues">Gems with known issues:</h3>
+
+<ul>
+  <li>rmagick (requires http://www.imagemagick.org/script/index.php native library to be installed)</li>
+</ul>
+
+<p><a href="https://github.com/jbarnette/isolate">Isolate</a> is not well-supported on AppFog.</p>
+
+<h1 id="rails30">Rails 3.0</h1>
+
+<p>Ruby on Rails app deployments on AppFog automatically recognize MySQL. For other services, you’ll need to access the <code>VCAP_SERVICES</code> environment variable. More on that in our <a href="/services">Services doc</a>.</p>
+
+<p>Make sure to use the correct version of the MySQL2 gem in your Gemfile:</p>
+
+<pre class="prettyprint linenums"><code># If you use a different database in development, hide it from AppFog
+group :development do
+gem 'sqlite3'
+end
+
+# Rails 3.0 requires version less than 0.3 of mysql2 gem
+group :production do
+gem 'mysql2', '&lt; 0.3'
+end
+</code></pre>
+
+<h3 id="bundle-your-app">Bundle your app:</h3>
+
+<pre class="prettyprint"><code>$ bundle package
+$ bundle install
+</code></pre>
+
+<p>Deploy:</p>
+
+<pre class="prettyprint"><code>$ af push
+</code></pre>
+
+<h1 id="rails31">Rails 3.1</h1>
+
+<p>Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on AppFog, precompile your assets in your development environment. This compiles them into <code>public/assets</code>, at which point you can tweak the production environment configuration before excuting a normal <code>af push</code>.</p>
+
+<h3 id="gemfile">Gemfile</h3>
+
+<h4 id="ruby-18">Ruby 1.8</h4>
+
+<pre class="prettyprint linenums"><code># If you use a different database in development, hide it from AppFog.
+group :development do
+gem 'sqlite3'
+end
+
+# Rails 3.1 can use the latest mysql2 gem.
+group :production do
+gem 'mysql2'
+end
+</code></pre>
+
+<h4 id="ruby-19">Ruby 1.9</h4>
+
+<pre class="prettyprint linenums"><code># If you use a different database in development, hide it from AppFog.
+group :development do
+gem 'sqlite3'
+end
+
+# Rails 3.1 can use the latest mysql2 gem.
+group :production do
+gem 'mysql2'
+end
+
+# For Ruby 1.9 AppFog requires a tweak to the jquery-rails gem.
+# gem 'jquery-rails'
+gem 'cloudfoundry-jquery-rails'
+
+# For Ruby 1.9 AppFog requires a tweak to devise.
+# Uncomment next line if you plan to use devise.
+# gem 'cloudfoundry-devise', :require =&gt; 'devise'
+</code></pre>
+
+<h3 id="bundle-your-app-1">Bundle your app:</h3>
+
+<pre class="prettyprint"><code>$ bundle package
+$ bundle install
+</code></pre>
+
+<h3 id="configs">Configs</h3>
+
+<p>In <code>config/environments/production.rb</code>, change</p>
+
+<pre class="prettyprint"><code>config.server_static_assets = false
+</code></pre>
+
+<p>to</p>
+
+<pre class="prettyprint"><code>config.server_static_assets = true
+</code></pre>
+
+<h3 id="assets">Assets</h3>
+
+<p>Pre-compile your asset pipeline:</p>
+
+<pre class="prettyprint"><code>$ bundle exec rake assets:precompile
+</code></pre>
+
+<h3 id="version-control-system">Version Control System</h3>
+
+<p>Commit the current configuration to your version control system. Consider including: + <code>Gemfile.lock</code> + gems packaged into <code>vendor/cache</code> + assets compiled into <code>public/assets</code>.</p>
+
+<h3 id="deploy">Deploy</h3>
+
+<pre class="prettyprint"><code>$ af push
+</code></pre>
+
+<h1 id="autoreconfig">Auto-reconfiguration</h1>
+
+<p>Ruby on Rails apps deployed on AppFog support auto-reconfiguration for relational database services. This means you can deploy a Rails app on AppFog without changing a single line of code. </p>
+
+<p>AppFog automatically reconfigures Rails apps by modifying the production settings in your <code>config/database.yml</code> file during staging.</p>
+
+<p>While it’s fairly common to put these types of connections in a Rails Initializer File, auto-reconfiguration should work just as well if you create the connection somewhere else within your application.</p>
+
+<p>When your Rails app is staged for deployment, AppFog makes two modifications:</p>
+
+<ul>
+  <li>Adds an additional <code>cf-autoconfig</code> gem to your Bundle.</li>
+  <li>Adds an Initializer file to <code>config/initializers</code> that ensures that all dynamic class modification is done prior to loading other Initializers (and thus before your app executes).</li>
+</ul>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>Auto-reconfiguration only works if there’s exactly one service of a given service type bound to your app. For example, you can only bind only one relational database service (e.g. MySQL or Postgres) to an app. </p>
+
+<p>If your app doesn’t follow these limitations, AppFog won’t auto-reconfigure your app. </p>
+
+<p>The auto-reconfiguration mechanism also expects typical Ruby apps. If your app configuration is complex, it may not work. In those cases, you can opt out of auto-reconfiguration:</p>
+
+<h3 id="opting-out-of-auto-reconfiguration">Opting out of auto-reconfiguration</h3>
+
+<p>AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.</p>
+
+<ul>
+  <li>Create a file in your Rails app called <code>config/cloudfoundry.yml</code>. Add the entry <code>autoconfig: false</code>.</li>
+  <li>Include the <code>cf-runtime</code> gem in your app’s <code>Gemfile</code>. </li>
+</ul>
+
+<p>For more technical details about how auto-reconfiguration works on Cloud Foundry, check out <a href="http://blog.cloudfoundry.com/2012/03/12/using-cloud-foundry-services-with-ruby-part-1-auto-reconfiguration/">this blog post</a>.</p>
 
 
 			</div>

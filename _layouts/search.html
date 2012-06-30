@@ -2,7 +2,7 @@
 layout: base
 ---
 
-<script type="text/javascript" src="/js/icanhaz.min.js"></script>
+<script type="text/javascript" src="http://docs.appfog.com/js/icanhaz.min.js"></script>
 
 <script type="text/javascript">
 	function params()
@@ -23,7 +23,6 @@ layout: base
 		{
 			var query = params()['q'];
 			$('div#search_results p#loading').show();
-		  
 			var index = 0;
 
 			var result = $.getJSON('http://uzehyv.api.indexden.com/v1/indexes/phpfogdocs/search?q=' + encodeURIComponent(query) + '&fetch=title&snippet=text&callback=?', function(data) {
@@ -83,10 +82,16 @@ layout: base
 </div>
 <div id="search_results" class="row">
 		<noscript>Please enable JavaScript to search.</noscript>   	
-		<p id="loading">Loading...</p>
 		<div class="span8">
 			<div class="row entries">
 				<div id="inner">
+					<div class="span8">
+						<div class="row">
+							<div class="span8">
+								<h3 id="loading">Loading...</h3>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

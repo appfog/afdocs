@@ -149,9 +149,19 @@ Commit the current configuration to your version control system. Consider includ
 {: .prettyprint}
     $ af push
 
+# Services
+
+AppFog automatically creates and binds a new MySQL service with the Ruby on Rails jumpstart, and the app is [automatically reconfigured](#autoreconfig) to connect to the service. For more information on services and how to connect to them manually, check out our docs on [Services](/services/overview).
+
 # Auto-reconfiguration {#autoreconfig}
 
 Ruby on Rails apps deployed on AppFog support auto-reconfiguration for relational database services. This means you can deploy a Rails app on AppFog without changing a single line of code. 
+
+Note: Auto-reconfiguration is currently disabled by default. To enable, add a `config/cloudfoundry.yml` file containing the following:
+
+{: .prettyprint}
+    ---
+	autoconfig: true
 
 AppFog automatically reconfigures Rails apps by modifying the production settings in your `config/database.yml` file during staging.
 
@@ -170,11 +180,15 @@ If your app doesn’t follow these limitations, AppFog won't auto-reconfigure yo
 
 The auto-reconfiguration mechanism also expects typical Ruby apps. If your app configuration is complex, it may not work. In those cases, you can opt out of auto-reconfiguration:
 
+<!---
+
 ### Opting out of auto-reconfiguration
 
 AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.
 
 * Create a file in your Rails app called `config/cloudfoundry.yml`. Add the entry `autoconfig: false`.
-* Include the `cf-runtime` gem in your app's `Gemfile`. 
+* Include the `cf-runtime` gem in your app's `Gemfile`. --->
+
+### Further Reading
 
 For more technical details about how auto-reconfiguration works on Cloud Foundry, check out [this blog post](http://blog.cloudfoundry.com/2012/03/12/using-cloud-foundry-services-with-ruby-part-1-auto-reconfiguration/).

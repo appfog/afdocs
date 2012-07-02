@@ -6,7 +6,7 @@ The site is generated in [Jekyll](https://github.com/mojombo/jekyll), so [instal
 
 Then clone this repo.
 
-Jekyll is a static site generator. It converts the markdown files into a static site under the "_site" directory.
+Jekyll is a static site generator. It converts the markdown files into a static site under the "\_site" directory.
 
 The live site is hosted on GitHub Pages, which simply pulls from this repo's "gh-pages" branch.
 
@@ -37,3 +37,15 @@ Note: In the local jekyll server, clean URLs don't work right, so you might have
 * "log in" and "set up" are verbs
 * "login" and "setup" are nouns
 * "Add-ons" or "add-ons", not "Add-Ons" or "Addons"
+
+### Contributing
+
+Clone this repo, commit some changes, then make a pull request.
+
+### Attribution
+
+These docs are adapted from [Cloud Foundry's Documentation](http://docs.cloudfoundry.com).
+
+### License
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 License](http://creativecommons.org/licenses/by-sa/3.0/).

@@ -1,0 +1,56 @@
+<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>.</p>
+
+<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+
+<p>Here&#8217;s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+
+<pre class='prettyprint linenums'><code>{&quot;mysql-5.1&quot;:[
+    {
+            &quot;name&quot;:&quot;mysql-4f700&quot;,
+            &quot;label&quot;:&quot;mysql-5.1&quot;,
+            &quot;plan&quot;:&quot;free&quot;,
+            &quot;tags&quot;:[&quot;mysql&quot;,&quot;mysql-5.1&quot;,&quot;relational&quot;],
+            &quot;credentials&quot;:{
+            &quot;name&quot;:&quot;d6d665aa69817406d8901cd145e05e3c6&quot;,
+            &quot;hostname&quot;:&quot;mysql-node01.us-east-1.aws.af.cm&quot;,
+            &quot;host&quot;:&quot;mysql-node01.us-east-1.aws.af.cm&quot;,
+            &quot;port&quot;:3306,
+            &quot;user&quot;:&quot;uB7CoL4Hxv9Ny&quot;,
+            &quot;username&quot;:&quot;uB7CoL4Hxv9Ny&quot;,
+            &quot;password&quot;:&quot;pzAx0iaOp2yKB&quot;
+        }
+    },
+    {
+            &quot;name&quot;:&quot;mysql-f1a13&quot;,
+            &quot;label&quot;:&quot;mysql-5.1&quot;,
+            &quot;plan&quot;:&quot;free&quot;,
+            &quot;tags&quot;:[&quot;mysql&quot;,&quot;mysql-5.1&quot;,&quot;relational&quot;],
+            &quot;credentials&quot;:{
+            &quot;name&quot;:&quot;db777ab9da32047d99dd6cdae3aafebda&quot;,
+            &quot;hostname&quot;:&quot;mysql-node01.us-east-1.aws.af.cm&quot;,
+            &quot;host&quot;:&quot;mysql-node01.us-east-1.aws.af.cm&quot;,
+            &quot;port&quot;:3306,
+            &quot;user&quot;:&quot;uJHApvZF6JBqT&quot;,
+            &quot;username&quot;:&quot;uJHApvZF6JBqT&quot;,
+            &quot;password&quot;:&quot;p146KmfkqGYmi&quot;
+        }
+    }
+]}</code></pre>
+
+<p>You can use your app&#8217;s language-specific facility to call the environment variable.</p>
+
+<p>In Java:</p>
+
+<pre class='prettyprint'><code>java.lang.System.getenv(&quot;VCAP_SERVICES&quot;)</code></pre>
+
+<p>In Ruby:</p>
+
+<pre class='prettyprint'><code>ENV[&#39;VCAP_SERVICES&#39;]</code></pre>
+
+<p>In Javascript:</p>
+
+<pre class='prettyprint'><code>process.env.VCAP_SERVICES</code></pre>
+
+<p>In Python:</p>
+
+<pre class='prettyprint'><code>os.getenv.(&quot;VCAP_SERVICES&quot;)</code></pre>

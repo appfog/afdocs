@@ -13,14 +13,14 @@ weight: 1
 
 ### Supported Ruby Versions {#rubyversions}
 
-AppFog supports:
+For a list of runtimes that AppFog supports run:
 
-* Ruby 1.8.7-p302 or higher
-* Ruby 1.9.2-p174 or higher 
+{: .prettyprint}
+    $ af runtimes
 
-Ruby 1.8.7 is the default. 
+Ruby 1.8.7 is the default Ruby runtime.
 
-To use Ruby 1.9.2, add the `af  --runtime ruby19` option when you push your code:
+To use Ruby 1.9.2, for example, add the `af  --runtime ruby19` option when you push your code:
 
 {: .prettyprint}
     $ af push <appname> --runtime ruby19
@@ -39,7 +39,7 @@ AppFog currently only offers one app server for Sinatra and Rails apps: Thin. If
 
 # Bundler {#bundler}
 
-You should use [Bundler](http://gembundler.com/) to package your apps. Run `bundle package; bundle install` each time you modify your Gemfile and before you make an `af push ` or `af update` command.
+You should use [Bundler](http://gembundler.com/) to package your apps. Run `bundle package; bundle install` each time you modify your Gemfile and before you make an `af push` or `af update` command.
 
 ### Gems with known issues:
 

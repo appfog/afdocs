@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>AppFog &mdash; Documentation Node Chat</title> 
+
+		<link rel="stylesheet" href="http://appfog.com/css/style.css">
+		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
+		<link href="/css/table.css" rel="stylesheet">
+		<link href="/css/docs.css" rel="stylesheet">
+		<!-- typekit -->
+		<script type="text/javascript" src="http://use.typekit.com/abw3xjt.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+				
+		<!-- css -->
+
+		<!-- modernizr -->
+		<script src="http://appfog.com/js/libs/modernizr-2.5.3.min.js"></script>
+
+		<script type="text/javascript" src="/js/google-code-prettify/prettify.js"></script>
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.js"></script>
+
+		<!--  -->
+		<link rel="icon" type="image/png" href="http://appfog.com/favicon.ico" />
+	</head>
+	<body id="blog" onload="prettyPrint()">
+	<div id="header">
+		<div class="container">
+			<a href="http://appfog.com/" id="app_fog"><img src="http://appfog.com/img/app-fog.png" width="189" height="47" alt="App Fog"></a>
+			<ul id="main_nav">
+				<li id="nproducts">
+					<a href="#" title="Products" class="parent"><span>Products</span></a>
+					<ul>
+						<li><a href="http://appfog.com/products/appfog">AppFog</a></li>
+						<li><a href="http://appfog.com/products/phpfog">PHP Fog</a></li>
+					</ul>
+				</li>
+				<li id="npricing">
+					<a href="#" title="Pricing" class="parent"><span>Pricing</span></a>
+					<ul>
+						<li><a href="https://console.appfog.com/pricing">AppFog</a></li>
+						<li><a href="http://appfog.com/products/phpfog/pricing/">PhpFog</a></li>
+					</ul>
+				</li>
+				<li id="nshowcase"><a href="http://appfog.com/showcase/" title="Showcase">Showcase</a></li>
+				<li id="nabout"><a href="http://appfog.com/about/" title="About">About</a></li>
+				<li id="nsupport"><a href="http://appfog.com/support/" title="Support">Support</a></li>
+				<li id="nblog"><a href="http://blog.appfog.com/" title="Blog">Blog</a></li>
+
+				<li id="nlogin">
+						  <a href="#" title="Log In" class="btn gray">Log In <i class="icon-chevron-down"></i></a>
+						  <form id="log_in_form" class="dropdown">
+							<div class="container">
+							  <!-- <div class="half">
+								<div class="radio_btn" id="log_in_product_php_fog">
+								  <span>
+									<input type="radio" name="products" value="" id="log_in_php_fog" checked>
+								  </span>
+								  <label for="log_in_php_fog">Php Fog</label>
+								</div>
+							  </div>
+							  <div class="half">
+								<div class="radio_btn" id="log_in_product_appfog">
+								  <span>
+									<input type="radio" name="products" value="" id="log_in_appfog">
+								  </span>
+								  <label for="log_in_appfog">AppFog</label>
+								</div>
+								
+							  </div>
+							</div> -->
+										
+							<!-- <hr> -->
+
+							<!-- <div class="container appfog">
+							  <input type="email" name="email" value="" id="appfog_log_in_email" placeholder="Email" class="text">
+							  <input type="password" name="password" value="" id="appfog_log_in_password" placeholder="Password" class="text">
+							</div>
+							
+							<div class="container php_fog">
+							  <input type="email" name="email" value="" id="php_fog_log_in_email" placeholder="Email" class="text">
+							  <input type="password" name="password" value="" id="php_fog_log_in_password" placeholder="Password" class="text">
+							</div> -->
+										
+
+										
+							<!-- <div class="container">  
+							  <div class="half">
+								<div class="checkbox">
+								  <span class="active">
+									<input type="checkbox" name="remember_me" value="" id="log_in_remember_me" checked>
+								  </span>
+								</div>
+								<label for="log_in_remember_me" class="remember_me">Remember Me</label>
+							  </div>
+
+							  <div class="half forgot_password">
+								<a href="#">Forgot Password?</a>
+							  </div>
+							</div> -->
+										<a href="https://phpfog.com/login" class="btn bright_green submit" style="font-size: 13px;">Log In to PHP Fog</a>
+										<hr>
+										<a href="https://console.appfog.com/login" class="btn bright_green submit" style="font-size: 13px;">Log In to AppFog</a>
+									</form>
+								</li>
+								<li id="nsignup">
+									<a href="#" title="Sign Up" class="btn bright_green">Sign Up <i class="icon-chevron-down"></i></a>
+									<form id="sign_up_form" class="dropdown">
+							<!-- <div class="container">
+							  <div class="half">
+								<div class="radio_btn" id="sign_up_product_php_fog">
+								  <span>
+									<input type="radio" name="products" value="" id="sign_up_php_fog" checked>
+								  </span>
+								  <label for="sign_up_php_fog">Php Fog</label>
+								</div>
+							  </div>
+							  <div class="half">
+								<div class="radio_btn" id="sign_up_product_appfog">
+								  <span>
+									<input type="radio" name="products" value="" id="sign_up_appfog">
+								  </span>
+								  <label for="sign_up_appfog">AppFog</label>
+								</div>
+								
+							  </div>
+							</div> -->
+										
+										<!-- <hr>
+													
+													<div class="container php_fog">
+													  <input type="email" name="email" value="" id="sign_up_php_fog_email" placeholder="Email" class="text">
+													  <input type="password" name="password" value="" id="sign_up_password" placeholder="Password" class="text">
+													  <input type="password" name="password_confirmation" value="" id="sign_up_password_confirmation" placeholder="Password Confirmation" class="text">
+													</div>
+													
+													<div class="container appfog">
+													  <input type="email" name="email" value="" id="sign_up_appfog_email" placeholder="Email" class="text">
+													</div> -->
+										
+										<a href="https://phpfog.com/signup" class="btn bright_green submit" style="font-size: 13px;">Register for PHP Fog</a>
+										<hr>
+										<a href="http://appfog.com/signup.php" class="btn bright_green submit" style="font-size: 13px;">Register for AppFog</a>
+									</form>
+								</li>
+
+			</ul>
+		</div> 
+	</div>
+	<div id="main_content">
+		<div class='container'>
+
+			
+			<div id="top_bar" class="row gray_blue margin_bottom">
+				<div class="span12">
+					<a href="/"><h1 class="title">AppFog Docs</h1></a>
+					<ul id="docs_nav">
+						
+						<li class="breadcrumb-separator">&raquo;</li>
+						<li><a href="/frameworks">Frameworks</a></li>
+						
+						<li class="breadcrumb-separator">&raquo;</li>
+						<li><a href="#">Node Chat</a></li>
+					</ul>
+					<ul id="secondary_nav">
+						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
+					</ul>
+				</div>
+
+			</div>
+			
+					
+
+
+			<div id="content" class="row white">
+				<div class="span8 main_content">
+					<div class="row entries">
+	<div class="span8">
+		<div class="row">
+			<div class="span8">
+				<h1>Node Chat</h1>
+				
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+				</div>
+
+				<div class="span3 sidebar padding accordion" id="accordion2">
+					<!--
+					<div class="row border-bottom">
+						<div class="span3">
+							<form id="search-form" action="/search">
+								<input type="search" placeholder="Search" id="search" name="q" size="30" />
+								<input class="btn gray_blue search" type="submit" value="Go" />
+							</form>
+						</div>
+					</div>-->
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon icon-chevron-right"></i> Getting Started</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse" id="collapseOne" style="height: 0;">
+						
+							<div class="accordion-inner">
+								
+								<li><a href="/getting-started/jumpstarts" >Jumpstarts</a></li>
+								
+								<li><a href="/getting-started/app-console" >App Console</a></li>
+								
+								<li><a href="/getting-started/af-cli" >AF Command Line Tool</a></li>
+								
+							</div>
+						</ul>
+					</div>
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+						<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-down"></i> Frameworks</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse in" id="collapseTwo" style="height: auto;">
+						
+							<div class="accordion-inner">
+							
+							<li><a href="/frameworks/java" >Java</a></li>
+							
+							<li><a href="/frameworks/java-grails" >Java Grails</a></li>
+							
+							<li><a href="/frameworks/java-spring-mysql" >Java Spring</a></li>
+							
+							<li><a href="/frameworks/node" >Node</a></li>
+							
+							<li><a href="/frameworks/node-chat" class="on">Node Chat</a></li>
+							
+							<li><a href="/frameworks/node-express" >Node Express</a></li>
+							
+							<li><a href="/frameworks/php" >PHP</a></li>
+							
+							<li><a href="/frameworks/php-drupal" >Drupal</a></li>
+							
+							<li><a href="/frameworks/php-wordpress" >WordPress</a></li>
+							
+							<li><a href="/frameworks/python" >Python</a></li>
+							
+							<li><a href="/frameworks/python-django" >Python Django</a></li>
+							
+							<li><a href="/frameworks/python-flask" >Python Flask</a></li>
+							
+							<li><a href="/frameworks/ruby-sinatra" >Ruby Sinatra</a></li>
+							
+							<li><a href="/frameworks/ruby-on-rails" >Ruby on Rails</a></li>
+							
+							</div>
+						</ul>
+					</div>
+
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
+							</div>
+						</div>
+						
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
+						
+							<div class="accordion-inner">
+							
+							<li><a href="/services/overview" >Overview</a></li>
+							
+							<li><a href="/services/tunneling" >Tunneling</a></li>
+							
+							<li><a href="/services/tunnel" >Tunneling</a></li>
+							
+							<li><a href="/services/mysql" >MySQL</a></li>
+							
+							<li><a href="/services/mongodb" >MongoDB</a></li>
+							
+							</div>
+						</ul>
+					</div>
+
+						<div class="row border-bottom"><div class="span3"><a href="/faqs" ><h6>FAQ</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
+						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
+
+					</div>
+				</div>
+			</div><!-- content -->
+		</div><!-- container -->
+	</div><!-- main_content -->
+
+	<div id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="span1">
+					<img src="http://appfog.com/img/bydevfordev_95.png" width="95" height="79" alt="By Developers For Developers" id="badge">
+				</div>
+				<div class="span3">
+					<h4>About AppFog</h4>
+					<p>Easily build and deploy fast, scalable, and reliable applications to the cloud in seconds. Yeah, it’s that easy.</p>					
+				</div>
+				<div class="span2">
+					<h4>Info</h4>
+					<ul>
+						<li><a href="http://appfog.com/support/">Support</a></li>
+						<li><a href="https://appfog.com/about/">About</a></li>
+						<li><a href="http://dev.appfog.com/">Documentation</a></li>
+					</ul>
+				</div>
+				<div class="span2 offsettop">
+					<ul>
+						<li>Phone: 1.888.974.7364</li>
+						<li>&copy; <script>document.write(new Date().getFullYear());</script> AppFog.</li>
+						<li>All Rights Reserved.</li>
+					</ul>
+				</div>
+				<div class="span4">
+					<h4>Social</h4>
+					<ul id="social">
+						<li id="facebook"><a href="http://www.facebook.com/pages/AppFog/159333004147490">Facebook</a></li>
+						<li id="twitter"><a href="https://twitter.com/#!/appfog">Twitter</a></li>
+						<li id="linkedin"><a href="http://www.linkedin.com/company/appfog">LinkedIn</a></li>
+					</ul>
+				</div>
+			</div>
+		</div> <!-- / .container -->
+	</div>
+	
+	
+<!-- scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://appfog.com/js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+<script src="http://appfog.com/js/plugins.js"></script>
+<script src="http://appfog.com/js/script.js"></script>
+<script type="text/javascript" src="/js/docs.js"></script>
+
+</body>
+</html>

@@ -136,4 +136,4 @@ The `<clientcmd>` argument is the name of the client program to start. Only the 
 
 ### Links
 
-For more information, check out [this blog post](http://blog.cloudfoundry.com/2011/11/17/now-you-can-tunnel-into-any-cloud-foundry-data-service/) and [this doc](http://docs.cloudfoundry.com/tools/vmc/caldecott.html) from Cloud Foundry.
+For more information, check out [this blog post](http://blog.cloudfoundry.com/2011/11/17/now-you-can-tunnel-into-any-cloud-foundry-data-service/) and [this doc](http://docs.cloudfoundry.com/tools/vmc/caldecott.html) from Cloud Foundry. You can also check out [Caldecott's GitHub repository](https://github.com/cloudfoundry/caldecott).

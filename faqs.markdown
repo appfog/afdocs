@@ -27,11 +27,9 @@ weight: 14
 
 #### Is my app still running when AppFog is under maintenance? {#maintenance}
 
-Yes. While the PHP Fog website and your app console will be inaccessible during maintenance, your app will continue to run. You'll also continue to have access to your source code. 
+Yes. While the AppFog website and your app console will be inaccessible during maintenance, your app will continue to run. You'll also continue to have access to your source code. 
 
 #### How secure is AppFog? {#secure}
-
-We take security very seriously. For a full walkthrough of our security precautions, check out [this page](/security).
 
 #### Does AppFog support SSL? {#ssl}
 

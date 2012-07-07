@@ -205,17 +205,17 @@
 
 <h1 id="gems">Gems and Gemfiles</h1>
 
-<p>AppFog requires a <code>Gemfile</code> in your app&rsquo;s root directory. This should list the gems your app needs to run. </p>
+<p>AppFog requires a <code>Gemfile</code> in your app’s root directory. This should list the gems your app needs to run. </p>
 
-<p>The following Gemfile feature aren&rsquo;t supported yet: </p>
+<p>The following Gemfile feature aren’t supported yet: </p>
 
 <ul>
   <li>gem dependencies on git <code>URL</code>s or branches</li>
-  <li>gem :path =&gt; &ldquo;some/path&rdquo;</li>
+  <li>gem :path =&gt; “some/path”</li>
   <li>platform-conditional gems</li>
 </ul>
 
-<p>AppFog currently only offers one app server for Sinatra and Rails apps: Thin. If you&rsquo;re using Bundler, and nothing in your app&rsquo;s bundle requires Thin, VCAP cannot safely start your app using it. In such cases, it will fall back to running your app using &lsquo;<code>rails server</code>&rsquo;, which uses WEBrick. For best performance and results, use Thin.</p>
+<p>AppFog currently only offers one app server for Sinatra and Rails apps: Thin. If you’re using Bundler, and nothing in your app’s bundle requires Thin, VCAP cannot safely start your app using it. In such cases, it will fall back to running your app using ‘<code>rails server</code>’, which uses WEBrick. For best performance and results, use Thin.</p>
 
 <h1 id="bundler">Bundler</h1>
 
@@ -231,7 +231,7 @@
 
 <h1 id="rails30">Rails 3.0</h1>
 
-<p>Ruby on Rails app deployments on AppFog automatically recognize MySQL. For other services, you&rsquo;ll need to access the <code>VCAP_SERVICES</code> environment variable. More on that in our <a href="/services">Services doc</a>.</p>
+<p>Ruby on Rails app deployments on AppFog automatically recognize MySQL. For other services, you’ll need to access the <code>VCAP_SERVICES</code> environment variable. More on that in our <a href="/services">Services doc</a>.</p>
 
 <p>Make sure to use the correct version of the MySQL2 gem in your Gemfile:</p>
 
@@ -358,9 +358,9 @@ autoconfig: true
 
 <h3 id="limitations">Limitations</h3>
 
-<p>Auto-reconfiguration only works if there&rsquo;s exactly one service of a given service type bound to your app. For example, you can only bind only one relational database service (e.g. MySQL or Postgres) to an app. </p>
+<p>Auto-reconfiguration only works if there’s exactly one service of a given service type bound to your app. For example, you can only bind only one relational database service (e.g. MySQL or Postgres) to an app. </p>
 
-<p>If your app doesn’t follow these limitations, AppFog won&rsquo;t auto-reconfigure your app. </p>
+<p>If your app doesn’t follow these limitations, AppFog won’t auto-reconfigure your app. </p>
 
 <p>The auto-reconfiguration mechanism also expects typical Ruby apps. If your app configuration is complex, it may not work. In those cases, you can opt out of auto-reconfiguration:</p>
 

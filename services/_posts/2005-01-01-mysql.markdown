@@ -119,6 +119,8 @@ First, export your MySQL data into a `.sql` file. If you're using phpMyAdmin, yo
 	2: mysql
 	Which client would you like to start?: 1
 
+Check out our [doc on tunneling](/services/tunneling) for more info.
+
 ### Import
 
 At this point, you can access your AppFog MySQL server as if it's a local MySQL instance.

@@ -4,7 +4,7 @@ title: Tunneling
 weight: 1
 ---
 
-You can interact with your provisioned services interactively by using the `af tunnel` command. This uses an app called "Caldecott" to create a tunnel that connects a port on your local computer to the service in AppFog. The `af tunnel` command uploads the Caldecott app to your AppFog instance, sets up the tunneling, and offers to start a standard client on your computer to work with the service. 
+You can interact with your provisioned services interactively by using the `af tunnel` command. This uses an app called "Caldecott", which is a `TCP` proxy over `HTTPS`. Caldecott creates a tunnel that connects a port on your local computer to the service in AppFog. The `af tunnel` command uploads the Caldecott app to your AppFog instance, sets up the tunneling, and offers to start a standard client on your computer to work with the service. This can be useful for managing your services as well as for debugging.
 
 ### Prerequisites {#prereqs}
 
@@ -33,6 +33,7 @@ You can interact with your provisioned services interactively by using the `af t
 <td><tt>psql</tt></td>
 </tr>
 
+<!---
 <tr>
 <td>rabbitmq</td>
 <td><i>none</i></td>
@@ -42,6 +43,7 @@ You can interact with your provisioned services interactively by using the `af t
 <td>Redis</td>
 <td><tt>redis-cli</tt></td>
 </tr>
+--->
 
 </table>
 
@@ -74,7 +76,6 @@ Which should return something like this:
     | exampleapp2-mysql     | mysql      |
     | exampleappmongodb     | mongodb    |
     | example-postgres      | postgresql |
-    | example-redis         | redis      |
     +-----------------------+------------+
 
 Create a tunnel to the service with `af tunnel <service>`. For example:
@@ -132,3 +133,7 @@ The `<servicename>` argument is the name of the service, as shown by the `af ser
 The `<portnumber>` parameter is the port to use on the local machine. By default, `af` chooses an available port in the `10000` range.
 
 The `<clientcmd>` argument is the name of the client program to start. Only the client names shown in the table in the [Prerequisites](#prereqs) section are supported for this argument.
+
+### Links
+
+For more information, check out [this blog post](http://blog.cloudfoundry.com/2011/11/17/now-you-can-tunnel-into-any-cloud-foundry-data-service/) and [this doc](http://docs.cloudfoundry.com/tools/vmc/caldecott.html) from Cloud Foundry. You can also check out [Caldecott's GitHub repository](https://github.com/cloudfoundry/caldecott).

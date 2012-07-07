@@ -5,7 +5,7 @@ weight: 1
 description: "Code deployment made easy."
 ---
 
-`af` is based on CloudFoundry's `vmc` but includes features specific to AppFog and has the default target set to AppFog's service.
+`af` is based on CloudFoundry's `vmc` but includes features specific to AppFog and has the default target set to AppFog's service. Check out [the GitHub repo](https://github.com/appfog/af).
 
 ### Usage 
 
@@ -26,13 +26,13 @@ or
 
 <table class="table table-bordered table-striped">
 <tr>
-	<td><code>target [url]</code></td>                                <td>Reports current target or sets a new target</td>
+    <td><code>target [url]</code></td>                                <td>Reports current target or sets a new target</td>
 </tr>
 <tr>
-	<td><code>login  [email] [--email, --passwd]</code></td>          <td>Login</td>
+    <td><code>login  [email] [--email, --passwd]</code></td>          <td>Login</td>
 </tr>
 <tr>
-	<td><code>info</code></td>                                         <td>System and account information</td>
+    <td><code>info</code></td>                                         <td>System and account information</td>
 </tr>
 </table>
 
@@ -40,7 +40,7 @@ or
 
 <table class="table table-bordered table-striped">
 <tr>
-	<td><code>apps</code></td>                                         <td>List deployed applications</td>
+    <td><code>apps</code></td>                                         <td>List deployed applications</td>
 </tr>
 </table>
 

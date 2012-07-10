@@ -52,7 +52,7 @@ For other Ruby apps, use the `JSON.parse()` code to extract the information you 
 When `af` asks if you want to bind any services, enter `y` and choose `mongodb` from the menu. Provide a name for the service or accept the default:
 
 {: .prettyprint}
-    $ af push --runtime ruby19
+    $ af push --runtime ruby193
         Would you like to deploy from the current directory? [Yn]:
         Application Name: test
         Application Deployed URL [test.af.aws.cm]:

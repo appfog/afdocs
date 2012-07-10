@@ -16,13 +16,16 @@ You can use the [MongoMapper ORM](http://mongomapper.com/) to adapt your Ruby ap
 
 ### Gemfile
 
-First, add the MongoMapper gem:
+First, add the MongoMapper gem, as well as BSON for serialization of JSON-like documents, which is necessary for interfacing with the MongoDB Ruby driver:
+
+{: .prettyprint .linenums}
+    gem 'mongo_mapper'
+	gem 'bson_ext'
+
+And install the gems:
 
 {: .prettyprint}
     $ gem install "mongo_mapper"
-
-
-Also, add BSON for serialization of JSON-like documents, which is necessary for interfacing with the MongoDB Ruby driver.
 
 {: .prettyprint}
     $ gem install "bson_ext"

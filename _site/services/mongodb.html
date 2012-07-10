@@ -194,12 +194,16 @@
 
 <h3 id="gemfile">Gemfile</h3>
 
-<p>First, add the MongoMapper gem:</p>
+<p>First, add the MongoMapper gem, as well as BSON for serialization of JSON-like documents, which is necessary for interfacing with the MongoDB Ruby driver:</p>
+
+<pre class="prettyprint linenums"><code>gem 'mongo_mapper'
+gem 'bson_ext'
+</code></pre>
+
+<p>And install the gems:</p>
 
 <pre class="prettyprint"><code>$ gem install "mongo_mapper"
 </code></pre>
-
-<p>Also, add BSON for serialization of JSON-like documents, which is necessary for interfacing with the MongoDB Ruby driver.</p>
 
 <pre class="prettyprint"><code>$ gem install "bson_ext"
 </code></pre>

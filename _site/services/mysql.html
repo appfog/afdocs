@@ -180,17 +180,17 @@
 		<div class="row">
 			<div class="span8">
 				<h1>MySQL</h1>
-				<p>AppFog provides a MySQL service that&rsquo;s accessible to apps that are running on any of the supported runtimes and frameworks. </p>
+				<p>AppFog provides a MySQL service that’s accessible to apps that are running on any of the supported runtimes and frameworks. </p>
 
-<p>The AppFog app deployment process can automatically configure your app to use the bound MySQL service. Check the doc page for your app&rsquo;s framework to learn more about auto-reconfiguration. </p>
+<p>The AppFog app deployment process can automatically configure your app to use the bound MySQL service. Check the doc page for your app’s framework to learn more about auto-reconfiguration. </p>
 
 <h3 id="the-vcapservices-environment-variable">The VCAP_SERVICES Environment Variable</h3>
 
-<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. For apps that can&rsquo;t be automatically configured, you can find the information your app needs to connect to the database in this variable.</p>
+<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. For apps that can’t be automatically configured, you can find the information your app needs to connect to the database in this variable.</p>
 
 <p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
 
-<p>Here&rsquo;s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
 
 <pre class="prettyprint linenums"><code>{"mysql-5.1":[
     {
@@ -226,7 +226,7 @@
 ]}
 </code></pre>
 
-<p>You can use your app&rsquo;s language-specific facility to call the environment variable.</p>
+<p>You can use your app’s language-specific facility to call the environment variable.</p>
 
 <p>In Java:</p>
 
@@ -262,11 +262,11 @@
 
 <h1 id="migration">Migration</h1>
 
-<p>Here&rsquo;s a quick guide on migrating an existing database to an AppFog app. </p>
+<p>Here’s a quick guide on migrating an existing database to an AppFog app. </p>
 
 <h3 id="prepare-your-data">Prepare your data</h3>
 
-<p>First, export your MySQL data into a <code>.sql</code> file. If you&rsquo;re using phpMyAdmin, you can just use the export tool. If you&rsquo;re using command line tools like <code>mysqldump</code>, use the following:</p>
+<p>First, export your MySQL data into a <code>.sql</code> file. If you’re using phpMyAdmin, you can just use the export tool. If you’re using command line tools like <code>mysqldump</code>, use the following:</p>
 
 <pre class="prettyprint"><code>$ mysqldump -h &lt;hostname&gt; -u &lt;username&gt; -p&lt;Password&gt; &lt;database&gt; &gt; /tmp/mydata.sql
 </code></pre>
@@ -301,7 +301,7 @@ Which client would you like to start?: 1
 
 <h3 id="import">Import</h3>
 
-<p>At this point, you can access your AppFog MySQL server as if it&rsquo;s a local MySQL instance.</p>
+<p>At this point, you can access your AppFog MySQL server as if it’s a local MySQL instance.</p>
 
 <pre class="prettyprint"><code>mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f
 </code></pre>
@@ -367,10 +367,6 @@ Which client would you like to start?: 1
 							<li><a href="/frameworks/java-spring-mysql" >Java Spring</a></li>
 							
 							<li><a href="/frameworks/node" >Node</a></li>
-							
-							<li><a href="/frameworks/node-chat" >Node Chat</a></li>
-							
-							<li><a href="/frameworks/node-express" >Node Express</a></li>
 							
 							<li><a href="/frameworks/php" >PHP</a></li>
 							

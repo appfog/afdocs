@@ -253,7 +253,8 @@ app.listen(process.env.VCAP_APP_PORT || 3000);
 
 <h3 id="deploy-the-app">Deploy the App</h3>
 
-<p class="prettyprint">$ af login</p>
+<pre class="prettyprint"><code>$ af login
+</code></pre>
 
 <p>Push the app. You can hit <code>Enter</code> to accept the defaults at most of the prompts, but be sure to enter a unique <code>URL</code> for the app. Here’s an example push:</p>
 
@@ -279,6 +280,149 @@ Starting Application 'hello-node': OK
 </code></pre>
 
 <p>Hit the app in your browser, http://hello-node.aws.af.cm, in this example.</p>
+
+<h1 id="environments-in-express">Environments in Express</h1>
+
+<p>Express supports arbitrary environments, like <code>production</code> and <code>development</code>. You can use the <code>configure()</code> method to set different configurations under the different environments. Here, we’ll bind a <code>mongodb</code> service to the app to demonstrate.</p>
+
+<h3 id="bind-service">Bind Service</h3>
+
+<p>Use the <code>af create-service &lt;service&gt; &lt;name&gt; &lt;app&gt;</code> command to create the <code>mongodb</code> service and bind it in one step:</p>
+
+<pre class="prettyprint"><code>$ af create-service mongodb mongo-example hello-node
+Creating Service: OK
+Binding Service [mongo-example]: OK
+Stopping Application 'hello-node': OK
+Staging Application 'hello-node': OK
+Starting Application 'hello-node': OK
+</code></pre>
+
+<h3 id="add-mongodb-configuration">Add MongoDB Configuration</h3>
+
+<p>Your app now has a new <code>mongodb</code> service bound to it, but it’s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
+
+<p>Add the following code to the beginning of <code>app.js</code>, right after the line <code>var app = require('express').createServer();</code>:</p>
+
+<pre class="prettyprint linenums"><code>var app = require('express').createServer();
+var mongo;
+app.configure('development', function(){
+    mongo = {
+        "hostname":"localhost",
+        "port":27017,
+        "username":"",
+        "password":"",
+        "name":"",
+        "db":"db"
+    }
+});
+app.configure('production', function(){
+    var env = JSON.parse(process.env.VCAP_SERVICES);
+    mongo = env['mongodb-1.8'][0]['credentials'];
+});
+
+var generate_mongo_url = function(obj){
+    obj.hostname = (obj.hostname || 'localhost');
+    obj.port = (obj.port || 27017);
+    obj.db = (obj.db || 'test');
+
+    if(obj.username &amp;&amp; obj.password){
+        return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }else{
+        return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
+    }
+}
+
+var mongourl = generate_mongo_url(mongo);
+</code></pre>
+
+<p>Now the app is set to connect to the local <code>mongodb</code> server when it’s in <code>development</code> mode. In production mode, it’s set to connect to the AppFog service that’s bound to the app, by parsing <code>VCAP_SERVICES</code> variable.</p>
+
+<h3 id="add-mongodb-functionality">Add MongoDB Functionality</h3>
+
+<p>Next, install the MongoDB native drivers locally and update the app to use MongoDB.</p>
+
+<p>Install MongoDB native drivers locally:</p>
+
+<pre class="prettyprint"><code>$ npm install mongodb
+</code></pre>
+
+<p>This adds a new local directory called <code>mongodb</code> in the <code>node_modules</code> directory.</p>
+
+<p>In <code>app.js</code>, create a new function called <code>record_visit</code> that stores the server request to MongoDB:</p>
+
+<pre class="prettyprint linenums"><code>var record_visit = function(req, res){
+    /* Connect to the DB and auth */
+    require('mongodb').connect(mongourl, function(err, conn){
+        conn.collection('ips', function(err, coll){
+            /* Simple object to insert: ip address and date */
+            object_to_insert = { 'ip': req.connection.remoteAddress, 'ts': new Date() };
+
+            /* Insert the object then print in response */
+            /* Note the _id has been created */
+            coll.insert( object_to_insert, {safe:true}, function(err){
+            res.writeHead(200, {'Content-Type': 'text/plain'});
+            res.write(JSON.stringify(object_to_insert));
+            res.end('\n');
+            });
+        });
+    });
+}
+</code></pre>
+
+<p>The <code>.connect</code> method connects to MongoDB using either the local or AppFog <code>mongourl</code>. Then the <code>.collection('ips', ...)</code> method adds the request information to the data that will be committed.</p>
+
+<p>Update the <code>app.get</code> method so that it calls the <code>record_visit</code> function when the server request is made:</p>
+
+<pre class="prettyprint"><code>app.get('/', function(req, res) {
+        record_visit(req, res);
+});
+</code></pre>
+
+<h3 id="test-your-app-locally">Test your app locally</h3>
+
+<pre class="prettyprint"><code>$ mongod
+</code></pre>
+
+<p>and from another terminal:</p>
+
+<pre class="prettyprint"><code>$ node app.js
+</code></pre>
+
+<p>and from a third terminal:</p>
+
+<pre class="prettyprint"><code>$ curl localhost:3000
+{"ip":"127.0.0.1","ts":"2011-12-29T23:22:38.192Z","_id":"4efcf63ecab9a5b41e000001"}
+</code></pre>
+
+<p>Hit <code>Control-C</code> in the first terminal to stop the web server.</p>
+
+<h3 id="production-environment-variable">Production Environment Variable</h3>
+
+<p>Next, you need to add the <code>NODE_ENV</code> environment variable to the app deployment and set it to <code>production</code> so that Express knows to run the app in <code>production</code> mode:</p>
+
+<pre class="prettyprint"><code>$ af env-add hello-node NODE_ENV=production
+Adding Environment Variable [NODE_ENV=production]: OK
+Stopping Application 'hello-node': aOK
+Staging Application 'hello-node': OK
+Starting Application 'hello-node': OK
+</code></pre>
+
+<h3 id="test-your-app-on-appfog">Test your app on AppFog</h3>
+
+<pre class="prettyprint"><code>$ af update hello-node
+Uploading Application:
+    Checking for available resources: OK
+    Processing resources: OK
+    Packing application: OK
+    Uploading (1M): OK
+Push Status: OK
+Stopping Application 'hello-node': OK
+Staging Application 'hello-node': OK
+Starting Application 'hello-node': OK
+
+$ curl hello-node.aws.af.cm
+{"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
+</code></pre>
 
 
 			</div>

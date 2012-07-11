@@ -235,7 +235,7 @@ $ bundle install
 <pre class="prettyprint"><code>$ af push --runtime ruby193
     Would you like to deploy from the current directory? [Yn]:
     Application Name: test
-    Application Deployed URL [test.af.aws.cm]:
+    Application Deployed URL [test.aws.af.cm]:
     Detected a Sinatra Application, is this correct? [Yn]:
     Memory Reservation (64M, 128M, 256M, 512M, 1G) [256M]:
     Creating Application: OK
@@ -279,7 +279,7 @@ $ bundle install
 <pre class="prettyprint"><code>$ af push
     Would you like to deploy from the current directory? [Yn]:
     Application Name: mongo-node-example
-    Application Deployed URL [mongo-node-example.af.aws.cm]:
+    Application Deployed URL [mongo-node-example.aws.af.cm]:
     Detected a Node.js Application, is this correct? [Yn]:
     Memory Reservation (64M, 128M, 256M, 512M, 1G) [64M]:
     Creating Application: OK
@@ -395,8 +395,8 @@ var host = (process.env.VCAP_APP_HOST || 'localhost');
 var http = require('http');
 
 http.createServer(function (req, res) {
-      res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.end('Hello World\n');
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
 }).listen(port, host);
 </code></pre>
 
@@ -424,7 +424,7 @@ Hello World
 <pre class="prettyprint"><code>$ af push
 Would you like to deploy from the current directory? [Yn]:
 Application Name: mongo-node-example
-Application Deployed URL [mongo-node-example.af.aws.cm]:
+Application Deployed URL [mongo-node-example.aws.af.cm]:
 Detected a Node.js Application, is this correct? [Yn]:
 Memory Reservation (64M, 128M, 256M, 512M, 1G) [64M]:
 Creating Application: OK
@@ -450,7 +450,7 @@ Starting Application: OK
 
 <h3 id="test">Test</h3>
 
-<pre class="prettyprint"><code>$ curl mongo-node-example.af.aws.cm
+<pre class="prettyprint"><code>$ curl mongo-node-example.aws.af.cm
 Hello World
 </code></pre>
 
@@ -520,7 +520,7 @@ Starting Application: OK
 
 <h3 id="test-your-app-on-appfog">Test your app on AppFog</h3>
 
-<pre class="prettyprint"><code>$ curl mongo-node-example.af.aws.cm
+<pre class="prettyprint"><code>$ curl mongo-node-example.aws.af.cm
 Hello World
 </code></pre>
 
@@ -581,7 +581,7 @@ Hello World
 <h3 id="test-your-app-on-appfog-1">Test your app on AppFog</h3>
 
 <pre class="prettyprint"><code>$ af update mongo-node-example
-$ curl mongo-node-example.af.aws.cm
+$ curl mongo-node-example.aws.af.cm
 {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
 </code></pre>
 
@@ -647,7 +647,7 @@ Starting Application: OK
 
 <h3 id="test-your-app-on-appfog-2">Test your app on AppFog</h3>
 
-<pre class="prettyprint"><code>$ curl mongo-node-example.af.aws.cm/history
+<pre class="prettyprint"><code>$ curl mongo-node-example.aws.af.cm/history
 {"ip":"127.0.0.1","ts":"2011-12-29T23:49:46.738Z","_id":"4efcfc9acbfffadc0b000001"}
 {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
 </code></pre>

@@ -402,7 +402,7 @@ Hit `Control-C` in the first terminal to stop the web server.
 
 {: .prettyprint}
     $ af update mongo-node-example
-    $ curl appname.af.aws.cm
+    $ curl mongo-node-example.af.aws.cm
     {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
 
 Create a function `print_visits` that prints the last ten visits/requests:

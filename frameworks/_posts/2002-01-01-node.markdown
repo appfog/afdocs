@@ -222,7 +222,7 @@ Hit `Control-C` in the first terminal to stop the web server.
 
 ### Production Environment Variable
 
-Next, you need to add the `NODE_ENV` environment variable to the app deployment and set it to `production` so that Express knows to run the app in `production` mode:
+Next, add the `NODE_ENV` environment variable to the app deployment and set it to `production` so that Express knows to run the app in `production` mode:
 
 {: .prettyprint}
     $ af env-add hello-node NODE_ENV=production

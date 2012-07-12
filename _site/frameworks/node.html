@@ -254,7 +254,7 @@ app.get('/', function(req, res) {
 app.listen(process.env.VCAP_APP_PORT || 3000);
 </code></pre>
 
-<p>Notice that Cloud Foundry passes the listen port for your app in an environment variable, accessed by <code>process.env.VCAP_APP_PORT</code>.</p>
+<p>Notice that AppFog passes the listen port for your app in an environment variable, accessed by <code>process.env.VCAP_APP_PORT</code>.</p>
 
 <p>Create a <code>package.json</code> file with the following contents:</p>
 

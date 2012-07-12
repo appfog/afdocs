@@ -61,7 +61,7 @@ Create a file called `app.js` with the following code:
     });
     app.listen(process.env.VCAP_APP_PORT || 3000);
 
-Notice that Cloud Foundry passes the listen port for your app in an environment variable, accessed by `process.env.VCAP_APP_PORT`.
+Notice that AppFog passes the listen port for your app in an environment variable, accessed by `process.env.VCAP_APP_PORT`.
 
 Create a `package.json` file with the following contents:
 

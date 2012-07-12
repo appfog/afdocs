@@ -1,2 +1,3 @@
 markdown: kramdown
 permalink: /:categories/:title.html
+exclude: [node_modules, app.js]

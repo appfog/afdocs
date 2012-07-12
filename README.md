@@ -10,26 +10,36 @@ Jekyll is a static site generator. It converts the markdown files into a static 
 
 The live site is hosted on GitHub Pages, which simply pulls from this repo's "gh-pages" branch.
 
-The markdown file structure is pretty straightforward and self-explanatory. You can make your changes, then test them by running the following command from the repo's root directory:
+The markdown file structure is pretty straightforward and self-explanatory. You can make your changes, then generate the site by using the following in the repo's root:
 
-    $ jekyll --server
-
-or:
-
-    $ jekyll --server --auto
-
-which will regenerate the site automatically whenever you make a change. 
-
-Go to 0.0.0.0:4000 in your browser to see a live version. 
+    $ jekyll 
 
 When you're done, add, commit, and push your changes. 
 
-Note: In the local jekyll server, clean URLs don't work right, so you might have to append ".html" to generated links.
+### Testing
+
+To test the generated site in the browser, you can use jekyll's default local server:
+
+    $ jekyll --server --auto
+
+Go to `0.0.0.0:4000` in your browser to see a live version. 
+
+You'll have to append `.html` to links generated, though, since the default version of Webrick doesn't do redirects. 
+
+If you have node installed, you can use the included `app.js`. First, install `node connect`:
+
+    $ npm install connect
+
+Then:
+
+    $ node app.js
+
+Go to `0.0.0.0:3000` in your browser to see a live version. 
 
 ### AF Docs Style Guide
 
 * Capitalization in Titles Like This
-* command line formatting: "$ pf clone"
+* command line formatting: "$ af login"
 * SSH key
 * AppFog user console: "app console"
 * local terminal: "terminal"

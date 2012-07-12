@@ -1,3 +1,4 @@
 *.swp
 *.sw*
 jekyll_indextank.rb
+node_modules/

@@ -1,0 +1,331 @@
+---
+layout: doc-page
+title: Ruby
+weight: 1
+---
+
+* [Supported Ruby Versions](#rubyversions)
+* [Gems and Gemfiles](#gems)
+* [Bundler](#bundler)
+* [Rails 3.0](#rails30)
+* [Rails 3.1](#rails31)
+* [Auto-reconfiguration](#autoreconfig)
+* [Sinatra](#sinatra)
+
+### Supported Ruby Versions {#rubyversions}
+
+For a list of runtimes that AppFog supports run:
+
+{: .prettyprint}
+    $ af runtimes
+
+Ruby 1.8.7 is the default Ruby runtime.
+
+To use Ruby 1.9.3, for example, add the `af  --runtime ruby193` option when you push your code:
+
+{: .prettyprint}
+    $ af push <appname> --runtime ruby193
+
+# Gems and Gemfiles {#gems}
+
+AppFog requires a `Gemfile` in your app's root directory. This should list the gems your app needs to run. 
+
+The following Gemfile feature aren't supported yet: 
+
+* gem dependencies on git `URL`s or branches
+* gem :path => "some/path"
+* platform-conditional gems
+
+AppFog currently only offers one app server for Sinatra and Rails apps: Thin. If you're using Bundler, and nothing in your app's bundle requires Thin, VCAP cannot safely start your app using it. For Rails in such cases, it will fall back to running your app using '`rails server`', which uses WEBrick. For best performance and results, use Thin.
+
+# Bundler {#bundler}
+
+You should use [Bundler](http://gembundler.com/) to package your apps. Run `bundle package; bundle install` each time you modify your Gemfile and before you make an `af push` or `af update` command.
+
+### Gems with known issues:
+
+* rmagick (requires http://www.imagemagick.org/script/index.php native library to be installed)
+
+[Isolate](https://github.com/jbarnette/isolate) is not well-supported on AppFog.
+
+# Rails 3.0 {#rails30}
+
+Ruby on Rails app deployments on AppFog automatically recognize MySQL. For other services, you'll need to access the `VCAP_SERVICES` environment variable. More on that in our [Services doc](/services).
+
+Make sure to use the correct version of the MySQL2 gem in your Gemfile:
+
+{: .prettyprint .linenums}
+    # If you use a different database in development, hide it from AppFog
+    group :development do
+    gem 'sqlite3'
+    end
+    
+    # Rails 3.0 requires version less than 0.3 of mysql2 gem
+    group :production do
+    gem 'mysql2', '< 0.3'
+    end
+
+### Bundle your app:
+
+{: .prettyprint}
+    $ bundle package
+    $ bundle install
+
+Deploy:
+
+{: .prettyprint}
+    $ af push
+
+# Rails 3.1 {#rails31}
+
+Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on AppFog, precompile your assets in your development environment. This compiles them into `public/assets`, at which point you can tweak the production environment configuration before excuting a normal `af push`.
+
+### Gemfile
+
+#### Ruby 1.8
+
+{: .prettyprint .linenums}
+    # If you use a different database in development, hide it from AppFog.
+    group :development do
+    gem 'sqlite3'
+    end
+    
+    # Rails 3.1 can use the latest mysql2 gem.
+    group :production do
+    gem 'mysql2'
+    end
+
+#### Ruby 1.9
+
+{: .prettyprint .linenums}
+    # If you use a different database in development, hide it from AppFog.
+    group :development do
+    gem 'sqlite3'
+    end
+    
+    # Rails 3.1 can use the latest mysql2 gem.
+    group :production do
+    gem 'mysql2'
+    end
+    
+    # For Ruby 1.9 AppFog requires a tweak to the jquery-rails gem.
+    # gem 'jquery-rails'
+    gem 'cloudfoundry-jquery-rails'
+    
+    # For Ruby 1.9 AppFog requires a tweak to devise.
+    # Uncomment next line if you plan to use devise.
+    # gem 'cloudfoundry-devise', :require => 'devise'
+
+### Bundle your app:
+
+{: .prettyprint}
+    $ bundle package
+    $ bundle install
+
+### Configs
+
+In `config/environments/production.rb`, change
+
+{: .prettyprint}
+    config.server_static_assets = false
+
+to
+
+{: .prettyprint}
+    config.server_static_assets = true
+
+### Assets
+
+Pre-compile your asset pipeline:
+
+{: .prettyprint}
+    $ bundle exec rake assets:precompile
+
+### Version Control System
+
+Commit the current configuration to your version control system. Consider including: + `Gemfile.lock` + gems packaged into `vendor/cache` + assets compiled into `public/assets`.
+
+### Deploy
+
+{: .prettyprint}
+    $ af push
+
+# Services
+
+AppFog automatically creates and binds a new MySQL service with the Ruby on Rails jumpstart, and the app is [automatically reconfigured](#autoreconfig) to connect to the service. For more information on services and how to connect to them manually, check out our docs on [Services](/services/overview).
+
+# Auto-reconfiguration {#autoreconfig}
+
+Ruby on Rails apps deployed on AppFog support auto-reconfiguration for relational database services. This means you can deploy a Rails app on AppFog without changing a single line of code. 
+
+Note: Auto-reconfiguration is currently disabled by default. To enable, add a `config/cloudfoundry.yml` file containing the following:
+
+{: .prettyprint}
+    ---
+    autoconfig: true
+
+AppFog automatically reconfigures Rails apps by modifying the production settings in your `config/database.yml` file during staging.
+
+While it’s fairly common to put these types of connections in a Rails Initializer File, auto-reconfiguration should work just as well if you create the connection somewhere else within your app.
+
+When your Rails app is staged for deployment, AppFog makes two modifications:
+
+* Adds an additional `cf-autoconfig` gem to your Bundle.
+* Adds an Initializer file to `config/initializers` that ensures that all dynamic class modification is done prior to loading other Initializers (and thus before your app executes).
+
+### Limitations
+
+Auto-reconfiguration only works if there's exactly one service of a given service type bound to your app. For example, you can only bind only one relational database service (e.g. MySQL or Postgres) to an app. 
+
+If your app doesn’t follow these limitations, AppFog won't auto-reconfigure your app. 
+
+The auto-reconfiguration mechanism also expects typical Ruby apps. If your app configuration is complex, it may not work. In those cases, you can opt out of auto-reconfiguration:
+
+<!---
+
+### Opting out of auto-reconfiguration
+
+AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.
+
+* Create a file in your Rails app called `config/cloudfoundry.yml`. Add the entry `autoconfig: false`.
+* Include the `cf-runtime` gem in your app's `Gemfile`. --->
+
+### Further Reading
+
+For more technical details about how auto-reconfiguration works on AppFog, check out [this blog post](http://blog.cloudfoundry.com/2012/03/12/using-cloud-foundry-services-with-ruby-part-1-auto-reconfiguration/).
+
+# Sinatra {#sinatra}
+
+To use AppFog services with Sinatra, you have to access the `VCAP_SERVICES` environment variable. You can read more about this on the [Services Overview page](/services/overview).
+
+AppFog may not properly detect a Sinatra app if it uses Bundler. AppFog greps for `require "sinatra"` in the `*.rb` files, and picks that file as the main Sinatra app file. If you use Bundler to load Sinatra, AppFog may not recognize your app. You can put a comment in your app’s main file like this:
+
+{: .prettyprint .linenums}
+    # require 'sinatra'   # required for framework detection in AppFog...
+    require 'rubygems'
+    require 'bundler'
+    Bundler.require
+    ...
+
+# Sample Sinatra App Using DataMapper and Bundler
+
+#### Gemfile
+
+{: .prettyprint .linenums}
+    source 'http://rubygems.org'
+
+    gem 'sinatra'
+    gem 'data_mapper'
+
+    group :development do
+        gem 'dm-sqlite-adapter'
+    end
+
+    group :production do
+        gem 'dm-mysql-adapter'
+    end
+
+#### `sinatra_dm.rb`
+
+The name of this sinatra app will be `sinatra_dm.rb`.
+
+Note the commented out require of sinatra, which is necessary for proper detection of the app’s main file.
+
+{: .prettyprint .linenums}
+    # Sample Sinatra app with DataMapper
+    # Based on http://sinatra-book.gittr.com/ DataMapper example
+    
+    # require 'sinatra'   # required for framework detection in AppFog.
+    require 'rubygems'
+    require 'bundler'
+    Bundler.require
+    
+    if ENV['VCAP_SERVICES'].nil?
+        DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/blog.db")
+    else
+        require 'json'
+        svcs = JSON.parse ENV['VCAP_SERVICES']
+        mysql = svcs.detect { |k,v| k =~ /^mysql/ }.last.first
+        creds = mysql['credentials']
+        user, pass, host, name = %w(user password host name).map { |key| creds[key] }
+        DataMapper.setup(:default, "mysql://#{user}:#{pass}@#{host}/#{name}")
+    end
+    
+    class Post
+        include DataMapper::Resource
+        property :id, Serial
+        property :title, String
+        property :body, Text
+        property :created_at, DateTime
+    end
+    
+    DataMapper.finalize
+    Post.auto_upgrade!
+    
+    get '/' do
+        @posts = Post.all(:order => [:id.desc], :limit => 20)
+        erb :index
+    end
+    
+    get '/post/new' do
+        erb :new
+    end
+    
+    get '/post/:id' do
+        @post = Post.get(params[:id])
+        erb :post
+    end
+    
+    post '/post/create' do
+        post = Post.new(:title => params[:title], :body => params[:body])
+        if post.save
+            status 201
+            redirect "/post/#{post.id}"
+        else
+            status 412
+            redirect '/'
+        end
+    end
+
+### Views
+
+#### Index
+
+{: .prettyprint .linenums}
+    <!-- views/index.erb -->
+
+    <h1>All Blog Posts</h1>
+    <ul>
+        <% @posts.each do |post| %>
+            <li><a href="/post/<%= post.id %>"><%= post.title %></a></li>
+        <% end %>
+    </ul>
+    <br />
+    <a href="/post/new">Create new post</a>
+
+#### New
+
+{: .prettyprint .linenums}
+    <!-- views/new.erb -->
+
+    <h1>Create a new blog post</h1>
+    <form action="/post/create" method="POST">
+        <p>Title: <input type="text" name="title"></input></p>
+        <p>Text: <textarea name="body" rows="10" cols="40"></textarea></p>
+        <input type="submit" name="Publish" />
+    </form>
+
+#### Post
+
+{: .prettyprint .linenums}
+    <!-- views/post.erb -->
+
+    <h1><%= @post.title %></h1>
+    <p><%= @post.body %></p>
+    <a href="/">All Posts</a>
+
+### Bundle and push.
+
+{: .prettyprint .linenums}
+    $ bundle package
+    $ af push --runtime ruby193

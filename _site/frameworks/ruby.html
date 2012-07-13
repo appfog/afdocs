@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation MySQL</title> 
+		<title>AppFog &mdash; Documentation Ruby</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
+						<li><a href="/frameworks">Frameworks</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">MySQL</a></li>
+						<li><a href="#">Ruby</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,136 +195,339 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>MySQL</h1>
-				<p>AppFog provides a MySQL service that’s accessible to apps that are running on any of the supported runtimes and frameworks. </p>
-
-<p>The AppFog app deployment process can automatically configure your app to use the bound MySQL service. Check the doc page for your app’s framework to learn more about auto-reconfiguration. </p>
-
-<h3 id="the-vcapservices-environment-variable">The VCAP_SERVICES Environment Variable</h3>
-
-<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. For apps that can’t be automatically configured, you can find the information your app needs to connect to the database in this variable.</p>
-
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
-
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
-
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-            "name":"mysql-4f700",
-            "label":"mysql-5.1",
-            "plan":"free",
-            "tags":["mysql","mysql-5.1","relational"],
-            "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-            "name":"mysql-f1a13",
-            "label":"mysql-5.1",
-            "plan":"free",
-            "tags":["mysql","mysql-5.1","relational"],
-            "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
-    }
-]}
-</code></pre>
-
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
-
-<p>In Java:</p>
-
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
-</code></pre>
-
-<p>In Ruby:</p>
-
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
-</code></pre>
-
-<p>In Javascript:</p>
-
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
-</code></pre>
-
-<p>In Python:</p>
-
-<pre class="prettyprint"><code>os.getenv.("VCAP_SERVICES")
-</code></pre>
-
-<p>You can distinguish between multiple MySQL instances using the  value of the <code>name</code> key.</p>
-
-<p>The <code>credentials</code> object contains all of the data you need to connect to MySQL through a driver or library.</p>
-
-<ul>
-  <li><code>hostname</code> and <code>host</code> have the same value, which is the host where the MySQL server is running.</li>
-  <li><code>port</code> is the port where MySQL server accepts connections on the host.</li>
-  <li><code>user</code> and <code>username</code> are the name of the MySQL database user.</li>
-  <li><code>password</code> is the MySQL password.</li>
-  <li><code>name</code> is the name of the MySQL database.</li>
+				<h1>Ruby</h1>
+				<ul>
+  <li><a href="#rubyversions">Supported Ruby Versions</a></li>
+  <li><a href="#gems">Gems and Gemfiles</a></li>
+  <li><a href="#bundler">Bundler</a></li>
+  <li><a href="#rails30">Rails 3.0</a></li>
+  <li><a href="#rails31">Rails 3.1</a></li>
+  <li><a href="#autoreconfig">Auto-reconfiguration</a></li>
+  <li><a href="#sinatra">Sinatra</a></li>
 </ul>
 
-<h1 id="migration">Migration</h1>
+<h3 id="rubyversions">Supported Ruby Versions</h3>
 
-<p>Here’s a quick guide on migrating an existing database to an AppFog app. </p>
+<p>For a list of runtimes that AppFog supports run:</p>
 
-<h3 id="prepare-your-data">Prepare your data</h3>
-
-<p>First, export your MySQL data into a <code>.sql</code> file. If you’re using phpMyAdmin, you can just use the export tool. If you’re using command line tools like <code>mysqldump</code>, use the following:</p>
-
-<pre class="prettyprint"><code>$ mysqldump -h &lt;hostname&gt; -u &lt;username&gt; -p&lt;Password&gt; &lt;database&gt; &gt; /tmp/mydata.sql
+<pre class="prettyprint"><code>$ af runtimes
 </code></pre>
 
-<h3 id="log-in-and-establish-your-tunnel">Log in and establish your tunnel</h3>
+<p>Ruby 1.8.7 is the default Ruby runtime.</p>
 
-<pre class="prettyprint"><code>$ af login
-Attempting login to [https://api.appfog.com]
-Email: example@appfog.com
-Password: **************
-Successfully logged into [https://api.appfog.com]
+<p>To use Ruby 1.9.3, for example, add the <code>af  --runtime ruby193</code> option when you push your code:</p>
+
+<pre class="prettyprint"><code>$ af push &lt;appname&gt; --runtime ruby193
 </code></pre>
 
-<pre class="prettyprint"><code>$ af tunnel
-1: exampleapp1-mysql
-Which service to tunnel to?: 1
-Password: ********
-Getting tunnel connection info: OK
+<h1 id="gems">Gems and Gemfiles</h1>
 
-Service connection info:
-username : uaLDy9EhhvMLq
-password : p5Odjf6E5O7uW
-name : dc1aaa897343f4eb1aed047ec7c86f19f
+<p>AppFog requires a <code>Gemfile</code> in your app’s root directory. This should list the gems your app needs to run. </p>
 
-Starting tunnel to exampleapp1-mysql on port 10000.
-1: none
-2: mysql
-Which client would you like to start?: 1
+<p>The following Gemfile feature aren’t supported yet: </p>
+
+<ul>
+  <li>gem dependencies on git <code>URL</code>s or branches</li>
+  <li>gem :path =&gt; “some/path”</li>
+  <li>platform-conditional gems</li>
+</ul>
+
+<p>AppFog currently only offers one app server for Sinatra and Rails apps: Thin. If you’re using Bundler, and nothing in your app’s bundle requires Thin, VCAP cannot safely start your app using it. For Rails in such cases, it will fall back to running your app using ‘<code>rails server</code>’, which uses WEBrick. For best performance and results, use Thin.</p>
+
+<h1 id="bundler">Bundler</h1>
+
+<p>You should use <a href="http://gembundler.com/">Bundler</a> to package your apps. Run <code>bundle package; bundle install</code> each time you modify your Gemfile and before you make an <code>af push</code> or <code>af update</code> command.</p>
+
+<h3 id="gems-with-known-issues">Gems with known issues:</h3>
+
+<ul>
+  <li>rmagick (requires http://www.imagemagick.org/script/index.php native library to be installed)</li>
+</ul>
+
+<p><a href="https://github.com/jbarnette/isolate">Isolate</a> is not well-supported on AppFog.</p>
+
+<h1 id="rails30">Rails 3.0</h1>
+
+<p>Ruby on Rails app deployments on AppFog automatically recognize MySQL. For other services, you’ll need to access the <code>VCAP_SERVICES</code> environment variable. More on that in our <a href="/services">Services doc</a>.</p>
+
+<p>Make sure to use the correct version of the MySQL2 gem in your Gemfile:</p>
+
+<pre class="prettyprint linenums"><code># If you use a different database in development, hide it from AppFog
+group :development do
+gem 'sqlite3'
+end
+
+# Rails 3.0 requires version less than 0.3 of mysql2 gem
+group :production do
+gem 'mysql2', '&lt; 0.3'
+end
 </code></pre>
 
-<p>Check out our <a href="/services/tunneling">doc on tunneling</a> for more info.</p>
+<h3 id="bundle-your-app">Bundle your app:</h3>
 
-<h3 id="import">Import</h3>
-
-<p>At this point, you can access your AppFog MySQL server as if it’s a local MySQL instance.</p>
-
-<pre class="prettyprint"><code>mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f
+<pre class="prettyprint"><code>$ bundle package
+$ bundle install
 </code></pre>
 
-<p>Import the data by running this command:</p>
+<p>Deploy:</p>
 
-<pre class="prettyprint"><code>mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f &lt; /tmp/mydata.sql
+<pre class="prettyprint"><code>$ af push
+</code></pre>
+
+<h1 id="rails31">Rails 3.1</h1>
+
+<p>Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on AppFog, precompile your assets in your development environment. This compiles them into <code>public/assets</code>, at which point you can tweak the production environment configuration before excuting a normal <code>af push</code>.</p>
+
+<h3 id="gemfile">Gemfile</h3>
+
+<h4 id="ruby-18">Ruby 1.8</h4>
+
+<pre class="prettyprint linenums"><code># If you use a different database in development, hide it from AppFog.
+group :development do
+gem 'sqlite3'
+end
+
+# Rails 3.1 can use the latest mysql2 gem.
+group :production do
+gem 'mysql2'
+end
+</code></pre>
+
+<h4 id="ruby-19">Ruby 1.9</h4>
+
+<pre class="prettyprint linenums"><code># If you use a different database in development, hide it from AppFog.
+group :development do
+gem 'sqlite3'
+end
+
+# Rails 3.1 can use the latest mysql2 gem.
+group :production do
+gem 'mysql2'
+end
+
+# For Ruby 1.9 AppFog requires a tweak to the jquery-rails gem.
+# gem 'jquery-rails'
+gem 'cloudfoundry-jquery-rails'
+
+# For Ruby 1.9 AppFog requires a tweak to devise.
+# Uncomment next line if you plan to use devise.
+# gem 'cloudfoundry-devise', :require =&gt; 'devise'
+</code></pre>
+
+<h3 id="bundle-your-app-1">Bundle your app:</h3>
+
+<pre class="prettyprint"><code>$ bundle package
+$ bundle install
+</code></pre>
+
+<h3 id="configs">Configs</h3>
+
+<p>In <code>config/environments/production.rb</code>, change</p>
+
+<pre class="prettyprint"><code>config.server_static_assets = false
+</code></pre>
+
+<p>to</p>
+
+<pre class="prettyprint"><code>config.server_static_assets = true
+</code></pre>
+
+<h3 id="assets">Assets</h3>
+
+<p>Pre-compile your asset pipeline:</p>
+
+<pre class="prettyprint"><code>$ bundle exec rake assets:precompile
+</code></pre>
+
+<h3 id="version-control-system">Version Control System</h3>
+
+<p>Commit the current configuration to your version control system. Consider including: + <code>Gemfile.lock</code> + gems packaged into <code>vendor/cache</code> + assets compiled into <code>public/assets</code>.</p>
+
+<h3 id="deploy">Deploy</h3>
+
+<pre class="prettyprint"><code>$ af push
+</code></pre>
+
+<h1 id="services">Services</h1>
+
+<p>AppFog automatically creates and binds a new MySQL service with the Ruby on Rails jumpstart, and the app is <a href="#autoreconfig">automatically reconfigured</a> to connect to the service. For more information on services and how to connect to them manually, check out our docs on <a href="/services/overview">Services</a>.</p>
+
+<h1 id="autoreconfig">Auto-reconfiguration</h1>
+
+<p>Ruby on Rails apps deployed on AppFog support auto-reconfiguration for relational database services. This means you can deploy a Rails app on AppFog without changing a single line of code. </p>
+
+<p>Note: Auto-reconfiguration is currently disabled by default. To enable, add a <code>config/cloudfoundry.yml</code> file containing the following:</p>
+
+<pre class="prettyprint"><code>---
+autoconfig: true
+</code></pre>
+
+<p>AppFog automatically reconfigures Rails apps by modifying the production settings in your <code>config/database.yml</code> file during staging.</p>
+
+<p>While it’s fairly common to put these types of connections in a Rails Initializer File, auto-reconfiguration should work just as well if you create the connection somewhere else within your app.</p>
+
+<p>When your Rails app is staged for deployment, AppFog makes two modifications:</p>
+
+<ul>
+  <li>Adds an additional <code>cf-autoconfig</code> gem to your Bundle.</li>
+  <li>Adds an Initializer file to <code>config/initializers</code> that ensures that all dynamic class modification is done prior to loading other Initializers (and thus before your app executes).</li>
+</ul>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>Auto-reconfiguration only works if there’s exactly one service of a given service type bound to your app. For example, you can only bind only one relational database service (e.g. MySQL or Postgres) to an app. </p>
+
+<p>If your app doesn’t follow these limitations, AppFog won’t auto-reconfigure your app. </p>
+
+<p>The auto-reconfiguration mechanism also expects typical Ruby apps. If your app configuration is complex, it may not work. In those cases, you can opt out of auto-reconfiguration:</p>
+
+<!---
+
+### Opting out of auto-reconfiguration
+
+AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.
+
+* Create a file in your Rails app called `config/cloudfoundry.yml`. Add the entry `autoconfig: false`.
+* Include the `cf-runtime` gem in your app's `Gemfile`. --->
+
+<h3 id="further-reading">Further Reading</h3>
+
+<p>For more technical details about how auto-reconfiguration works on AppFog, check out <a href="http://blog.cloudfoundry.com/2012/03/12/using-cloud-foundry-services-with-ruby-part-1-auto-reconfiguration/">this blog post</a>.</p>
+
+<h1 id="sinatra">Sinatra</h1>
+
+<p>To use AppFog services with Sinatra, you have to access the <code>VCAP_SERVICES</code> environment variable. You can read more about this on the <a href="/services/overview">Services Overview page</a>.</p>
+
+<p>AppFog may not properly detect a Sinatra app if it uses Bundler. AppFog greps for <code>require "sinatra"</code> in the <code>*.rb</code> files, and picks that file as the main Sinatra app file. If you use Bundler to load Sinatra, AppFog may not recognize your app. You can put a comment in your app’s main file like this:</p>
+
+<pre class="prettyprint linenums"><code># require 'sinatra'   # required for framework detection in AppFog...
+require 'rubygems'
+require 'bundler'
+Bundler.require
+...
+</code></pre>
+
+<h1 id="sample-sinatra-app-using-datamapper-and-bundler">Sample Sinatra App Using DataMapper and Bundler</h1>
+
+<h4 id="gemfile-1">Gemfile</h4>
+
+<pre class="prettyprint linenums"><code>source 'http://rubygems.org'
+
+gem 'sinatra'
+gem 'data_mapper'
+
+group :development do
+    gem 'dm-sqlite-adapter'
+end
+
+group :production do
+    gem 'dm-mysql-adapter'
+end
+</code></pre>
+
+<h4 id="sinatradmrb"><code>sinatra_dm.rb</code></h4>
+
+<p>The name of this sinatra app will be <code>sinatra_dm.rb</code>.</p>
+
+<p>Note the commented out require of sinatra, which is necessary for proper detection of the app’s main file.</p>
+
+<pre class="prettyprint linenums"><code># Sample Sinatra app with DataMapper
+# Based on http://sinatra-book.gittr.com/ DataMapper example
+
+# require 'sinatra'   # required for framework detection in AppFog.
+require 'rubygems'
+require 'bundler'
+Bundler.require
+
+if ENV['VCAP_SERVICES'].nil?
+    DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/blog.db")
+else
+    require 'json'
+    svcs = JSON.parse ENV['VCAP_SERVICES']
+    mysql = svcs.detect { |k,v| k =~ /^mysql/ }.last.first
+    creds = mysql['credentials']
+    user, pass, host, name = %w(user password host name).map { |key| creds[key] }
+    DataMapper.setup(:default, "mysql://#{user}:#{pass}@#{host}/#{name}")
+end
+
+class Post
+    include DataMapper::Resource
+    property :id, Serial
+    property :title, String
+    property :body, Text
+    property :created_at, DateTime
+end
+
+DataMapper.finalize
+Post.auto_upgrade!
+
+get '/' do
+    @posts = Post.all(:order =&gt; [:id.desc], :limit =&gt; 20)
+    erb :index
+end
+
+get '/post/new' do
+    erb :new
+end
+
+get '/post/:id' do
+    @post = Post.get(params[:id])
+    erb :post
+end
+
+post '/post/create' do
+    post = Post.new(:title =&gt; params[:title], :body =&gt; params[:body])
+    if post.save
+        status 201
+        redirect "/post/#{post.id}"
+    else
+        status 412
+        redirect '/'
+    end
+end
+</code></pre>
+
+<h3 id="views">Views</h3>
+
+<h4 id="index">Index</h4>
+
+<pre class="prettyprint linenums"><code>&lt;!-- views/index.erb --&gt;
+
+&lt;h1&gt;All Blog Posts&lt;/h1&gt;
+&lt;ul&gt;
+    &lt;% @posts.each do |post| %&gt;
+        &lt;li&gt;&lt;a href="/post/&lt;%= post.id %&gt;"&gt;&lt;%= post.title %&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;% end %&gt;
+&lt;/ul&gt;
+&lt;br /&gt;
+&lt;a href="/post/new"&gt;Create new post&lt;/a&gt;
+</code></pre>
+
+<h4 id="new">New</h4>
+
+<pre class="prettyprint linenums"><code>&lt;!-- views/new.erb --&gt;
+
+&lt;h1&gt;Create a new blog post&lt;/h1&gt;
+&lt;form action="/post/create" method="POST"&gt;
+    &lt;p&gt;Title: &lt;input type="text" name="title"&gt;&lt;/input&gt;&lt;/p&gt;
+    &lt;p&gt;Text: &lt;textarea name="body" rows="10" cols="40"&gt;&lt;/textarea&gt;&lt;/p&gt;
+    &lt;input type="submit" name="Publish" /&gt;
+&lt;/form&gt;
+</code></pre>
+
+<h4 id="post">Post</h4>
+
+<pre class="prettyprint linenums"><code>&lt;!-- views/post.erb --&gt;
+
+&lt;h1&gt;&lt;%= @post.title %&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;%= @post.body %&gt;&lt;/p&gt;
+&lt;a href="/"&gt;All Posts&lt;/a&gt;
+</code></pre>
+
+<h3 id="bundle-and-push">Bundle and push.</h3>
+
+<pre class="prettyprint linenums"><code>$ bundle package
+$ af push --runtime ruby193
 </code></pre>
 
 
@@ -368,11 +571,11 @@ Which client would you like to start?: 1
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 						<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-right"></i> Frameworks</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-down"></i> Frameworks</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseTwo" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseTwo" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
@@ -396,7 +599,7 @@ Which client would you like to start?: 1
 							
 							<li><a href="/frameworks/python-flask" >Python Flask</a></li>
 							
-							<li><a href="/frameworks/ruby" >Ruby</a></li>
+							<li><a href="/frameworks/ruby" class="on">Ruby</a></li>
 							
 							</div>
 						</ul>
@@ -405,11 +608,11 @@ Which client would you like to start?: 1
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
@@ -417,7 +620,7 @@ Which client would you like to start?: 1
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							
-							<li><a href="/services/mysql" class="on">MySQL</a></li>
+							<li><a href="/services/mysql" >MySQL</a></li>
 							
 							<li><a href="/services/mongodb" >MongoDB</a></li>
 							

@@ -398,14 +398,41 @@ AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.
 
 <p>To use AppFog services with Sinatra, you have to access the <code>VCAP_SERVICES</code> environment variable. You can read more about this on the <a href="/services/overview">Services Overview page</a>.</p>
 
-<p>AppFog may not properly detect a Sinatra app if it uses Bundler. AppFog greps for <code>require "sinatra"</code> in the <code>*.rb</code> files, and picks that file as the main Sinatra app file. If you use Bundler to load Sinatra, AppFog may not recognize your app. You can put a comment in your app’s main file like this:</p>
+<p>AppFog may not properly detect a Sinatra app if it uses Bundler. AppFog greps for <code>require "sinatra"</code> in the <code>*.rb</code> files, and picks that file as the main Sinatra app file. </p>
 
-<pre class="prettyprint linenums"><code># require 'sinatra'   # required for framework detection in AppFog...
-require 'rubygems'
-require 'bundler'
-Bundler.require
+<p>If you use Bundler to load Sinatra, AppFog may not recognize your app. In this case, you can simply manually tell AppFog that it’s a Sinatra app when you push your code: </p>
+
+<pre class="prettyprint"><code>$ af push
+Would you like to deploy from the current directory? [Yn]:
+Application Name: sinatra-example
+Detected a Standalone Application, is this correct? [Yn]: n
+1: Rails
+2: Spring
+3: Grails
+4: Lift
+5: JavaWeb
+6: Standalone
+7: Sinatra
+8: Node
+9: PHP
+10: Erlang/OTP Rebar
+11: WSGI
+12: Django
+13: Rack
+Select Application Type: 7
+Selected Sinatra Application
 ...
 </code></pre>
+
+<!--- You can put a comment in your app’s main file like this:
+
+{: .prettyprint .linenums}
+    # require 'sinatra'   # required for framework detection in AppFog...
+    require 'rubygems'
+    require 'bundler'
+    Bundler.require
+    ...
+--->
 
 <h1 id="sample-sinatra-app-using-datamapper-and-bundler">Sample Sinatra App Using DataMapper and Bundler</h1>
 
@@ -429,12 +456,12 @@ end
 
 <p>The name of this sinatra app will be <code>sinatra_dm.rb</code>.</p>
 
-<p>Note the commented out require of sinatra, which is necessary for proper detection of the app’s main file.</p>
+<!--- Note the commented out require of sinatra, which is necessary for proper detection of the app’s main file. --->
+
+<!---    # require 'sinatra'   # required for framework detection in AppFog. --->
 
 <pre class="prettyprint linenums"><code># Sample Sinatra app with DataMapper
 # Based on http://sinatra-book.gittr.com/ DataMapper example
-
-# require 'sinatra'   # required for framework detection in AppFog.
 require 'rubygems'
 require 'bundler'
 Bundler.require
@@ -524,10 +551,17 @@ end
 &lt;a href="/"&gt;All Posts&lt;/a&gt;
 </code></pre>
 
-<h3 id="bundle-and-push">Bundle and push.</h3>
+<h3 id="test-locally">Test Locally</h3>
 
-<pre class="prettyprint linenums"><code>$ bundle package
-$ af push --runtime ruby193
+<pre class="prettyprint"><code>$ ruby sinatra_dm.rb
+</code></pre>
+
+<p>Then visit <a href="http://localhost:4567/">http://localhost:4567/</a> in your browser.</p>
+
+<h3 id="bundle-and-push">Bundle and Push</h3>
+
+<pre class="prettyprint linenums"><code>$ bundle install; bundle package
+$ af push
 </code></pre>
 
 

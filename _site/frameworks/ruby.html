@@ -398,7 +398,7 @@ AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.
 
 <p>To use AppFog services with Sinatra, you have to access the <code>VCAP_SERVICES</code> environment variable. You can read more about this on the <a href="/services/overview">Services Overview page</a>.</p>
 
-<p>AppFog may not properly detect a Sinatra app if it uses Bundler. AppFog greps for <code>require "sinatra"</code> in the <code>*.rb</code> files, and picks that file as the main Sinatra app file. </p>
+<p>AppFog autodetects your Sintra app by searching for <code>require 'sinatra'</code> in the <code>*.rb</code> files. It then chooses that file as the main Sinatra app file. </p>
 
 <p>If you use Bundler to load Sinatra, AppFog may not recognize your app. In this case, you can simply manually tell AppFog that it’s a Sinatra app when you push your code: </p>
 

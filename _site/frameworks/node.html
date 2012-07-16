@@ -389,9 +389,10 @@ var mongourl = generate_mongo_url(mongo);
 
 <p>Update the <code>app.get</code> method so that it calls the <code>record_visit</code> function when the server request is made:</p>
 
-<pre class="prettyprint"><code>app.get('/', function(req, res) {
+<pre class="prettyprint linenums"><code>app.get('/', function(req, res) {
     record_visit(req, res);
 });
+app.listen(process.env.VCAP_APP_PORT || 3000);
 </code></pre>
 
 <h3 id="test-your-app-locally">Test your app locally</h3>

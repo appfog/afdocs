@@ -197,10 +197,11 @@ The `.connect` method connects to MongoDB using either the local or AppFog `mong
 
 Update the `app.get` method so that it calls the `record_visit` function when the server request is made:
 
-{: .prettyprint}
+{: .prettyprint .linenums}
     app.get('/', function(req, res) {
         record_visit(req, res);
     });
+    app.listen(process.env.VCAP_APP_PORT || 3000);
 
 ### Test your app locally
 

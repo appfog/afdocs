@@ -102,7 +102,7 @@ Push the app. You can hit `Enter` to accept the defaults at most of the prompts,
     Staging Application 'hello-node': OK
     Starting Application 'hello-node': OK
 
-Hit the app in your browser, http://hello-node.aws.af.cm, in this example.
+Hit the app in your browser, `http://hello-node.aws.af.cm`, in this example.
 
 # Environments in Express {#express}
 
@@ -199,7 +199,7 @@ Update the `app.get` method so that it calls the `record_visit` function when th
 
 {: .prettyprint}
     app.get('/', function(req, res) {
-            record_visit(req, res);
+        record_visit(req, res);
     });
 
 ### Test your app locally

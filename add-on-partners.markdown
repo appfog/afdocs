@@ -45,7 +45,7 @@ Request Body:
 Response:
 
 {: .prettyprint}
-	200 OK
+    200 OK
 
 
 # API Spec {#api}
@@ -89,13 +89,13 @@ Response Body:
 ### Example Deprovisioning Request
 
 Request: `DELETE /phpfog/resources/:id`
-	  
+      
 Request Body: none
 
 Response: 
 
 {: .prettyprint}
-	200 OK
+    200 OK
 
 
 ### Request Fields
@@ -125,22 +125,22 @@ Add-on partners should provide the manifest file out-of-band by emailing it to t
 `example-manifest.json`
 
 {: .prettyprint .linenums}
-	{
-		"id":"provider",
-		"name":"Provider Inc",
-		"plans":[
-			{"id":"free"}
-			],    
-		"api": {
-			"config_vars":["PROVIDER_VAR_XYZ"],
-			"production":"https://provider.com/",
-			"test":"https://provider-qa.com/",
-			"path":"PathToResource",
-			"username":"SomeUsername",
-			"password":"ChangeYourPassword",
-			"sso_salt":"xPedFGIIJIei30D"       
-		} 
-	}
+    {
+        "id":"provider",
+        "name":"Provider Inc",
+        "plans":[
+            {"id":"free"}
+            ],    
+        "api": {
+            "config_vars":["PROVIDER_VAR_XYZ"],
+            "production":"https://provider.com/",
+            "test":"https://provider-qa.com/",
+            "path":"PathToResource",
+            "username":"SomeUsername",
+            "password":"ChangeYourPassword",
+            "sso_salt":"xPedFGIIJIei30D"       
+        } 
+    }
  
 
 ### Fields
@@ -163,7 +163,7 @@ Once a resource is fully provisioned, a "Manage" button will appear in the AppFo
 After the user clicks the button, they will be redirected to the following generated `URL`:
 
 {: .prettyprint}
-	https://partner.com/appfog/resources/:id?token=:token&timestamp=:timestamp
+    https://partner.com/appfog/resources/:id?token=:token&timestamp=:timestamp
   
 
 The `:id` is the `id` of the resource which was defined in the response to the provisioning call for creating this resource.
@@ -175,6 +175,6 @@ The salt is the "`sso_salt`" variable as defined in the manifest.
 The timestamp is the current UNIX timestamp.
 
 {: .prettyprint}
-	token = sha1(id + ':' + salt + ':' + timestamp)
+    token = sha1(id + ':' + salt + ':' + timestamp)
 
 After the partner validates the salt (shared secret) and the timestamp (we recommend 30 seconds), they can be allowed to manage the resource as defined by the `id`.

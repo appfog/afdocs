@@ -295,7 +295,7 @@ Staging Application 'hello-node': OK
 Starting Application 'hello-node': OK
 </code></pre>
 
-<p>Hit the app in your browser, http://hello-node.aws.af.cm, in this example.</p>
+<p>Hit the app in your browser, <code>http://hello-node.aws.af.cm</code>, in this example.</p>
 
 <h1 id="express">Environments in Express</h1>
 
@@ -390,7 +390,7 @@ var mongourl = generate_mongo_url(mongo);
 <p>Update the <code>app.get</code> method so that it calls the <code>record_visit</code> function when the server request is made:</p>
 
 <pre class="prettyprint"><code>app.get('/', function(req, res) {
-        record_visit(req, res);
+    record_visit(req, res);
 });
 </code></pre>
 

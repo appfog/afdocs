@@ -2,18 +2,18 @@ var connect = require('connect'),
 fs = require('fs');
 
 var serve_html = function(root) {
-	return function(req,res,next) {
-		var path = root + req.url + '.html';
-		fs.stat(path,function(err,stat) {
-			if (!err && !stat.isDirectory()) {
-				res.statusCode = 301;
-				res.setHeader('Location', req.url + '.html');
-				res.end('Redirecting to ' + req.url + '.html');
-				return;
-			}
-			next();
-		});
-	}
+    return function(req,res,next) {
+        var path = root + req.url + '.html';
+        fs.stat(path,function(err,stat) {
+            if (!err && !stat.isDirectory()) {
+                res.statusCode = 301;
+                res.setHeader('Location', req.url + '.html');
+                res.end('Redirecting to ' + req.url + '.html');
+                return;
+            }
+            next();
+        });
+    }
 };
 
 var port = process.env.VCAP_APP_PORT || 3000;

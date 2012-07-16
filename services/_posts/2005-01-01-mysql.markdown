@@ -19,11 +19,11 @@ Here's an example that of the environment variable for an app that has two MySQL
 {: .prettyprint .linenums}
     {"mysql-5.1":[
         {
-                "name":"mysql-4f700",
-                "label":"mysql-5.1",
-                "plan":"free",
-                "tags":["mysql","mysql-5.1","relational"],
-                "credentials":{
+            "name":"mysql-4f700",
+            "label":"mysql-5.1",
+            "plan":"free",
+            "tags":["mysql","mysql-5.1","relational"],
+            "credentials":{
                 "name":"d6d665aa69817406d8901cd145e05e3c6",
                 "hostname":"mysql-node01.us-east-1.aws.af.cm",
                 "host":"mysql-node01.us-east-1.aws.af.cm",
@@ -34,11 +34,11 @@ Here's an example that of the environment variable for an app that has two MySQL
             }
         },
         {
-                "name":"mysql-f1a13",
-                "label":"mysql-5.1",
-                "plan":"free",
-                "tags":["mysql","mysql-5.1","relational"],
-                "credentials":{
+            "name":"mysql-f1a13",
+            "label":"mysql-5.1",
+            "plan":"free",
+            "tags":["mysql","mysql-5.1","relational"],
+            "credentials":{
                 "name":"db777ab9da32047d99dd6cdae3aafebda",
                 "hostname":"mysql-node01.us-east-1.aws.af.cm",
                 "host":"mysql-node01.us-east-1.aws.af.cm",
@@ -91,33 +91,33 @@ Here's a quick guide on migrating an existing database to an AppFog app.
 First, export your MySQL data into a `.sql` file. If you're using phpMyAdmin, you can just use the export tool. If you're using command line tools like `mysqldump`, use the following:
 
 {: .prettyprint}
-	$ mysqldump -h <hostname> -u <username> -p<Password> <database> > /tmp/mydata.sql
+    $ mysqldump -h <hostname> -u <username> -p<Password> <database> > /tmp/mydata.sql
 
 ### Log in and establish your tunnel
 
 {: .prettyprint}
-	$ af login
-	Attempting login to [https://api.appfog.com]
-	Email: example@appfog.com
-	Password: **************
-	Successfully logged into [https://api.appfog.com]
+    $ af login
+    Attempting login to [https://api.appfog.com]
+    Email: example@appfog.com
+    Password: **************
+    Successfully logged into [https://api.appfog.com]
 
 {: .prettyprint}
-	$ af tunnel
-	1: exampleapp1-mysql
-	Which service to tunnel to?: 1
-	Password: ********
-	Getting tunnel connection info: OK
+    $ af tunnel
+    1: exampleapp1-mysql
+    Which service to tunnel to?: 1
+    Password: ********
+    Getting tunnel connection info: OK
 
-	Service connection info:
-	username : uaLDy9EhhvMLq
-	password : p5Odjf6E5O7uW
-	name : dc1aaa897343f4eb1aed047ec7c86f19f
+    Service connection info:
+    username : uaLDy9EhhvMLq
+    password : p5Odjf6E5O7uW
+    name : dc1aaa897343f4eb1aed047ec7c86f19f
 
-	Starting tunnel to exampleapp1-mysql on port 10000.
-	1: none
-	2: mysql
-	Which client would you like to start?: 1
+    Starting tunnel to exampleapp1-mysql on port 10000.
+    1: none
+    2: mysql
+    Which client would you like to start?: 1
 
 Check out our [doc on tunneling](/services/tunneling) for more info.
 
@@ -126,9 +126,9 @@ Check out our [doc on tunneling](/services/tunneling) for more info.
 At this point, you can access your AppFog MySQL server as if it's a local MySQL instance.
 
 {: .prettyprint}
-	mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f
+    mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f
 
 Import the data by running this command:
 
 {: .prettyprint}
-	mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f < /tmp/mydata.sql
+    mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f < /tmp/mydata.sql

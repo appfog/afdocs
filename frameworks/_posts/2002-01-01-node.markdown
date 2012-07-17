@@ -203,7 +203,7 @@ Update the `app.get` method so that it calls the `record_visit` function when th
     });
     app.listen(process.env.VCAP_APP_PORT || 3000);
 
-### Test your app locally
+### Test Your App Locally
 
 {: .prettyprint}
     $ mongod
@@ -232,7 +232,7 @@ Next, add the `NODE_ENV` environment variable to the app deployment and set it t
     Staging Application 'hello-node': OK
     Starting Application 'hello-node': OK
 
-### Test your app on AppFog
+### Test Your App on AppFog
 
 {: .prettyprint}
     $ af update hello-node

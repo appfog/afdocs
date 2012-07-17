@@ -196,7 +196,117 @@
 		<div class="row">
 			<div class="span8">
 				<h1>Python</h1>
-				
+				<p>AppFog currently supports Python 2.7.3. You can check the available runtimes by running <code>af runtimes</code>.</p>
+
+<pre class="prettyprint"><code>$ af runtimes
+
++--------------+-----------------+-----------+
+| Name         | Description     | Version   |
++--------------+-----------------+-----------+
+| java         | Java 7          | 1.7.0     |
+| php          | PHP 5           | 5.3       |
+| ruby18       | Ruby 1.8.7      | 1.8.7     |
+| ruby192      | Ruby 1.9.2      | 1.9.2p180 |
+| ruby193      | Ruby 1.9.3 p125 | 1.9.3     |
+| python2      | Python 2.7.3    | 2.7.3     |
+| node04       | Node.js 0.4.12  | 0.4.12    |
+| node06       | Node.js 0.6.17  | 0.6.17    |
+| erlangR14B02 | Erlang R14B02   | R14B02    |
++--------------+-----------------+-----------+
+</code></pre>
+
+<p>AppFog supports Python by serving apps through the <a href="http://wsgi.readthedocs.org/en/latest/index.html">WSGI</a> protocol using <a href="http://gunicorn.org/">Gunicorn</a>. </p>
+
+<h3 id="dependencies">Dependencies</h3>
+
+<p>You can define the package prequisites of your Python app in a top-level <a href="">requirements.txt</a> file, which <code>pip</code> uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. </p>
+
+<p>AppFog uses pip and virtualenv. </p>
+
+<h1 id="services">Services</h1>
+
+<p>You can connect your Python app to AppFog services by using accessing the <code>VCAP_SERVICES</code> environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our <a href="/services/overview">Services Overview</a> page.</p>
+
+<h1 id="wsgi-hello-world">WSGI “Hello World”</h1>
+
+<p>You can take a look at a bare-bones Python WSGI app <a href="https://github.com/appfog/af-python-wsgi">on GitHub</a>.</p>
+
+<h1 id="flask">Flask</h1>
+
+<p>The following is a step-by-step guide to writing and deploying a “hello world” Python Flask app:</p>
+
+<h3 id="create-the-app">Create the App</h3>
+
+<p>Create a directory for the app and change into it: </p>
+
+<pre class="prettyprint"><code>$ mkdir flask-example
+$ cd flask-example
+</code></pre>
+
+<h3 id="prepare-your-environment">Prepare Your Environment</h3>
+
+<p>Create a <code>virtualenv</code> environment:</p>
+
+<pre class="prettyprint"><code>$ virtualenv venv
+New python executable in venv/bin/python
+Installing setuptools............done.
+Installing pip...............done.
+</code></pre>
+
+<p>Activate the environment:</p>
+
+<pre class="prettyprint"><code>$ . venv/bin/activate
+(venv) $
+</code></pre>
+
+<p>Use <code>pip</code> to install Flask:</p>
+
+<pre class="prettyprint"><code>(venv) $ pip install Flask
+Downloading/unpacking Flask
+Downloading Flask-0.9.tar.gz (481Kb): 481Kb downloaded
+Running setup.py egg_info for package Flask
+Downloading/unpacking Werkzeug&gt;=0.7 (from Flask)
+Downloading Werkzeug-0.8.3.tar.gz (1.1Mb): 1.1Mb downloaded
+Running setup.py egg_info for package Werkzeug
+Downloading/unpacking Jinja2&gt;=2.4 (from Flask)
+Downloading Jinja2-2.6.tar.gz (389Kb): 389Kb downloaded
+Running setup.py egg_info for package Jinja2
+Installing collected packages: Flask, Werkzeug, Jinja2
+Running setup.py install for Flask
+Running setup.py install for Werkzeug
+Running setup.py install for Jinja2
+Successfully installed Flask Werkzeug Jinja2
+Cleaning up...
+</code></pre>
+
+<p>Create a file called <code>wsgi.py</code> with the following code: </p>
+
+<pre class="prettyprint linenums"><code>from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+if __name__ == '__main__':
+    app.run()
+</code></pre>
+
+<h3 id="test-your-app-locally">Test Your App Locally</h3>
+
+<pre class="prettyprint"><code>(venv) $ python wsgi.py
+ * Running on http://127.0.0.1:5000/
+</code></pre>
+
+<p>In another terminal:</p>
+
+<pre class="prettyprint"><code>$ curl 127.0.0.1:5000
+Hello World!% 
+</code></pre>
+
+<h3 id="prepare-your-app-for-deployment-on-appfog">Prepare Your App for Deployment on AppFog</h3>
+
+<h1 id="django">Django</h1>
 
 
 			</div>

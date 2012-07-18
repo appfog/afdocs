@@ -258,3 +258,5 @@ In another terminal:
     1342483543%
 
 # Django {#django}
+
+Coming soon. Meanwhile, check out [the GitHub repo for our Python Django Jumpstart](https://github.com/appfog/af-python-django).

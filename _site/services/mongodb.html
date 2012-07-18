@@ -196,7 +196,7 @@
 		<div class="row">
 			<div class="span8">
 				<h1>MongoDB</h1>
-				<p>AppFog provides a MongoDB service that’s accessible to apps that are running on any of the supported runtimes and frameworks. </p>
+				<p>AppFog provides a MongoDB service that&rsquo;s accessible to apps that are running on any of the supported runtimes and frameworks. </p>
 
 <ul>
   <li><a href="#ruby">Ruby</a></li>
@@ -226,7 +226,7 @@ gem 'bson_ext'
 
 <h3 id="rails">Rails</h3>
 
-<p>For a Rails app, modify the production section of your app’s <code>config/mongo.yml</code> to set credentials, host, and port by parsing the JSON-formatted <code>VCAP_SERVICES</code> environment variable:</p>
+<p>For a Rails app, modify the production section of your app&rsquo;s <code>config/mongo.yml</code> to set credentials, host, and port by parsing the JSON-formatted <code>VCAP_SERVICES</code> environment variable:</p>
 
 <pre class="prettyprint linenums"><code>production:
 host: &lt;%= JSON.parse(ENV['VCAP_SERVICES'])['mongodb-1.8'].first['credentials']['hostname'] rescue 'localhost' %&gt;
@@ -396,7 +396,7 @@ var mongourl = generate_mongo_url(mongo);
 
 <h3 id="write-a-basic-nodejs-app">Write a Basic Node.js App</h3>
 
-<p>We’ll write a basic Node.js app called <code>mongo-node-example</code>.</p>
+<p>We&rsquo;ll write a basic Node.js app called <code>mongo-node-example</code>.</p>
 
 <p>First, create a directory and change into it:</p>
 
@@ -472,7 +472,7 @@ Hello World
 
 <h3 id="add-mongodb-configuration">Add MongoDB Configuration</h3>
 
-<p>Your app is now deployed and has a new <code>mongodb</code> service bound to it, but it’s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
+<p>Your app is now deployed and has a new <code>mongodb</code> service bound to it, but it&rsquo;s not using the service yet. Next, we&rsquo;ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
 
 <p>Add the following code to the beginning of <code>app.js</code>:</p>
 
@@ -549,7 +549,7 @@ Hello World
 <pre class="prettyprint"><code>$ npm install mongodb
 </code></pre>
 
-<p>This creates a new local directory called <code>node_modules</code> in the app’s root.</p>
+<p>This creates a new local directory called <code>node_modules</code> in the app&rsquo;s root.</p>
 
 <p>In <code>app.js</code>, create a new function called <code>record_visit</code> that stores the server request to MongoDB:</p>
 
@@ -672,7 +672,7 @@ Starting Application: OK
 
 <p>For another complete sample app for a Node.js app with MongoDB, check out <a href="https://github.com/appfog/af-node-sample-mongodb">our GitHub repo</a>.</p>
 
-<p>For more information, check out <a href="http://docs.cloudfoundry.com/services/mongodb/nodejs-mongodb.html">Cloud Foundry’s documentation on MongoDB</a>.</p>
+<p>For more information, check out <a href="http://docs.cloudfoundry.com/services/mongodb/nodejs-mongodb.html">Cloud Foundry&rsquo;s documentation on MongoDB</a>.</p>
 
 
 			</div>

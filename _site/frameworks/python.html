@@ -227,13 +227,13 @@
 
 <p>You can connect your Python app to AppFog services by using accessing the <code>VCAP_SERVICES</code> environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our <a href="/services/overview">Services Overview</a> page.</p>
 
-<h1 id="wsgi-hello-world">WSGI “Hello World”</h1>
+<h1 id="wsgi-hello-world">WSGI &ldquo;Hello World&rdquo;</h1>
 
 <p>You can take a look at a bare-bones Python WSGI app <a href="https://github.com/appfog/af-python-wsgi">on GitHub</a>.</p>
 
 <h1 id="flask">Flask</h1>
 
-<p>The following is a step-by-step guide to writing and deploying a “hello world” Python Flask app:</p>
+<p>The following is a step-by-step guide to writing and deploying a &ldquo;hello world&rdquo; Python Flask app:</p>
 
 <h3 id="create-the-app">Create the App</h3>
 
@@ -282,7 +282,7 @@ Cleaning up...
 <p>Create a file called <code>wsgi.py</code> with the following code: </p>
 
 <pre class="prettyprint linenums"><code>from flask import Flask, Request, Response
-app = Flask(__name__)
+application = app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
@@ -335,15 +335,15 @@ Staging Application 'flask-example': OK
 Starting Application 'flask-example': OK
 </code></pre>
 
-<p>Test the app on AppFog:</p>
+<h3 id="test-your-app-on-appfog">Test Your App on AppFog:</h3>
 
-<pre class="prettprint"><code>$ curl flask-example.aws.af.cm
+<pre class="prettyprint"><code>$ curl flask-example.aws.af.cm
 Hello World!% 
 </code></pre>
 
 <h3 id="connect-your-app-to-services">Connect Your App to Services</h3>
 
-<p>Now we’ll connect Flask to a MongoDB service provided by AppFog.</p>
+<p>Now we&rsquo;ll connect Flask to a MongoDB service provided by AppFog.</p>
 
 <h3 id="bind-service">Bind Service</h3>
 
@@ -359,9 +359,14 @@ Starting Application 'flask-example': OK
 
 <h3 id="add-mongodb-configuration">Add MongoDB Configuration</h3>
 
-<p>Your app now has a new <code>mongodb</code> service bound to it, but it’s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
+<p>Your app now has a new <code>mongodb</code> service bound to it, but it&rsquo;s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
 
-<p>First, add the following to the beginning of <code>wsgi.py</code>:</p>
+<p>First, add this to <code>requirements.txt</code>:</p>
+
+<pre class="prettyprint linenums"><code>pymongo==2.1.1
+</code></pre>
+
+<p>Then add the following to the beginning of <code>wsgi.py</code>:</p>
 
 <pre class="prettyprint linenums"><code>import time
 import sys
@@ -369,7 +374,7 @@ import os
 import json
 </code></pre>
 
-<p>Then add the following to the end, right before <code>if __name__ == '__main__':</code></p>
+<p>And add the following to the end, right before <code>if __name__ == '__main__':</code></p>
 
 <pre class="prettyprint linenums"><code>@app.route('/mongo')
 def mongotest():
@@ -398,7 +403,7 @@ def mongodb_uri():
         uri = "mongodb://localhost:27017"
 </code></pre>
 
-<p>We also need to install <code>pymongo</code>:</p>
+<p>We also need to install <code>pymongo</code> for our local test:</p>
 
 <pre class="prettyprint"><code>$ pip install pymongo
 Downloading/unpacking pymongo
@@ -412,7 +417,37 @@ Successfully installed pymongo
 Cleaning up...
 </code></pre>
 
-<p>Now we can test locally:</p>
+<h3 id="test-your-app-locally-1">Test Your App Locally</h3>
+
+<pre class="prettyprint"><code>(venv) $ python wsgi.py
+ * Running on http://127.0.0.1:5000/
+</code></pre>
+
+<p>In another terminal:</p>
+
+<pre class="prettyprint"><code>$ curl 127.0.0.1:5000/mongo
+1342592886% 
+</code></pre>
+
+<h3 id="deploy-to-appfog-1">Deploy to AppFog</h3>
+
+<pre class="prettyprint"><code>$ af update flask-example
+Uploading Application:
+    Checking for available resources: OK
+    Processing resources: OK
+    Packing application: OK
+    Uploading (10M): OK
+Push Status: OK
+Stopping Application 'flask-example': OK
+Staging Application 'flask-example': OK
+Starting Application 'flask-example': OK
+</code></pre>
+
+<h3 id="test-your-app-on-appfog-1">Test Your App on AppFog</h3>
+
+<pre class="prettyprint"><code>$ curl flask-example.aws.af.cm/mongo
+1342483543%
+</code></pre>
 
 <h1 id="django">Django</h1>
 
@@ -480,10 +515,6 @@ Cleaning up...
 							<li><a href="/frameworks/php-wordpress" >WordPress</a></li>
 							
 							<li><a href="/frameworks/python" class="on">Python</a></li>
-							
-							<li><a href="/frameworks/python-django" >Python Django</a></li>
-							
-							<li><a href="/frameworks/python-flask" >Python Flask</a></li>
 							
 							<li><a href="/frameworks/ruby" >Ruby</a></li>
 							

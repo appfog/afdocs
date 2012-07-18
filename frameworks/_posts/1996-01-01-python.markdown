@@ -91,7 +91,7 @@ Create a file called `wsgi.py` with the following code:
 
 {: .prettyprint .linenums}
     from flask import Flask, Request, Response
-    app = Flask(__name__)
+    application = app = Flask(__name__)
 
     @app.route('/')
     def hello_world():
@@ -143,9 +143,9 @@ Create a `requirements.txt` file with the following:
     Staging Application 'flask-example': OK
     Starting Application 'flask-example': OK
 
-Test the app on AppFog:
+### Test Your App on AppFog:
 
-{: .prettprint}
+{: .prettyprint}
     $ curl flask-example.aws.af.cm
     Hello World!% 
 
@@ -169,7 +169,12 @@ Use the `af create-service <service> <name> <app>` command to create the `mongod
 
 Your app now has a new `mongodb` service bound to it, but it's not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.
 
-First, add the following to the beginning of `wsgi.py`:
+First, add this to `requirements.txt`:
+
+{: .prettyprint .linenums}
+    pymongo==2.1.1
+
+Then add the following to the beginning of `wsgi.py`:
 
 {: .prettyprint .linenums}
     import time
@@ -177,7 +182,7 @@ First, add the following to the beginning of `wsgi.py`:
     import os
     import json
 
-Then add the following to the end, right before `if __name__ == '__main__':`
+And add the following to the end, right before `if __name__ == '__main__':`
 
 {: .prettyprint .linenums}
     @app.route('/mongo')
@@ -206,7 +211,7 @@ Then add the following to the end, right before `if __name__ == '__main__':`
         else:
             uri = "mongodb://localhost:27017"
 
-We also need to install `pymongo`:
+We also need to install `pymongo` for our local test:
 
 {: .prettyprint}
     $ pip install pymongo
@@ -220,9 +225,36 @@ We also need to install `pymongo`:
     Successfully installed pymongo
     Cleaning up...
 
-Now we can test locally:
+### Test Your App Locally
 
 {: .prettyprint}
+    (venv) $ python wsgi.py
+     * Running on http://127.0.0.1:5000/
 
+In another terminal:
+
+{: .prettyprint}
+    $ curl 127.0.0.1:5000/mongo
+    1342592886% 
+
+### Deploy to AppFog
+
+{: .prettyprint}
+    $ af update flask-example
+    Uploading Application:
+        Checking for available resources: OK
+        Processing resources: OK
+        Packing application: OK
+        Uploading (10M): OK
+    Push Status: OK
+    Stopping Application 'flask-example': OK
+    Staging Application 'flask-example': OK
+    Starting Application 'flask-example': OK
+
+### Test Your App on AppFog
+
+{: .prettyprint}
+    $ curl flask-example.aws.af.cm/mongo
+    1342483543%
 
 # Django {#django}

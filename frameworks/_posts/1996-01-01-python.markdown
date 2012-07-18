@@ -4,6 +4,7 @@ title: Python
 weight: 1
 ---
 
+* [Dependencies](#dependencies)
 * [Services](#services)
 * [WSGI](#wsgi)
 * [Flask](#flask)
@@ -30,11 +31,9 @@ AppFog currently supports Python 2.7.3. You can check the available runtimes by 
 
 AppFog supports Python by serving apps through the [WSGI](http://wsgi.readthedocs.org/en/latest/index.html) protocol using [Gunicorn](http://gunicorn.org/). 
 
-### Dependencies
+# Dependencies {#dependencies}
 
-TKTKTK You can define the package prequisites of your Python app in a top-level [requirements.txt]() file, which `pip` uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. 
-
-TKTKTK AppFog uses pip and virtualenv. 
+AppFog uses `pip` and `virtualenv` to deploy apps. You can define the package prequisites of your Python app in a top-level [requirements.txt](http://www.pip-installer.org/en/latest/requirements.html#the-requirements-file-format) file, which `pip` uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. 
 
 # Services {#services}
 

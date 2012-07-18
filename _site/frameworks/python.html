@@ -197,6 +197,7 @@
 			<div class="span8">
 				<h1>Python</h1>
 				<ul>
+  <li><a href="#dependencies">Dependencies</a></li>
   <li><a href="#services">Services</a></li>
   <li><a href="#wsgi">WSGI</a></li>
   <li><a href="#flask">Flask</a></li>
@@ -224,11 +225,9 @@
 
 <p>AppFog supports Python by serving apps through the <a href="http://wsgi.readthedocs.org/en/latest/index.html">WSGI</a> protocol using <a href="http://gunicorn.org/">Gunicorn</a>. </p>
 
-<h3 id="dependencies">Dependencies</h3>
+<h1 id="dependencies">Dependencies</h1>
 
-<p>TKTKTK You can define the package prequisites of your Python app in a top-level <a href="">requirements.txt</a> file, which <code>pip</code> uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. </p>
-
-<p>TKTKTK AppFog uses pip and virtualenv. </p>
+<p>AppFog uses <code>pip</code> and <code>virtualenv</code> to deploy apps. You can define the package prequisites of your Python app in a top-level <a href="http://www.pip-installer.org/en/latest/requirements.html#the-requirements-file-format">requirements.txt</a> file, which <code>pip</code> uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. </p>
 
 <h1 id="services">Services</h1>
 

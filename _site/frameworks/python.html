@@ -219,9 +219,9 @@
 
 <h3 id="dependencies">Dependencies</h3>
 
-<p>You can define the package prequisites of your Python app in a top-level <a href="">requirements.txt</a> file, which <code>pip</code> uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. </p>
+<p>TKTKTK You can define the package prequisites of your Python app in a top-level <a href="">requirements.txt</a> file, which <code>pip</code> uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. </p>
 
-<p>AppFog uses pip and virtualenv. </p>
+<p>TKTKTK AppFog uses pip and virtualenv. </p>
 
 <h1 id="services">Services</h1>
 
@@ -281,7 +281,7 @@ Cleaning up...
 
 <p>Create a file called <code>wsgi.py</code> with the following code: </p>
 
-<pre class="prettyprint linenums"><code>from flask import Flask
+<pre class="prettyprint linenums"><code>from flask import Flask, Request, Response
 app = Flask(__name__)
 
 @app.route('/')
@@ -305,6 +305,114 @@ Hello World!%
 </code></pre>
 
 <h3 id="prepare-your-app-for-deployment-on-appfog">Prepare Your App for Deployment on AppFog</h3>
+
+<p>Create a <code>requirements.txt</code> file with the following:</p>
+
+<pre class="prettyprint linenums"><code>flask==0.8
+</code></pre>
+
+<h3 id="deploy-to-appfog">Deploy to Appfog</h3>
+
+<pre class="prettyprint"><code>af push flask-example
+Would you like to deploy from the current directory? [Yn]:
+
+Detected a Python WSGI Application, is this correct? [Yn]:
+Application Deployed URL [flask-example.aws.af.cm]:
+Memory reservation (128M, 256M, 512M, 1G, 2G) [64M]:
+How many instances? [1]:
+Bind existing services to 'flask-example'? [yN]:
+Create services to bind to 'flask-example'? [yN]:
+Would you like to save this configuration? [yN]:
+
+Creating Application: OK
+Uploading Application:
+    Checking for available resources: OK
+    Processing resources: OK
+    Packing application: OK
+    Uploading (10M): OK
+Push Status: OK
+Staging Application 'flask-example': OK
+Starting Application 'flask-example': OK
+</code></pre>
+
+<p>Test the app on AppFog:</p>
+
+<pre class="prettprint"><code>$ curl flask-example.aws.af.cm
+Hello World!% 
+</code></pre>
+
+<h3 id="connect-your-app-to-services">Connect Your App to Services</h3>
+
+<p>Now we’ll connect Flask to a MongoDB service provided by AppFog.</p>
+
+<h3 id="bind-service">Bind Service</h3>
+
+<p>Use the <code>af create-service &lt;service&gt; &lt;name&gt; &lt;app&gt;</code> command to create the <code>mongodb</code> service and bind it in one step:</p>
+
+<pre class="prettyprint"><code>$ af create-service mongodb mongo-example flask-example
+Creating Service: OK
+Binding Service [mongo-example]: OK
+Stopping Application 'flask-example': OK
+Staging Application 'flask-example': OK
+Starting Application 'flask-example': OK
+</code></pre>
+
+<h3 id="add-mongodb-configuration">Add MongoDB Configuration</h3>
+
+<p>Your app now has a new <code>mongodb</code> service bound to it, but it’s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
+
+<p>First, add the following to the beginning of <code>wsgi.py</code>:</p>
+
+<pre class="prettyprint linenums"><code>import time
+import sys
+import os
+import json
+</code></pre>
+
+<p>Then add the following to the end, right before <code>if __name__ == '__main__':</code></p>
+
+<pre class="prettyprint linenums"><code>@app.route('/mongo')
+def mongotest():
+    from pymongo import Connection
+    uri = mongodb_uri()
+    conn = Connection(uri)
+    coll = conn.db['ts']
+    coll.insert(dict(now=int(time.time())))
+    last_few = [str(x['now']) for x in coll.find(sort=[("_id", -1)], limit=10)]
+    body = "\n".join(last_few)
+    return Response(body, content_type="text/plain;charset=UTF-8")
+
+def mongodb_uri():
+    services = json.loads(os.environ.get("VCAP_SERVICES", "{}"))
+    if services:
+        creds = services['mongodb-1.8'][0]['credentials']
+        uri = "mongodb://%s:%s@%s:%d/%s" % (
+            creds['username'],
+            creds['password'],
+            creds['hostname'],
+            creds['port'],
+            creds['db'])
+        print &gt;&gt; sys.stderr, uri
+        return uri
+    else:
+        uri = "mongodb://localhost:27017"
+</code></pre>
+
+<p>We also need to install <code>pymongo</code>:</p>
+
+<pre class="prettyprint"><code>$ pip install pymongo
+Downloading/unpacking pymongo
+Downloading pymongo-2.2.1.tar.gz (230Kb): 230Kb downloaded
+Running setup.py egg_info for package pymongo
+
+Installing collected packages: pymongo
+Running setup.py install for pymongo
+...
+Successfully installed pymongo
+Cleaning up...
+</code></pre>
+
+<p>Now we can test locally:</p>
 
 <h1 id="django">Django</h1>
 

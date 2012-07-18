@@ -4,6 +4,11 @@ title: Python
 weight: 1
 ---
 
+* [Services](#services)
+* [WSGI](#wsgi)
+* [Flask](#flask)
+* [Django](#django)
+
 AppFog currently supports Python 2.7.3. You can check the available runtimes by running `af runtimes`.
 
 {: .prettyprint}
@@ -31,11 +36,11 @@ TKTKTK You can define the package prequisites of your Python app in a top-level 
 
 TKTKTK AppFog uses pip and virtualenv. 
 
-# Services
+# Services {#services}
 
 You can connect your Python app to AppFog services by using accessing the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our [Services Overview](/services/overview) page.
 
-# WSGI "Hello World"
+# WSGI "Hello World" {#wsgi}
 
 You can take a look at a bare-bones Python WSGI app [on GitHub](https://github.com/appfog/af-python-wsgi).
 

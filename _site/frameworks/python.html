@@ -196,7 +196,14 @@
 		<div class="row">
 			<div class="span8">
 				<h1>Python</h1>
-				<p>AppFog currently supports Python 2.7.3. You can check the available runtimes by running <code>af runtimes</code>.</p>
+				<ul>
+  <li><a href="#services">Services</a></li>
+  <li><a href="#wsgi">WSGI</a></li>
+  <li><a href="#flask">Flask</a></li>
+  <li><a href="#django">Django</a></li>
+</ul>
+
+<p>AppFog currently supports Python 2.7.3. You can check the available runtimes by running <code>af runtimes</code>.</p>
 
 <pre class="prettyprint"><code>$ af runtimes
 
@@ -227,7 +234,7 @@
 
 <p>You can connect your Python app to AppFog services by using accessing the <code>VCAP_SERVICES</code> environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our <a href="/services/overview">Services Overview</a> page.</p>
 
-<h1 id="wsgi-hello-world">WSGI &ldquo;Hello World&rdquo;</h1>
+<h1 id="wsgi">WSGI &ldquo;Hello World&rdquo;</h1>
 
 <p>You can take a look at a bare-bones Python WSGI app <a href="https://github.com/appfog/af-python-wsgi">on GitHub</a>.</p>
 

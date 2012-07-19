@@ -87,6 +87,10 @@ float: left;
 	padding-bottom: 0;
 }
 
+.span8 > .row > #inner{
+	padding-left: 30px;
+}
+
 #content .span8 > #search_results.row {
 	padding-top: 0;
 }

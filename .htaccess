@@ -1,5 +1,9 @@
 DirectoryIndex index.html index.xml
 
+# Redirect old URLs
+
+redirect 301 /features/article/faq/ /faqs
+
 Options +FollowSymlinks
 RewriteEngine On
 DirectorySlash Off

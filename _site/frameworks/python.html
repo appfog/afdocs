@@ -233,13 +233,13 @@
 
 <p>You can connect your Python app to AppFog services by using accessing the <code>VCAP_SERVICES</code> environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our <a href="/services/overview">Services Overview</a> page.</p>
 
-<h1 id="wsgi">WSGI &ldquo;Hello World&rdquo;</h1>
+<h1 id="wsgi">WSGI “Hello World”</h1>
 
 <p>You can take a look at a bare-bones Python WSGI app <a href="https://github.com/appfog/af-python-wsgi">on GitHub</a>.</p>
 
 <h1 id="flask">Flask</h1>
 
-<p>The following is a step-by-step guide to writing and deploying a &ldquo;hello world&rdquo; Python Flask app:</p>
+<p>The following is a step-by-step guide to writing and deploying a “hello world” Python Flask app:</p>
 
 <h3 id="create-the-app">Create the App</h3>
 
@@ -251,23 +251,34 @@ $ cd flask-example
 
 <h3 id="prepare-your-environment">Prepare Your Environment</h3>
 
-<p>Create a <code>virtualenv</code> environment:</p>
+<!---Create a `virtualenv` environment:
 
-<pre class="prettyprint"><code>$ virtualenv venv
-New python executable in venv/bin/python
+{: .prettyprint}
+    $ virtualenv venv
+    New python executable in venv/bin/python
+    Installing setuptools............done.
+    Installing pip...............done.
+
+--->
+
+<p>Note: There is currently an issue with using <code>virutalenv</code> in an app directory, so we’ll use a workaround. </p>
+
+<pre class="prettyprint"><code>$ mkdir ../flask-example-venv
+$ virtualenv ../flask-example-venv
+New python executable in ../flask-example-venv/bin/python
 Installing setuptools............done.
 Installing pip...............done.
 </code></pre>
 
 <p>Activate the environment:</p>
 
-<pre class="prettyprint"><code>$ . venv/bin/activate
-(venv) $
+<pre class="prettyprint"><code>$ . ../flask-example-venv/bin/activate
+(flask-example-venv) $
 </code></pre>
 
 <p>Use <code>pip</code> to install Flask:</p>
 
-<pre class="prettyprint"><code>(venv) $ pip install Flask
+<pre class="prettyprint"><code>(flask-example-venv) $ pip install Flask
 Downloading/unpacking Flask
 Downloading Flask-0.9.tar.gz (481Kb): 481Kb downloaded
 Running setup.py egg_info for package Flask
@@ -300,7 +311,7 @@ if __name__ == '__main__':
 
 <h3 id="test-your-app-locally">Test Your App Locally</h3>
 
-<pre class="prettyprint"><code>(venv) $ python wsgi.py
+<pre class="prettyprint"><code>(flask-example-venv) $ python wsgi.py
  * Running on http://127.0.0.1:5000/
 </code></pre>
 
@@ -349,7 +360,7 @@ Hello World!%
 
 <h3 id="connect-your-app-to-services">Connect Your App to Services</h3>
 
-<p>Now we&rsquo;ll connect Flask to a MongoDB service provided by AppFog.</p>
+<p>Now we’ll connect Flask to a MongoDB service provided by AppFog.</p>
 
 <h3 id="bind-service">Bind Service</h3>
 
@@ -365,7 +376,7 @@ Starting Application 'flask-example': OK
 
 <h3 id="add-mongodb-configuration">Add MongoDB Configuration</h3>
 
-<p>Your app now has a new <code>mongodb</code> service bound to it, but it&rsquo;s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
+<p>Your app now has a new <code>mongodb</code> service bound to it, but it’s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
 
 <p>First, add this to <code>requirements.txt</code>:</p>
 
@@ -425,7 +436,7 @@ Cleaning up...
 
 <h3 id="test-your-app-locally-1">Test Your App Locally</h3>
 
-<pre class="prettyprint"><code>(venv) $ python wsgi.py
+<pre class="prettyprint"><code>(flask-example-venv) $ python wsgi.py
  * Running on http://127.0.0.1:5000/
 </code></pre>
 

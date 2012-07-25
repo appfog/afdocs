@@ -57,7 +57,7 @@ Create a directory for the app and change into it:
 
 ### Prepare Your Environment
 
-Create a `virtualenv` environment:
+<!---Create a `virtualenv` environment:
 
 {: .prettyprint}
     $ virtualenv venv
@@ -65,16 +65,27 @@ Create a `virtualenv` environment:
     Installing setuptools............done.
     Installing pip...............done.
 
+--->
+
+Note: There is currently an issue with using `virutalenv` in an app directory, so we'll use a workaround. 
+
+{: .prettyprint}
+    $ mkdir ../flask-example-venv
+	$ virtualenv ../flask-example-venv
+    New python executable in ../flask-example-venv/bin/python
+    Installing setuptools............done.
+    Installing pip...............done.
+
 Activate the environment:
 
 {: .prettyprint}
-    $ . venv/bin/activate
-    (venv) $
+    $ . ../flask-example-venv/bin/activate
+    (flask-example-venv) $
 
 Use `pip` to install Flask:
 
 {: .prettyprint}
-    (venv) $ pip install Flask
+    (flask-example-venv) $ pip install Flask
     Downloading/unpacking Flask
     Downloading Flask-0.9.tar.gz (481Kb): 481Kb downloaded
     Running setup.py egg_info for package Flask
@@ -107,7 +118,7 @@ Create a file called `wsgi.py` with the following code:
 ### Test Your App Locally
 
 {: .prettyprint}
-    (venv) $ python wsgi.py
+    (flask-example-venv) $ python wsgi.py
      * Running on http://127.0.0.1:5000/
 
 In another terminal:
@@ -232,7 +243,7 @@ We also need to install `pymongo` for our local test:
 ### Test Your App Locally
 
 {: .prettyprint}
-    (venv) $ python wsgi.py
+    (flask-example-venv) $ python wsgi.py
      * Running on http://127.0.0.1:5000/
 
 In another terminal:

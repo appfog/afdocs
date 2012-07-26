@@ -250,7 +250,7 @@ blockquote {
 	border-radius: 5px;
 }
 
-p > code, li > code {
+p > code {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;

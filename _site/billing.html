@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Python</title> 
+		<title>AppFog &mdash; Documentation Billing</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,7 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/frameworks">Frameworks</a></li>
-						
-						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Python</a></li>
+						<li><a href="#">Billing</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,280 +192,23 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Python</h1>
+				<h1>Billing</h1>
 				<ul>
-  <li><a href="#dependencies">Dependencies</a></li>
-  <li><a href="#services">Services</a></li>
-  <li><a href="#wsgi">WSGI</a></li>
-  <li><a href="#flask">Flask</a></li>
-  <li><a href="#django">Django</a></li>
+  <li><a href="#cycle">Billing Cycle</a></li>
+  <li><a href="#upgrades">Upgrades and Downgrades</a></li>
 </ul>
 
-<p>AppFog currently supports Python 2.7.3. You can check the available runtimes by running <code>af runtimes</code>.</p>
+<h3 id="cycle">Billing Cycle</h3>
 
-<pre class="prettyprint"><code>$ af runtimes
+<p>Your billing cycle begins when you start your subscription. If you start your subscription on the first of the month, then your account will automatically renew on the first of each subsequent month. </p>
 
-+--------------+-----------------+-----------+
-| Name         | Description     | Version   |
-+--------------+-----------------+-----------+
-| java         | Java 7          | 1.7.0     |
-| php          | PHP 5           | 5.3       |
-| ruby18       | Ruby 1.8.7      | 1.8.7     |
-| ruby192      | Ruby 1.9.2      | 1.9.2p180 |
-| ruby193      | Ruby 1.9.3 p125 | 1.9.3     |
-| python2      | Python 2.7.3    | 2.7.3     |
-| node04       | Node.js 0.4.12  | 0.4.12    |
-| node06       | Node.js 0.6.17  | 0.6.17    |
-| erlangR14B02 | Erlang R14B02   | R14B02    |
-+--------------+-----------------+-----------+
-</code></pre>
+<h3 id="upgrades">Upgrades and Downgrades</h3>
 
-<p>AppFog supports Python by serving apps through the <a href="http://wsgi.readthedocs.org/en/latest/index.html">WSGI</a> protocol using <a href="http://gunicorn.org/">Gunicorn</a>. </p>
+<p>You can upgrade or downgrade your account by sending us an email at <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#097;&#112;&#112;&#102;&#111;&#103;&#046;&#099;&#111;&#109;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#097;&#112;&#112;&#102;&#111;&#103;&#046;&#099;&#111;&#109;</a>.</p>
 
-<h1 id="dependencies">Dependencies</h1>
+<p>When you upgrade your service, your billing cycle remains the same, and you’ll automatically be charged for the difference in plans for the rest of the billing cycle. For example, if you’re on the $100/month plan and upgrade halfway through your billing cycle, you’ll be charged $140 for the rest of the billing cycle, and then you’ll be charged $380 at the beginning of the next billing cycle.</p>
 
-<p>AppFog uses <code>pip</code> and <code>virtualenv</code> to deploy apps. You can define the package prequisites of your Python app in a top-level <a href="http://www.pip-installer.org/en/latest/requirements.html#the-requirements-file-format">requirements.txt</a> file, which <code>pip</code> uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. </p>
-
-<h1 id="services">Services</h1>
-
-<p>You can connect your Python app to AppFog services by using accessing the <code>VCAP_SERVICES</code> environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our <a href="/services/overview">Services Overview</a> page.</p>
-
-<h1 id="wsgi">WSGI “Hello World”</h1>
-
-<p>You can take a look at a bare-bones Python WSGI app <a href="https://github.com/appfog/af-python-wsgi">on GitHub</a>.</p>
-
-<h1 id="flask">Flask</h1>
-
-<p>The following is a step-by-step guide to writing and deploying a “hello world” Python Flask app:</p>
-
-<h3 id="create-the-app">Create the App</h3>
-
-<p>Create a directory for the app and change into it: </p>
-
-<pre class="prettyprint"><code>$ mkdir flask-example
-$ cd flask-example
-</code></pre>
-
-<h3 id="prepare-your-environment">Prepare Your Environment</h3>
-
-<!---Create a `virtualenv` environment:
-
-{: .prettyprint}
-    $ virtualenv venv
-    New python executable in venv/bin/python
-    Installing setuptools............done.
-    Installing pip...............done.
-
---->
-
-<p>Note: There is currently an issue with using <code>virutalenv</code> in an app directory, so we’ll use a workaround. </p>
-
-<pre class="prettyprint"><code>$ mkdir ../flask-example-venv
-$ virtualenv ../flask-example-venv
-New python executable in ../flask-example-venv/bin/python
-Installing setuptools............done.
-Installing pip...............done.
-</code></pre>
-
-<p>Activate the environment:</p>
-
-<pre class="prettyprint"><code>$ . ../flask-example-venv/bin/activate
-(flask-example-venv) $
-</code></pre>
-
-<p>Use <code>pip</code> to install Flask:</p>
-
-<pre class="prettyprint"><code>(flask-example-venv) $ pip install Flask
-Downloading/unpacking Flask
-Downloading Flask-0.9.tar.gz (481Kb): 481Kb downloaded
-Running setup.py egg_info for package Flask
-Downloading/unpacking Werkzeug&gt;=0.7 (from Flask)
-Downloading Werkzeug-0.8.3.tar.gz (1.1Mb): 1.1Mb downloaded
-Running setup.py egg_info for package Werkzeug
-Downloading/unpacking Jinja2&gt;=2.4 (from Flask)
-Downloading Jinja2-2.6.tar.gz (389Kb): 389Kb downloaded
-Running setup.py egg_info for package Jinja2
-Installing collected packages: Flask, Werkzeug, Jinja2
-Running setup.py install for Flask
-Running setup.py install for Werkzeug
-Running setup.py install for Jinja2
-Successfully installed Flask Werkzeug Jinja2
-Cleaning up...
-</code></pre>
-
-<p>Create a file called <code>wsgi.py</code> with the following code: </p>
-
-<pre class="prettyprint linenums"><code>from flask import Flask, Request, Response
-application = app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
-if __name__ == '__main__':
-    app.run()
-</code></pre>
-
-<h3 id="test-your-app-locally">Test Your App Locally</h3>
-
-<pre class="prettyprint"><code>(flask-example-venv) $ python wsgi.py
- * Running on http://127.0.0.1:5000/
-</code></pre>
-
-<p>In another terminal:</p>
-
-<pre class="prettyprint"><code>$ curl 127.0.0.1:5000
-Hello World!% 
-</code></pre>
-
-<h3 id="prepare-your-app-for-deployment-on-appfog">Prepare Your App for Deployment on AppFog</h3>
-
-<p>Create a <code>requirements.txt</code> file with the following:</p>
-
-<pre class="prettyprint linenums"><code>flask==0.8
-</code></pre>
-
-<h3 id="deploy-to-appfog">Deploy to Appfog</h3>
-
-<pre class="prettyprint"><code>af push flask-example
-Would you like to deploy from the current directory? [Yn]:
-
-Detected a Python WSGI Application, is this correct? [Yn]:
-Application Deployed URL [flask-example.aws.af.cm]:
-Memory reservation (128M, 256M, 512M, 1G, 2G) [64M]:
-How many instances? [1]:
-Bind existing services to 'flask-example'? [yN]:
-Create services to bind to 'flask-example'? [yN]:
-Would you like to save this configuration? [yN]:
-
-Creating Application: OK
-Uploading Application:
-    Checking for available resources: OK
-    Processing resources: OK
-    Packing application: OK
-    Uploading (10M): OK
-Push Status: OK
-Staging Application 'flask-example': OK
-Starting Application 'flask-example': OK
-</code></pre>
-
-<h3 id="test-your-app-on-appfog">Test Your App on AppFog:</h3>
-
-<pre class="prettyprint"><code>$ curl flask-example.aws.af.cm
-Hello World!% 
-</code></pre>
-
-<h3 id="connect-your-app-to-services">Connect Your App to Services</h3>
-
-<p>Now we’ll connect Flask to a MongoDB service provided by AppFog.</p>
-
-<h3 id="bind-service">Bind Service</h3>
-
-<p>Use the <code>af create-service &lt;service&gt; &lt;name&gt; &lt;app&gt;</code> command to create the <code>mongodb</code> service and bind it in one step:</p>
-
-<pre class="prettyprint"><code>$ af create-service mongodb mongo-example flask-example
-Creating Service: OK
-Binding Service [mongo-example]: OK
-Stopping Application 'flask-example': OK
-Staging Application 'flask-example': OK
-Starting Application 'flask-example': OK
-</code></pre>
-
-<h3 id="add-mongodb-configuration">Add MongoDB Configuration</h3>
-
-<p>Your app now has a new <code>mongodb</code> service bound to it, but it’s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
-
-<p>First, add this to <code>requirements.txt</code>:</p>
-
-<pre class="prettyprint linenums"><code>pymongo==2.1.1
-</code></pre>
-
-<p>Then add the following to the beginning of <code>wsgi.py</code>:</p>
-
-<pre class="prettyprint linenums"><code>import time
-import sys
-import os
-import json
-</code></pre>
-
-<p>And add the following to the end, right before <code>if __name__ == '__main__':</code></p>
-
-<pre class="prettyprint linenums"><code>@app.route('/mongo')
-def mongotest():
-    from pymongo import Connection
-    uri = mongodb_uri()
-    conn = Connection(uri)
-    coll = conn.db['ts']
-    coll.insert(dict(now=int(time.time())))
-    last_few = [str(x['now']) for x in coll.find(sort=[("_id", -1)], limit=10)]
-    body = "\n".join(last_few)
-    return Response(body, content_type="text/plain;charset=UTF-8")
-
-def mongodb_uri():
-    services = json.loads(os.environ.get("VCAP_SERVICES", "{}"))
-    if services:
-        creds = services['mongodb-1.8'][0]['credentials']
-        uri = "mongodb://%s:%s@%s:%d/%s" % (
-            creds['username'],
-            creds['password'],
-            creds['hostname'],
-            creds['port'],
-            creds['db'])
-        print &gt;&gt; sys.stderr, uri
-        return uri
-    else:
-        uri = "mongodb://localhost:27017"
-</code></pre>
-
-<p>We also need to install <code>pymongo</code> for our local test:</p>
-
-<pre class="prettyprint"><code>$ pip install pymongo
-Downloading/unpacking pymongo
-Downloading pymongo-2.2.1.tar.gz (230Kb): 230Kb downloaded
-Running setup.py egg_info for package pymongo
-
-Installing collected packages: pymongo
-Running setup.py install for pymongo
-...
-Successfully installed pymongo
-Cleaning up...
-</code></pre>
-
-<h3 id="test-your-app-locally-1">Test Your App Locally</h3>
-
-<pre class="prettyprint"><code>(flask-example-venv) $ python wsgi.py
- * Running on http://127.0.0.1:5000/
-</code></pre>
-
-<p>In another terminal:</p>
-
-<pre class="prettyprint"><code>$ curl 127.0.0.1:5000/mongo
-1342592886% 
-</code></pre>
-
-<h3 id="deploy-to-appfog-1">Deploy to AppFog</h3>
-
-<pre class="prettyprint"><code>$ af update flask-example
-Uploading Application:
-    Checking for available resources: OK
-    Processing resources: OK
-    Packing application: OK
-    Uploading (10M): OK
-Push Status: OK
-Stopping Application 'flask-example': OK
-Staging Application 'flask-example': OK
-Starting Application 'flask-example': OK
-</code></pre>
-
-<h3 id="test-your-app-on-appfog-1">Test Your App on AppFog</h3>
-
-<pre class="prettyprint"><code>$ curl flask-example.aws.af.cm/mongo
-1342483543%
-</code></pre>
-
-<h1 id="django">Django</h1>
-
-<p>Coming soon. Meanwhile, check out <a href="https://github.com/appfog/af-python-django">the GitHub repo for our Python Django Jumpstart</a>.</p>
+<p>Similarly, when you downgrade, your billing cycle remains the same and you’ll automatically be refunded the difference in plans for the rest of the billing cycle. </p>
 
 
 			</div>
@@ -509,17 +249,17 @@ Starting Application 'flask-example': OK
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 						<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-down"></i> Frameworks</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-right"></i> Frameworks</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseTwo" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseTwo" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
 							<li><a href="/frameworks/node" >Node</a></li>
 							
-							<li><a href="/frameworks/python" class="on">Python</a></li>
+							<li><a href="/frameworks/python" >Python</a></li>
 							
 							<li><a href="/frameworks/ruby" >Ruby</a></li>
 							
@@ -553,7 +293,7 @@ Starting Application 'flask-example': OK
 						<div class="row border-bottom"><div class="span3"><a href="/add-on-partners" ><h6>Add-on Partnership</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/faq" ><h6>FAQ</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
-						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/billing" class="on"><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
 

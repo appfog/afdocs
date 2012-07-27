@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation AF Command Line Tool</title> 
+		<title>AppFog &mdash; Documentation PHP</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/getting-started">Getting Started</a></li>
+						<li><a href="/frameworks">Frameworks</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">AF Command Line Tool</a></li>
+						<li><a href="#">PHP</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,161 +195,131 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>AF Command Line Tool</h1>
-				<p><code>af</code> is based on CloudFoundry’s <code>vmc</code> but includes features specific to AppFog and has the default target set to AppFog’s service. Check out <a href="https://github.com/appfog/af">the GitHub repo</a>.</p>
+				<h1>PHP</h1>
+				<ul>
+  <li><a href="#custom">Custom PHP App</a></li>
+  <li><a href="#drupal">Drupal</a></li>
+  <li><a href="#wordpress">WordPress</a></li>
+</ul>
 
-<h3 id="usage">Usage</h3>
+<h3 id="supported-versions">Supported Versions</h3>
 
-<pre class="prettyprint"><code>$ af [options] command [&lt;args&gt;] [command_options]
+<p>For the most reliable experience, make sure you have the same version of PHP installed on your local development environment as the target AppFog instance. You can check the available runtimes by running: </p>
+
+<pre class="prettyprint"><code>$ af runtimes
+
++--------------+-----------------+-----------+
+| Name         | Description     | Version   |
++--------------+-----------------+-----------+
+| java         | Java 7          | 1.7.0     |
+| php          | PHP 5           | 5.3       |
+| ruby18       | Ruby 1.8.7      | 1.8.7     |
+| ruby192      | Ruby 1.9.2      | 1.9.2p180 |
+| ruby193      | Ruby 1.9.3 p125 | 1.9.3     |
+| python2      | Python 2.7.3    | 2.7.3     |
+| node04       | Node.js 0.4.12  | 0.4.12    |
+| node06       | Node.js 0.6.17  | 0.6.17    |
+| erlangR14B02 | Erlang R14B02   | R14B02    |
++--------------+-----------------+-----------+
 </code></pre>
 
-<p>For more information, try:</p>
+<p>AppFog supports PHP with <code>Apache 2.2.22</code> and <code>mod_php</code>. You can take a closer look at the PHP and Apache configurations <a href="http://phpinfo.aws.af.cm/info.php">here</a>.</p>
 
-<pre class="prettyprint"><code>$ af help [command]
-</code></pre>
+<h3 id="persistent-data-storage">Persistent Data Storage</h3>
 
-<p>or</p>
-
-<pre class="prettyprint"><code>$ af help options
-</code></pre>
-
-<h3 id="getting-started">Getting Started</h3>
-
-<table class="table table-bordered table-striped">
-<tr>
-    <td><code>target [url]</code></td>                                <td>Reports current target or sets a new target</td>
-</tr>
-<tr>
-    <td><code>login  [email] [--email, --passwd]</code></td>          <td>Login</td>
-</tr>
-<tr>
-    <td><code>info</code></td>                                         <td>System and account information</td>
-</tr>
-</table>
-
-<h3 id="applications">Applications</h3>
-
-<table class="table table-bordered table-striped">
-<tr>
-    <td><code>apps</code></td>                                         <td>List deployed applications</td>
-</tr>
-</table>
-
-<h3 id="application-creation">Application Creation</h3>
-
-<table class="table table-bordered table-striped">
-
-<tr><td><code>push [appname]</code></td>				<td>Create, push, map, and start a new application</td></tr>
-<tr><td><code>push [appname] --path</code></td>				<td>Push application from specified path</td></tr>
-<tr><td><code>push [appname] --url</code></td>				<td>Set the url for the application</td></tr>
-<tr><td><code>push [appname] --instances &lt;N&gt;</code></td>				<td>Set the expected number <code>&lt;N&gt;</code> of instances</td></tr>
-<tr><td><code>push [appname] --mem M</code></td>				<td>Set the memory reservation for the application</td></tr>
-<tr><td><code>push [appname] --no-start</code></td>				<td>Do not auto-start the application</td></tr>
-
-</table>
-
-<h3 id="application-operations">Application Operations</h3>
-
-<table class="table table-bordered table-striped">
-
-<tr><td><code>start &lt;appname&gt;</code>                             </td><td>Start the application</td></tr>
-<tr><td><code>stop  &lt;appname&gt;</code>                              </td><td>Stop the application</td></tr>
-<tr><td><code>restart &lt;appname&gt;</code>                            </td><td>Restart the application</td></tr>
-<tr><td><code>delete &lt;appname&gt;</code>                             </td><td>Delete the application</td></tr>
-<tr><td><code>rename &lt;appname&gt; &lt;newname&gt;</code>                   </td><td>Rename the application</td></tr>
-
-</table>
-
-<h3 id="application-updates">Application Updates</h3>
-
-<table class="table table-bordered table-striped">
-
-<tr><td><code>update &lt;appname&gt; [--path]                       </code></td><td>Update the application bits</td></tr>
-<tr><td><code>mem &lt;appname&gt; [memsize]                         </code></td><td>Update the memory reservation for an application</td></tr>
-<tr><td><code>map &lt;appname&gt; &lt;url&gt;                          </code></td><td>Register the application to the url</td></tr>
-<tr><td><code>unmap &lt;appname&gt; &lt;url&gt;                        </code></td><td>Unregister the application from the url</td></tr>
-<tr><td><code>instances &lt;appname&gt; &lt;num|delta&gt;              </code></td><td>Scale the application instances up or down</td></tr>
-
-</table>
-
-<h3 id="application-information">Application Information</h3>
-
-<table class="table table-bordered table-striped">
-
-<tr><td><code>crashes &lt;appname&gt;                            </code></td><td>List recent application crashes</td></tr>
-<tr><td><code>crashlogs &lt;appname&gt;                          </code></td><td>Display log information for crashed applications</td></tr>
-<tr><td><code>logs &lt;appname&gt; [--all]                       </code></td><td>Display log information for the application</td></tr>
-<tr><td><code>files &lt;appname&gt; [path] [--all]               </code></td><td>Display directory listing or file download for path</td></tr>
-<tr><td><code>stats &lt;appname&gt;                              </code></td><td>Display resource usage for the application</td></tr>
-<tr><td><code>instances &lt;appname&gt;                          </code></td><td>List application instances</td></tr>
-
-</table>
-
-<h3 id="application-environment">Application Environment</h3>
-
-<table class="table table-bordered table-striped">
-
-<tr><td><code>env &lt;appname&gt;                                   </code></td><td>List application environment variables</td></tr>
-<tr><td><code>env-add &lt;appname&gt; &lt;variable[=]value&gt;         </code></td><td>Add an environment variable to an application</td></tr>
-<tr><td><code>env-del &lt;appname&gt; &lt;variable&gt;                 </code></td><td>Delete an environment variable to an application</td></tr>
-
-</table>
+<p>AppFog does not yet have a persistent data storage system, though we’re working on it. This means that the file system is volatile and any data that needs to be persistent should be included in the code base (by making all changes in a local development environment) or offloaded to a database or an external storage system like Amazon’s S3.  </p>
 
 <h3 id="services">Services</h3>
 
-<table class="table table-bordered table-striped">
+<p>You can connect your PHP app to AppFog services by using the <code>VCAP_SERVICES</code> environment variable, which becomes available to your app when you bind a service to it. You can access the variable in PHP like this: </p>
 
-<tr><td><code>services                                     		  </code></td><td>Lists of services available and provisioned</td></tr>
-<tr><td><code>create-service &lt;service&gt; [--name,--bind]  		  </code></td><td>Create a provisioned service</td></tr>
-<tr><td><code>create-service &lt;service&gt; &lt;name&gt;        	      </code></td><td>Create a provisioned service and assign it &lt;name&gt;</td></tr>
-<tr><td><code>create-service &lt;service&gt; &lt;name&gt; &lt;app&gt;        </code></td><td>Create a provisioned service and assign it &lt;name&gt;, and bind to &lt;app&gt;</td></tr>
-<tr><td><code>delete-service [servicename]                 		  </code></td><td>Delete a provisioned service</td></tr>
-<tr><td><code>bind-service &lt;servicename&gt; &lt;appname&gt;            </code></td><td>Bind a service to an application</td></tr>
-<tr><td><code>unbind-service &lt;servicename&gt; &lt;appname&gt;          </code></td><td>Unbind service from the application</td></tr>
-<tr><td><code>clone-services &lt;src-app&gt; &lt;dest-app&gt;             </code></td><td>Clone service bindings from &lt;src-app&gt; application to &lt;dest-app&gt;</td></tr>
+<pre class="prettyprint"><code>getenv('VCAP_SERVICES')
+</code></pre>
 
-</table>
+<p>For more information on this, check out our <a href="/services/overview">Services Overview</a> page.</p>
 
-<h3 id="administration">Administration</h3>
+<h1 id="custom">Custom PHP App</h1>
 
-<table class="table table-bordered table-striped">
+<h3 id="create-the-app">Create the App</h3>
 
-<tr><td><code>user                                         	</code></td><td>Display user account information</td></tr>
-<tr><td><code>passwd                                       	</code></td><td>Change the password for the current user</td></tr>
-<tr><td><code>logout                                       	</code></td><td>Logs current user out of the target system</td></tr>
-<tr><td><code>add-user [--email, --passwd]                 	</code></td><td>Register a new user (requires admin privileges)</td></tr>
-<tr><td><code>delete-user &lt;user&gt;                           </code></td><td>Delete a user and all apps and services (requires admin privileges)</td></tr>
+<p>Create a directory for the app and change into it:</p>
 
-</table>
+<pre class="prettyprint"><code>$ mkdir php-example
+$ cd php-example
+</code></pre>
 
-<h3 id="system">System</h3>
+<p>Create an <code>index.php</code> file with the following:</p>
 
-<table class="table table-bordered table-striped">
+<pre class="prettyprint linenums"><code>&lt;?php echo "Hello world!"; ?&gt;
+</code></pre>
 
-<tr><td><code>runtimes                                     </code></td><td>Display the supported runtimes of the target system</td></tr>
-<tr><td><code>frameworks                                   </code></td><td>Display the recognized frameworks of the target system</td></tr>
+<h3 id="deploy-to-appfog">Deploy to AppFog</h3>
 
-</table>
+<pre class="prettyprint"><code>$ af push php-example
+Would you like to deploy from the current directory? [Yn]:
+Detected a PHP Application, is this correct? [Yn]:
+Application Deployed URL [php-example.aws.af.cm]:
+Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+How many instances? [1]:
+Bind existing services to 'php-example'? [yN]:
+Create services to bind to 'php-example'? [yN]:
+Would you like to save this configuration? [yN]:
+Creating Application: OK
+Uploading Application:
+    Checking for available resources: OK
+    Packing application: OK
+    Uploading (0K): OK
+Push Status: OK
+Staging Application 'php-example': OK
+Starting Application 'php-example': OK
+</code></pre>
 
-<h3 id="misc">Misc</h3>
+<pre class="prettyprint"><code>$ af curl php-example.aws.af.cm
+Hello world!% 
+</code></pre>
 
-<table class="table table-bordered table-striped">
+<h1 id="drupal">Drupal</h1>
 
-<tr><td><code>aliases                                      </code></td><td>List aliases</td></tr>
-<tr><td><code>alias &lt;alias[=]command&gt;                   </code></td><td>Create an alias for a command</td></tr>
-<tr><td><code>unalias &lt;alias&gt;                           </code></td><td>Remove an alias</td></tr>
-<tr><td><code>targets                                      </code></td><td>List known targets and associated authorization tokens</td></tr>
+<p>The following is a step-by-step guide to deploying a Drupal app to AppFog.</p>
 
-</table>
+<h3 id="download-drupal">Download Drupal</h3>
 
-<h3 id="help">Help</h3>
+<p><a href="http://drupal.org/project/download/">Download Drupal</a>, unzip it to a new directory, and change into that directory.</p>
 
-<table class="table table-bordered table-striped">
+<p>Then create your <code>settings.php</code> file:</p>
 
-<tr><td><code>help [command]                               </code></td><td>Get general help or help on a specific command</td></tr>
-<tr><td><code>help options                                 </code></td><td>Get help on available options</td></tr>
+<pre class="prettyprint"><code>$ cp ./sites/default/default.settings.php &gt; settings.php
+</code></pre>
 
-</table>
+<h3 id="services-1">Services</h3>
+
+<p>In <code>settings.php</code>, replace <code>database();</code> with:</p>
+
+<pre class="prettyprint linenums"><code>$services = getenv('VCAP_SERVICES'); 
+$services_json = json_decode($services,true); 
+$mysql_config = $services_json["mysql-5.1"][0]["credentials"]; 
+$databases['default']['default'] = array( 
+    'driver' =&gt; 'mysql',
+    'database' =&gt; $mysql_config["name"],
+    'username' =&gt; $mysql_config["user"],
+    'password' =&gt; $mysql_config["password"],
+    'host' =&gt; $mysql_config["hostname"],
+    'port' =&gt; $mysql_config["port"],
+);
+</code></pre>
+
+<h3 id="deploy-to-appfog-1">Deploy to AppFog</h3>
+
+<p>Push your code, making sure to create and bind a new MySQL service to the app:</p>
+
+<pre><code>$ af push
+</code></pre>
+
+<h3 id="finish-the-drupal-install">Finish the Drupal Install</h3>
+
+<p>Point your browser to your app’s install script, in this case drupal-example.aws.af.cm/install.php.</p>
+
+<h1 id="wordpress">WordPress</h1>
 
 
 			</div>
@@ -372,17 +342,17 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon icon-chevron-down"></i> Getting Started</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon icon-chevron-right"></i> Getting Started</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseOne" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseOne" style="height: 0;">
 						
 							<div class="accordion-inner">
 								
 								<li><a href="/getting-started/jumpstarts" >Jumpstarts</a></li>
 								
-								<li><a href="/getting-started/af-cli" class="on">AF Command Line Tool</a></li>
+								<li><a href="/getting-started/af-cli" >AF Command Line Tool</a></li>
 								
 							</div>
 						</ul>
@@ -390,17 +360,17 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 						<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-right"></i> Frameworks</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon icon-chevron-down"></i> Frameworks</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseTwo" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseTwo" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
 							<li><a href="/frameworks/node" >Node</a></li>
 							
-							<li><a href="/frameworks/php" >PHP</a></li>
+							<li><a href="/frameworks/php" class="on">PHP</a></li>
 							
 							<li><a href="/frameworks/python" >Python</a></li>
 							

@@ -37,7 +37,7 @@ AppFog uses `pip` and `virtualenv` to deploy apps. You can define the package pr
 
 # Services {#services}
 
-You can connect your Python app to AppFog services by using accessing the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our [Services Overview](/services/overview) page.
+You can connect your Python app to AppFog services by using the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our [Services Overview](/services/overview) page.
 
 # WSGI "Hello World" {#wsgi}
 

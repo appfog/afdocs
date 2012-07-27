@@ -1,7 +1,0 @@
----
-layout: doc-page
-title: PHP
-weight: 1
----
-
-### Coming Soon

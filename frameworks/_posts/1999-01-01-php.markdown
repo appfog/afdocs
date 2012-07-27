@@ -95,11 +95,11 @@ The following is a step-by-step guide to deploying a Drupal app to AppFog.
 Then create your `settings.php` file:
 
 {: .prettyprint}
-    $ cp ./sites/default/default.settings.php > settings.php
+    $ cp ./sites/default/default.settings.php ./sites/default/settings.php
 
 ### Services
 
-In `settings.php`, replace `database();` with:
+In `settings.php`, replace `$databases = array();` with:
 
 {: .prettyprint .linenums}
     $services = getenv('VCAP_SERVICES'); 
@@ -122,6 +122,89 @@ Push your code, making sure to create and bind a new MySQL service to the app:
 
 ### Finish the Drupal Install
 
-Point your browser to your app's install script, in this case drupal-example.aws.af.cm/install.php.
+Point your browser to your app's install script, in this case drupal-example.aws.af.cm/install.php. That should take you through the rest of the install process. 
+
+### Further Developement
+
+AppFog does not yet have a persistent data storage system, though we're working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. 
+
+This means you should do any development that makes changes to the file system in a local development environment and then push those changes to AppFog using an `af update`. You can sync any database changes by [tunneling](/services/tunneling).
 
 # WordPress {#wordpress}
+
+The following is a step-by-step guide to deploying a WordPress app to AppFog.
+
+### Download Wordpress
+
+[Download WordPress](http://wordpress.org/download/), unzip it to a new directory, and change into that directory.
+
+Then create your `wp-config.php` file:
+
+{: .prettyprint}
+    $ cp wp-config-sample.php wp-config.php
+
+### Services
+
+In `wp-config.php`, replace: 
+
+{: .prettyprint .linenums}
+    /** The name of the database for WordPress */
+    define('DB_NAME', 'database_name_here');
+
+    /** MySQL database username */
+    define('DB_USER', 'username_here');
+
+    /** MySQL database password */
+    define('DB_PASSWORD', 'password_here');
+
+    /** MySQL hostname */
+    define('DB_HOST', 'localhost');
+
+with: 
+
+{: .prettyprint .linenums}
+    define('DB_NAME', $mysql_config["name"]);
+    define('DB_USER', $mysql_config["user"]);
+    define('DB_PASSWORD', $mysql_config["password"]);
+    define('DB_HOST', $mysql_config["hostname"]);
+    define('DB_PORT', $mysql_config["port"]);
+
+### Deploy to AppFog
+
+{: .prettyprint}
+    $ af push wordpress-example
+    Would you like to deploy from the current directory? [Yn]:
+    Detected a PHP Application, is this correct? [Yn]:
+    Application Deployed URL [wordpress-example.aws.af.cm]:
+    Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+    How many instances? [1]:
+    Bind existing services to 'wordpress-example'? [yN]:
+    Create services to bind to 'wordpress-example'? [yN]: y
+    1: mongodb
+    2: mysql
+    3: postgresql
+    What kind of service?: 2
+    Specify the name of the service [mysql-d197d]:
+    Create another? [yN]:
+    Would you like to save this configuration? [yN]:
+    Creating Application: OK
+    Creating Service [mysql-d197d]: OK
+    Binding Service [mysql-d197d]: OK
+    Uploading Application:
+        Checking for available resources: OK
+        Processing resources: OK
+        Packing application: OK
+        Uploading (5M): OK
+    Push Status: OK
+    Staging Application 'wordpress-example': OK
+    Starting Application 'wordpress-example': OK
+
+### Finish the WordPress Install
+
+Point your browser to your app's install script, in this case wordpress-example.aws.af.cm/wp-admin/install.php. That should take you through the rest of the install process. 
+
+### Further Development
+
+AppFog does not yet have a persistent data storage system, though we're working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. 
+
+This means you should do any development that makes changes to the file system in a local development environment and then push those changes to AppFog using an `af update`. You can sync any database changes by [tunneling](/services/tunneling).

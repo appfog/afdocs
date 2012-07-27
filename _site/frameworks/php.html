@@ -288,12 +288,12 @@ Hello world!%
 
 <p>Then create your <code>settings.php</code> file:</p>
 
-<pre class="prettyprint"><code>$ cp ./sites/default/default.settings.php &gt; settings.php
+<pre class="prettyprint"><code>$ cp ./sites/default/default.settings.php ./sites/default/settings.php
 </code></pre>
 
 <h3 id="services-1">Services</h3>
 
-<p>In <code>settings.php</code>, replace <code>database();</code> with:</p>
+<p>In <code>settings.php</code>, replace <code>$databases = array();</code> with:</p>
 
 <pre class="prettyprint linenums"><code>$services = getenv('VCAP_SERVICES'); 
 $services_json = json_decode($services,true); 
@@ -317,9 +317,92 @@ $databases['default']['default'] = array(
 
 <h3 id="finish-the-drupal-install">Finish the Drupal Install</h3>
 
-<p>Point your browser to your app’s install script, in this case drupal-example.aws.af.cm/install.php.</p>
+<p>Point your browser to your app’s install script, in this case drupal-example.aws.af.cm/install.php. That should take you through the rest of the install process. </p>
+
+<h3 id="further-developement">Further Developement</h3>
+
+<p>AppFog does not yet have a persistent data storage system, though we’re working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. </p>
+
+<p>This means you should do any development that makes changes to the file system in a local development environment and then push those changes to AppFog using an <code>af update</code>. You can sync any database changes by <a href="/services/tunneling">tunneling</a>.</p>
 
 <h1 id="wordpress">WordPress</h1>
+
+<p>The following is a step-by-step guide to deploying a WordPress app to AppFog.</p>
+
+<h3 id="download-wordpress">Download Wordpress</h3>
+
+<p><a href="http://wordpress.org/download/">Download WordPress</a>, unzip it to a new directory, and change into that directory.</p>
+
+<p>Then create your <code>wp-config.php</code> file:</p>
+
+<pre class="prettyprint"><code>$ cp wp-config-sample.php wp-config.php
+</code></pre>
+
+<h3 id="services-2">Services</h3>
+
+<p>In <code>wp-config.php</code>, replace: </p>
+
+<pre class="prettyprint linenums"><code>/** The name of the database for WordPress */
+define('DB_NAME', 'database_name_here');
+
+/** MySQL database username */
+define('DB_USER', 'username_here');
+
+/** MySQL database password */
+define('DB_PASSWORD', 'password_here');
+
+/** MySQL hostname */
+define('DB_HOST', 'localhost');
+</code></pre>
+
+<p>with: </p>
+
+<pre class="prettyprint linenums"><code>define('DB_NAME', $mysql_config["name"]);
+define('DB_USER', $mysql_config["user"]);
+define('DB_PASSWORD', $mysql_config["password"]);
+define('DB_HOST', $mysql_config["hostname"]);
+define('DB_PORT', $mysql_config["port"]);
+</code></pre>
+
+<h3 id="deploy-to-appfog-2">Deploy to AppFog</h3>
+
+<pre class="prettyprint"><code>$ af push wordpress-example
+Would you like to deploy from the current directory? [Yn]:
+Detected a PHP Application, is this correct? [Yn]:
+Application Deployed URL [wordpress-example.aws.af.cm]:
+Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+How many instances? [1]:
+Bind existing services to 'wordpress-example'? [yN]:
+Create services to bind to 'wordpress-example'? [yN]: y
+1: mongodb
+2: mysql
+3: postgresql
+What kind of service?: 2
+Specify the name of the service [mysql-d197d]:
+Create another? [yN]:
+Would you like to save this configuration? [yN]:
+Creating Application: OK
+Creating Service [mysql-d197d]: OK
+Binding Service [mysql-d197d]: OK
+Uploading Application:
+    Checking for available resources: OK
+    Processing resources: OK
+    Packing application: OK
+    Uploading (5M): OK
+Push Status: OK
+Staging Application 'wordpress-example': OK
+Starting Application 'wordpress-example': OK
+</code></pre>
+
+<h3 id="finish-the-wordpress-install">Finish the WordPress Install</h3>
+
+<p>Point your browser to your app’s install script, in this case wordpress-example.aws.af.cm/wp-admin/install.php. That should take you through the rest of the install process. </p>
+
+<h3 id="further-development">Further Development</h3>
+
+<p>AppFog does not yet have a persistent data storage system, though we’re working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. </p>
+
+<p>This means you should do any development that makes changes to the file system in a local development environment and then push those changes to AppFog using an <code>af update</code>. You can sync any database changes by <a href="/services/tunneling">tunneling</a>.</p>
 
 
 			</div>

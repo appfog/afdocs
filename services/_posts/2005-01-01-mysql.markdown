@@ -132,3 +132,47 @@ Import the data by running this command:
 
 {: .prettyprint}
     mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f < /tmp/mydata.sql
+
+# phpMyAdmin {#phpmyadmin}
+
+You can easily create a [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) instance to interface with your MySQL services. 
+
+### Download
+
+First grab the phpMyAdmin source from our GitHub repo: 
+
+{: .prettyprint}
+    $ git clone git://github.com/appfog/af-php-myadmin.git
+
+And change into the directory:
+
+{: .prettyprint}
+    $ cd af-php-myadmin
+
+Then push the code up to a new AppFog app (making sure to bind it to the MySQL service you want to connect to):
+
+{: .prettyprint}
+    $ af push myadmin-example
+    Would you like to deploy from the current directory? [Yn]:
+    Detected a PHP Application, is this correct? [Yn]:
+    Application Deployed URL [myadmin-example.aws.af.cm]:
+    Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+    How many instances? [1]:
+    Bind existing services to 'myadmin-example'? [yN]: y
+    1: mysql-example
+    Which one?: 1
+    Bind another? [yN]:
+    Create services to bind to 'myadmin-example'? [yN]:
+    Would you like to save this configuration? [yN]:
+    Creating Application: OK
+    Binding Service [mysql-example]: OK
+    Uploading Application:
+        Checking for available resources: OK
+        Processing resources: OK
+        Packing application: OK
+        Uploading (3M): OK
+    Push Status: OK
+    Staging Application 'myadmin-example': OK
+    Starting Application 'myadmin-example': OK
+
+That's it! You can now visit your new phpMyAdmin app in your browser.

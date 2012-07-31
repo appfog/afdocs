@@ -118,6 +118,8 @@ When you exit the client, `af` disconnects the tunnel.
 
 If you choose the `1: none` or if Caldecott doesn't have a default client for the service, you can simply leave the terminal window open. You can then start your preferred client in another window. Once you're done, hit `Ctrl-C` to exit `af` and close the tunnel.
 
+Note: `af tunnel` is currently only operating on AWS US East infrastructure, but we're working on enabling it for all infrastructures. This should be done very soon. 
+
 
 ### More about the Tunnel Command
 

@@ -154,6 +154,64 @@ Commit the current configuration to your version control system. Consider includ
 
 AppFog automatically creates and binds a new MySQL service with the Ruby on Rails jumpstart, and the app is [automatically reconfigured](#autoreconfig) to connect to the service. For more information on services and how to connect to them manually, check out our docs on [Services](/services/overview).
 
+# rake db:seed {#rake-db-seed}
+
+This assumes that you have your Rails app set up, and you have a MySQL service bound to it.
+
+### Tunnel to your bound MySQL service
+
+Use the [af tunnel](/services/tunneling) command to connect to the MySQL service that's bound to your Rails app. When prompted, enter '1' for no client.
+
+{: .prettyprint}
+    $ af tunnel 
+    1: rails-mysql-example 
+    Which service to tunnel to?: 1
+    Getting tunnel connection info: OK
+
+    Service connection info: 
+    username : <username> 
+    password : <password> 
+    name : <db-name>
+
+    Starting tunnel to rails-mysql-example on port 10000. 
+    1: none 
+    2: mysql 
+    3: mysqldump 
+    Which client would you like to start?: 1 
+    Open another shell to run command-line clients or 
+    use a UI tool to connect using the displayed information. 
+    Press Ctrl-C to exit...
+
+You now have a secure tunnel set up to your MySQL service through which you can run `rake db:seed`.
+
+### Create a new section in your `config/database.yml` file
+
+{: .prettyprint}
+    proxied-appfog: 
+    adapter: mysql2 
+    database: <db-name> 
+    username: <username> 
+    password: <password> 
+    port: 10000 
+    host: 127.0.0.1
+
+### Run `rake db:seed`
+
+Start with a simple `seeds.rb` file that just creates one record in your database to test that it works. 
+
+Then, leaving open the terminal window with the tunnel running in it, open a new terminal window and run:
+
+{: .prettyprint}
+    $ RAILS_ENV=proxied-appfog rake db:seed
+
+If all goes well, you should have a log file in your `log/` directory called `proxied-appfog.log` that shows the SQL commands running from your `seeds.rb` file. 
+
+{: .prettyprint}
+    $ af files ror-example logs/
+    startup.log                               8.2K
+    stdout.log                                  0B
+    proxied-appfog.log                          0B
+
 # Auto-reconfiguration {#autoreconfig}
 
 Ruby on Rails apps deployed on AppFog support auto-reconfiguration for relational database services. This means you can deploy a Rails app on AppFog without changing a single line of code. 

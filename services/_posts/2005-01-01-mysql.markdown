@@ -70,7 +70,7 @@ In Javascript:
 In Python:
 
 {: .prettyprint}
-    os.getenv.("VCAP_SERVICES")
+    os.getenv("VCAP_SERVICES")
 
 You can distinguish between multiple MySQL instances using the  value of the `name` key.
 

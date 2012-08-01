@@ -331,40 +331,37 @@ Which client would you like to start?: 1
 
 <p>You can easily create a <a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a> instance to interface with your MySQL services. </p>
 
-<h3 id="download">Download</h3>
+<h3 id="create-the-app-on-appfog">Create the App on AppFog</h3>
 
-<p>First grab the phpMyAdmin source from our GitHub repo: </p>
+<p>Head over to the <a href="console.appfog.com">AppFog Console</a> and create a new PHP app on the same infrastructure as your MySQL service. </p>
+
+<p>Then bind the service you want to access to this new PHP my app. </p>
+
+<pre class="prettyprint"><code>$ af bind-service mysql-example myadmin-example
+</code></pre>
+
+<h3 id="download-phpmyadmin">Download phpMyAdmin</h3>
+
+<p>Then grab the phpMyAdmin source from our GitHub repo: </p>
 
 <pre class="prettyprint"><code>$ git clone git://github.com/appfog/af-php-myadmin.git
 </code></pre>
 
-<p>And change into the directory:</p>
+<p>Change into the directory:</p>
 
 <pre class="prettyprint"><code>$ cd af-php-myadmin
 </code></pre>
 
-<p>Then push the code up to a new AppFog app (making sure to bind it to the MySQL service you want to connect to):</p>
+<p>And update the plain PHP app:</p>
 
-<pre class="prettyprint"><code>$ af push myadmin-example
-Would you like to deploy from the current directory? [Yn]:
-Detected a PHP Application, is this correct? [Yn]:
-Application Deployed URL [myadmin-example.aws.af.cm]:
-Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
-How many instances? [1]:
-Bind existing services to 'myadmin-example'? [yN]: y
-1: mysql-example
-Which one?: 1
-Bind another? [yN]:
-Create services to bind to 'myadmin-example'? [yN]:
-Would you like to save this configuration? [yN]:
-Creating Application: OK
-Binding Service [mysql-example]: OK
+<pre class="prettyprint"><code>$ af update myadmin-example
 Uploading Application:
     Checking for available resources: OK
     Processing resources: OK
     Packing application: OK
     Uploading (3M): OK
 Push Status: OK
+Stopping Application 'myadmin-example': OK
 Staging Application 'myadmin-example': OK
 Starting Application 'myadmin-example': OK
 </code></pre>

@@ -405,7 +405,7 @@ def mongotest():
     return Response(body, content_type="text/plain;charset=UTF-8")
 
 def mongodb_uri():
-    services = json.loads(os.environ.get("VCAP_SERVICES", "{}"))
+    services = json.loads(os.getenv("VCAP_SERVICES", "{}"))
     if services:
         creds = services['mongodb-1.8'][0]['credentials']
         uri = "mongodb://%s:%s@%s:%d/%s" % (

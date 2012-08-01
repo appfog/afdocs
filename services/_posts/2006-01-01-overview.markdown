@@ -64,4 +64,4 @@ In Javascript:
 In Python:
 
 {: .prettyprint}
-    os.getenv.("VCAP_SERVICES")
+    os.getenv("VCAP_SERVICES")

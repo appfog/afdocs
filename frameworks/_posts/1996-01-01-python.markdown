@@ -35,6 +35,10 @@ AppFog supports Python by serving apps through the [WSGI](http://wsgi.readthedoc
 
 AppFog uses `pip` and `virtualenv` to deploy apps. You can define the package prequisites of your Python app in a top-level [requirements.txt](http://www.pip-installer.org/en/latest/requirements.html#the-requirements-file-format) file, which `pip` uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. 
 
+### Limitations
+
+There is currently a known issue with Python apps that include many dependencies. We are working on a solution to this that should be available very soon.
+
 # Services {#services}
 
 You can connect your Python app to AppFog services by using the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our [Services Overview](/services/overview) page.
@@ -71,7 +75,7 @@ Note: There is currently an issue with using `virutalenv` in an app directory, s
 
 {: .prettyprint}
     $ mkdir ../flask-example-venv
-	$ virtualenv ../flask-example-venv
+    $ virtualenv ../flask-example-venv
     New python executable in ../flask-example-venv/bin/python
     Installing setuptools............done.
     Installing pip...............done.
@@ -274,4 +278,6 @@ In another terminal:
 
 # Django {#django}
 
-Coming soon. Meanwhile, check out [the GitHub repo for our Python Django Jumpstart](https://github.com/appfog/af-python-django).
+When you run the `af update` command on a Django app, AppFog automatically runs the `syncdb` command against the bound database for you as part of the staging process.
+
+More coming soon. Meanwhile, check out [the GitHub repo for our Python Django Jumpstart](https://github.com/appfog/af-python-django).

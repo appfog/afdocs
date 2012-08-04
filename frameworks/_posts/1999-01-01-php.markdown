@@ -233,9 +233,9 @@ Please consult the [PHP manual on `ini_set()`](http://www.php.net/manual/en/func
 
 # Document Root {#docroot}
 
-You can modify your document root using by adding the following into your `.htaccess`:
+You can modify your document root adding the following into your `.htaccess`:
 
-{: .prettyprint}
+{: .prettyprint .linenums}
 	RewriteEngine on
 	RewriteCond %{HTTP_HOST} ^domain.com$ [NC,OR]
 	RewriteCond %{HTTP_HOST} ^www.domain.com$

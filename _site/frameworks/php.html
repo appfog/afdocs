@@ -430,9 +430,9 @@ Starting Application 'wordpress-example': OK
 
 <h1 id="docroot">Document Root</h1>
 
-<p>You can modify your document root using by adding the following into your <code>.htaccess</code>:</p>
+<p>You can modify your document root adding the following into your <code>.htaccess</code>:</p>
 
-<pre class="prettyprint"><code>RewriteEngine on
+<pre class="prettyprint linenums"><code>RewriteEngine on
 RewriteCond %{HTTP_HOST} ^domain.com$ [NC,OR]
 RewriteCond %{HTTP_HOST} ^www.domain.com$
 RewriteCond %{REQUEST_URI} !public/

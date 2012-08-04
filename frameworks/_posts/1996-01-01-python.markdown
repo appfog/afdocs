@@ -71,7 +71,7 @@ Create a directory for the app and change into it:
 
 --->
 
-Note: There is currently an issue with using `virutalenv` in an app directory, so we'll use a workaround. 
+Note: There is currently an issue with using `virtualenv` in an app directory, so we'll use a workaround. 
 
 {: .prettyprint}
     $ mkdir ../flask-example-venv

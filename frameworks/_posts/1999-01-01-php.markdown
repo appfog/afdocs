@@ -7,6 +7,8 @@ weight: 1
 * [Custom PHP App](#custom)
 * [Drupal](#drupal)
 * [WordPress](#wordpress)
+* [php.ini](#php_ini)
+* [Document Root](#docroot)
 
 ### Supported Versions
 
@@ -208,3 +210,34 @@ Point your browser to your app's install script, in this case wordpress-example.
 AppFog does not yet have a persistent data storage system, though we're working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. 
 
 This means you should do any development that makes changes to the file system in a local development environment and then push those changes to AppFog using an `af update`. You can sync any database changes by [tunneling](/services/tunneling).
+
+# `php.ini` {#php_ini}
+
+AppFog does not support direct access to `php.ini`. However, the `AllowOverride` directive in `php.ini` is set to "`All`" which enables you to set the values of the directives in your `.htaccess` or in your PHP file via `ini_set()`.
+
+### Setting Values `.htaccess`
+
+Setting the value of a directive in `.htaccess` is easy. Simply place the following line of code in your `.htaccess` file, and insert the name and value of the directive you want to use:
+
+{: .prettyprint}
+    php_value <name> <value>
+
+For more information on this topic, check out the following references: 
+
+* [How to change configuration settings](http://php.net/manual/en/configuration.changes.php)
+* [Set php.ini Values Using .htaccess](http://davidwalsh.name/php-values-htaccess)
+
+### Setting Values Using `ini_set()`
+
+Please consult the [PHP manual on `ini_set()`](http://www.php.net/manual/en/function.ini-set.php).
+
+# Document Root {#docroot}
+
+You can modify your document root using by adding the following into your `.htaccess`:
+
+{: .prettyprint}
+	RewriteEngine on
+	RewriteCond %{HTTP_HOST} ^domain.com$ [NC,OR]
+	RewriteCond %{HTTP_HOST} ^www.domain.com$
+	RewriteCond %{REQUEST_URI} !public/
+	RewriteRule (.*) /public/$1 [L]

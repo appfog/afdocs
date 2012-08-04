@@ -200,6 +200,8 @@
   <li><a href="#custom">Custom PHP App</a></li>
   <li><a href="#drupal">Drupal</a></li>
   <li><a href="#wordpress">WordPress</a></li>
+  <li><a href="#php_ini">php.ini</a></li>
+  <li><a href="#docroot">Document Root</a></li>
 </ul>
 
 <h3 id="supported-versions">Supported Versions</h3>
@@ -403,6 +405,39 @@ Starting Application 'wordpress-example': OK
 <p>AppFog does not yet have a persistent data storage system, though we’re working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. </p>
 
 <p>This means you should do any development that makes changes to the file system in a local development environment and then push those changes to AppFog using an <code>af update</code>. You can sync any database changes by <a href="/services/tunneling">tunneling</a>.</p>
+
+<h1 id="php_ini"><code>php.ini</code></h1>
+
+<p>AppFog does not support direct access to <code>php.ini</code>. However, the <code>AllowOverride</code> directive in <code>php.ini</code> is set to “<code>All</code>” which enables you to set the values of the directives in your <code>.htaccess</code> or in your PHP file via <code>ini_set()</code>.</p>
+
+<h3 id="setting-values-htaccess">Setting Values <code>.htaccess</code></h3>
+
+<p>Setting the value of a directive in <code>.htaccess</code> is easy. Simply place the following line of code in your <code>.htaccess</code> file, and insert the name and value of the directive you want to use:</p>
+
+<pre class="prettyprint"><code>php_value &lt;name&gt; &lt;value&gt;
+</code></pre>
+
+<p>For more information on this topic, check out the following references: </p>
+
+<ul>
+  <li><a href="http://php.net/manual/en/configuration.changes.php">How to change configuration settings</a></li>
+  <li><a href="http://davidwalsh.name/php-values-htaccess">Set php.ini Values Using .htaccess</a></li>
+</ul>
+
+<h3 id="setting-values-using-iniset">Setting Values Using <code>ini_set()</code></h3>
+
+<p>Please consult the <a href="http://www.php.net/manual/en/function.ini-set.php">PHP manual on <code>ini_set()</code></a>.</p>
+
+<h1 id="docroot">Document Root</h1>
+
+<p>You can modify your document root using by adding the following into your <code>.htaccess</code>:</p>
+
+<pre class="prettyprint"><code>RewriteEngine on
+RewriteCond %{HTTP_HOST} ^domain.com$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.domain.com$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
+</code></pre>
 
 
 			</div>

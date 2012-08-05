@@ -213,10 +213,10 @@
 <ol>
   <li>The user installs the add-on from the AppFog app console. This sends a request to the add-on partner to provision the service.</li>
   <li>AppFog makes a <code>POST</code> request to https://partner.com/appfog/resources. It passes in the <code>customer_id</code> (email address), plan, and the <code>callback_url</code>. </li>
-  <li>The partner returns the local ID of the newly created resource. If it’s able to provision the resource synchronously, the config parameter can be set. It may not be possible to provision the resource synchronously, so the config can be empty.</li>
+  <li>The partner returns the local ID of the newly created resource. If it&rsquo;s able to provision the resource synchronously, the config parameter can be set. It may not be possible to provision the resource synchronously, so the config can be empty.</li>
   <li>If the config is empty, the user sees a message stating that the resource is waiting to be provisioned.</li>
   <li>Once the resource is provisioned, the partner makes a call to the callback URL, as specified in the initial provisioning call, and passes the new config parameters to be set.</li>
-  <li>Once the config parameters are set, they are set as environment variables in the user’s app and instructions are displayed to the user on how to perform the integration.</li>
+  <li>Once the config parameters are set, they are set as environment variables in the user&rsquo;s app and instructions are displayed to the user on how to perform the integration.</li>
 </ol>
 
 <p><img class="screenshot" src="/img/screenshots/Slide2.jpeg" alt="Provisioning Workflow" /></p>
@@ -268,17 +268,17 @@
 
 <ul>
   <li><code>customer_id</code> - The identification of the user in the AppFog system (i.e. email address).</li>
-  <li><code>plan</code> - The plan being provisioned. This will be “free” for the moment; however, in the future this can be higher-tier plans once they’re supported.</li>
-  <li><code>callback_url</code> - This is the address of the resource in AppFog’s system. The provider can use this to update the configuration for this resource (e.g. during provisioning).</li>
-  <li><code>options</code> - This contains additional options for the specific service. It’s a placeholder for now and AppFog will not send these requests yet.</li>
+  <li><code>plan</code> - The plan being provisioned. This will be &ldquo;free&rdquo; for the moment; however, in the future this can be higher-tier plans once they&rsquo;re supported.</li>
+  <li><code>callback_url</code> - This is the address of the resource in AppFog&rsquo;s system. The provider can use this to update the configuration for this resource (e.g. during provisioning).</li>
+  <li><code>options</code> - This contains additional options for the specific service. It&rsquo;s a placeholder for now and AppFog will not send these requests yet.</li>
 </ul>
 
 <h3 id="response-fields">Response Fields</h3>
 
 <ul>
-  <li><code>id</code> - This is the ID of the resource in the provider’s system. </li>
+  <li><code>id</code> - This is the ID of the resource in the provider&rsquo;s system. </li>
   <li><code>config</code> - The required key/value pairs of parameters required to provision the service. The manifest specifies what keys are allowed. Configuration paramters are required, but the particular configuration parameters up to the provider. They can also be updated later using the <code>callback_url</code> to update the config.</li>
-  <li><code>message</code> - This is a message to the system. It’s ignored for now.</li>
+  <li><code>message</code> - This is a message to the system. It&rsquo;s ignored for now.</li>
 </ul>
 
 <h3 id="example-deprovisioning-request">Example Deprovisioning Request</h3>
@@ -294,7 +294,7 @@
 
 <h3 id="request-fields-1">Request Fields</h3>
 
-<p>This is a DELETE request to the particular <code>URL</code> and doesn’t contain a body.</p>
+<p>This is a DELETE request to the particular <code>URL</code> and doesn&rsquo;t contain a body.</p>
 
 <h3 id="response-fields-1">Response Fields</h3>
 
@@ -306,7 +306,7 @@
 
 <p>All requests must be completed over <code>HTTPS</code>. </p>
 
-<p>The manifest file specifies the username and password to be used for all of these calls. The “<code>id</code>” in the manifest is the username, the “<code>api_password</code>” is the password.</p>
+<p>The manifest file specifies the username and password to be used for all of these calls. The &ldquo;<code>id</code>&rdquo; in the manifest is the username, the &ldquo;<code>api_password</code>&rdquo; is the password.</p>
 
 <h1 id="manifest">Manifest Format</h1>
 
@@ -341,19 +341,19 @@
 <ul>
   <li><code>id</code> - The add-on id. All lowercase, no spaces or punctuation. This is used in conjunction with the password to authenticate provisioning calls.</li>
   <li><code>name</code> - The friendly name to appear in the add-on tab of the app console in AppFog.</li>
-  <li><code>api/config_vars</code> - A list of variables to be returned on provisioning calls. The variable names must be prefixed with the add-on id and an underscore. Example: “<code>PROVIDER_</code>”</li>
+  <li><code>api/config_vars</code> - A list of variables to be returned on provisioning calls. The variable names must be prefixed with the add-on id and an underscore. Example: &ldquo;<code>PROVIDER_</code>&rdquo;</li>
   <li><code>api/production</code> - The root <code>URL</code> of the provisioning service of provider.</li>
   <li><code>api/test</code> - Same <code>URL</code> as production, but for testing in a QA environment.</li>
-  <li><code>api/path</code> - (Optional) Overrides the default path “<code>appfog/resources</code>”.</li>
-  <li><code>api/username</code> - (Optional) The username used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>. The “<code>id</code>” is used if the username is not specified.</li>
+  <li><code>api/path</code> - (Optional) Overrides the default path &ldquo;<code>appfog/resources</code>&rdquo;.</li>
+  <li><code>api/username</code> - (Optional) The username used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>. The &ldquo;<code>id</code>&rdquo; is used if the username is not specified.</li>
   <li><code>api/password</code> - The password used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>.</li>
   <li><code>api/sso_salt</code> - Shared secret used in single sign-on between AppFog and the provider.</li>
-  <li><code>plans/id</code> - The name of the “free” plan that will be offered to AppFog users and used for testing and integration purposes.</li>
+  <li><code>plans/id</code> - The name of the &ldquo;free&rdquo; plan that will be offered to AppFog users and used for testing and integration purposes.</li>
 </ul>
 
 <h1 id="sso">Single Sign-on</h1>
 
-<p>Once a resource is fully provisioned, a “Manage” button will appear in the AppFog app console for the given add-on. This button will redirect the user to the management page of the particular resource on the partner’s website.</p>
+<p>Once a resource is fully provisioned, a &ldquo;Manage&rdquo; button will appear in the AppFog app console for the given add-on. This button will redirect the user to the management page of the particular resource on the partner&rsquo;s website.</p>
 
 <p>After the user clicks the button, they will be redirected to the following generated <code>URL</code>:</p>
 
@@ -364,7 +364,7 @@
 
 <p>The token is defined as a combination of the <code>id</code>, <code>salt</code>, and <code>timestamp</code>. </p>
 
-<p>The salt is the “<code>sso_salt</code>” variable as defined in the manifest.</p>
+<p>The salt is the &ldquo;<code>sso_salt</code>&rdquo; variable as defined in the manifest.</p>
 
 <p>The timestamp is the current UNIX timestamp.</p>
 
@@ -461,6 +461,7 @@
 						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/roadmap" ><h6>Feature Roadmap</h6></div></a></div>
 
 					</div>
 				</div>

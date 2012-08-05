@@ -228,7 +228,7 @@
 
 <p>When you deploy a Node.js app to AppFog, the current directory must contain the app (<code>app.js</code>) and, if your app depends on any modules, a <code>package.json</code> file that names them.</p>
 
-<h1 id="hello-world-walkthrough">“Hello World” Walkthrough</h1>
+<h1 id="hello-world-walkthrough">&ldquo;Hello World&rdquo; Walkthrough</h1>
 
 <p>The following is a step-by-step guide to writing and deploying a “hello world” Node.js web server app with the <a href="http://expressjs.com/">Express</a> web module:</p>
 
@@ -272,7 +272,7 @@ app.listen(process.env.VCAP_APP_PORT || 3000);
 <pre class="prettyprint"><code>$ af login
 </code></pre>
 
-<p>Push the app. You can hit <code>Enter</code> to accept the defaults at most of the prompts, but be sure to enter a unique <code>URL</code> for the app. Here’s an example push:</p>
+<p>Push the app. You can hit <code>Enter</code> to accept the defaults at most of the prompts, but be sure to enter a unique <code>URL</code> for the app. Here&rsquo;s an example push:</p>
 
 <pre class="prettyprint"><code>$ af push
 Would you like to deploy from the current directory? [Yn]:
@@ -299,7 +299,7 @@ Starting Application 'hello-node': OK
 
 <h1 id="express">Environments in Express</h1>
 
-<p>Express supports arbitrary environments, like <code>production</code> and <code>development</code>. You can use the <code>configure()</code> method to set different configurations under the different environments. Here, we’ll bind a <code>mongodb</code> service to the app to demonstrate.</p>
+<p>Express supports arbitrary environments, like <code>production</code> and <code>development</code>. You can use the <code>configure()</code> method to set different configurations under the different environments. Here, we&rsquo;ll bind a <code>mongodb</code> service to the app to demonstrate.</p>
 
 <h3 id="bind-service">Bind Service</h3>
 
@@ -315,7 +315,7 @@ Starting Application 'hello-node': OK
 
 <h3 id="add-mongodb-configuration">Add MongoDB Configuration</h3>
 
-<p>Your app now has a new <code>mongodb</code> service bound to it, but it’s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
+<p>Your app now has a new <code>mongodb</code> service bound to it, but it&rsquo;s not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.</p>
 
 <p>Add the following code to the beginning of <code>app.js</code>, right after the line <code>var app = require('express').createServer();</code>:</p>
 
@@ -351,7 +351,7 @@ var generate_mongo_url = function(obj){
 var mongourl = generate_mongo_url(mongo);
 </code></pre>
 
-<p>Now the app is set to connect to the local <code>mongodb</code> server when it’s in <code>development</code> mode. In production mode, it’s set to connect to the AppFog service that’s bound to the app, by parsing <code>VCAP_SERVICES</code> variable.</p>
+<p>Now the app is set to connect to the local <code>mongodb</code> server when it&rsquo;s in <code>development</code> mode. In production mode, it&rsquo;s set to connect to the AppFog service that&rsquo;s bound to the app, by parsing <code>VCAP_SERVICES</code> variable.</p>
 
 <h3 id="add-mongodb-functionality">Add MongoDB Functionality</h3>
 
@@ -529,6 +529,7 @@ $ curl hello-node.aws.af.cm
 						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/roadmap" ><h6>Feature Roadmap</h6></div></a></div>
 
 					</div>
 				</div>

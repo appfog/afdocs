@@ -229,7 +229,7 @@
 
 <h3 id="persistent-data-storage">Persistent Data Storage</h3>
 
-<p>AppFog does not yet have a persistent data storage system, though we’re working on it. This means that the file system is volatile and any data that needs to be persistent should be included in the code base (by making all changes in a local development environment) or offloaded to a database or an external storage system like Amazon’s S3.  </p>
+<p>AppFog does not yet have a persistent data storage system, though we&rsquo;re working on it. This means that the file system is volatile and any data that needs to be persistent should be included in the code base (by making all changes in a local development environment) or offloaded to a database or an external storage system like Amazon&rsquo;s S3.  </p>
 
 <h3 id="services">Services</h3>
 
@@ -319,11 +319,11 @@ $databases['default']['default'] = array(
 
 <h3 id="finish-the-drupal-install">Finish the Drupal Install</h3>
 
-<p>Point your browser to your app’s install script, in this case drupal-example.aws.af.cm/install.php. That should take you through the rest of the install process. </p>
+<p>Point your browser to your app&rsquo;s install script, in this case drupal-example.aws.af.cm/install.php. That should take you through the rest of the install process. </p>
 
 <h3 id="further-developement">Further Developement</h3>
 
-<p>AppFog does not yet have a persistent data storage system, though we’re working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. </p>
+<p>AppFog does not yet have a persistent data storage system, though we&rsquo;re working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. </p>
 
 <p>This means you should do any development that makes changes to the file system in a local development environment and then push those changes to AppFog using an <code>af update</code>. You can sync any database changes by <a href="/services/tunneling">tunneling</a>.</p>
 
@@ -398,17 +398,17 @@ Starting Application 'wordpress-example': OK
 
 <h3 id="finish-the-wordpress-install">Finish the WordPress Install</h3>
 
-<p>Point your browser to your app’s install script, in this case wordpress-example.aws.af.cm/wp-admin/install.php. That should take you through the rest of the install process. </p>
+<p>Point your browser to your app&rsquo;s install script, in this case wordpress-example.aws.af.cm/wp-admin/install.php. That should take you through the rest of the install process. </p>
 
 <h3 id="further-development">Further Development</h3>
 
-<p>AppFog does not yet have a persistent data storage system, though we’re working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. </p>
+<p>AppFog does not yet have a persistent data storage system, though we&rsquo;re working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. </p>
 
 <p>This means you should do any development that makes changes to the file system in a local development environment and then push those changes to AppFog using an <code>af update</code>. You can sync any database changes by <a href="/services/tunneling">tunneling</a>.</p>
 
 <h1 id="php_ini"><code>php.ini</code></h1>
 
-<p>AppFog does not support direct access to <code>php.ini</code>. However, the <code>AllowOverride</code> directive in <code>php.ini</code> is set to “<code>All</code>” which enables you to set the values of the directives in your <code>.htaccess</code> or in your PHP file via <code>ini_set()</code>.</p>
+<p>AppFog does not support direct access to <code>php.ini</code>. However, the <code>AllowOverride</code> directive in <code>php.ini</code> is set to &ldquo;<code>All</code>&rdquo; which enables you to set the values of the directives in your <code>.htaccess</code> or in your PHP file via <code>ini_set()</code>.</p>
 
 <h3 id="setting-values-htaccess">Setting Values <code>.htaccess</code></h3>
 
@@ -527,6 +527,7 @@ RewriteRule (.*) /public/$1 [L]
 						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/roadmap" ><h6>Feature Roadmap</h6></div></a></div>
 
 					</div>
 				</div>

@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Frequently Asked Questions</title> 
+		<title>AppFog &mdash; Documentation Feature Roadmap</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,7 +174,7 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Frequently Asked Questions</a></li>
+						<li><a href="#">Feature Roadmap</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -192,73 +192,124 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Frequently Asked Questions</h1>
+				<h1>Feature Roadmap</h1>
 				<ul>
-  <li><a href="#billing">How does billing work?</a></li>
-  <li><a href="#downtime">How can I update my app without downtime?</a></li>
-  <li><a href="#security-group">What are the security group settings for connecting my app to Amazon RDS?</a></li>
-  <li><a href="#bandwidth">How much does bandwidth cost beyond the included limits for the account?</a></li>
+  <li><a href="#infras">Infrastructures</a></li>
+  <li><a href="#langs">Languages and Runtimes</a></li>
+  <li><a href="#services">Services</a></li>
+  <li><a href="#add-ons">Add-ons</a></li>
+  <li><a href="#planned">Planned Features</a></li>
 </ul>
 
-<h3 id="billing">How does billing work?</h3>
+<table id="infras" class="table table-bordered table-striped roadmap">
+<thead>
+	<th>Infrastructures</th>
+	<th class="x-mark">Supported</th>
+	<th class="x-mark">Public Beta</th>
+	<th class="x-mark">Private Beta</th>
+	<th class="x-mark">Planned</th>
+</thead>
+<tbody>
+	<tr><td>AWS US East (Virginia) </td><td class="x-mark-2">&times;</td><td> </td><td> </td><td /></tr>
+	<tr><td>AWS US West (Oregon) </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
+	<tr><td>AWS EU West (Ireland) </td><td class="x-mark-2">&times;</td><td> </td><td> </td><td /></tr>
+	<tr><td>AWS Asia Pacific (Tokyo) </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
+	<tr><td>AWS Asia SE (Singapore) </td><td class="x-mark-2">&times;</td><td> </td><td> </td><td /></tr>
+	<tr><td>AWS Brazil </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
+	<tr><td>Azure (Dallas, TX) </td><td> </td><td> </td><td class="x-mark-2">&times;</td><td /></tr>
+	<tr><td>Azure Europe </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
+	<tr><td>HP OpenStack (Las Vegas) </td><td> </td><td> </td><td class="x-mark-2">&times;</td><td /></tr>
+	<tr><td>Rackspace (Dallas) </td><td> </td><td class="x-mark-2">&times;</td><td> </td><td /></tr>
+	<tr><td>Rackspace (Chicago) </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
+	<tr><td>Rackspace (London) </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
+</tbody>
+</table>
 
-<p>Check out <a href="/billing">our billing doc</a>.</p>
+<table id="langs" class="table table-bordered table-striped roadmap">
+<thead>
+<th>Languages and Runtimes</th>
+<th class="x-mark">Supported</th>
+<th class="x-mark">Planned</th>
+</thead>
+<tbody>
+<tr><td>Ruby 1.8.7 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Ruby 1.9.2 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Ruby 1.9.3 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Node 0.4.12 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Node 0.6.17 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Node 0.8 </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>PHP 5.3 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>PHP 5.4 </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Erlang R14B02 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Python 2.7.3 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>.NET (Apache mod\_mono) </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Java Tomcat 6 </td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Java Tomcat 7 </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Java TomEE </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Java Glassfish </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Java JBoss </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Go </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Perl </td><td> </td><td class="x-mark-2">&times;</td></tr>
+</tbody>
+</table>
 
-<h3 id="downtime">How can I update my app without downtime?</h3>
+<table id="services" class="table table-bordered table-striped roadmap">
+<thead>
+<th>Services</th>
+<th class="x-mark">Supported</th>
+<th class="x-mark">Planned</th>
+</thead>
+<tbody>
+<tr><td>MySQL 5.1</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>MongoDB 1.8</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Postgres 9.1</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Redis 2.2</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>MongoDB 2.0</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>RabbitMQ 2.4</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>Couchdb</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>Memcached</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>Neo4J</td><td /><td class="x-mark-2">&times;</td></tr>
+</tbody>
+</table>
 
-<p>You can update your app with zero downtime by deploying two versions of your app.</p>
+<table id="add-ons" class="table table-bordered table-striped roadmap">
+<thead>
+<th>Add-ons</th>
+<th class="x-mark">Supported</th>
+<th class="x-mark">Planned</th>
+</thead>
+<tbody>
+<tr><td>MongoLabs (MongoDB DBaaS)</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>MongoHQ (MongoDB DBaaS)</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Blitz.IO (performance testing)</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Mailgun (e-mail platform)</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Iron.IO/Simpleworker</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>CloudMailin (e-mail platform)</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>ClearDB (MySQL DBaaS)</td><td class="x-mark-2">&times;</td><td /></tr>
+<tr><td>Xeround (MySQL DBaaS)</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>Scout (cross-browser debugging and testing)</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>Logg.ly (cloud logging solution)</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>New Relic (analytics)</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>PaperTrail (hosted log management)</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>Airbrake/RedisToGo</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>Zerigo</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>ManageWP</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>Searchify</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>GoSquared</td><td /><td class="x-mark-2">&times;</td></tr>
+<tr><td>LogEntries</td><td /><td class="x-mark-2">&times;</td></tr>
+</tbody>
+</table>
 
-<p>For example, here are the apps &ldquo;example&rdquo; and &ldquo;example2&rdquo;.</p>
+<h1 id="planned">Planned Features</h1>
 
-<pre class="prettyprint"><code>| example         | 1  | RUNNING | example.com, www.example.com  |
-| example2        | 1  | RUNNING | example.aws.af.cm             |
-</code></pre>
-
-<p>Develop on the second app, example2, deploying new code until you&rsquo;re ready to push to example.com. This way you can live test the app without fear of affecting real users. </p>
-
-<pre class="prettyprint"><code>$ af update example2
-</code></pre>
-
-<p>When you&rsquo;re ready to push to production, first map example2 to example.com and www.example.com. Then map example to example.aws.af.cm.</p>
-
-<pre class="prettyprint"><code>$ af map example2 example.com 
-$ af map example2 www.example.com 
-$ af map example example.aws.af.cm 
-</code></pre>
-
-<p>Now you have two apps running at the same URL and they&rsquo;re load-balanced. You can test example2 in full production at this point.</p>
-
-<pre class="prettyprint"><code>| example         | 1  | RUNNING | example.com, www.example.com                     |
-| example2        | 1  | RUNNING | example.aws.af.cm, example.com, www.example.com  |
-</code></pre>
-
-<p>Now, unmap example from example.com and www.example.com.</p>
-
-<pre class="prettyprint"><code>$ af map example example.aws.af.cm 
-$ af unmap example2 example.aws.af.cm 
-
-$ af unmap example example.com 
-$ af unmap example www.example.com 
-</code></pre>
-
-<p>If you run into any issues with example2, rollback is trivial. Simply map the original app, example, back to example.com and www.example.com. </p>
-
-<pre class="prettyprint"><code>| example         | 1  | RUNNING | example.aws.af.cm             |
-| example2        | 1  | RUNNING | example.com, www.example.com  |
-</code></pre>
-
-<p>Now you can develop against example (instead of example2) and when you&rsquo;re ready to deploy to production, you can reproduce the same steps as above.</p>
-
-<pre class="prettyprint"><code>$ af update example
-</code></pre>
-
-<h3 id="security-group">What are the security group settings for connecting my app to Amazon RDS?</h3>
-
-<p>This information is coming soon. For now, you&rsquo;ll have to connect using credential-based authorization.</p>
-
-<h3 id="bandwidth">How much does bandwidth cost beyond the included limits for the account?</h3>
-
-<p>Additional data transfer costs $0.15 per gigabyte.</p>
+<ul>
+  <li>SSL</li>
+  <li>Wildcard domains</li>
+  <li>FTP</li>
+  <li>GitHub hooks</li>
+  <li>Root domain names</li>
+  <li>Persistent storage</li>
+</ul>
 
 
 			</div>
@@ -343,12 +394,12 @@ $ af unmap example www.example.com
 					</div>
 
 						<div class="row border-bottom"><div class="span3"><a href="/add-on-partners" ><h6>Add-on Partnership</h6></div></a></div>
-						<div class="row border-bottom"><div class="span3"><a href="/faq" class="on"><h6>FAQ</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/faq" ><h6>FAQ</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
 						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
-						<div class="row border-bottom"><div class="span3"><a href="/roadmap" ><h6>Feature Roadmap</h6></div></a></div>
+						<div class="row border-bottom"><div class="span3"><a href="/roadmap" class="on"><h6>Feature Roadmap</h6></div></a></div>
 
 					</div>
 				</div>

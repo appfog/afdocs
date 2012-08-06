@@ -120,3 +120,4 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * Root domain names
 * Persistent storage
 * WebSockets
+* Organizations and teams

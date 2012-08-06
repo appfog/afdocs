@@ -117,3 +117,4 @@ weight: 18
 * GitHub hooks
 * Root domain names
 * Persistent storage
+* WebSockets

@@ -10,7 +10,6 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * [Languages and Runtimes](#langs)
 * [Services](#services)
 * [Add-ons](#add-ons)
-* [Planned Features](#planned)
 
 <table id="infras" class="table table-bordered table-striped roadmap">
 <thead>

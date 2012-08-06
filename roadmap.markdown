@@ -92,32 +92,15 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tbody>
 <tr><td>MongoLabs (MongoDB DBaaS)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>MongoHQ (MongoDB DBaaS)</td><td class="x-mark-2">&times;</td><td></td></tr>
-<tr><td>Blitz.IO (performance testing)</td><td class="x-mark-2">&times;</td><td></td></tr>
+<tr><td>Blitz (performance testing)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Mailgun (e-mail platform)</td><td class="x-mark-2">&times;</td><td></td></tr>
-<tr><td>Iron.IO/Simpleworker</td><td class="x-mark-2">&times;</td><td></td></tr>
+<tr><td>IronWorker</td><td class="x-mark-2">&times;</td><td></td></tr>
+<tr><td>IronMQ</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>CloudMailin (e-mail platform)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>ClearDB (MySQL DBaaS)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Xeround (MySQL DBaaS)</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>Scout (cross-browser debugging and testing)</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>Logg.ly (cloud logging solution)</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>New Relic (analytics)</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>PaperTrail (hosted log management)</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>Airbrake/RedisToGo</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>Zerigo</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>ManageWP</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Searchify</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>GoSquared</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>LogEntries</td><td></td><td class="x-mark-2">&times;</td></tr>
 </tbody>
 </table>
-
-# Planned Features {#planned}
-
-* SSL
-* Wildcard domains
-* FTP
-* GitHub hooks
-* Root domain names
-* Persistent storage
-* WebSockets
-* Organizations and teams

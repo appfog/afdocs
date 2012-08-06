@@ -89,7 +89,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <th class="x-mark">Planned</th>
 </thead>
 <tbody>
-<tr><td>MongoLabs (MongoDB DBaaS)</td><td></td><td class="x-mark-2">&times;</td></tr>
+<tr><td>MongoLab (MongoDB DBaaS)</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>MongoHQ (MongoDB DBaaS)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Blitz (performance testing)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Mailgun (e-mail platform)</td><td class="x-mark-2">&times;</td><td></td></tr>
@@ -99,7 +99,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>ClearDB (MySQL DBaaS)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Xeround (MySQL DBaaS)</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>New Relic (analytics)</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>Searchify</td><td></td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Searchify</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>LogEntries</td><td></td><td class="x-mark-2">&times;</td></tr>
 </tbody>
 </table>

@@ -4,6 +4,8 @@ layout: doc-page
 weight: 18
 ---
 
+Have a feature request that isn't listed here? Want to add your vote to one of those listed? Just send an email to [support@appfog.com](mailto:support@appfog.com).
+
 * [Infrastructures](#infras)
 * [Languages and Runtimes](#langs)
 * [Services](#services)

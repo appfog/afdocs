@@ -200,6 +200,7 @@
   <li><a href="#rubyversions">Supported Ruby Versions</a></li>
   <li><a href="#gems">Gems and Gemfiles</a></li>
   <li><a href="#bundler">Bundler</a></li>
+  <li><a href="#rails23">Rails 2.3</a></li>
   <li><a href="#rails30">Rails 3.0</a></li>
   <li><a href="#rails31">Rails 3.1</a></li>
   <li><a href="#rake-db-seed">rake db:seed</a></li>
@@ -248,6 +249,24 @@
 </ul>
 
 <p><a href="https://github.com/jbarnette/isolate">Isolate</a> is not well-supported on AppFog.</p>
+
+<h1 id="rails23">Rails 2.3</h1>
+
+<p>Rails’ ‘<code>config.gem</code>’ mechanism, which allows the user to specify a list of gems that the app needs to operate, is limited in that it cannot protect you from multi-deep dependencies (deeply layered gems using other gems). As mitigation, many Rails 2.3 apps have subsequently adopted Gem Bundler.</p>
+
+<p>VCAP currently doesn’t detect Rails 2.3 apps. If you need to run a Ruby 2.3 app, disguise it as a Rails 3 app by creating a <code>config/application.rb</code> file and a ‘config.ru’.</p>
+
+<h3 id="bundler">Bundler</h3>
+
+<p>Watch out for complicated and confusing bundle settings. While VCAP does its best to handle your configuration, it’s possible to write Gemfiles that cannot be satisfied, for example by requesting an old version of Rails and a new version of Rack. These combinations will fail immediately; you won’t need to wait to push your app to the cloud to see it break. By the same token, Gemfiles and Gems that are too vague about versions can cause problems as well.</p>
+
+<p>In Bundler groups, mixing multiple techniques for specifying which groups to load where (dev/test/prod) can sometimes cause problems.</p>
+
+<p>When in doubt, be more specific when calling ‘<code>Bundler.setup</code>’. VCAP attempts to be as consistent as possible, but it’s possible to confuse the Bundler with badly behaved application bootstrap code.</p>
+
+<p>The <code>bundle package</code> command will create a cache directory in your app and store local copies of the required gems, allowing you to run <code>bundle install</code> with the <code>--local</code> flag for faster load time. This will not work in our case as Bundler currently cannot package gems that need to be fetched from a git repository, and it doesn’t attempt to package gems that you have manually specified a path to using the <code>:path</code> Gemfile option. The best way to avoid this confusion is to stick to published gems.</p>
+
+<p>Along with published gems, Gemfiles can refer to git repos by url, branch name, etc. and Bundler will build them using a specialized mechanism. VCAP currently has no support for these at all, and apps that need them will fail.</p>
 
 <h1 id="rails30">Rails 3.0</h1>
 

@@ -46,6 +46,8 @@ You should use [Bundler](http://gembundler.com/) to package your apps. Run `bund
 ### Gems with known issues:
 
 * rmagick (requires http://www.imagemagick.org/script/index.php native library to be installed)
+* libv8 (system-wide installation required)
+* therubyracer (depency on libv8)
 
 [Isolate](https://github.com/jbarnette/isolate) is not well-supported on AppFog.
 

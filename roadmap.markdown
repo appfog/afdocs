@@ -89,7 +89,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <th class="x-mark">Planned</th>
 </thead>
 <tbody>
-<tr><td>MongoLab (MongoDB DBaaS)</td><td></td><td class="x-mark-2">&times;</td></tr>
+<tr><td>MongoLab (MongoDB DBaaS)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>MongoHQ (MongoDB DBaaS)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Blitz (performance testing)</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Mailgun (email platform)</td><td class="x-mark-2">&times;</td><td></td></tr>

@@ -199,6 +199,7 @@
 
 <ul>
   <li><a href="#af-cli-login">af cli login issues</a></li>
+  <li><a href="#502-on-update">Error (JSON 502) on <code>af update</code></a></li>
 </ul>
 
 <h3 id="af-cli-login">af cli login issues</h3>
@@ -207,6 +208,13 @@
 
 <pre class="prettyprint"><code>$ rm ~/.af_token
 $ af login
+</code></pre>
+
+<h3 id="error-json-502">Error (JSON 502)</h3>
+
+<p>The most common reason for this is your app running out of available RAM. When that happens, AppFog kills the app and attempts to re-spawn it. While it’s down, you see 404. To fix this, simply add more RAM to your app: </p>
+
+<pre class="prettyprint"><code>$ af mem &lt;appname&gt; &lt;memory&gt;
 </code></pre>
 
 

@@ -64,12 +64,12 @@ or
 
 <table class="table table-bordered table-striped">
 
-<tr><td><code>push [appname]</code></td>				<td>Create, push, map, and start a new application</td></tr>
-<tr><td><code>push [appname] --path</code></td>				<td>Push application from specified path</td></tr>
-<tr><td><code>push [appname] --url</code></td>				<td>Set the url for the application</td></tr>
-<tr><td><code>push [appname] --instances &lt;N></code></td>				<td>Set the expected number <code>&lt;N></code> of instances</td></tr>
-<tr><td><code>push [appname] --mem M</code></td>				<td>Set the memory reservation for the application</td></tr>
-<tr><td><code>push [appname] --no-start</code></td>				<td>Do not auto-start the application</td></tr>
+<tr><td><code>push [appname]</code></td>                <td>Create, push, map, and start a new application</td></tr>
+<tr><td><code>push [appname] --path</code></td>                <td>Push application from specified path</td></tr>
+<tr><td><code>push [appname] --url</code></td>                <td>Set the url for the application</td></tr>
+<tr><td><code>push [appname] --instances &lt;N></code></td>                <td>Set the expected number <code>&lt;N></code> of instances</td></tr>
+<tr><td><code>push [appname] --mem M</code></td>                <td>Set the memory reservation for the application</td></tr>
+<tr><td><code>push [appname] --no-start</code></td>                <td>Do not auto-start the application</td></tr>
 
 </table>
 
@@ -124,11 +124,11 @@ or
 
 <table class="table table-bordered table-striped">
 
-<tr><td><code>services                                     		  </code></td><td>Lists of services available and provisioned</td></tr>
-<tr><td><code>create-service &lt;service> [--name,--bind]  		  </code></td><td>Create a provisioned service</td></tr>
-<tr><td><code>create-service &lt;service> &lt;name>        	      </code></td><td>Create a provisioned service and assign it &lt;name></td></tr>
+<tr><td><code>services                                               </code></td><td>Lists of services available and provisioned</td></tr>
+<tr><td><code>create-service &lt;service> [--name,--bind]            </code></td><td>Create a provisioned service</td></tr>
+<tr><td><code>create-service &lt;service> &lt;name>                  </code></td><td>Create a provisioned service and assign it &lt;name></td></tr>
 <tr><td><code>create-service &lt;service> &lt;name> &lt;app>        </code></td><td>Create a provisioned service and assign it &lt;name>, and bind to &lt;app></td></tr>
-<tr><td><code>delete-service [servicename]                 		  </code></td><td>Delete a provisioned service</td></tr>
+<tr><td><code>delete-service [servicename]                           </code></td><td>Delete a provisioned service</td></tr>
 <tr><td><code>bind-service &lt;servicename> &lt;appname>            </code></td><td>Bind a service to an application</td></tr>
 <tr><td><code>unbind-service &lt;servicename> &lt;appname>          </code></td><td>Unbind service from the application</td></tr>
 <tr><td><code>clone-services &lt;src-app> &lt;dest-app>             </code></td><td>Clone service bindings from &lt;src-app> application to &lt;dest-app></td></tr>
@@ -139,10 +139,10 @@ or
 
 <table class="table table-bordered table-striped">
 
-<tr><td><code>user                                         	</code></td><td>Display user account information</td></tr>
-<tr><td><code>passwd                                       	</code></td><td>Change the password for the current user</td></tr>
-<tr><td><code>logout                                       	</code></td><td>Logs current user out of the target system</td></tr>
-<tr><td><code>add-user [--email, --passwd]                 	</code></td><td>Register a new user (requires admin privileges)</td></tr>
+<tr><td><code>user                                             </code></td><td>Display user account information</td></tr>
+<tr><td><code>passwd                                           </code></td><td>Change the password for the current user</td></tr>
+<tr><td><code>logout                                           </code></td><td>Logs current user out of the target system</td></tr>
+<tr><td><code>add-user [--email, --passwd]                     </code></td><td>Register a new user (requires admin privileges)</td></tr>
 <tr><td><code>delete-user &lt;user>                           </code></td><td>Delete a user and all apps and services (requires admin privileges)</td></tr>
 
 </table>
@@ -205,77 +205,77 @@ Note: For multi-app hierarchies, these will operate only on the sub-app you’re
 The easiest way to get going is to generate a manifest document from basic app info. If you haven’t pushed your app yet, you can start with `af push` as usual, which will ask if you want to save the configurations as a manifest document:
 
 {: .prettyprint}
-	$ af push
-	Would you like to deploy from the current directory? [Yn]:
-	Application Name: php-example
-	Detected a PHP Application, is this correct? [Yn]:
-	Application Deployed URL [php-example.aws.af.cm]:
-	Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
-	How many instances? [1]:
-	Bind existing services to 'php-example'? [yN]:
-	Create services to bind to 'php-example'? [yN]: y
-	1: mongodb
-	2: mysql
-	3: postgresql
-	What kind of service?: 2
-	Specify the name of the service [mysql-example]:
-	Create another? [yN]:
-	Would you like to save this configuration? [yN]: y
-	Manifest written to manifest.yml.
-	Creating Application: OK
-	Creating Service [mysql-example]: OK
-	Binding Service [mysql-example]: OK
-	Uploading Application:
-	  Checking for available resources: OK
-	  Packing application: OK
-	  Uploading (1K): OK
-	Push Status: OK
-	Staging Application 'php-example': OK
-	Starting Application 'php-example': OK
+    $ af push
+    Would you like to deploy from the current directory? [Yn]:
+    Application Name: php-example
+    Detected a PHP Application, is this correct? [Yn]:
+    Application Deployed URL [php-example.aws.af.cm]:
+    Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+    How many instances? [1]:
+    Bind existing services to 'php-example'? [yN]:
+    Create services to bind to 'php-example'? [yN]: y
+    1: mongodb
+    2: mysql
+    3: postgresql
+    What kind of service?: 2
+    Specify the name of the service [mysql-example]:
+    Create another? [yN]:
+    Would you like to save this configuration? [yN]: y
+    Manifest written to manifest.yml.
+    Creating Application: OK
+    Creating Service [mysql-example]: OK
+    Binding Service [mysql-example]: OK
+    Uploading Application:
+      Checking for available resources: OK
+      Packing application: OK
+      Uploading (1K): OK
+    Push Status: OK
+    Staging Application 'php-example': OK
+    Starting Application 'php-example': OK
 
 As you can see, just before pushing, we saved the deployment configurations in `manifest.yml` in the same directory. Let’s take a peek at the file:
 
 {: .prettyprint .linenums}
-	---
-	applications:
-	  .:
-		name: php-example
-		framework:
-		  name: php
-		  info:
-			mem: 128M
-			description: PHP Application
-			exec: 
-		url: ${name}.${target-base}
-		mem: 128M
-		instances: 1
-		services:
-		  mysql-398b1:
-			type: mysql
+    ---
+    applications:
+      .:
+        name: php-example
+        framework:
+          name: php
+          info:
+            mem: 128M
+            description: PHP Application
+            exec: 
+        url: ${name}.${target-base}
+        mem: 128M
+        instances: 1
+        services:
+          mysql-398b1:
+            type: mysql
 
 The manifest document has captured all of the configuration that we entered above for the app push into a description of the app deployment. Once you have a `manifest.yml` file, you can modify it however you'd like, as it’s meant to be human-editable. The structure of the document is freeform, so if you want to define arbitrary values and use them throughout your document, you can.
 
 Now if we try pushing again, `af push` will use this to automate everything:
 
 {: .prettyprint}
-	$ af delete php-example
-	Provisioned service [mysql-398b1] detected, would you like to delete it? [yN]: y
-	Deleting application [php-example]: OK
-	Deleting service [mysql-398b1]: OK
+    $ af delete php-example
+    Provisioned service [mysql-398b1] detected, would you like to delete it? [yN]: y
+    Deleting application [php-example]: OK
+    Deleting service [mysql-398b1]: OK
 
-	$ af push
-	Would you like to deploy from the current directory? [Yn]:
-	Pushing application 'php-example'...
-	Creating Application: OK
-	Creating Service [mysql-398b1]: OK
-	Binding Service [mysql-398b1]: OK
-	Uploading Application:
-	  Checking for available resources: OK
-	  Packing application: OK
-	Uploading (1K): OK
-	Push Status: OK
-	Staging Application 'php-example': OK
-	Starting Application 'php-example': OK
+    $ af push
+    Would you like to deploy from the current directory? [Yn]:
+    Pushing application 'php-example'...
+    Creating Application: OK
+    Creating Service [mysql-398b1]: OK
+    Binding Service [mysql-398b1]: OK
+    Uploading Application:
+      Checking for available resources: OK
+      Packing application: OK
+    Uploading (1K): OK
+    Push Status: OK
+    Staging Application 'php-example': OK
+    Starting Application 'php-example': OK
 
 You can also use `af manifest` to create a manifest without pushing. `af manifest` will let you create more complex manifests describing multiple applications in a single hierarchy.
 
@@ -286,7 +286,7 @@ Now that you have a manifest document, you don’t really have to do anything el
 A manifest document can inherit properties from a parent manifest like so:
 
 {: .prettyprint}
-	inherit: path/to/parent.yml
+    inherit: path/to/parent.yml
 
 This slurps in everything from the parent document ensuring that properties defined in the child manifest are deep-merged with the parent. The symbols are resolved after this merge has taken place, so any properties you set in the child manifest may be used in properties set in the parent.
 
@@ -307,17 +307,17 @@ Otherwise, symbol resolution simulates lexical scoping, so you can define arbitr
 For example, the following parent:
 
 {: .prettyprint .linenums}
-	applications:
-	  ./foo:
-		name: bar
-		url: ${name}.${target-base}
+    applications:
+      ./foo:
+        name: bar
+        url: ${name}.${target-base}
 
 ...combined with this child manifest:
 
 {: .prettyprint .linenums}
-	applications:
-	  ./foo:
-	    name: baz
+    applications:
+      ./foo:
+        name: baz
 
 ...and with a target of `api.appfog.com`, will result in a `url` of `baz.appfog.com` when using the child manifest, and `bar.appfog.com` when using the parent.
 
@@ -330,95 +330,95 @@ Our `publisher` app will publish messages every second, with the message startin
 To start with, you may want to arrange your apps like so:
 
 {: .prettyprint}
-	./parent-app
-	./parent-app/publisher
-	./parent-app/subscriber
+    ./parent-app
+    ./parent-app/publisher
+    ./parent-app/subscriber
 
 This will make using the manifest document more natural.
 
 Switch to the `parent-app` directory and use `af manifest` to create your manifest document:
 
 {: .prettyprint}
-	$ cd parent-app
-	parent-app $ af manifest
-	Configure for which application? [.]: ./publisher
-	Application Name: publisher
-	Detected a PHP Application, is this correct? [Yn]:
-	Application Deployed URL [publisher.aws.af.cm]: publisher-${random-word}.${target-base}
-	Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
-	How many instances? [1]:
-	Bind existing services to 'publisher'? [yN]:
-	Create services to bind to 'publisher'? [yN]: y
-	1: mongodb
-	2: mysql
-	3: postgresql
-	What kind of service?: 2
-	Specify the name of the service [mysql-example]:
-	Create another? [yN]:
-	Configure for another application? [yN]: y
-	Application path?: ./subscriber
-	Application Name: subscriber
-	Detected a PHP Application, is this correct? [Yn]:
-	Application Deployed URL [subscriber.aws.af.cm]: subscriber-${random-word}.${target-base}
-	Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
-	How many instances? [1]:
-	Bind existing services to 'subscriber'? [yN]: y
-	1: mysql-example
-	Which one?: 1
-	Bind another? [yN]:
-	Create services to bind to 'subscriber'? [yN]:
-	Manifest written to manifest.yml.
+    $ cd parent-app
+    parent-app $ af manifest
+    Configure for which application? [.]: ./publisher
+    Application Name: publisher
+    Detected a PHP Application, is this correct? [Yn]:
+    Application Deployed URL [publisher.aws.af.cm]: publisher-${random-word}.${target-base}
+    Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+    How many instances? [1]:
+    Bind existing services to 'publisher'? [yN]:
+    Create services to bind to 'publisher'? [yN]: y
+    1: mongodb
+    2: mysql
+    3: postgresql
+    What kind of service?: 2
+    Specify the name of the service [mysql-example]:
+    Create another? [yN]:
+    Configure for another application? [yN]: y
+    Application path?: ./subscriber
+    Application Name: subscriber
+    Detected a PHP Application, is this correct? [Yn]:
+    Application Deployed URL [subscriber.aws.af.cm]: subscriber-${random-word}.${target-base}
+    Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+    How many instances? [1]:
+    Bind existing services to 'subscriber'? [yN]: y
+    1: mysql-example
+    Which one?: 1
+    Bind another? [yN]:
+    Create services to bind to 'subscriber'? [yN]:
+    Manifest written to manifest.yml.
 
 In this single interactive session we’ve configured a manifest that defines two PHP apps, using a single MySQL service. We’re using URLs with a bit of randomness (provided by the special random-word symbol) to ensure uniqueness.
 
 There’s one thing missing, though. We didn’t specify any dependencies between the apps. If we were to start it now, we could lose some data if the publisher starts before the subscriber:
 
 {: .prettyprint}
-	parent-app $ af push
-	Would you like to deploy from the current directory? [Yn]:
-	Pushing application 'publisher'...
+    parent-app $ af push
+    Would you like to deploy from the current directory? [Yn]:
+    Pushing application 'publisher'...
     # ...
-	Starting Application 'publisher': OK
-	Pushing application 'subscriber'...
+    Starting Application 'publisher': OK
+    Pushing application 'subscriber'...
     # ...
-	Starting Application 'subscriber': OK
+    Starting Application 'subscriber': OK
 
-	parent-app $ curl subscriber-bf872.aws.af.cm
-	Received: ["5", "6", "7", "8", "9"]
+    parent-app $ curl subscriber-bf872.aws.af.cm
+    Received: ["5", "6", "7", "8", "9"]
 
 As you can see, we’ve lost some data here. In the time between the publisher starting and the subscriber starting, the subscriber has missed four messages.
 
 We can fix this by editing the `manifest.yml` document to indicate that the publisher depends on the subscriber being started:
 
 {: .prettyprint .linenums}
-	---
-	applications:
-	./publisher:
+    ---
+    applications:
+    ./publisher:
     # ...
-	depends-on: ./subscriber
-	./subscriber:
+    depends-on: ./subscriber
+    ./subscriber:
     # ...
 
 Now let’s delete both apps and retry.
 
 {: .prettyprint}
-	parent-app $ af delete publisher
-	Deleting application [publisher]: OK
+    parent-app $ af delete publisher
+    Deleting application [publisher]: OK
 
-	parent-app $ af delete subscriber
-	Deleting application [subscriber]: OK
+    parent-app $ af delete subscriber
+    Deleting application [subscriber]: OK
 
-	parent-app $ af push
-	Would you like to deploy from the current directory? [Yn]:
-	Pushing application 'subscriber'...
+    parent-app $ af push
+    Would you like to deploy from the current directory? [Yn]:
+    Pushing application 'subscriber'...
     # ...
-	Starting Application 'subscriber': OK
-	Pushing application 'publisher'...
+    Starting Application 'subscriber': OK
+    Pushing application 'publisher'...
     # ...
-	Starting Application 'publisher': OK
+    Starting Application 'publisher': OK
 
 As you can see, now the subscriber starts before the publisher, so we shouldn’t have any data loss this time.
 
 {: .prettyprint}
-	parent-app $ curl subscriber-bf872.aws.af.cm
-	Received: ["1", "2", "3", "4", "5", "6", "7"]
+    parent-app $ curl subscriber-bf872.aws.af.cm
+    Received: ["1", "2", "3", "4", "5", "6", "7"]

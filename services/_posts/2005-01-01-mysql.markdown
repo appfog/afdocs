@@ -4,11 +4,16 @@ title: MySQL
 weight: 1
 ---
 
+* [VCAP_SERVICES](#vcap)
+* [PHP](#php)
+* [Migration](#migration)
+* [phpMyAdmin](#phpmyadmin)
+
 AppFog provides a MySQL service that's accessible to apps that are running on any of the supported runtimes and frameworks. 
 
 The AppFog app deployment process can automatically configure your app to use the bound MySQL service. Check the doc page for your app's framework to learn more about auto-reconfiguration. 
 
-### The VCAP\_SERVICES Environment Variable
+# The VCAP\_SERVICES Environment Variable {#vcap}
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. For apps that can't be automatically configured, you can find the information your app needs to connect to the database in this variable.
 
@@ -72,6 +77,11 @@ In Python:
 {: .prettyprint}
     os.getenv("VCAP_SERVICES")
 
+In PHP:
+
+{: .prettyprint}
+    getenv("VCAP_SERVICES")
+
 You can distinguish between multiple MySQL instances using the  value of the `name` key.
 
 The `credentials` object contains all of the data you need to connect to MySQL through a driver or library.
@@ -81,6 +91,23 @@ The `credentials` object contains all of the data you need to connect to MySQL t
 * `user` and `username` are the name of the MySQL database user.
 * `password` is the MySQL password.
 * `name` is the name of the MySQL database.
+
+# PHP {#php}
+
+Here's a bit more on how to use the `VCAP_SERVICES` variable to access your MySQL service: 
+
+{: .prettyprint .linenums}
+    $services_json = json_decode(getenv("VCAP_SERVICES"),true);
+    $mysql_config = $services_json["mysql-5.1"][0]["credentials"];
+
+    $username = $mysql_config["username"];
+    $password = $mysql_config["password"];
+    $hostname = $mysql_config["hostname"];
+    $port = $mysql_config["port"];
+    $db = $mysql_config["name"];
+
+    $link = mysql_connect("$hostname:$port", $username, $password);
+    $db_selected = mysql_select_db($db, $link);
 
 # Migration {#migration}
 

@@ -9,6 +9,7 @@ AppFog provides a MongoDB service that's accessible to apps that are running on 
 * [Ruby](#ruby)
 * [Node.js](#node)
 * [Node.js with MongoDB Walkthrough](#walkthrough)
+* [PHP](#php)
 
 # Ruby {#ruby}
 
@@ -471,6 +472,25 @@ Stop the application locally and update it on AppFog.
     $ curl mongo-node-example.aws.af.cm/history
     {"ip":"127.0.0.1","ts":"2011-12-29T23:49:46.738Z","_id":"4efcfc9acbfffadc0b000001"}
     {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
+
+# PHP {#php}
+
+Connecting your PHP app to a bound MongoDB service is simple:
+
+{: .prettyprint .linenums}
+    $services_json = json_decode(getenv("VCAP_SERVICES"),true);
+    $mongo_config = $services_json["mongodb-1.8"][0]["credentials"];
+
+    $username = $mongo_config["username"];
+    $password = $mongo_config["password"];
+    $hostname = $mongo_config["hostname"];
+    $port = $mongo_config["port"];
+    $db = $mongo_config["db"];
+    $name = $mongo_config["name"]; 
+
+    $connect = "mongodb://${username}:${password}@${hostname}:${port}/${db}";
+    $m = new Mongo($connect);
+    $db = $m->selectDB($db); 
 
 # Links
 

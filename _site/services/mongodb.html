@@ -202,6 +202,7 @@
   <li><a href="#ruby">Ruby</a></li>
   <li><a href="#node">Node.js</a></li>
   <li><a href="#walkthrough">Node.js with MongoDB Walkthrough</a></li>
+  <li><a href="#php">PHP</a></li>
 </ul>
 
 <h1 id="ruby">Ruby</h1>
@@ -668,6 +669,25 @@ Starting Application: OK
 {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
 </code></pre>
 
+<h1 id="php">PHP</h1>
+
+<p>Connecting your PHP app to a bound MongoDB service is simple:</p>
+
+<pre class="prettyprint linenums"><code>$services_json = json_decode(getenv("VCAP_SERVICES"),true);
+$mongo_config = $services_json["mongodb-1.8"][0]["credentials"];
+
+$username = $mongo_config["username"];
+$password = $mongo_config["password"];
+$hostname = $mongo_config["hostname"];
+$port = $mongo_config["port"];
+$db = $mongo_config["db"];
+$name = $mongo_config["name"]; 
+
+$connect = "mongodb://${username}:${password}@${hostname}:${port}/${db}";
+$m = new Mongo($connect);
+$db = $m-&gt;selectDB($db); 
+</code></pre>
+
 <h1 id="links">Links</h1>
 
 <p>For another complete sample app for a Node.js app with MongoDB, check out <a href="https://github.com/appfog/af-node-sample-mongodb">our GitHub repo</a>.</p>
@@ -751,6 +771,8 @@ Starting Application: OK
 							<li><a href="/services/mysql" >MySQL</a></li>
 							
 							<li><a href="/services/mongodb" class="on">MongoDB</a></li>
+							
+							<li><a href="/services/postgresql" >PostgreSQL</a></li>
 							
 							</div>
 						</ul>

@@ -196,11 +196,18 @@
 		<div class="row">
 			<div class="span8">
 				<h1>MySQL</h1>
-				<p>AppFog provides a MySQL service that’s accessible to apps that are running on any of the supported runtimes and frameworks. </p>
+				<ul>
+  <li><a href="#vcap">VCAP_SERVICES</a></li>
+  <li><a href="#php">PHP</a></li>
+  <li><a href="#migration">Migration</a></li>
+  <li><a href="#phpmyadmin">phpMyAdmin</a></li>
+</ul>
+
+<p>AppFog provides a MySQL service that’s accessible to apps that are running on any of the supported runtimes and frameworks. </p>
 
 <p>The AppFog app deployment process can automatically configure your app to use the bound MySQL service. Check the doc page for your app’s framework to learn more about auto-reconfiguration. </p>
 
-<h3 id="the-vcapservices-environment-variable">The VCAP_SERVICES Environment Variable</h3>
+<h1 id="vcap">The VCAP_SERVICES Environment Variable</h1>
 
 <p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. For apps that can’t be automatically configured, you can find the information your app needs to connect to the database in this variable.</p>
 
@@ -264,6 +271,11 @@
 <pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
 </code></pre>
 
+<p>In PHP:</p>
+
+<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
+</code></pre>
+
 <p>You can distinguish between multiple MySQL instances using the  value of the <code>name</code> key.</p>
 
 <p>The <code>credentials</code> object contains all of the data you need to connect to MySQL through a driver or library.</p>
@@ -275,6 +287,23 @@
   <li><code>password</code> is the MySQL password.</li>
   <li><code>name</code> is the name of the MySQL database.</li>
 </ul>
+
+<h1 id="php">PHP</h1>
+
+<p>Here’s a bit more on how to use the <code>VCAP_SERVICES</code> variable to access your MySQL service: </p>
+
+<pre class="prettyprint linenums"><code>$services_json = json_decode(getenv("VCAP_SERVICES"),true);
+$mysql_config = $services_json["mysql-5.1"][0]["credentials"];
+
+$username = $mysql_config["username"];
+$password = $mysql_config["password"];
+$hostname = $mysql_config["hostname"];
+$port = $mysql_config["port"];
+$db = $mysql_config["name"];
+
+$link = mysql_connect("$hostname:$port", $username, $password);
+$db_selected = mysql_select_db($db, $link);
+</code></pre>
 
 <h1 id="migration">Migration</h1>
 
@@ -445,6 +474,8 @@ Starting Application 'myadmin-example': OK
 							<li><a href="/services/mysql" class="on">MySQL</a></li>
 							
 							<li><a href="/services/mongodb" >MongoDB</a></li>
+							
+							<li><a href="/services/postgresql" >PostgreSQL</a></li>
 							
 							</div>
 						</ul>

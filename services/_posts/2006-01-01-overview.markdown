@@ -65,3 +65,8 @@ In Python:
 
 {: .prettyprint}
     os.getenv("VCAP_SERVICES")
+
+In PHP:
+
+{: .prettyprint}
+    getenv("VCAP_SERVICES")

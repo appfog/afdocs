@@ -165,6 +165,10 @@ In `wp-config.php`, replace:
 with: 
 
 {: .prettyprint .linenums}
+    $services = getenv("VCAP_SERVICES");
+    $services_json = json_decode($services,true);
+    $mysql_config = $services_json["mysql-5.1"][0]["credentials"];
+
     define('DB_NAME', $mysql_config["name"]);
     define('DB_USER', $mysql_config["user"]);
     define('DB_PASSWORD', $mysql_config["password"]);
@@ -236,8 +240,8 @@ Please consult the [PHP manual on `ini_set()`](http://www.php.net/manual/en/func
 You can modify your document root adding the following into your `.htaccess`:
 
 {: .prettyprint .linenums}
-	RewriteEngine on
-	RewriteCond %{HTTP_HOST} ^domain.com$ [NC,OR]
-	RewriteCond %{HTTP_HOST} ^www.domain.com$
-	RewriteCond %{REQUEST_URI} !public/
-	RewriteRule (.*) /public/$1 [L]
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} ^domain.com$ [NC,OR]
+    RewriteCond %{HTTP_HOST} ^www.domain.com$
+    RewriteCond %{REQUEST_URI} !public/
+    RewriteRule (.*) /public/$1 [L]

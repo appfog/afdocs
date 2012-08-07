@@ -198,6 +198,23 @@
 				<h1>AF Command Line Tool</h1>
 				<p><code>af</code> is based on CloudFoundry’s <code>vmc</code> but includes features specific to AppFog and has the default target set to AppFog’s service. Check out <a href="https://github.com/appfog/af">the GitHub repo</a>.</p>
 
+<ul>
+  <li><a href="#usage">Usage</a></li>
+  <li><a href="#getting-started">Getting Started</a></li>
+  <li><a href="#apps">Apps</a></li>
+  <li><a href="#app-creation">App Creation</a></li>
+  <li><a href="#app-ops">App Operations</a></li>
+  <li><a href="#app-updates">App Updates</a></li>
+  <li><a href="#app-info">App Information</a></li>
+  <li><a href="#app-env">App Environment</a></li>
+  <li><a href="#services">Services</a></li>
+  <li><a href="#admin">Administration</a></li>
+  <li><a href="#system">System</a></li>
+  <li><a href="#misc">Misc</a></li>
+  <li><a href="#help">Help</a></li>
+  <li><a href="#manifests">Manifests</a></li>
+</ul>
+
 <h3 id="usage">Usage</h3>
 
 <pre class="prettyprint"><code>$ af [options] command [&lt;args&gt;] [command_options]
@@ -227,7 +244,7 @@
 </tr>
 </table>
 
-<h3 id="applications">Applications</h3>
+<h3 id="apps">Apps</h3>
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -235,7 +252,7 @@
 </tr>
 </table>
 
-<h3 id="application-creation">Application Creation</h3>
+<h3 id="app-creation">App Creation</h3>
 
 <table class="table table-bordered table-striped">
 
@@ -248,7 +265,7 @@
 
 </table>
 
-<h3 id="application-operations">Application Operations</h3>
+<h3 id="app-ops">App Operations</h3>
 
 <table class="table table-bordered table-striped">
 
@@ -260,7 +277,7 @@
 
 </table>
 
-<h3 id="application-updates">Application Updates</h3>
+<h3 id="app-updates">App Updates</h3>
 
 <table class="table table-bordered table-striped">
 
@@ -272,7 +289,7 @@
 
 </table>
 
-<h3 id="application-information">Application Information</h3>
+<h3 id="app-info">App Information</h3>
 
 <table class="table table-bordered table-striped">
 
@@ -285,7 +302,7 @@
 
 </table>
 
-<h3 id="application-environment">Application Environment</h3>
+<h3 id="app-env">App Environment</h3>
 
 <table class="table table-bordered table-striped">
 
@@ -310,7 +327,7 @@
 
 </table>
 
-<h3 id="administration">Administration</h3>
+<h3 id="admin">Administration</h3>
 
 <table class="table table-bordered table-striped">
 
@@ -350,6 +367,259 @@
 <tr><td><code>help options                                 </code></td><td>Get help on available options</td></tr>
 
 </table>
+
+<h1 id="manifests">Manifests</h1>
+
+<p>You can use manifest documents with AppFog to simplify app deployment. These manifest documents describe apps in human-editable format. They can also describe anything from simple “Hello World” apps to complex multi-app hierarchies with inter-app dependencies and service binding information.  </p>
+
+<p>The manifests feature uses a YAML document, aptly named <code>manifest.yml</code>. You’ll typically place this manifest document in your app’s root directory, though you can specify a different location by telling the <code>af</code> tool which to use with the <code>-m</code> flag. </p>
+
+<p>You can create the manifest by hand, or let <code>af</code> automatically create it for you after an <code>af push</code> or with the <code>af manifest</code> command.</p>
+
+<p>When you <code>af push</code> an app that has a manifest, <code>af</code> will simply read the input values from the file rather than prompt you for each configuration. </p>
+
+<p>Not only can you automate <code>af push</code> with manifests, you can also bypass interactive inputs for a large portion of <code>af</code>’s commands to make using the command-line tool more efficient and user-friendly. For example, you can leave the app name out when issuing an <code>af update</code> command, and <code>af</code> will retrieve the app name from an existing manifest document.</p>
+
+<p>Here’s the full list of commands that can take advantage of the manifest document:</p>
+
+<ul>
+  <li><code>af push</code>: Allows you to specify multiple services. Pushes with information from the manifest. If no manifest is found, it will ask if you want to create one after the interaction is finished.</li>
+  <li><code>af stats</code>, <code>af update</code>, <code>af start</code>, <code>af stop</code>: If no app name is given, it operates on the app(s) described by the manifest.</li>
+  <li><code>af update</code>: Syncs changes from the root of the app if a manifest is present.</li>
+  <li><code>af start</code>: Starts the app in a multi-app deployment in the proper order (taking dependencies into account).</li>
+  <li><code>af stop</code>: Stops multi-app deployments by shutting down each app in the reverse of the order in which they were started.</li>
+  <li><code>af restart</code>: See <code>af stop</code> and <code>af start</code>.</li>
+  <li><code>af delete</code>: Delete the app</li>
+</ul>
+
+<p>Note: For multi-app hierarchies, these will operate only on the sub-app you’re in, rather than always operating on every app in the hierarchy. To operate on every app, invoke the command from the root of the hierarchy.</p>
+
+<h3 id="getting-started">Getting Started</h3>
+
+<p>The easiest way to get going is to generate a manifest document from basic app info. If you haven’t pushed your app yet, you can start with <code>af push</code> as usual, which will ask if you want to save the configurations as a manifest document:</p>
+
+<pre class="prettyprint"><code>$ af push
+Would you like to deploy from the current directory? [Yn]:
+Application Name: php-example
+Detected a PHP Application, is this correct? [Yn]:
+Application Deployed URL [php-example.aws.af.cm]:
+Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+How many instances? [1]:
+Bind existing services to 'php-example'? [yN]:
+Create services to bind to 'php-example'? [yN]: y
+1: mongodb
+2: mysql
+3: postgresql
+What kind of service?: 2
+Specify the name of the service [mysql-example]:
+Create another? [yN]:
+Would you like to save this configuration? [yN]: y
+Manifest written to manifest.yml.
+Creating Application: OK
+Creating Service [mysql-example]: OK
+Binding Service [mysql-example]: OK
+Uploading Application:
+  Checking for available resources: OK
+  Packing application: OK
+  Uploading (1K): OK
+Push Status: OK
+Staging Application 'php-example': OK
+Starting Application 'php-example': OK
+</code></pre>
+
+<p>As you can see, just before pushing, we saved the deployment configurations in <code>manifest.yml</code> in the same directory. Let’s take a peek at the file:</p>
+
+<pre class="prettyprint linenums"><code>---
+applications:
+  .:
+	name: php-example
+	framework:
+	  name: php
+	  info:
+		mem: 128M
+		description: PHP Application
+		exec: 
+	url: ${name}.${target-base}
+	mem: 128M
+	instances: 1
+	services:
+	  mysql-398b1:
+		type: mysql
+</code></pre>
+
+<p>The manifest document has captured all of the configuration that we entered above for the app push into a description of the app deployment. Once you have a <code>manifest.yml</code> file, you can modify it however you’d like, as it’s meant to be human-editable. The structure of the document is freeform, so if you want to define arbitrary values and use them throughout your document, you can.</p>
+
+<p>Now if we try pushing again, <code>af push</code> will use this to automate everything:</p>
+
+<pre class="prettyprint"><code>$ af delete php-example
+Provisioned service [mysql-398b1] detected, would you like to delete it? [yN]: y
+Deleting application [php-example]: OK
+Deleting service [mysql-398b1]: OK
+
+$ af push
+Would you like to deploy from the current directory? [Yn]:
+Pushing application 'php-example'...
+Creating Application: OK
+Creating Service [mysql-398b1]: OK
+Binding Service [mysql-398b1]: OK
+Uploading Application:
+  Checking for available resources: OK
+  Packing application: OK
+Uploading (1K): OK
+Push Status: OK
+Staging Application 'php-example': OK
+Starting Application 'php-example': OK
+</code></pre>
+
+<p>You can also use <code>af manifest</code> to create a manifest without pushing. <code>af manifest</code> will let you create more complex manifests describing multiple applications in a single hierarchy.</p>
+
+<p>Now that you have a manifest document, you don’t really have to do anything else if you don’t want to get fancy. It’ll passively improve <code>af</code>’s user interface experience for the commands listed above: <code>af push</code> will be interaction-free, making deployment much easier, and many other commands will be efficient to invoke.</p>
+
+<h3 id="child-manifests">Child Manifests</h3>
+
+<p>A manifest document can inherit properties from a parent manifest like so:</p>
+
+<pre class="prettyprint"><code>inherit: path/to/parent.yml
+</code></pre>
+
+<p>This slurps in everything from the parent document ensuring that properties defined in the child manifest are deep-merged with the parent. The symbols are resolved after this merge has taken place, so any properties you set in the child manifest may be used in properties set in the parent.</p>
+
+<p>This allows you to provide the basic information, such as service bindings and framework information, in a “base” manifest, which can be “filled in” via a child manifest. For example:</p>
+
+<ul>
+  <li>Having various child manifests for different deployment modes (e.g. debug, local, public) that extend base app information provided by a “base” manifest.</li>
+  <li>Packaging the basic configuration along with your app, which users can extend with their own manifest to override your settings or fill in the blanks for their own deployment.</li>
+</ul>
+
+<h3 id="symbol-resolution">Symbol Resolution</h3>
+
+<p>There are currently two special symbols:</p>
+
+<ul>
+  <li><code>target-base</code>: The base URL of your target. For example, targeting <code>api.appfog.com</code> means a <code>target-base</code> value of <code>appfog.com</code>.</li>
+  <li><code>random-word</code>: A random string of characters. This is useful for making sure your URLs are unique.</li>
+</ul>
+
+<p>Otherwise, symbol resolution simulates lexical scoping, so you can define arbitrary properties, which can be overridden by child manifests or in a nested hash.</p>
+
+<p>For example, the following parent:</p>
+
+<pre class="prettyprint linenums"><code>applications:
+  ./foo:
+	name: bar
+	url: ${name}.${target-base}
+</code></pre>
+
+<p>…combined with this child manifest:</p>
+
+<pre class="prettyprint linenums"><code>applications:
+  ./foo:
+    name: baz
+</code></pre>
+
+<p>…and with a target of <code>api.appfog.com</code>, will result in a <code>url</code> of <code>baz.appfog.com</code> when using the child manifest, and <code>bar.appfog.com</code> when using the parent.</p>
+
+<h3 id="multi-app-manifests">Multi-App Manifests</h3>
+
+<p>Manifests also present a way to deploy multiple apps with a single push command. Let’s say you have a modular app comprised of several independent parts, for example, a publisher and a subscriber. You’ll want the subscriber to start before the publisher, so it doesn’t miss anything that was published. It’s best to have these two apps defined as parts of a whole, so you can specify this dependency. You can do this with multi-app manifest documents.</p>
+
+<p>Our <code>publisher</code> app will publish messages every second, with the message starting at 0 and increasing for every iteration. The subscriber will simply collect the messages it receives in the order they came in, and display them to the user.</p>
+
+<p>To start with, you may want to arrange your apps like so:</p>
+
+<pre class="prettyprint"><code>./parent-app
+./parent-app/publisher
+./parent-app/subscriber
+</code></pre>
+
+<p>This will make using the manifest document more natural.</p>
+
+<p>Switch to the <code>parent-app</code> directory and use <code>af manifest</code> to create your manifest document:</p>
+
+<pre class="prettyprint"><code>$ cd parent-app
+parent-app $ af manifest
+Configure for which application? [.]: ./publisher
+Application Name: publisher
+Detected a PHP Application, is this correct? [Yn]:
+Application Deployed URL [publisher.aws.af.cm]: publisher-${random-word}.${target-base}
+Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+How many instances? [1]:
+Bind existing services to 'publisher'? [yN]:
+Create services to bind to 'publisher'? [yN]: y
+1: mongodb
+2: mysql
+3: postgresql
+What kind of service?: 2
+Specify the name of the service [mysql-example]:
+Create another? [yN]:
+Configure for another application? [yN]: y
+Application path?: ./subscriber
+Application Name: subscriber
+Detected a PHP Application, is this correct? [Yn]:
+Application Deployed URL [subscriber.aws.af.cm]: subscriber-${random-word}.${target-base}
+Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
+How many instances? [1]:
+Bind existing services to 'subscriber'? [yN]: y
+1: mysql-example
+Which one?: 1
+Bind another? [yN]:
+Create services to bind to 'subscriber'? [yN]:
+Manifest written to manifest.yml.
+</code></pre>
+
+<p>In this single interactive session we’ve configured a manifest that defines two PHP apps, using a single MySQL service. We’re using URLs with a bit of randomness (provided by the special random-word symbol) to ensure uniqueness.</p>
+
+<p>There’s one thing missing, though. We didn’t specify any dependencies between the apps. If we were to start it now, we could lose some data if the publisher starts before the subscriber:</p>
+
+<pre class="prettyprint"><code>parent-app $ af push
+Would you like to deploy from the current directory? [Yn]:
+Pushing application 'publisher'...
+# ...
+Starting Application 'publisher': OK
+Pushing application 'subscriber'...
+# ...
+Starting Application 'subscriber': OK
+
+parent-app $ curl subscriber-bf872.aws.af.cm
+Received: ["5", "6", "7", "8", "9"]
+</code></pre>
+
+<p>As you can see, we’ve lost some data here. In the time between the publisher starting and the subscriber starting, the subscriber has missed four messages.</p>
+
+<p>We can fix this by editing the <code>manifest.yml</code> document to indicate that the publisher depends on the subscriber being started:</p>
+
+<pre class="prettyprint linenums"><code>---
+applications:
+./publisher:
+# ...
+depends-on: ./subscriber
+./subscriber:
+# ...
+</code></pre>
+
+<p>Now let’s delete both apps and retry.</p>
+
+<pre class="prettyprint"><code>parent-app $ af delete publisher
+Deleting application [publisher]: OK
+
+parent-app $ af delete subscriber
+Deleting application [subscriber]: OK
+
+parent-app $ af push
+Would you like to deploy from the current directory? [Yn]:
+Pushing application 'subscriber'...
+# ...
+Starting Application 'subscriber': OK
+Pushing application 'publisher'...
+# ...
+Starting Application 'publisher': OK
+</code></pre>
+
+<p>As you can see, now the subscriber starts before the publisher, so we shouldn’t have any data loss this time.</p>
+
+<pre class="prettyprint"><code>parent-app $ curl subscriber-bf872.aws.af.cm
+Received: ["1", "2", "3", "4", "5", "6", "7"]
+</code></pre>
 
 
 			</div>

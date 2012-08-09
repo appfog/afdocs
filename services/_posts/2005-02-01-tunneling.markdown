@@ -118,9 +118,6 @@ When you exit the client, `af` disconnects the tunnel.
 
 If you choose the `1: none` or if Caldecott doesn't have a default client for the service, you can simply leave the terminal window open. You can then start your preferred client in another window. Once you're done, hit `Ctrl-C` to exit `af` and close the tunnel.
 
-Note: `af tunnel` is currently only operating on AWS US East infrastructure, but we're working on enabling it for all infrastructures. This should be done very soon. To migrate MySQL data into other infrastructures, you can [use phpMyAdmin](/services/mysql#phpmyadmin).
-
-
 ### More about the Tunnel Command
 
 You can simply enter the `af tunnel` command and respond to the prompts to create a tunnel. The command allows you to select from a list of existing provisioned services, so you don't need to know the service's name ahead of time.

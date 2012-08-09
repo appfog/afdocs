@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Overview</title> 
+		<title>AppFog &mdash; Documentation IronWorker</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
+						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Overview</a></li>
+						<li><a href="#">IronWorker</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,73 +195,107 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Overview</h1>
-				<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. </p>
+				<h1>IronWorker</h1>
+				<h3 id="install-ironworker">Install IronWorker</h3>
 
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+<p>In the “Add-ons” tab in your app console click “Install” for the IronWorker add-on. That’s it!</p>
 
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<h3 id="integrate-ironworker">Integrate IronWorker</h3>
 
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-        "name":"mysql-4f700",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-        "name":"mysql-f1a13",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
-    }
-]}
+<p>Just copy <a href="https://github.com/iron-io/iron_worker_php/blob/master/IronWorker.class.php">IronWorker.class.php</a> and include it in your script:</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+require_once "IronWorker.class.php
 </code></pre>
 
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
+<h3 id="create-a-worker">Create a Worker</h3>
 
-<p>In Java:</p>
+<p>When you install IronWorker, the installer creates two environment variables set with the necessary credentials. Create a worker and pass in those credentials like this:</p>
 
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
+<pre class="prettyprint linenums:3 linenums">
+$worker = new IronWorker(array(
+'token' =&gt; getenv('IRON_WORKER_TOKEN'),
+'project_id' =&gt; getenv('IRON_WORKER_PROJECT_ID')
+));</pre>
+
+<p>Here’s an example worker:</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+echo "Hello PHP World!\n";
 </code></pre>
 
-<p>In Ruby:</p>
+<p>We’ll call this worker “HelloWorld.php”.</p>
 
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
+<h3 id="upload-your-worker">Upload Your Worker</h3>
+
+<p>Here’s how to take the example above, zip it up, and upload it to IronWorker.</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+# Zip single file:
+IronWorker::createZip(dirname(__FILE__), array('HelloWorld.php'), 'worker.zip', true);
+$res = $iw-&gt;postCode('HelloWorld.php', 'worker.zip', 'HelloWorld');
 </code></pre>
 
-<p>In Javascript:</p>
+<h3 id="queue-your-worker">Queue Your Worker</h3>
 
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
+<pre class="prettyprint linenums"><code>&lt;?php
+$task_id = $iw-&gt;postTask('HelloWorld');
 </code></pre>
 
-<p>In Python:</p>
+<p>Your worker should start in a few seconds.</p>
 
-<pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
+<h3 id="schedule-your-worker">Schedule Your Worker</h3>
+
+<p>If you want to run your code more than once or run it in regular intervals, you can schedule it:</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+# 3 minutes from now
+$start_at = time() + 3*60;
+
+# Run task every 2 minutes, repeat 10 times
+$iw-&gt;postScheduleAdvanced('HelloWorld', array(), $start_at, 2*60, null, 10);
 </code></pre>
 
-<p>In PHP:</p>
+<h3 id="check-the-status-of-your-worker">Check the Status of Your Worker</h3>
 
-<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
+<p>Use the <code>getTaskDetails()</code> method.</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+$task_id = $iw-&gt;postTask('HelloWorld');
+$details = $iw-&gt;getTaskDetails($task_id);
+
+echo $details-&gt;status; # prints 'queued', 'complete', 'error' etc.
 </code></pre>
+
+<h3 id="database">Connect Your Worker to Your PHP Fog App’s Database</h3>
+
+<p>PHP Fog doesn’t allow remote connections to your app’s database, but we’ve made a special provision for IronWorker workers. Here are the settings you’ll need for that: </p>
+
+<pre><code>Host: mysql-proxy.phpfog.com
+</code></pre>
+
+<p>The port you should use depends on which particular database your app is connected to. You can check which database you’re connected to by going to your PHP Fog app console. Click on the “Env. Variables” tab and check the value of the variable called “<code>MYSQL_DB_HOST</code>”.</p>
+
+<p><code>db01.phpfog.com</code>:</p>
+
+<pre><code>Port: 3306
+</code></pre>
+
+<p><code>mysql-shared-02.phpfog.com</code>:</p>
+
+<pre><code>Port: 3307
+</code></pre>
+
+<h3 id="and-more">And More…</h3>
+
+<p>You can also pass payloads to your tasks, set progress status, logs, etc. For more information, check out some of these resources:</p>
+
+<ul>
+  <li><a href="https://github.com/iron-io/iron_worker_php">IronWorker on GitHub</a></li>
+  <li><a href="http://iron-io.github.com/iron_worker_php/">IronWorker PHP Reference Documentation</a></li>
+  <li><a href="https://github.com/iron-io/iron_worker_php/wiki">IronWorker PHP Wiki</a></li>
+  <li><a href="http://docs.iron.io/">Full Documentation on Iron.io</a></li>
+</ul>
 
 
 			</div>
@@ -325,15 +359,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/services/overview" class="on">Overview</a></li>
+							<li><a href="/services/overview" >Overview</a></li>
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							
@@ -350,11 +384,11 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-right"></i> Add-ons</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-down"></i> Add-ons</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseFour" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseFour" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
@@ -368,7 +402,7 @@
 							
 							<li><a href="/add-ons/blitz" >Blitz</a></li>
 							
-							<li><a href="/add-ons/ironworker" >IronWorker</a></li>
+							<li><a href="/add-ons/ironworker" class="on">IronWorker</a></li>
 							
 							<li><a href="/add-ons/ironmq" >IronMQ</a></li>
 							

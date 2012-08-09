@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Overview</title> 
+		<title>AppFog &mdash; Documentation Add-on Partnership</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
+						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Overview</a></li>
+						<li><a href="#">Add-on Partnership</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,73 +195,186 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Overview</h1>
-				<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. </p>
+				<h1>Add-on Partnership</h1>
+				<p>AppFog provides your app with extra functionality by partnering with various third-party services. You can add everything from logs to databases to powerful metrics to your app with a single click . </p>
 
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+<h1 id="how-add-ons-work">How Add-ons Work</h1>
 
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<p>Our add-on partners can create provisioning services that are compatible with AppFog. </p>
 
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-        "name":"mysql-4f700",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-        "name":"mysql-f1a13",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
-    }
-]}
+<ul>
+  <li><a href="#provision">Provisioning Workflow</a></li>
+  <li><a href="#callback">API Callback Spec</a></li>
+  <li><a href="#api">API Spec</a></li>
+  <li><a href="#authentication">Authentication</a></li>
+  <li><a href="#manifest">Manifest Format</a></li>
+  <li><a href="#sso">Single Sign-on</a></li>
+</ul>
+
+<h1 id="provision">Provisioning Workflow</h1>
+
+<ol>
+  <li>The user installs the add-on from the AppFog app console. This sends a request to the add-on partner to provision the service.</li>
+  <li>AppFog makes a <code>POST</code> request to https://partner.com/appfog/resources. It passes in the <code>customer_id</code> (email address), plan, and the <code>callback_url</code>. </li>
+  <li>The partner returns the local ID of the newly created resource. If it’s able to provision the resource synchronously, the config parameter can be set. It may not be possible to provision the resource synchronously, so the config can be empty.</li>
+  <li>If the config is empty, the user sees a message stating that the resource is waiting to be provisioned.</li>
+  <li>Once the resource is provisioned, the partner makes a call to the callback URL, as specified in the initial provisioning call, and passes the new config parameters to be set.</li>
+  <li>Once the config parameters are set, they are set as environment variables in the user’s app and instructions are displayed to the user on how to perform the integration.</li>
+</ol>
+
+<p><img class="screenshot" src="/img/screenshots/Slide2.jpeg" alt="Provisioning Workflow" /></p>
+
+<h1 id="callback">API Callback Spec</h1>
+
+<p>This is a method implemented by the AppFog services. It is used to update the configuration values for a given resource as provided by the add-on partner. The configuration parameters can be specified by the partner when the provisioning call is made by AppFog; however, if the call takes a while to process the partner can use this method to update those parameters later.</p>
+
+<p>PUT to path as defined in <code>callback_url</code> on provisioning call.</p>
+
+<p>Request Body:</p>
+
+<pre class="prettyprint"><code>{
+    "config":{"VAR_XYZ":"http://partner.com/5678ADFD"} 
+}
 </code></pre>
 
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
+<p>Response:</p>
 
-<p>In Java:</p>
-
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
+<pre class="prettyprint"><code>200 OK
 </code></pre>
 
-<p>In Ruby:</p>
+<h1 id="api">API Spec</h1>
 
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
+<h3 id="example-provisioning-request">Example Provisioning Request</h3>
+
+<p>Request: <code>POST /phpfog/resources</code></p>
+
+<p>Request Body:</p>
+
+<pre class="prettyprint"><code>{
+    "customer_id":"user@email.com",
+    "plan":"free",
+    "callback_url":"https://path_to_resource",
+    "options":{} 
+}
 </code></pre>
 
-<p>In Javascript:</p>
+<p>Response Body:</p>
 
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
+<pre class="prettyprint"><code>{
+    "id":789,
+    "config":{"ADDONNAME_VAR1":"some configuration value"},
+    "message":"" 
+}
 </code></pre>
 
-<p>In Python:</p>
+<h3 id="request-fields">Request Fields</h3>
 
-<pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
+<ul>
+  <li><code>customer_id</code> - The identification of the user in the AppFog system (i.e. email address).</li>
+  <li><code>plan</code> - The plan being provisioned. This will be “free” for the moment; however, in the future this can be higher-tier plans once they’re supported.</li>
+  <li><code>callback_url</code> - This is the address of the resource in AppFog’s system. The provider can use this to update the configuration for this resource (e.g. during provisioning).</li>
+  <li><code>options</code> - This contains additional options for the specific service. It’s a placeholder for now and AppFog will not send these requests yet.</li>
+</ul>
+
+<h3 id="response-fields">Response Fields</h3>
+
+<ul>
+  <li><code>id</code> - This is the ID of the resource in the provider’s system. </li>
+  <li><code>config</code> - The required key/value pairs of parameters required to provision the service. The manifest specifies what keys are allowed. Configuration paramters are required, but the particular configuration parameters up to the provider. They can also be updated later using the <code>callback_url</code> to update the config.</li>
+  <li><code>message</code> - This is a message to the system. It’s ignored for now.</li>
+</ul>
+
+<h3 id="example-deprovisioning-request">Example Deprovisioning Request</h3>
+
+<p>Request: <code>DELETE /phpfog/resources/:id</code></p>
+
+<p>Request Body: none</p>
+
+<p>Response: </p>
+
+<pre class="prettyprint"><code>200 OK
 </code></pre>
 
-<p>In PHP:</p>
+<h3 id="request-fields-1">Request Fields</h3>
 
-<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
+<p>This is a DELETE request to the particular <code>URL</code> and doesn’t contain a body.</p>
+
+<h3 id="response-fields-1">Response Fields</h3>
+
+<p>Only an HTTP response status is required.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>All calls to both the provisioning API on the partners service as well as the AppFog callback service must be authenticated using <code>HTTP Basic Auth</code>.</p>
+
+<p>All requests must be completed over <code>HTTPS</code>. </p>
+
+<p>The manifest file specifies the username and password to be used for all of these calls. The “<code>id</code>” in the manifest is the username, the “<code>api_password</code>” is the password.</p>
+
+<h1 id="manifest">Manifest Format</h1>
+
+<p>The manifest file is a <code>JSON</code> document that defines the information necessary for AppFog to make provisioning calls to the provider.</p>
+
+<p>Add-on partners should provide the manifest file out-of-band by emailing it to the AppFog team to incorporate into the system.</p>
+
+<h3 id="example-manifest">Example Manifest</h3>
+
+<p><code>example-manifest.json</code></p>
+
+<pre class="prettyprint linenums"><code>{
+    "id":"provider",
+    "name":"Provider Inc",
+    "plans":[
+        {"id":"free"}
+        ],    
+    "api": {
+        "config_vars":["PROVIDER_VAR_XYZ"],
+        "production":"https://provider.com/",
+        "test":"https://provider-qa.com/",
+        "path":"PathToResource",
+        "username":"SomeUsername",
+        "password":"ChangeYourPassword",
+        "sso_salt":"xPedFGIIJIei30D"       
+    } 
+}
 </code></pre>
+
+<h3 id="fields">Fields</h3>
+
+<ul>
+  <li><code>id</code> - The add-on id. All lowercase, no spaces or punctuation. This is used in conjunction with the password to authenticate provisioning calls.</li>
+  <li><code>name</code> - The friendly name to appear in the add-on tab of the app console in AppFog.</li>
+  <li><code>api/config_vars</code> - A list of variables to be returned on provisioning calls. The variable names must be prefixed with the add-on id and an underscore. Example: “<code>PROVIDER_</code>”</li>
+  <li><code>api/production</code> - The root <code>URL</code> of the provisioning service of provider.</li>
+  <li><code>api/test</code> - Same <code>URL</code> as production, but for testing in a QA environment.</li>
+  <li><code>api/path</code> - (Optional) Overrides the default path “<code>appfog/resources</code>”.</li>
+  <li><code>api/username</code> - (Optional) The username used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>. The “<code>id</code>” is used if the username is not specified.</li>
+  <li><code>api/password</code> - The password used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>.</li>
+  <li><code>api/sso_salt</code> - Shared secret used in single sign-on between AppFog and the provider.</li>
+  <li><code>plans/id</code> - The name of the “free” plan that will be offered to AppFog users and used for testing and integration purposes.</li>
+</ul>
+
+<h1 id="sso">Single Sign-on</h1>
+
+<p>Once a resource is fully provisioned, a “Manage” button will appear in the AppFog app console for the given add-on. This button will redirect the user to the management page of the particular resource on the partner’s website.</p>
+
+<p>After the user clicks the button, they will be redirected to the following generated <code>URL</code>:</p>
+
+<pre class="prettyprint"><code>https://partner.com/appfog/resources/:id?token=:token&amp;timestamp=:timestamp
+</code></pre>
+
+<p>The <code>:id</code> is the <code>id</code> of the resource which was defined in the response to the provisioning call for creating this resource.</p>
+
+<p>The token is defined as a combination of the <code>id</code>, <code>salt</code>, and <code>timestamp</code>. </p>
+
+<p>The salt is the “<code>sso_salt</code>” variable as defined in the manifest.</p>
+
+<p>The timestamp is the current UNIX timestamp.</p>
+
+<pre class="prettyprint"><code>token = sha1(id + ':' + salt + ':' + timestamp)
+</code></pre>
+
+<p>After the partner validates the salt (shared secret) and the timestamp (we recommend 30 seconds), they can be allowed to manage the resource as defined by the <code>id</code>.</p>
 
 
 			</div>
@@ -325,15 +438,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/services/overview" class="on">Overview</a></li>
+							<li><a href="/services/overview" >Overview</a></li>
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							
@@ -350,11 +463,11 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-right"></i> Add-ons</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-down"></i> Add-ons</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseFour" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseFour" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
@@ -376,7 +489,7 @@
 							
 							<li><a href="/add-ons/cleardb" >ClearDB</a></li>
 							
-							<li><a href="/add-ons/partners" >Add-on Partnership</a></li>
+							<li><a href="/add-ons/partners" class="on">Add-on Partnership</a></li>
 							
 							</div>
 						</ul>

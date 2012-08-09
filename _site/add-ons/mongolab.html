@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Overview</title> 
+		<title>AppFog &mdash; Documentation MongoLab</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
+						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Overview</a></li>
+						<li><a href="#">MongoLab</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,73 +195,53 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Overview</h1>
-				<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. </p>
+				<h1>MongoLab</h1>
+				<h4 id="install-mongolab">Install MongoLab</h4>
 
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+<p>In the “Add-ons” tab in your app console click “Install” for the MongoLab add-on. That’s it!</p>
 
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<h4 id="connect-to-the-database">Connect to the Database</h4>
 
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-        "name":"mysql-4f700",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-        "name":"mysql-f1a13",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
+<p>Installing the MongoLab add-on automatically sets an environment variable for your app called “<code>MONGOLAB_URI</code>”. You can access this in your code with <code>getenv("MONGOLAB_URI")</code>. This variable includes the full URI including the hostname, database path, username and password. It looks like this: </p>
+
+<pre class="prettyprint"><code>mongodb://username:password@host:port/database
+</code></pre>
+
+<p>Using MongoDB from a PHP app is very easy. The required extensions are already installed on all servers, so you can use the Mongo objects from your app immediately. Here is a little sample app you can use to test out your newly created MongoDB:</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+    // connect
+    $m = new Mongo(getenv("MONGOLAB_URI"));
+    
+    // select a database
+    $db = $m-&gt;comedy;
+    
+    // select a collection (analogous to a relational database's table)
+    $collection = $db-&gt;cartoons;
+    
+    // add a record
+    $obj = array( "title" =&gt; "Calvin and Hobbes", "author" =&gt; "Bill Watterson" );
+    $collection-&gt;insert($obj);
+    
+    // add another record, with a different "shape"
+    $obj = array( "title" =&gt; "XKCD", "online" =&gt; true );
+    $collection-&gt;insert($obj);
+    
+    // find everything in the collection
+    $cursor = $collection-&gt;find();
+    
+    // iterate through the results
+    foreach ($cursor as $obj) {
+        echo $obj["title"] . "\n";
     }
-]}
+?&gt;
 </code></pre>
 
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
+<p>You can find more information on using a MongoDB from a PHP app <a href="http://php.net/manual/en/class.mongodb.php">here</a>.</p>
 
-<p>In Java:</p>
+<h4 id="mongolab-admin-panel">MongoLab Admin Panel</h4>
 
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
-</code></pre>
-
-<p>In Ruby:</p>
-
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
-</code></pre>
-
-<p>In Javascript:</p>
-
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
-</code></pre>
-
-<p>In Python:</p>
-
-<pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
-</code></pre>
-
-<p>In PHP:</p>
-
-<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
-</code></pre>
+<p>In the “Add-ons” tab in your app console, click on the “Manage” button for the MongoLab add-on. This will take you to your MongoLab account where you can make configuration changes and upgrade your MongoLab account.</p>
 
 
 			</div>
@@ -325,15 +305,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/services/overview" class="on">Overview</a></li>
+							<li><a href="/services/overview" >Overview</a></li>
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							
@@ -350,17 +330,17 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-right"></i> Add-ons</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-down"></i> Add-ons</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseFour" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseFour" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
 							<li><a href="/add-ons/searchify" >Searchify</a></li>
 							
-							<li><a href="/add-ons/mongolab" >MongoLab</a></li>
+							<li><a href="/add-ons/mongolab" class="on">MongoLab</a></li>
 							
 							<li><a href="/add-ons/mongohq" >MongoHQ</a></li>
 							

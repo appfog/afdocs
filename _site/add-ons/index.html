@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Overview</title> 
+		<title>AppFog &mdash; Documentation Add-ons</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,7 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
-						
-						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Overview</a></li>
+						<li><a href="#">Add-ons</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,73 +192,37 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Overview</h1>
-				<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. </p>
+				<h1>Add-ons</h1>
+				
+<h3><a href="/add-ons/searchify.html">1. Searchify</a></h3>
+<p />
 
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+<h3><a href="/add-ons/mongolab.html">2. MongoLab</a></h3>
+<p />
 
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<h3><a href="/add-ons/mongohq.html">3. MongoHQ</a></h3>
+<p />
 
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-        "name":"mysql-4f700",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-        "name":"mysql-f1a13",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
-    }
-]}
-</code></pre>
+<h3><a href="/add-ons/mailgun.html">4. Mailgun</a></h3>
+<p />
 
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
+<h3><a href="/add-ons/blitz.html">5. Blitz</a></h3>
+<p />
 
-<p>In Java:</p>
+<h3><a href="/add-ons/ironworker.html">6. IronWorker</a></h3>
+<p />
 
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
-</code></pre>
+<h3><a href="/add-ons/ironmq.html">7. IronMQ</a></h3>
+<p />
 
-<p>In Ruby:</p>
+<h3><a href="/add-ons/cloudmailin.html">8. CloudMailin</a></h3>
+<p />
 
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
-</code></pre>
+<h3><a href="/add-ons/cleardb.html">9. ClearDB</a></h3>
+<p />
 
-<p>In Javascript:</p>
-
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
-</code></pre>
-
-<p>In Python:</p>
-
-<pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
-</code></pre>
-
-<p>In PHP:</p>
-
-<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
-</code></pre>
+<h3><a href="/add-ons/partners.html">10. Add-on Partnership</a></h3>
+<p>Become an add-on partner.</p>
 
 
 			</div>
@@ -325,15 +286,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/services/overview" class="on">Overview</a></li>
+							<li><a href="/services/overview" >Overview</a></li>
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							

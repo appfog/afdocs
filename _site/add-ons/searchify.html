@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Overview</title> 
+		<title>AppFog &mdash; Documentation Searchify</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
+						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Overview</a></li>
+						<li><a href="#">Searchify</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,73 +195,112 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Overview</h1>
-				<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. </p>
+				<h1>Searchify</h1>
+				<p><a href="http://www.searchify.com">Searchify</a> is an add-on that provides hosted full-text search.</p>
 
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+<p>Searchify allows developers to easily add search to their applications, without having to deal with Solr or Lucene, and without the hassle of configuring and hosting your own search infrastructure.  Searchify is fast.  Most search queries will be answered in under 100 milliseconds.  Searchify offers true real-time search, so documents added are immediately searchable.  Searchify is a drop-in replacement for existing IndexTank users.</p>
 
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<p>Searchify has client libraries for <a href="http://www.searchify.com/documentation/php-client">PHP</a>, <a href="http://www.searchify.com/documentation/ruby-client">Ruby</a>, <a href="http://www.searchify.com/documentation/python-client">Python</a>, <a href="http://www.searchify.com/documentation/java-client">Java</a>, and others, all of which communicate with Searchify’s <a href="http://www.searchify.com/documentation/api">REST API</a>.</p>
 
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-        "name":"mysql-4f700",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-        "name":"mysql-f1a13",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
+<h3 id="install-searchify">Install Searchify</h3>
+
+<p>In the “Add-ons” tab in your app console click “Install” for the Searchify add-on. That’s it!</p>
+
+<p>Installing the Searchify add-on creates an account with Searchify associated with your PHP Fog account. By default, it will contain one empty index called “idx” which you can use or delete and replace. </p>
+
+<p>This will also add an environment variable called <code>SEARCHIFY_API_URL</code> in the “Env. Variables” in your app console. This contains the private API URL used to access the newly provisioned Searchify service from your app. </p>
+
+<h3 id="set-up-your-local-development-environment">Set up your local development environment</h3>
+
+<p>The <code>SEARCHIFY_API_URL</code> environment variable holds the private URL you’ll use to access the Searchify service from within a local environment. Developers will typically create one search index for testing and one for production.</p>
+
+<p>The next step is to install the appropriate language client library to develop locally with Searchify.</p>
+
+<h3 id="installing-the-client-library">Installing the client library</h3>
+
+<p>You can access Searchify using the IndexTank client library. </p>
+
+<h4 id="installing-the-indextank-client">Installing the IndexTank Client</h4>
+
+<p>Full PHP client documentation and download links are available <a href="http://www.searchify.com/documentation/php-client">here</a>.</p>
+
+<p>Once you’ve installed the client library, you can use it to add documents to your index as well as to perform searches. The following code sample demonstrates basic document indexing and searching.</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+    include_once "indextank.php";
+
+    $API_URL = getenv('SEARCHIFY_API_URL');
+
+    $client = new Indextank_Api($API_URL);
+    $index = $client-&gt;get_index("&lt;YOUR INDEX NAME&gt;");
+?&gt;
+</code></pre>
+
+<p>Once you have an instance of the client all you need is the content you want to index.
+The simplest way to add a document is sending that content in a single field called “text”:</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+    $text = 'this is a text';
+    $doc_id = 1234;
+    $index-&gt;add_document($doc_id, array('text'=&gt;$text));
+?&gt;
+</code></pre>
+
+<p>That’s it, you’ve indexed a document! You can now search the index for any indexed document by simply providing the search query:</p>
+
+<pre class="prettyprint linenums"><code>&lt;?php
+    $query = "&lt;YOUR QUERY&gt;";
+    $res = $index-&gt;search($query);
+
+    echo $res-&gt;matches . " results\n";
+    foreach($res-&gt;results as $doc) {
+      print_r($doc);
+      echo "\n";
     }
-]}
+?&gt;
 </code></pre>
 
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
+<p>An index may be deleted and re-created anytime to clean it up, either from code as shown below or from Searchify’s <a href="http://www.searchify.com/dashboard">dashboard</a>:</p>
 
-<p>In Java:</p>
+<h4 id="deleting-an-index">Deleting an index</h4>
 
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
+<pre class="prettyprint linenums"><code>&lt;?php
+    include_once "indextank.php";
+    $API_URL = getenv('SEARCHIFY_API_URL');
+
+    $client = new Indextank_Api($API_URL);
+    $index = $client-&gt;get_index("&lt;YOUR INDEX NAME&gt;");     
+    $index-&gt;delete_index();
+?&gt;
 </code></pre>
 
-<p>In Ruby:</p>
+<h4 id="creating-a-new-index">Creating a new index</h4>
 
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
+<pre class="prettyprint linenums"><code>&lt;?php
+    $client = new Indextank_Api($API_URL);
+
+    // This parameter allows you to create indices with public search enabled.
+    // Default is false. 
+    $public_search_enabled = false;
+    $index = $client-&gt;create_index("&lt;YOUR INDEX NAME&gt;", $public_search_enabled);
+  
+    while (!$index-&gt;has_started()) {
+      sleep(1);
+    }
+?&gt;
 </code></pre>
 
-<p>In Javascript:</p>
+<h4 id="dashboard">Dashboard</h4>
 
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
-</code></pre>
+<p>The Searchify dashboard allows you to manage indices, allowing you to create, delete, and search indices.  Custom scoring functions can also be configured.  The dashboard can be accessed by visiting the PhpFog app console, and selecting Searchify.</p>
 
-<p>In Python:</p>
+<h4 id="plans">Plans</h4>
 
-<pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
-</code></pre>
+<p>Searchify offers plans based on the number of documents stored. If you outgrow the limits of your current Searchify plan, you can change to a larger plan. A list of all plans available can be found <a href="http://www.searchify.com/plans">here</a>.</p>
 
-<p>In PHP:</p>
+<h3 id="further-reading">Further Reading</h3>
 
-<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
-</code></pre>
+<p>For more information on the features available from Searchify, including faceting, geolocation, snippets, autocomplete, and custom scoring functions, please see the documentation at <a href="http://www.searchify.com/documentation">www.searchify.com/documentation</a>.</p>
 
 
 			</div>
@@ -325,15 +364,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/services/overview" class="on">Overview</a></li>
+							<li><a href="/services/overview" >Overview</a></li>
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							
@@ -350,15 +389,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-right"></i> Add-ons</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-down"></i> Add-ons</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseFour" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseFour" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/add-ons/searchify" >Searchify</a></li>
+							<li><a href="/add-ons/searchify" class="on">Searchify</a></li>
 							
 							<li><a href="/add-ons/mongolab" >MongoLab</a></li>
 							

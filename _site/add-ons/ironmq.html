@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Overview</title> 
+		<title>AppFog &mdash; Documentation IronMQ</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
+						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Overview</a></li>
+						<li><a href="#">IronMQ</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,72 +195,50 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Overview</h1>
-				<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. </p>
+				<h1>IronMQ</h1>
+				<h4 id="install-ironmq">Install IronMQ</h4>
 
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+<p>In the “Add-ons” tab in your app console click “Install” for the IronMQ add-on. That’s it!</p>
 
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<h4 id="authentication">Authentication</h4>
 
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-        "name":"mysql-4f700",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-        "name":"mysql-f1a13",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
-    }
-]}
+<p>You need two things to authenticate and tell IronMQ which project to attach your queues to:</p>
+
+<pre><code>Token: IRON_MQ_TOKEN
+
+Project ID: IRON_WORKER_PROJECT_ID
 </code></pre>
 
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
+<p>You can find these environment variables in the “Env. Variables” tab in your app console. You can also access these variables in PHP through the <code>getenv()</code> function.</p>
 
-<p>In Java:</p>
+<h4 id="the-basics">The Basics</h4>
 
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
-</code></pre>
+<p>There are three basic actions you can perform on a message queue:</p>
 
-<p>In Ruby:</p>
+<ul>
+  <li>Put a message into a queue.</li>
+  <li>Get a message out of a queue.</li>
+  <li>Delete the message you got out of the queue when you’re done with it. (If you don’t delete the message, it will go back into the queue after a timeout.) </li>
+</ul>
 
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
-</code></pre>
+<p>These three simple actions are the main actions you’ll typically use. Here’s some sample code using our client that shows how to use these functions.</p>
 
-<p>In Javascript:</p>
+<pre class="prettyprint linenums"><code>// Get package here: https://github.com/iron-io/iron_mq_php
+require_once "IronMQ.class.php"
 
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
-</code></pre>
+$ironmq = new IronMQ(array(
+'token' =&gt;getenv('IRON_MQ_TOKEN'),
+'project_id' =&gt; getenv('IRON_WORKER_PROJECT_ID')
+));
 
-<p>In Python:</p>
+// Put a message on the queue
+$ironmq-&gt;postMessage("my_queue", "Hello world");
 
-<pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
-</code></pre>
+// Get a message
+$msg = $ironmq-&gt;getMessage("my_queue");
 
-<p>In PHP:</p>
-
-<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
+// Delete the message
+$ironmq-&gt;deleteMessage("my_queue", $message_id);
 </code></pre>
 
 
@@ -325,15 +303,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/services/overview" class="on">Overview</a></li>
+							<li><a href="/services/overview" >Overview</a></li>
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							
@@ -350,11 +328,11 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-right"></i> Add-ons</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-down"></i> Add-ons</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseFour" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseFour" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
@@ -370,7 +348,7 @@
 							
 							<li><a href="/add-ons/ironworker" >IronWorker</a></li>
 							
-							<li><a href="/add-ons/ironmq" >IronMQ</a></li>
+							<li><a href="/add-ons/ironmq" class="on">IronMQ</a></li>
 							
 							<li><a href="/add-ons/cloudmailin" >CloudMailin</a></li>
 							

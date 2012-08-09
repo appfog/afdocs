@@ -183,7 +183,7 @@
 					<ul id="docs_nav">
 						{% if page.categories %}
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/{{ page.categories }}">{% if page.categories[0] == "getting-started" %}Getting Started{% endif %}{% if page.categories[0] == "frameworks" %}Frameworks{% endif %}{% if page.categories[0] == "services" %}Services{% endif %}{% if page.categories[0] == "other" %}Other{% endif %}{% if page.categories[0] == "addons" %}Add-ons{% endif %}</a></li>
+						<li><a href="/{{ page.categories }}">{% if page.categories[0] == "getting-started" %}Getting Started{% endif %}{% if page.categories[0] == "frameworks" %}Frameworks{% endif %}{% if page.categories[0] == "services" %}Services{% endif %}{% if page.categories[0] == "other" %}Other{% endif %}{% if page.categories[0] == "add-ons" %}Add-ons{% endif %}</a></li>
 						{% endif %}
 						<li class="breadcrumb-separator">&raquo;</li>
 						<li><a href="#">{{ page.title }}</a></li>
@@ -269,7 +269,25 @@
 						</ul>
 					</div>
 
-						<div class="row border-bottom"><div class="span3"><a href="/add-on-partners" {% if page.url == "/add-on-partners.html" %}class="on"{% endif %}><h6>Add-on Partnership</h6></div></a></div>
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon {% if page.categories contains 'add-ons' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Add-ons</h6></a>
+							</div>
+						</div>
+						{% if page.categories contains 'add-ons' %}
+						<ul class="pages accordion-body collapse in" id="collapseFour" style="height: auto;">
+						{% else %}
+						<ul class="pages accordion-body collapse" id="collapseFour" style="height: 0;">
+						{% endif %}
+							<div class="accordion-inner">
+							{% for current in site.categories.add-ons %}
+							<li><a href="{{ current.url | remove: ".html" }}" {% if current.url == page.url %}class="on"{% endif %}>{{ current.title }}</a></li>
+							{% endfor %}
+							</div>
+						</ul>
+					</div>
+
 						<div class="row border-bottom"><div class="span3"><a href="/faq" {% if page.url == "/faq.html" %}class="on"{% endif %}><h6>FAQ</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
 						<div class="row border-bottom"><div class="span3"><a href="/billing" {% if page.url == "/billing.html" %}class="on"{% endif %}><h6>BILLING</h6></div></a></div>

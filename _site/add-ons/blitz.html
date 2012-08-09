@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Overview</title> 
+		<title>AppFog &mdash; Documentation Blitz</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
+						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Overview</a></li>
+						<li><a href="#">Blitz</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,73 +195,36 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Overview</h1>
-				<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. </p>
+				<h1>Blitz</h1>
+				<h3 id="why-use-blitz">Why Use Blitz?</h3>
 
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+<p>There’s no surefire forumla for calculating the resources you’ll need for a given application. The best, most reliable way to determine what level of service you’ll need is to simulate load on your app. It can also be difficult to determine how much your app’s performance will be affected by rapid growth. Blitz lets you test app load quickly and easily. </p>
 
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<h3 id="install-blitz">Install Blitz</h3>
 
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-        "name":"mysql-4f700",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-        "name":"mysql-f1a13",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
-    }
-]}
-</code></pre>
+<p>In the “Add-ons” tab in your app console click “Install” for the Blitz add-on. That’s it!</p>
 
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
+<h3 id="use-blitz">Use Blitz</h3>
 
-<p>In Java:</p>
+<p>Click the “Manage” button in your app console under the “Add-ons” tab.</p>
 
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
-</code></pre>
+<p>Load testing with blitz is very easy. Here’s what it takes to get going:</p>
 
-<p>In Ruby:</p>
+<ol>
+  <li>
+    <h3>Sprinting</h3>
 
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
-</code></pre>
-
-<p>In Javascript:</p>
-
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
-</code></pre>
-
-<p>In Python:</p>
-
-<pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
-</code></pre>
-
-<p>In PHP:</p>
-
-<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
-</code></pre>
+    <p>Simply enter the URL (with optional query parameters) of your app in the blitz bar and we’ll run a simple check from one of the many regions from around the world. You can also explicitly specify a region to run using the –region option.</p>
+  </li>
+  <li>
+    <h3>Rushing</h3>
+    <p>To go from a Sprint to a Rush, use the –pattern option before the URL. For example, if you enter –pattern 1-250:60 we’ll generate a load test against your app that goes from 1 to 250 users in 60 seconds. You’ll be able to see your app’s performance, response times, hit rates and other metrics.</p>
+  </li>
+  <li>
+    <h3>That's it!</h3>
+    <p>Once you get past these steps, you can learn more about how to use variables and our API clients to integrate load testing into a continuous deployment process. To learn more, take the interactive tutorial to familiarize yourself with Blitz.</p>
+  </li>
+</ol>
 
 
 			</div>
@@ -325,15 +288,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/services/overview" class="on">Overview</a></li>
+							<li><a href="/services/overview" >Overview</a></li>
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							
@@ -350,11 +313,11 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-right"></i> Add-ons</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-down"></i> Add-ons</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseFour" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseFour" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
@@ -366,7 +329,7 @@
 							
 							<li><a href="/add-ons/mailgun" >Mailgun</a></li>
 							
-							<li><a href="/add-ons/blitz" >Blitz</a></li>
+							<li><a href="/add-ons/blitz" class="on">Blitz</a></li>
 							
 							<li><a href="/add-ons/ironworker" >IronWorker</a></li>
 							

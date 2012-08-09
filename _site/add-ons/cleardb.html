@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Overview</title> 
+		<title>AppFog &mdash; Documentation ClearDB</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -174,10 +174,10 @@
 					<ul id="docs_nav">
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/services">Services</a></li>
+						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Overview</a></li>
+						<li><a href="#">ClearDB</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,72 +195,23 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Overview</h1>
-				<p>When you provision and bind a service to your app, AppFog creates an environment variable called <code>VCAP_SERVICES</code>. </p>
+				<h1>ClearDB</h1>
+				<h4 id="install-cleardb">Install ClearDB</h4>
 
-<p>This variable contains a JSON document with a list of all credentials and connection information for the bound services.</p>
+<p>In the “Add-ons” tab in your app console click “Install” for the ClearDB add-on. That’s it!</p>
 
-<p>Here’s an example that of the environment variable for an app that has two MySQL database services bound to it:</p>
+<p>Installing the ClearDB add-on automatically sets an environment variable for your app called “<code>CLEARDB_DATABASE_URL</code>”. You can access this in your code with <code>getenv("CLEARDB_DATABASE_URL")</code>. This variable includes the full URI including the hostname, database path, username and password. The following code demonstrates how to parse the environment variable:</p>
 
-<pre class="prettyprint linenums"><code>{"mysql-5.1":[
-    {
-        "name":"mysql-4f700",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"d6d665aa69817406d8901cd145e05e3c6",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uB7CoL4Hxv9Ny",
-            "username":"uB7CoL4Hxv9Ny",
-            "password":"pzAx0iaOp2yKB"
-        }
-    },
-    {
-        "name":"mysql-f1a13",
-        "label":"mysql-5.1",
-        "plan":"free",
-        "tags":["mysql","mysql-5.1","relational"],
-        "credentials":{
-            "name":"db777ab9da32047d99dd6cdae3aafebda",
-            "hostname":"mysql-node01.us-east-1.aws.af.cm",
-            "host":"mysql-node01.us-east-1.aws.af.cm",
-            "port":3306,
-            "user":"uJHApvZF6JBqT",
-            "username":"uJHApvZF6JBqT",
-            "password":"p146KmfkqGYmi"
-        }
-    }
-]}
-</code></pre>
+<pre class="prettyprint linenums"><code>&lt;?php
+    $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-<p>You can use your app’s language-specific facility to call the environment variable.</p>
-
-<p>In Java:</p>
-
-<pre class="prettyprint"><code>java.lang.System.getenv("VCAP_SERVICES")
-</code></pre>
-
-<p>In Ruby:</p>
-
-<pre class="prettyprint"><code>ENV['VCAP_SERVICES']
-</code></pre>
-
-<p>In Javascript:</p>
-
-<pre class="prettyprint"><code>process.env.VCAP_SERVICES
-</code></pre>
-
-<p>In Python:</p>
-
-<pre class="prettyprint"><code>os.getenv("VCAP_SERVICES")
-</code></pre>
-
-<p>In PHP:</p>
-
-<pre class="prettyprint"><code>getenv("VCAP_SERVICES")
+    mysql_connect(
+    $server = $url["host"],
+    $username = $url["user"],
+    $password = $url["pass"]);
+    $db=substr($url["path"],1);
+    mysql_select_db($db);
+?&gt;
 </code></pre>
 
 
@@ -325,15 +276,15 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-down"></i> Services</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree"><h6><i class="accordion-icon icon-chevron-right"></i> Services</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse in" id="collapseThree" style="height: auto;">
+						<ul class="pages accordion-body collapse" id="collapseThree" style="height: 0;">
 						
 							<div class="accordion-inner">
 							
-							<li><a href="/services/overview" class="on">Overview</a></li>
+							<li><a href="/services/overview" >Overview</a></li>
 							
 							<li><a href="/services/tunneling" >Tunneling</a></li>
 							
@@ -350,11 +301,11 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-right"></i> Add-ons</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFour"><h6><i class="accordion-icon icon-chevron-down"></i> Add-ons</h6></a>
 							</div>
 						</div>
 						
-						<ul class="pages accordion-body collapse" id="collapseFour" style="height: 0;">
+						<ul class="pages accordion-body collapse in" id="collapseFour" style="height: auto;">
 						
 							<div class="accordion-inner">
 							
@@ -374,7 +325,7 @@
 							
 							<li><a href="/add-ons/cloudmailin" >CloudMailin</a></li>
 							
-							<li><a href="/add-ons/cleardb" >ClearDB</a></li>
+							<li><a href="/add-ons/cleardb" class="on">ClearDB</a></li>
 							
 							<li><a href="/add-ons/partners" >Add-on Partnership</a></li>
 							

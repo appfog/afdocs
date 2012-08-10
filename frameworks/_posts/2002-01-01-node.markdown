@@ -39,14 +39,14 @@ When you deploy a Node.js app to AppFog, the current directory must contain your
 
 AppFog supports [npm](https://npmjs.org/) (Node Package Manager). 
 
-You can install your dependencies to your local machine in one of two ways, directly or by using a `package.json` file that names all of your dependencies. 
+You can install your dependencies to your local machine in one of two ways: directly or by using a `package.json` file that names all of your dependencies. 
 
 Direct installation of `express`, for example, would look like this: 
 
 {: .prettyprint }
     $ npm install express
 
-Or, you can have a `package.json` file that names the dependency: 
+Or you can have a `package.json` file that names the dependency: 
 
 {: .prettyprint .linenums}
     {
@@ -64,18 +64,18 @@ Once you have the `package.json` file ready, you can simply run:
 
 This will install all of the packages named in `package.json`.
 
-Both of these installation methods will create a directory called `node_modules` which will include the entire contents of all of your dependencies. When you deploy your code with an `af push`, AppFog simply uploads your entire app directory includes the `node_modules` directory.
+Both of these installation methods will create a directory called `node_modules` which will include the entire contents of all of your dependencies. When you deploy your code with an `af push`, AppFog simply uploads your app, including the entire `node_modules` directory.
 
 ### npm shrinkwrap
 
-AppFog also supports [npm shrinkwrap](https://npmjs.org/doc/shrinkwrap.html). This means that you can instruct AppFog to rebuild the modules, which you will want to do if your app depends on native dependencies, for example.
+AppFog also supports [npm shrinkwrap](https://npmjs.org/doc/shrinkwrap.html). This means that you can instruct AppFog to rebuild the modules, which you'll want to do if your app has any native dependencies, for example.
 
 To make use of this feature, simply run:
 
 {: .prettyprint}
     $ npm shrinkwrap
 
-This command generates an `npm-shrinkwrap.json` file, which reflects the whole tree of dependencies with fixed versions. This functions as a snapshot of your app's dependencies in much the same way as `Gemfile.lock` does for Ruby apps. This file guarantees that AppFog provides the exact node module versions to avoid compatibility issues.
+This command looks at your `node_modules` directory and generates an `npm-shrinkwrap.json` file, which reflects the whole tree of dependencies with fixed versions. This functions as a snapshot of your app's dependencies in much the same way that `Gemfile.lock` does for Ruby apps. This file guarantees that AppFog provides the exact node module versions to avoid compatibility issues.
 
 By default, AppFog uses the `node_modules` directory unless you explicitly tell it to overwrite those modules. I.e. if your app has a `node_modules` directory in the app's base directory, AppFog will use the modules in that directory. To overwrite those modules, you must to provide a configuration file called `cloudfoundry.json` with the "`ignoreNodeModules`" option set to true.
 
@@ -109,7 +109,7 @@ Create a `package.json` file with the following contents:
         }
     }
 
-Use `npm` (Node Package Manager) to install the dependencies enumerated in `package.json`:
+Use `npm` (Node Package Manager) to install the dependencies named in `package.json`:
 
 {: .prettyprint }
     $ npm install

@@ -258,7 +258,71 @@
 
 <h3 id="bundler">Bundler</h3>
 
-<p>To add Bundler support to your Rails 2.3 app, follow the instructions at <a href="http://gembundler.com/rails23.html">this tutorial</a>.</p>
+<p>Rails 2.3 has its own gem handling system, but we can override that and use Bundler instead.</p>
+
+<p>Insert the following code in <code>config/boot.rb</code>, right above <code>Rails.boot!</code>:</p>
+
+<pre class="prettyprint linenums"><code>class Rails::Boot
+    def run
+        load_initializer
+
+        Rails::Initializer.class_eval do
+            def load_gems
+                @bundler_loaded ||= Bundler.require :default, Rails.env
+            end
+        end
+
+        Rails::Initializer.run(:set_load_path)
+    end
+end
+</code></pre>
+
+<p>Then create a new file called <code>config/preinitializer.rb</code> with the following:</p>
+
+<pre class="prettyprint linenums"><code>begin
+    require "rubygems"
+    require "bundler"
+rescue LoadError
+    raise "Could not load the bundler gem. Install it with `gem install bundler`."
+end
+
+if Gem::Version.new(Bundler::VERSION) &lt;= Gem::Version.new("0.9.24")
+    raise RuntimeError, "Your bundler version is too old for Rails 2.3." +
+        "Run `gem install bundler` to upgrade."
+end
+
+begin
+    # Set up load paths for all bundled gems
+    ENV["BUNDLE_GEMFILE"] = File.expand_path("../../Gemfile", __FILE__)
+    Bundler.setup
+rescue Bundler::GemNotFound
+    raise RuntimeError, "Bundler couldn't find some gems." +
+        "Did you run `bundle install`?"
+end
+</code></pre>
+
+<p>Get all <code>config.gem</code> declarations from your app and put them into the <code>Gemfile</code>. If you have declarations in <code>development.rb</code>, for example, place them in the named group. Make sure to include Rails itself and at least one source.</p>
+
+<pre class="prettyprint linenums"><code>source 'http://rubygems.org'
+gem "rails", "~&gt; 2.3.5"
+
+# bundler requires these gems in all environments
+# gem "nokogiri", "1.4.2"
+# gem "geokit"
+
+group :development do
+	# bundler requires these gems in development
+	# gem "rails-footnotes"
+end
+
+group :test do
+	# bundler requires these gems while running tests
+	# gem "rspec"
+	# gem "faker"
+end
+</code></pre>
+
+<p>For more details on Bundler support for Rails 2.3, check out <a href="http://gembundler.com/rails23.html">this guide</a>.</p>
 
 <p>Watch out for complicated and confusing bundle settings. While VCAP does its best to handle your configuration, it’s possible to write Gemfiles that cannot be satisfied, for example by requesting an old version of Rails and a new version of Rack. These combinations will fail immediately; you won’t need to wait to push your app to the cloud to see it break. By the same token, Gemfiles and Gems that are too vague about versions can cause problems as well.</p>
 

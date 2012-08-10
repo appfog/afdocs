@@ -224,9 +224,60 @@
 <pre><code>$ af push --runtime=node06
 </code></pre>
 
-<h3 id="deployment">Deployment</h3>
+<h1 id="deployment">Deployment</h1>
 
-<p>When you deploy a Node.js app to AppFog, the current directory must contain the app (<code>app.js</code>) and, if your app depends on any modules, a <code>package.json</code> file that names them.</p>
+<p>When you deploy a Node.js app to AppFog, the current directory must contain your app in an <code>app.js</code> file. </p>
+
+<h1 id="dependency-management">Dependency Management</h1>
+
+<p>AppFog supports <a href="https://npmjs.org/">npm</a> (Node Package Manager). </p>
+
+<p>You can install your dependencies to your local machine in one of two ways, directly or by using a <code>package.json</code> file that names all of your dependencies. </p>
+
+<p>Direct installation of <code>express</code>, for example, would look like this: </p>
+
+<pre class="prettyprint"><code>$ npm install express
+</code></pre>
+
+<p>Or, you can have a <code>package.json</code> file that names the dependency: </p>
+
+<pre class="prettyprint linenums"><code>{
+    "name":"hello-node",
+    "version":"0.0.1",
+    "dependencies":{
+        "express":""
+    }
+}
+</code></pre>
+
+<p>Once you have the <code>package.json</code> file ready, you can simply run:</p>
+
+<pre class="prettyprint"><code>$ npm install
+</code></pre>
+
+<p>This will install all of the packages named in <code>package.json</code>.</p>
+
+<p>Both of these installation methods will create a directory called <code>node_modules</code> which will include the entire contents of all of your dependencies. When you deploy your code with an <code>af push</code>, AppFog simply uploads your entire app directory includes the <code>node_modules</code> directory.</p>
+
+<h3 id="npm-shrinkwrap">npm shrinkwrap</h3>
+
+<p>AppFog also supports <a href="https://npmjs.org/doc/shrinkwrap.html">npm shrinkwrap</a>. This means that you can instruct AppFog to rebuild the modules, which you will want to do if your app depends on native dependencies, for example.</p>
+
+<p>To make use of this feature, simply run:</p>
+
+<pre class="prettyprint"><code>$ npm shrinkwrap
+</code></pre>
+
+<p>This command generates an <code>npm-shrinkwrap.json</code> file, which reflects the whole tree of dependencies with fixed versions. This functions as a snapshot of your app’s dependencies in much the same way as <code>Gemfile.lock</code> does for Ruby apps. This file guarantees that AppFog provides the exact node module versions to avoid compatibility issues.</p>
+
+<p>By default, AppFog uses the <code>node_modules</code> directory unless you explicitly tell it to overwrite those modules. I.e. if your app has a <code>node_modules</code> directory in the app’s base directory, AppFog will use the modules in that directory. To overwrite those modules, you must to provide a configuration file called <code>cloudfoundry.json</code> with the “<code>ignoreNodeModules</code>” option set to true.</p>
+
+<p><code>cloudfoundry.json</code>:</p>
+
+<pre class="prettyprint"><code>{ "ignoreNodeModules" : true }
+</code></pre>
+
+<p>If you deploy your app with those conditions in place, AppFog will install the node modules to the app during the staging process. If the require node module doesn’t work with the node engine that the app is running on, however, AppFog will not install the module.</p>
 
 <h1 id="hello-world-walkthrough">“Hello World” Walkthrough</h1>
 
@@ -240,9 +291,20 @@
 $ cd hello-node
 </code></pre>
 
-<p>Use <code>npm</code> (Node Package Manager) to install the Express module:</p>
+<p>Create a <code>package.json</code> file with the following contents:</p>
 
-<pre class="prettyprint"><code>$ npm install express
+<pre class="prettyprint linenums"><code>{
+    "name":"hello-node",
+    "version":"0.0.1",
+    "dependencies":{
+        "express":""
+    }
+}
+</code></pre>
+
+<p>Use <code>npm</code> (Node Package Manager) to install the dependencies enumerated in <code>package.json</code>:</p>
+
+<pre class="prettyprint"><code>$ npm install
 </code></pre>
 
 <p>Create a file called <code>app.js</code> with the following code:</p>
@@ -255,17 +317,6 @@ app.listen(process.env.VCAP_APP_PORT || 3000);
 </code></pre>
 
 <p>Notice that AppFog passes the listen port for your app in an environment variable, accessed by <code>process.env.VCAP_APP_PORT</code>.</p>
-
-<p>Create a <code>package.json</code> file with the following contents:</p>
-
-<pre class="prettyprint linenums"><code>{
-    "name":"hello-node",
-    "version":"0.0.1",
-    "dependencies":{
-        "express":""
-    }
-}
-</code></pre>
 
 <h3 id="deploy-the-app">Deploy the App</h3>
 

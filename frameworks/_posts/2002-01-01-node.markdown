@@ -31,9 +31,60 @@ Target a specific runtime when you deploy by using the runtime flag. For example
 
     $ af push --runtime=node06
 
-### Deployment
+# Deployment
 
-When you deploy a Node.js app to AppFog, the current directory must contain the app (`app.js`) and, if your app depends on any modules, a `package.json` file that names them.
+When you deploy a Node.js app to AppFog, the current directory must contain your app in an `app.js` file. 
+
+# Dependency Management
+
+AppFog supports [npm](https://npmjs.org/) (Node Package Manager). 
+
+You can install your dependencies to your local machine in one of two ways, directly or by using a `package.json` file that names all of your dependencies. 
+
+Direct installation of `express`, for example, would look like this: 
+
+{: .prettyprint }
+    $ npm install express
+
+Or, you can have a `package.json` file that names the dependency: 
+
+{: .prettyprint .linenums}
+    {
+        "name":"hello-node",
+        "version":"0.0.1",
+        "dependencies":{
+            "express":""
+        }
+    }
+
+Once you have the `package.json` file ready, you can simply run:
+
+{: .prettyprint }
+    $ npm install
+
+This will install all of the packages named in `package.json`.
+
+Both of these installation methods will create a directory called `node_modules` which will include the entire contents of all of your dependencies. When you deploy your code with an `af push`, AppFog simply uploads your entire app directory includes the `node_modules` directory.
+
+### npm shrinkwrap
+
+AppFog also supports [npm shrinkwrap](https://npmjs.org/doc/shrinkwrap.html). This means that you can instruct AppFog to rebuild the modules, which you will want to do if your app depends on native dependencies, for example.
+
+To make use of this feature, simply run:
+
+{: .prettyprint}
+    $ npm shrinkwrap
+
+This command generates an `npm-shrinkwrap.json` file, which reflects the whole tree of dependencies with fixed versions. This functions as a snapshot of your app's dependencies in much the same way as `Gemfile.lock` does for Ruby apps. This file guarantees that AppFog provides the exact node module versions to avoid compatibility issues.
+
+By default, AppFog uses the `node_modules` directory unless you explicitly tell it to overwrite those modules. I.e. if your app has a `node_modules` directory in the app's base directory, AppFog will use the modules in that directory. To overwrite those modules, you must to provide a configuration file called `cloudfoundry.json` with the "`ignoreNodeModules`" option set to true.
+
+`cloudfoundry.json`:
+
+{: .prettyprint}
+    { "ignoreNodeModules" : true }
+
+If you deploy your app with those conditions in place, AppFog will install the node modules to the app during the staging process. If the require node module doesn't work with the node engine that the app is running on, however, AppFog will not install the module.
 
 # "Hello World" Walkthrough
 
@@ -47,10 +98,21 @@ Create a directory for the app and change into it:
     $ mkdir hello-node
     $ cd hello-node
 
-Use `npm` (Node Package Manager) to install the Express module:
+Create a `package.json` file with the following contents:
+
+{: .prettyprint .linenums}
+    {
+        "name":"hello-node",
+        "version":"0.0.1",
+        "dependencies":{
+            "express":""
+        }
+    }
+
+Use `npm` (Node Package Manager) to install the dependencies enumerated in `package.json`:
 
 {: .prettyprint }
-    $ npm install express
+    $ npm install
 
 Create a file called `app.js` with the following code:
 
@@ -62,17 +124,6 @@ Create a file called `app.js` with the following code:
     app.listen(process.env.VCAP_APP_PORT || 3000);
 
 Notice that AppFog passes the listen port for your app in an environment variable, accessed by `process.env.VCAP_APP_PORT`.
-
-Create a `package.json` file with the following contents:
-
-{: .prettyprint .linenums}
-    {
-        "name":"hello-node",
-        "version":"0.0.1",
-        "dependencies":{
-            "express":""
-        }
-    }
 
 ### Deploy the App
 

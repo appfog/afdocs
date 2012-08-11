@@ -1,0 +1,13 @@
+--- 
+applications: 
+  .: 
+    mem: 128M
+    url: ${name}.${target-base}
+    framework: 
+      info: 
+        exec: 
+        mem: 128M
+        description: PHP Application
+      name: php
+    name: afdocs-test
+    instances: 1

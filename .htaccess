@@ -6,6 +6,11 @@ Options +FollowSymlinks
 RewriteEngine On
 DirectorySlash Off
 
+RewriteCond %{HTTP_HOST} ^afdocs-test.aws.af.cm$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.afdocs-test.aws.af.cm$
+RewriteCond %{REQUEST_URI} !_site/
+RewriteRule (.*) /_site/$1 [L]
+
 # Append trailing slash to directories
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteCond %{REQUEST_URI} !(.*)/$

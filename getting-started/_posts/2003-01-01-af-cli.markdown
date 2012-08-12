@@ -7,6 +7,7 @@ description: "Code deployment made easy."
 
 `af` is based on CloudFoundry's `vmc` but includes features specific to AppFog and has the default target set to AppFog's service. Check out [the GitHub repo](https://github.com/appfog/af).
 
+* [Installation](#installation)
 * [Usage](#usage)
 * [Getting Started](#getting-started)
 * [Apps](#apps)
@@ -22,6 +23,15 @@ description: "Code deployment made easy."
 * [Help](#help)
 * [Manifests](#manifests)
 
+
+### Installation {#installation}
+
+The 'af' command line tool is written in Ruby and installed as a gem: 
+
+{: .prettyprint}
+    $ gem install af
+
+Note: 'af' requires Ruby 1.8.7 or newer.
 
 ### Usage {#usage}
 

@@ -196,7 +196,7 @@
 		<div class="row">
 			<div class="span8">
 				<h1>AF Command Line Tool</h1>
-				<p><code>af</code> is based on CloudFoundry’s <code>vmc</code> but includes features specific to AppFog and has the default target set to AppFog’s service. Check out <a href="https://github.com/appfog/af">the GitHub repo</a>.</p>
+				<p><code>af</code> is based on CloudFoundry&rsquo;s <code>vmc</code> but includes features specific to AppFog and has the default target set to AppFog&rsquo;s service. Check out <a href="https://github.com/appfog/af">the GitHub repo</a>.</p>
 
 <ul>
   <li><a href="#installation">Installation</a></li>
@@ -218,12 +218,12 @@
 
 <h3 id="installation">Installation</h3>
 
-<p>The ‘af’ command line tool is written in Ruby and installed as a gem: </p>
+<p>The <code>af</code> command line tool is written in Ruby and installed as a gem: </p>
 
 <pre class="prettyprint"><code>$ gem install af
 </code></pre>
 
-<p>Note: ‘af’ requires Ruby 1.8.7 or newer.</p>
+<p>Note: <code>af</code> requires Ruby 1.8.7 or newer.</p>
 
 <h3 id="usage">Usage</h3>
 
@@ -380,15 +380,15 @@
 
 <h1 id="manifests">Manifests</h1>
 
-<p>You can use manifest documents with AppFog to simplify app deployment. These manifest documents describe apps in human-editable format. They can also describe anything from simple “Hello World” apps to complex multi-app hierarchies with inter-app dependencies and service binding information.  </p>
+<p>You can use manifest documents with AppFog to simplify app deployment. These manifest documents describe apps in human-editable format. They can also describe anything from simple &ldquo;Hello World&rdquo; apps to complex multi-app hierarchies with inter-app dependencies and service binding information.  </p>
 
-<p>The manifests feature uses a YAML document, aptly named <code>manifest.yml</code>. You’ll typically place this manifest document in your app’s root directory, though you can specify a different location by telling the <code>af</code> tool which to use with the <code>-m</code> flag. </p>
+<p>The manifests feature uses a YAML document, aptly named <code>manifest.yml</code>. You&rsquo;ll typically place this manifest document in your app’s root directory, though you can specify a different location by telling the <code>af</code> tool which to use with the <code>-m</code> flag. </p>
 
 <p>You can create the manifest by hand, or let <code>af</code> automatically create it for you after an <code>af push</code> or with the <code>af manifest</code> command.</p>
 
 <p>When you <code>af push</code> an app that has a manifest, <code>af</code> will simply read the input values from the file rather than prompt you for each configuration. </p>
 
-<p>Not only can you automate <code>af push</code> with manifests, you can also bypass interactive inputs for a large portion of <code>af</code>’s commands to make using the command-line tool more efficient and user-friendly. For example, you can leave the app name out when issuing an <code>af update</code> command, and <code>af</code> will retrieve the app name from an existing manifest document.</p>
+<p>Not only can you automate <code>af push</code> with manifests, you can also bypass interactive inputs for a large portion of <code>af</code>&rsquo;s commands to make using the command-line tool more efficient and user-friendly. For example, you can leave the app name out when issuing an <code>af update</code> command, and <code>af</code> will retrieve the app name from an existing manifest document.</p>
 
 <p>Here’s the full list of commands that can take advantage of the manifest document:</p>
 
@@ -457,7 +457,7 @@ applications:
         type: mysql
 </code></pre>
 
-<p>The manifest document has captured all of the configuration that we entered above for the app push into a description of the app deployment. Once you have a <code>manifest.yml</code> file, you can modify it however you’d like, as it’s meant to be human-editable. The structure of the document is freeform, so if you want to define arbitrary values and use them throughout your document, you can.</p>
+<p>The manifest document has captured all of the configuration that we entered above for the app push into a description of the app deployment. Once you have a <code>manifest.yml</code> file, you can modify it however you&rsquo;d like, as it’s meant to be human-editable. The structure of the document is freeform, so if you want to define arbitrary values and use them throughout your document, you can.</p>
 
 <p>Now if we try pushing again, <code>af push</code> will use this to automate everything:</p>
 
@@ -494,10 +494,10 @@ Starting Application 'php-example': OK
 
 <p>This slurps in everything from the parent document ensuring that properties defined in the child manifest are deep-merged with the parent. The symbols are resolved after this merge has taken place, so any properties you set in the child manifest may be used in properties set in the parent.</p>
 
-<p>This allows you to provide the basic information, such as service bindings and framework information, in a “base” manifest, which can be “filled in” via a child manifest. For example:</p>
+<p>This allows you to provide the basic information, such as service bindings and framework information, in a &ldquo;base&rdquo; manifest, which can be &ldquo;filled in&rdquo; via a child manifest. For example:</p>
 
 <ul>
-  <li>Having various child manifests for different deployment modes (e.g. debug, local, public) that extend base app information provided by a “base” manifest.</li>
+  <li>Having various child manifests for different deployment modes (e.g. debug, local, public) that extend base app information provided by a &ldquo;base&rdquo; manifest.</li>
   <li>Packaging the basic configuration along with your app, which users can extend with their own manifest to override your settings or fill in the blanks for their own deployment.</li>
 </ul>
 
@@ -520,14 +520,14 @@ Starting Application 'php-example': OK
     url: ${name}.${target-base}
 </code></pre>
 
-<p>…combined with this child manifest:</p>
+<p>&hellip;combined with this child manifest:</p>
 
 <pre class="prettyprint linenums"><code>applications:
   ./foo:
     name: baz
 </code></pre>
 
-<p>…and with a target of <code>api.appfog.com</code>, will result in a <code>url</code> of <code>baz.appfog.com</code> when using the child manifest, and <code>bar.appfog.com</code> when using the parent.</p>
+<p>&hellip;and with a target of <code>api.appfog.com</code>, will result in a <code>url</code> of <code>baz.appfog.com</code> when using the child manifest, and <code>bar.appfog.com</code> when using the parent.</p>
 
 <h3 id="multi-app-manifests">Multi-App Manifests</h3>
 

@@ -26,12 +26,12 @@ description: "Code deployment made easy."
 
 ### Installation {#installation}
 
-The 'af' command line tool is written in Ruby and installed as a gem: 
+The `af` command line tool is written in Ruby and installed as a gem: 
 
 {: .prettyprint}
     $ gem install af
 
-Note: 'af' requires Ruby 1.8.7 or newer.
+Note: `af` requires Ruby 1.8.7 or newer.
 
 ### Usage {#usage}
 

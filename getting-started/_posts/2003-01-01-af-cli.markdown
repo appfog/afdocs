@@ -12,6 +12,7 @@ description: "Code deployment made easy."
 * [Getting Started](#getting-started)
 * [Apps](#apps)
 * [App Creation](#app-creation)
+* [App Download](#app-download)
 * [App Operations](#app-ops)
 * [App Updates](#app-updates)
 * [App Information](#app-info)
@@ -82,6 +83,12 @@ or
 <tr><td><code>push [appname] --mem M</code></td>                <td>Set the memory reservation for the application</td></tr>
 <tr><td><code>push [appname] --no-start</code></td>                <td>Do not auto-start the application</td></tr>
 
+</table>
+
+### App Download {#app-download}
+
+<table class="table table-bordered table-striped">
+<tr><td><code>pull &lt;appname> [path]                   </code></td><td>Download last pushed source of &lt;appname> to [path]</td></tr>
 </table>
 
 ### App Operations {#app-ops}
@@ -165,6 +172,7 @@ or
 
 <tr><td><code>runtimes                                     </code></td><td>Display the supported runtimes of the target system</td></tr>
 <tr><td><code>frameworks                                   </code></td><td>Display the recognized frameworks of the target system</td></tr>
+<tr><td><code>infras                                   </code></td><td>Display the available infrastructures</td></tr>
 
 </table>
 

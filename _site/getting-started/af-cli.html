@@ -204,6 +204,7 @@
   <li><a href="#getting-started">Getting Started</a></li>
   <li><a href="#apps">Apps</a></li>
   <li><a href="#app-creation">App Creation</a></li>
+  <li><a href="#app-download">App Download</a></li>
   <li><a href="#app-ops">App Operations</a></li>
   <li><a href="#app-updates">App Updates</a></li>
   <li><a href="#app-info">App Information</a></li>
@@ -274,6 +275,12 @@
 <tr><td><code>push [appname] --mem M</code></td>                <td>Set the memory reservation for the application</td></tr>
 <tr><td><code>push [appname] --no-start</code></td>                <td>Do not auto-start the application</td></tr>
 
+</table>
+
+<h3 id="app-download">App Download</h3>
+
+<table class="table table-bordered table-striped">
+<tr><td><code>pull &lt;appname&gt; [path]                   </code></td><td>Download last pushed source of &lt;appname&gt; to [path]</td></tr>
 </table>
 
 <h3 id="app-ops">App Operations</h3>
@@ -357,6 +364,7 @@
 
 <tr><td><code>runtimes                                     </code></td><td>Display the supported runtimes of the target system</td></tr>
 <tr><td><code>frameworks                                   </code></td><td>Display the recognized frameworks of the target system</td></tr>
+<tr><td><code>infras                                   </code></td><td>Display the available infrastructures</td></tr>
 
 </table>
 

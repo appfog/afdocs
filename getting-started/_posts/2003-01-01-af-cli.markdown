@@ -75,6 +75,7 @@ or
 <table class="table table-bordered table-striped">
 
 <tr><td><code>push [appname]</code></td>                <td>Create, push, map, and start a new application</td></tr>
+<tr><td><code>push [appname] --infra </code></td>                <td>Push application to specificed infrastructure</td></tr>
 <tr><td><code>push [appname] --path</code></td>                <td>Push application from specified path</td></tr>
 <tr><td><code>push [appname] --url</code></td>                <td>Set the url for the application</td></tr>
 <tr><td><code>push [appname] --instances &lt;N></code></td>                <td>Set the expected number <code>&lt;N></code> of instances</td></tr>

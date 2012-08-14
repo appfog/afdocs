@@ -137,6 +137,7 @@ or
 
 <tr><td><code>services                                               </code></td><td>Lists of services available and provisioned</td></tr>
 <tr><td><code>create-service &lt;service> [--name,--bind]            </code></td><td>Create a provisioned service</td></tr>
+<tr><td><code>create-service &lt;service> --infra            </code></td><td>Create a provisioned service on a specified infrastructure</td></tr>
 <tr><td><code>create-service &lt;service> &lt;name>                  </code></td><td>Create a provisioned service and assign it &lt;name></td></tr>
 <tr><td><code>create-service &lt;service> &lt;name> &lt;app>        </code></td><td>Create a provisioned service and assign it &lt;name>, and bind to &lt;app></td></tr>
 <tr><td><code>delete-service [servicename]                           </code></td><td>Delete a provisioned service</td></tr>

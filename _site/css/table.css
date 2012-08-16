@@ -259,21 +259,26 @@ table .span24 {
 }
 
 table.roadmap {
-	table-layout:fixed;
+    table-layout:fixed;
 }
 
 .table thead > tr > th {
-	padding: 20px 0 20px 20px;
+    padding: 20px 0 20px 20px;
 }
 
 table.roadmap th.x-mark {
-	width: 100px;
-	padding: 20px 0px 20px 0px;
-	text-align: center;
+    width: 100px;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
 }
 
 .table > tbody > tr > td.x-mark-2 {
-	text-align: center;
-	background-color: #DDD;
-	padding: 20px;
+    text-align: center;
+    background-color: #DDD;
+    padding: 20px;
+}
+
+table.attributes td, table.attributes > thead > tr > th {
+    width: auto;
+    padding: 20px;
 }

@@ -10,6 +10,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * [Languages and Runtimes](#langs)
 * [Services](#services)
 * [Add-ons](#add-ons)
+* [Other Features](#features)
 
 <table id="infras" class="table table-bordered table-striped roadmap">
 <thead>
@@ -103,3 +104,21 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>LogEntries</td><td></td><td class="x-mark-2">&times;</td></tr>
 </tbody>
 </table>
+
+# Other Features {#features}
+
+### Top Priorities
+
+* Persistent Distributed Filesystems
+* Root Domains
+* Custom SSL
+* Group/Team Support
+
+### Coming Soon
+
+* Dedicated Databases (MySQL, PostgreSQL, MongoDB)
+* FTP Access
+* Wildcard Domains
+* Scheduled Jobs (cron)
+* Github Hooks
+* Websockets

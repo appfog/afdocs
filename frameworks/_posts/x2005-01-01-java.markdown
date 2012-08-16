@@ -1,7 +1,0 @@
----
-layout: doc-page
-title: Java
-weight: 1
----
-
-### Coming Soon

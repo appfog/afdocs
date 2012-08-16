@@ -23,6 +23,17 @@ For a list of runtimes that AppFog supports run:
 
 # Spring {#spring}
 
+* [Using AppFog Services In Spring Apps](#services-spring)
+* [Determining Whether Your App Can Be Auto-Configured](#spring-determining-auto-configure)
+* [Relational Database (MySQL and Postgres)](#spring-relational)
+* [MongoDB](#spring-mongo)
+* [Limitations of Auto-Reconfiguration](#spring-limits-auto-reconfig)
+* [Opting Out of Auto-Reconfiguration](#spring-opt-out-auto-reconfig)
+* [Explicitly Configuring Your App to Use AppFog Services](#spring-explicit-configure)
+* [Using Spring Profiles to Conditionalize AppFog Configuration](#spring-conditionalize)
+* [Sending Email From Spring Apps Deployed to AppFog](#spring-email)
+* [Accessing AppFog Properties](#spring-accessing-properties)
+
 In general, there's nothing special you need to do to deploy Spring apps to AppFog. If your Spring app runs on a tc Server or Apache Tomcat, it will also run on AppFog without any changes. 
 
 It's usually best to package your Spring app in a `*.war` file so that `af push` will automatically detect that it's a Spring app, but you can also deploy it as an exploded directory if you want.
@@ -37,21 +48,21 @@ There are, however, a few things about the AppFog environment that might affect 
 
 * External users can access your app only via the URL provided by the `af push` command (or equivalent STS command). Although your app might be able to internally listen to other ports (such as the JMX port for the MBean server), external users of your app will not be able to listen on these ports.
 
-### Using AppFog Services In Spring Apps
+### Using AppFog Services In Spring Apps {#services-spring}
 
-If your Spring app requires services (such as a database), you might be able to deploy your app to AppFog without changing a single line of code. In this case, AppFog automatically re-configures the relevant bean definitions to bind them to cloud services. See [Determining Whether Your App Can Be Auto-Configured](#determining-auto-configure) for details.
+If your Spring app requires services (such as a database), you might be able to deploy your app to AppFog without changing a single line of code. In this case, AppFog automatically re-configures the relevant bean definitions to bind them to cloud services. See [Determining Whether Your App Can Be Auto-Configured](#spring-determining-auto-configure) for details.
 
-If your Spring app cannot take advantage of AppFog’s auto-reconfiguration feature, or you want more control over the configuration, the additional steps are very simple and easy. See [Explicitly Configuring Your App to Use AppFog Services](#explicit-configure).
+If your Spring app cannot take advantage of AppFog’s auto-reconfiguration feature, or you want more control over the configuration, the additional steps are very simple and easy. See [Explicitly Configuring Your App to Use AppFog Services](#spring-explicit-configure).
 
-### Determining Whether Your App Can Be Auto-Configured {#determining-auto-configure}
+### Determining Whether Your App Can Be Auto-Configured {#spring-determining-auto-configure}
 
-You will likely be able to deploy many of your existing Spring apps to AppFog without changing a single line of code, even in the case that your app needs a service such as a relational database. This is because AppFog automatically detects the type of service your app needs, and if its configuration falls within [a small set of limitations](#limits-auto-reconfig), AppFog will automatically reconfigure it so that it binds to service instances that AppFog creates and maintains itself.
+You will likely be able to deploy many of your existing Spring apps to AppFog without changing a single line of code, even in the case that your app needs a service such as a relational database. This is because AppFog automatically detects the type of service your app needs, and if its configuration falls within [a small set of limitations](#spring-limits-autoreconfig), AppFog will automatically reconfigure it so that it binds to service instances that AppFog creates and maintains itself.
 
 With auto-reconfiguration, AppFog creates the database or connection factory itself, using its own values for properties such as host, port, username and so on. For example, if you have a single `javax.sql.DataSource` bean in your app context that AppFog reconfigures and binds to its own database service, AppFog doesn’t use the username and password and driver URL you originally specified. Rather, it uses its own internal values. This is transparent to the app, which really only cares about having a relational database to which it can write data but doesn’t really care what the specific properties are that created the database.
 
 The following sections describe, for each supported service, the type of bean that AppFog detects if auto-configuration occurs.
 
-### Relational Database (MySQL and Postgres)
+### Relational Database (MySQL and Postgres) {#spring-relational}
 
 Auto-reconfiguration occurs if AppFog detects a `javax.sql.DataSource` bean. The following snippet of a Spring app context file shows an example of defining this type of bean which AppFog will in turn detect and potentially auto-reconfigure:
 
@@ -67,7 +78,7 @@ The relational database that AppFog actually uses depends on the service instanc
 
 AppFog will internally generate values for the following properties: driverClassName, url, username, password, validationQuery.
 
-### MongoDB
+### MongoDB {#spring-mongo}
 
 You must be using Spring Data MongoDB 1.0 M4 or later for auto-reconfiguration to work.
 
@@ -116,7 +127,7 @@ Auto-reconfiguration occurs if AppFog detects a `org.springframework.amqp.rabbit
 AppFog will create a `org.springframework.amqp.rabbit.connection.CachingConnectionFactory` with its own values for the following properties: `host`, `virtual-host`, `port`, `username,` `password`.
 --->
 
-### Limitations of Auto-Reconfiguration {#limits-auto-reconfig}
+### Limitations of Auto-Reconfiguration {#spring-limits-auto-reconfig}
 
 AppFog auto-reconfigures apps only if the following items are true for your application:
 
@@ -126,15 +137,15 @@ AppFog auto-reconfigures apps only if the following items are true for your appl
 
 Also note that if auto-reconfiguration occurs, but you have customized the configuration of the service (such as the pool size or connection properties), AppFog ignores the customizations.
 
-### Opting Out of Auto-Reconfiguration
+### Opting Out of Auto-Reconfiguration {#spring-opt-out-auto-reconfig}
 
 Sometimes you may not want AppFog to auto-reconfigure your Spring app in the ways described in this section. There are two ways to opt out:
 
 * When you deploy your app using `af` or STS, specify that the framework is `JavaWeb` instead of `Spring`. Note that in this case your application will not be able to take advantage of the Spring Profiles feature.
 
-* Use the `<cloud:>` namespace elements in your Spring app context file to explicitly create a bean that represents a service. This makes auto-reconfiguration unnecessary. See [Explicitly Configuring Your App to Use AppFog Services](#explicit-configure)
+* Use the `<cloud:>` namespace elements in your Spring app context file to explicitly create a bean that represents a service. This makes auto-reconfiguration unnecessary. See [Explicitly Configuring Your App to Use AppFog Services](#spring-explicit-configure)
 
-### Explicitly Configuring Your App to Use AppFog Services {#explicit-configure}
+### Explicitly Configuring Your App to Use AppFog Services {#spring-explicit-configure}
 
 The easiest way to use AppFog services in your Spring apps is to declare the `<cloud:>` namespace, point it to the AppFog Schema, then use the service-specific elements defined in the `<cloud>` namespace. For example, with just a single line of XML in your application context file you can create a JDBC data source that you can use in your specific bean definitions. You can configure multiple data sources or connection factories if your application requires it. You can also further configure these cloud services if you want, although it is completely optional because AppFog uses commonplace configuration values to create typical service instances that are adequate for most uses. In sum, using the `<cloud:>` namespace provides you with as much control as you want over the number and type of AppFog services that your application uses.
 
@@ -572,7 +583,7 @@ The following example shows how to use this element in your Spring app context f
 
 In the preceding example, `cloud.services.mysql.connection.username` is one of the properties exposed by AppFog.
 
-For a complete list of properties exposed by AppFog, as well as a more detailed example, see [Accessing AppFog Properties](#accessing-properties).
+For a complete list of properties exposed by AppFog, as well as a more detailed example, see [Accessing AppFog Properties](#spring-accessing-properties).
 
 <!---
 ### RabbitMQ And Spring: Additional Programming Information {#rabbit-and-spring}
@@ -659,7 +670,7 @@ Then update your app controller/logic as follows:
     }
 --->
 
-### Using Spring Profiles to Conditionalize AppFog Configuration {#conditionalize}
+### Using Spring Profiles to Conditionalize AppFog Configuration {#spring-conditionalize}
 
 The preceding sections describe how to use the `<cloud:>` namespace to easily configure services (such as data sources and RabbitMQ connection factories) for Spring apps deployed to AppFog. However, you might not always want to deploy your applications to AppFog; for example, you might sometimes want to use a local environment to test the application during iterative development. In this case, it would be useful to *conditionalize* the application configuration so that only specific fragments are activated when a certain condition is true. Setting up such conditionalized configuration makes your application portable to many different environments so that you do not have to manually change the configuration when you deploy it to, for example, your local environment and then to AppFog. To enable this, use the Spring *profiles* feature, available in Spring Framework 3.1 or later.
 
@@ -706,11 +717,11 @@ Note that the `<beans profile="value">` element is nested inside the standard ro
 
 See the [SpringSource Blog](http://blog.springsource.com/2011/02/11/spring-framework-3-1-m1-released/) for additional information about using Spring Profiles, a new feature in Spring Framework 3.1.
 
-### Sending Email From Spring Apps Deployed to AppFog
+### Sending Email From Spring Apps Deployed to AppFog {#spring-email}
 
 In order to prevent spam and other abuse, SMTP is blocked from apps running in AppFog. However, your applications can still send email when deployed to AppFog, as described in this section.
 
-Service providers, such as [SendGrid](http://sendgrid.com/), can send email on your behalf via HTTP web services, which is an option you can use when deploying your app to AppFog. If, however, you also run your application inside your datacenter, you might want to use your corporate SMTP servers in that case. This is a good example of using [Spring Profiles](#conditionalize) to conditionalize how your application sends email, depending on where exactly the application happens to be deployed. This makes your application portable to different environments without you having to manually update its configuration.
+Service providers, such as [SendGrid](http://sendgrid.com/), can send email on your behalf via HTTP web services, which is an option you can use when deploying your app to AppFog. If, however, you also run your application inside your datacenter, you might want to use your corporate SMTP servers in that case. This is a good example of using [Spring Profiles](#spring-conditionalize) to conditionalize how your application sends email, depending on where exactly the application happens to be deployed. This makes your application portable to different environments without you having to manually update its configuration.
 
 The following snippet of a Spring app context shows how to specify that your application should use SendGrid to send email when the application is running in AppFog; note the use of the `cloud` profile:
 
@@ -737,7 +748,7 @@ The following snippet of a Spring app context shows how to specify that your app
 
 In the example, `example.SendGridMailSender` is the Spring bean that sends email using the SendGrid service provider; however, this bean will only be activated when your app is deployed to AppFog. If your application is actually running inside your datacenter, then your default email server is used.
 
-### Accessing AppFog Properties {#accessing-properties}
+### Accessing AppFog Properties {#spring-accessing-properties}
 
 AppFog exposes a number of app and service properties directly into its deployed applications. Your deployed application can in turn consume these properties. The properties exposed by AppFog include basic information about the application, such as its name and the Cloud provider, and detailed connection information for all services currently bound to the application.
 
@@ -770,7 +781,7 @@ For convenience, if you have bound just one service of a given type to your app,
 * `rabbitmq`
 * `redis`
 
-If you want to use these AppFog properties in your app, use a Spring property placholder inside of a `cloud` profile; Spring profiles are briefly described in [Using Spring Profiles to Conditionalize AppFog Configuration](#conditionalize).
+If you want to use these AppFog properties in your app, use a Spring property placholder inside of a `cloud` profile; Spring profiles are briefly described in [Using Spring Profiles to Conditionalize AppFog Configuration](#spring-conditionalize).
 
 For example, assume that you have bound a MySQL service called `spring-mysql` to your app, but your application requires a c3p0 connection pool instead of the connection pool provided by AppFog. But you still want to use the same connection properties defined by AppFog for the MySQL service, in particular the username and password and JDBC URL. The following Spring application context snippet shows how you might implement this:
 

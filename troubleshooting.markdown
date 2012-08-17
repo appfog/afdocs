@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting
 layout: doc-page
-weight: 16
+weight: 8
 ---
 
 Here are some of the most common issues and how to deal with them. 

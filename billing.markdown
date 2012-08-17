@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: Billing
-weight: 14
+weight: 7
 ---
 
 * [Billing Cycle](#cycle)

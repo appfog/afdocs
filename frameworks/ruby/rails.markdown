@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: Rails
-weight: 1
+weight: 2
 ---
 
 * [Rails 2.3](#rails23)

@@ -1,6 +1,5 @@
 ---
 title: Searchify
-layout: doc-page
 weight: 17
 ---
 

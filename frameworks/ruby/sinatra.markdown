@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Sinatra
 weight: 3
 ---

@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Python
 weight: 1
 ---

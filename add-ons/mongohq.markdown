@@ -1,6 +1,5 @@
 ---
 title: MongoHQ
-layout: doc-page
 weight: 16
 ---
 

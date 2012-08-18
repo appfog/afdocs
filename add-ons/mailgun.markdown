@@ -1,6 +1,5 @@
 ---
 title: Mailgun
-layout: doc-page
 weight: 16
 ---
 

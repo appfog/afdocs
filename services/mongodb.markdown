@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: MongoDB
 weight: 1
 ---

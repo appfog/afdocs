@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Ruby
 weight: 1
 ---

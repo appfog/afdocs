@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: WSGI
 weight: 2
 ---

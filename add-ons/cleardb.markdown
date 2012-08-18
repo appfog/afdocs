@@ -1,6 +1,5 @@
 ---
 title: ClearDB
-layout: doc-page
 weight: 16
 ---
 

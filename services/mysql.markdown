@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: MySQL
 weight: 1
 ---

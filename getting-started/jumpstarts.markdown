@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Jumpstarts
 weight: 1
 description: "The easiest way to spin up a web app. Quick and dead simple."

@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: PostgreSQL
 weight: 1
 ---

@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: AF Command Line Tool
 weight: 1
 description: "Code deployment made easy."

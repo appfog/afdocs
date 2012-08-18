@@ -1,6 +1,5 @@
 ---
 title: MongoLab
-layout: doc-page
 weight: 16
 ---
 

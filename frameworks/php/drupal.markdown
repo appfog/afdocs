@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Drupal
 weight: 2
 ---

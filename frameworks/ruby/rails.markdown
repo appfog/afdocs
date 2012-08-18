@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Rails
 weight: 2
 ---

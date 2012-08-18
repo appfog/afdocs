@@ -1,6 +1,5 @@
 ---
 title: IronMQ
-layout: doc-page
 weight: 16
 ---
 

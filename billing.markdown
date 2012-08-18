@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Billing
 weight: 7
 ---

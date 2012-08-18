@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Node
 weight: 1
 ---

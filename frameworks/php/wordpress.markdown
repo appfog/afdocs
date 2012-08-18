@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: PHP
 weight: 3
 ---

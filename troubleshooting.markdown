@@ -1,6 +1,5 @@
 ---
 title: Troubleshooting
-layout: doc-page
 weight: 8
 ---
 

@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Overview
 weight: 1
 ---

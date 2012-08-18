@@ -1,6 +1,5 @@
 ---
 title: Blitz
-layout: doc-page
 weight: 16
 ---
 

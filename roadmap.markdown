@@ -1,6 +1,5 @@
 ---
 title: Feature Roadmap
-layout: doc-page
 weight: 9
 ---
 

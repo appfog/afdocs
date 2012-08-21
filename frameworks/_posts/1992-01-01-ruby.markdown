@@ -10,6 +10,7 @@ weight: 1
 * [Rails 2.3](#rails23)
 * [Rails 3.0](#rails30)
 * [Rails 3.1](#rails31)
+* [Rails Console](#rails-console)
 * [rake db:seed](#rake-db-seed)
 * [Auto-reconfiguration](#autoreconfig)
 * [Sinatra](#sinatra)
@@ -241,6 +242,51 @@ Commit the current configuration to your version control system. Consider includ
 # Services
 
 AppFog automatically creates and binds a new MySQL service with the Ruby on Rails jumpstart, and the app is [automatically reconfigured](#autoreconfig) to connect to the service. For more information on services and how to connect to them manually, check out our docs on [Services](/services/overview).
+
+# Rails Console {#rails-console}
+
+To use the Rails console with your database service, [tunnel into the service](/services/tunneling), and choose 'none' when it asks you which client to start:
+
+{: .prettyprint }
+	$ af tunnel ror-example-mysql
+	Binding Service [ror-example-mysql]: OK
+	Stopping Application 'caldecott-aws': OK
+	Staging Application 'caldecott-aws': OK
+	Starting Application 'caldecott-aws': OK
+	Getting tunnel connection info: OK
+
+	Service connection info:
+	  username : uKaJETLlNmkrs
+	  password : pYfnUUY3L5jLU
+	  name     : d77261f24bbae4c889d0a231b3e70a763
+	  infra    : aws
+
+	Starting tunnel to ror-example-mysql on port 10000.
+	1: none
+	2: mysql
+	3: mysqldump
+	Which client would you like to start?: 1
+	Open another shell to run command-line clients or
+	use a UI tool to connect using the displayed information.
+	Press Ctrl-C to exit...
+
+Next, create another database section in your `config/database.yml` file with the service connection info in the `af tunnel` output:
+
+{: .prettyprint .linenums }
+	proxied-appfog: 
+	adapter: mysql2 
+	database : d77261f24bbae4c889d0a231b3e70a763
+	username : uKaJETLlNmkrs
+	password : pYfnUUY3L5jLU
+	port: 10000 
+	host: 127.0.0.1
+
+Finally, in a another terminal, run `rails console`, passing in the database environment you created:
+
+{: .prettyprint }
+    $ RAILS_ENV=proxied-appfog rails console
+
+That's it, you now have a Rails console proxied to your AppFog database service!
 
 # rake db:seed {#rake-db-seed}
 

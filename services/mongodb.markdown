@@ -18,23 +18,19 @@ You can use the [MongoMapper ORM](http://mongomapper.com/) to adapt your Ruby ap
 
 First, add the MongoMapper gem, as well as BSON for serialization of JSON-like documents, which is necessary for interfacing with the MongoDB Ruby driver:
 
-{: .prettyprint .linenums}
     gem 'mongo_mapper'
     gem 'bson_ext'
 
 And install the gems:
 
-{: .prettyprint}
     $ gem install "mongo_mapper"
 
-{: .prettyprint}
     $ gem install "bson_ext"
 
 ### Rails
 
 For a Rails app, modify the production section of your app's `config/mongo.yml` to set credentials, host, and port by parsing the JSON-formatted `VCAP_SERVICES` environment variable:
 
-{: .prettyprint .linenums}
     production:
     host: <%= JSON.parse(ENV['VCAP_SERVICES'])['mongodb-1.8'].first['credentials']['hostname'] rescue 'localhost' %>
     port: <%= JSON.parse( ENV['VCAP_SERVICES'] )['mongodb-1.8'].first['credentials']['port'] rescue 27017 %>
@@ -46,7 +42,6 @@ For other Ruby apps, use the `JSON.parse()` code to extract the information you 
 
 ### Bundle
 
-{: .prettyprint}
     $ bundle package
     $ bundle install
 
@@ -54,7 +49,6 @@ For other Ruby apps, use the `JSON.parse()` code to extract the information you 
 
 When `af` asks if you want to bind any services, enter `y` and choose `mongodb` from the menu. Provide a name for the service or accept the default:
 
-{: .prettyprint}
     $ af push --runtime ruby193
         Would you like to deploy from the current directory? [Yn]:
         Application Name: test
@@ -91,14 +85,12 @@ Check out our [doc on deploying Node.js apps](/frameworks/node).
 
 Start `mongod` in your local environment:
 
-{: .prettyprint}
     $ mongod
 
 ### Push
 
 Push your Node.js app to AppFog and bind a new MongoDB service to it:
 
-{: .prettyprint}
     $ af push
         Would you like to deploy from the current directory? [Yn]:
         Application Name: mongo-node-example
@@ -127,7 +119,6 @@ Push your Node.js app to AppFog and bind a new MongoDB service to it:
 
 Next, update your app to use the MongoDB connection information and credentials, both locally and on AppFog, by adding the following code to the beginning of `app.js`:
 
-{: .prettyprint .linenums}
     if(process.env.VCAP_SERVICES){
         var env = JSON.parse(process.env.VCAP_SERVICES);
         var mongo = env['mongodb-1.8'][0]['credentials'];
@@ -177,25 +168,21 @@ Before you start, make sure:
 
 Start `mongod` in your local environment with the following command:
 
-{: .prettyprint}
     $ mongod
 
 Confirm that Node.js is installed correctly by starting the interactive javascript console:
 
-{: .prettyprint}
     $ node
 
 Hit `Control-C` to exit.
 
 Confirm that Node Package Manager (NPM) is installed:
 
-{: .prettyprint}
     $ npm -v
     1.0.6
 
 Log in to AppFog:
 
-{: .prettyprint}
     $ af login
 
 ### Write a Basic Node.js App
@@ -204,13 +191,11 @@ We'll write a basic Node.js app called `mongo-node-example`.
 
 First, create a directory and change into it:
 
-{: .prettyprint}
     $ mkdir mongo-node-example
     $ cd mongo-node-example
 
 Create a file `app.js` with the following code:
 
-{: .prettyprint .linenums}
     var port = (process.env.VMC_APP_PORT || 3000);
     var host = (process.env.VCAP_APP_HOST || 'localhost');
     var http = require('http');
@@ -224,12 +209,10 @@ This creates a Node.js web server using `port 3000` on `localhost` that responds
 
 Start the Node.js web server locally:
 
-{: .prettyprint}
     $ node app.js
 
 In another terminal window send a request:
 
-{: .prettyprint}
     $ curl localhost:3000
     Hello World
 
@@ -241,7 +224,6 @@ Hit `Control-C` in the first terminal window to stop the web server.
 
 Next, push the application to AppFog. Hit `Enter` to accept the defaults, but enter a unique name for the app and set up a `mongodb` service:
 
-{: .prettyprint}
     $ af push
     Would you like to deploy from the current directory? [Yn]:
     Application Name: mongo-node-example
@@ -270,7 +252,6 @@ Next, push the application to AppFog. Hit `Enter` to accept the defaults, but en
 
 ### Test
 
-{: .prettyprint}
     $ curl mongo-node-example.aws.af.cm
     Hello World
 
@@ -280,7 +261,6 @@ Your app is now deployed and has a new `mongodb` service bound to it, but it's n
 
 Add the following code to the beginning of `app.js`:
 
-{: .prettyprint .linenums}
     if(process.env.VCAP_SERVICES){
         var env = JSON.parse(process.env.VCAP_SERVICES);
         var mongo = env['mongodb-1.8'][0]['credentials'];
@@ -315,19 +295,16 @@ The if statement provides two different sets of information, depending on whethe
 
 ### Test your app locally
 
-{: .prettyprint}
     $ node app.js
 
 In another terminal:
 
-{: .prettyprint}
     $ curl localhost:3000
 
 The app should return the string “Hello World”.
 
 ### Deploy your update
 
-{: .prettyprint}
     $ af update mongo-node-example
     Uploading Application:
         Checking for available resources: OK
@@ -340,7 +317,6 @@ The app should return the string “Hello World”.
 
 ### Test your app on AppFog
 
-{: .prettyprint}
     $ curl mongo-node-example.aws.af.cm
     Hello World
 
@@ -350,14 +326,12 @@ Next, install the MongoDB native drivers locally and update the app to use Mongo
 
 Install MongoDB native drivers locally:
 
-{: .prettyprint}
     $ npm install mongodb
 
 This creates a new local directory called `node_modules` in the app's root.
 
 In `app.js`, create a new function called `record_visit` that stores the server request to MongoDB:
 
-{: .prettyprint .linenums}
     var record_visit = function(req, res){
         /* Connect to the DB and auth */
         require('mongodb').connect(mongourl, function(err, conn){
@@ -380,19 +354,16 @@ The `.connect` method connects to MongoDB using either the local or AppFog `mong
 
 Update the `http.createServer` method so that it calls the `record_visit` function when the server request is made:
 
-{: .prettyprint}
     http.createServer(function (req, res) {
         record_visit(req, res);
     }).listen(port, host);
 
 ### Test your app locally
 
-{: .prettyprint}
     $ node app.js
 
 and from another terminal:
 
-{: .prettyprint}
     $ curl localhost:3000
     {"ip":"127.0.0.1","ts":"2011-12-29T23:22:38.192Z","_id":"4efcf63ecab9a5b41e000001"}
 
@@ -400,14 +371,12 @@ Hit `Control-C` in the first terminal to stop the web server.
 
 ### Test your app on AppFog
 
-{: .prettyprint}
     $ af update mongo-node-example
     $ curl mongo-node-example.aws.af.cm
     {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
 
 Create a function `print_visits` that prints the last ten visits/requests:
 
-{: .prettyprint}
     var print_visits = function(req, res){
         /* Connect to the DB and auth */
         require('mongodb').connect(mongourl, function(err, conn){
@@ -427,7 +396,6 @@ Create a function `print_visits` that prints the last ten visits/requests:
 
 Update the `createServer` method to call the new `print_visits` function:
 
-{: .prettyprint}
     http.createServer(function (req, res) {
         params = require('url').parse(req.url);
         if(params.pathname === '/history') {
@@ -442,7 +410,6 @@ Web server requests will either add the current visit to MongoDB (the default) o
 
 ### Test your app locally
 
-{: .prettyprint}
     $ curl localhost:3000
     {"ip":"127.0.0.1","ts":"2011-12-29T23:44:30.254Z","_id":"4efcfb5e2f9d30481f000003"}
     $ curl localhost:3000/history
@@ -453,7 +420,6 @@ Web server requests will either add the current visit to MongoDB (the default) o
 
 Stop the application locally and update it on AppFog.
 
-{: .prettyprint}
     $ af update mongo-node-example
     Uploading Application:
         Checking for available resources: OK
@@ -467,7 +433,6 @@ Stop the application locally and update it on AppFog.
 
 ### Test your app on AppFog
 
-{: .prettyprint}
     $ curl mongo-node-example.aws.af.cm/history
     {"ip":"127.0.0.1","ts":"2011-12-29T23:49:46.738Z","_id":"4efcfc9acbfffadc0b000001"}
     {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
@@ -476,7 +441,6 @@ Stop the application locally and update it on AppFog.
 
 Connecting your PHP app to a bound MongoDB service is simple:
 
-{: .prettyprint .linenums}
     $services_json = json_decode(getenv("VCAP_SERVICES"),true);
     $mongo_config = $services_json["mongodb-1.8"][0]["credentials"];
 

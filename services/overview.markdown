@@ -9,7 +9,6 @@ This variable contains a JSON document with a list of all credentials and connec
 
 Here's an example that of the environment variable for an app that has two MySQL database services bound to it:
 
-{: .prettyprint .linenums}
     {"mysql-5.1":[
         {
             "name":"mysql-4f700",
@@ -47,25 +46,20 @@ You can use your app's language-specific facility to call the environment variab
 
 In Java:
 
-{: .prettyprint}
     java.lang.System.getenv("VCAP_SERVICES")
 
 In Ruby:
 
-{: .prettyprint}
     ENV['VCAP_SERVICES']
 
 In Javascript:
 
-{: .prettyprint}
     process.env.VCAP_SERVICES
 
 In Python:
 
-{: .prettyprint}
     os.getenv("VCAP_SERVICES")
 
 In PHP:
 
-{: .prettyprint}
     getenv("VCAP_SERVICES")

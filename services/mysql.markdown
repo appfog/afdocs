@@ -20,7 +20,6 @@ This variable contains a JSON document with a list of all credentials and connec
 
 Here's an example that of the environment variable for an app that has two MySQL database services bound to it:
 
-{: .prettyprint .linenums}
     {"mysql-5.1":[
         {
             "name":"mysql-4f700",
@@ -58,27 +57,22 @@ You can use your app's language-specific facility to call the environment variab
 
 In Java:
 
-{: .prettyprint}
     java.lang.System.getenv("VCAP_SERVICES")
 
 In Ruby:
 
-{: .prettyprint}
     ENV['VCAP_SERVICES']
 
 In Javascript:
 
-{: .prettyprint}
     process.env.VCAP_SERVICES
 
 In Python:
 
-{: .prettyprint}
     os.getenv("VCAP_SERVICES")
 
 In PHP:
 
-{: .prettyprint}
     getenv("VCAP_SERVICES")
 
 You can distinguish between multiple MySQL instances using the  value of the `name` key.
@@ -95,7 +89,6 @@ The `credentials` object contains all of the data you need to connect to MySQL t
 
 Here's a bit more on how to use the `VCAP_SERVICES` variable to access your MySQL service: 
 
-{: .prettyprint .linenums}
     $services_json = json_decode(getenv("VCAP_SERVICES"),true);
     $mysql_config = $services_json["mysql-5.1"][0]["credentials"];
 
@@ -116,19 +109,16 @@ Here's a quick guide on migrating an existing database to an AppFog app.
 
 First, export your MySQL data into a `.sql` file. If you're using phpMyAdmin, you can just use the export tool. If you're using command line tools like `mysqldump`, use the following:
 
-{: .prettyprint}
     $ mysqldump -h <hostname> -u <username> -p<Password> <database> > /tmp/mydata.sql
 
 ### Log in and establish your tunnel
 
-{: .prettyprint}
     $ af login
     Attempting login to [https://api.appfog.com]
     Email: example@appfog.com
     Password: **************
     Successfully logged into [https://api.appfog.com]
 
-{: .prettyprint}
     $ af tunnel
     1: exampleapp1-mysql
     Which service to tunnel to?: 1
@@ -151,12 +141,10 @@ Check out our [doc on tunneling](/services/tunneling) for more info.
 
 At this point, you can access your AppFog MySQL server as if it's a local MySQL instance.
 
-{: .prettyprint}
     mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f
 
 Import the data by running this command:
 
-{: .prettyprint}
     mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f < /tmp/mydata.sql
 
 # phpMyAdmin {#phpmyadmin}
@@ -169,24 +157,20 @@ Head over to the [AppFog Console](console.appfog.com) and create a new PHP app o
 
 Then bind the service you want to access to this new PHP app. 
 
-{: .prettyprint}
     $ af bind-service mysql-example myadmin-example
 
 ### Download phpMyAdmin
 
 Then grab the phpMyAdmin source from our GitHub repo: 
 
-{: .prettyprint}
     $ git clone git://github.com/appfog/af-php-myadmin.git
 
 Change into the directory:
 
-{: .prettyprint}
     $ cd af-php-myadmin
 
 And update the plain PHP app:
 
-{: .prettyprint}
     $ af update myadmin-example
     Uploading Application:
         Checking for available resources: OK

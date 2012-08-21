@@ -14,7 +14,6 @@ Don't see your issue here? Try our [mailing list](https://groups.google.com/foru
 
 If you can log into the web console, but you're running into issues with the `af login` command, try this: 
 
-{: .prettyprint}
     $ rm ~/.af_token
     $ af login
 
@@ -22,5 +21,4 @@ If you can log into the web console, but you're running into issues with the `af
 
 The most common reason for this is your app running out of available RAM. When that happens, AppFog kills the app and attempts to re-spawn it. While it's down, you see 404. To fix this, simply add more RAM to your app: 
 
-{: .prettyprint}
     $ af mem <appname> <memory>

@@ -129,9 +129,9 @@ AppFog will create a `org.springframework.amqp.rabbit.connection.CachingConnecti
 
 ### Limitations of Auto-Reconfiguration {#spring-limits-auto-reconfig}
 
-AppFog auto-reconfigures apps only if the following items are true for your application:
+AppFog auto-reconfigures apps only if the following items are true:
 
-* You bind only one service instance of a given service type to your app. In this context, MySQL and Postgres are considered the same service type (relational database), so if you have bound both a MySQL and a Postgres service to your application, auto-reconfiguration will not occur.
+* You bind only one service instance of a given service type to your app. In this context, MySQL and Postgres are considered the same service type (relational database), so if you have bound both a MySQL and a Postgres service to your app, auto-reconfiguration will not occur.
 
 * You include only *one* bean of a matching type in your Spring app context file. For example, you can have only one bean of type `javax.sql.DataSource`.
 
@@ -141,17 +141,17 @@ Also note that if auto-reconfiguration occurs, but you have customized the confi
 
 Sometimes you may not want AppFog to auto-reconfigure your Spring app in the ways described in this section. There are two ways to opt out:
 
-* When you deploy your app using `af` or STS, specify that the framework is `JavaWeb` instead of `Spring`. Note that in this case your application will not be able to take advantage of the Spring Profiles feature.
+* When you deploy your app using `af` or STS, specify that the framework is `JavaWeb` instead of `Spring`. Note that in this case your app will not be able to take advantage of the Spring Profiles feature.
 
 * Use the `<cloud:>` namespace elements in your Spring app context file to explicitly create a bean that represents a service. This makes auto-reconfiguration unnecessary. See [Explicitly Configuring Your App to Use AppFog Services](#spring-explicit-configure)
 
 ### Explicitly Configuring Your App to Use AppFog Services {#spring-explicit-configure}
 
-The easiest way to use AppFog services in your Spring apps is to declare the `<cloud:>` namespace, point it to the AppFog Schema, then use the service-specific elements defined in the `<cloud>` namespace. For example, with just a single line of XML in your application context file you can create a JDBC data source that you can use in your specific bean definitions. You can configure multiple data sources or connection factories if your application requires it. You can also further configure these cloud services if you want, although it is completely optional because AppFog uses commonplace configuration values to create typical service instances that are adequate for most uses. In sum, using the `<cloud:>` namespace provides you with as much control as you want over the number and type of AppFog services that your application uses.
+The easiest way to use AppFog services in your Spring apps is to declare the `<cloud:>` namespace, point it to the AppFog Schema, then use the service-specific elements defined in the `<cloud>` namespace. For example, with just a single line of XML in your app context file you can create a JDBC data source that you can use in your specific bean definitions. You can configure multiple data sources or connection factories if your app requires it. You can also further configure these cloud services if you want, although it is completely optional because AppFog uses commonplace configuration values to create typical service instances that are adequate for most uses. In sum, using the `<cloud:>` namespace provides you with as much control as you want over the number and type of AppFog services that your app uses.
 
 The basic steps to update your Spring app to use any of the AppFog services are as follows:
 
-* Update your app build process to include a dependency on the `org.cloudfoundry.cloudfoundry-runtime` artifact. For example, if you use Maven to build your application, the following `pom.xml` snippet shows how to add this dependency:
+* Update your app build process to include a dependency on the `org.cloudfoundry.cloudfoundry-runtime` artifact. For example, if you use Maven to build your app, the following `pom.xml` snippet shows how to add this dependency:
 
 {: .prettyprint .linenums}
     <dependencies>
@@ -180,7 +180,7 @@ The basic steps to update your Spring app to use any of the AppFog services are 
         <!-- additional repository declarations -->
     </repositories>
 
-* In your Spring app, update all application context files that will include the AppFog service declarations, such as a data source, by adding the `<cloud:>` namespace declaration and the location of the AppFog services Schema, as shown in the following snippet:
+* In your Spring app, update all app context files that will include the AppFog service declarations, such as a data source, by adding the `<cloud:>` namespace declaration and the location of the AppFog services Schema, as shown in the following snippet:
 
 {: .prettyprint .linenums}
     <beans xmlns="http://www.springframework.org/schema/beans"
@@ -239,11 +239,11 @@ For complete information about all the `<cloud:>` elements you can use in your S
 * [`<cloud:redis-connection-factory>`: Configure a Redis Connection Factory](#cloudredis-connection-factory)
 * [`<cloud:rabbit-connection-factory>`: Configure a RabbitMQ Connection Factory](#cloudrabbit-connection-factory) --->
 
-After you have finished specifying all the AppFog services you are going to use in your app, you use the standard AppFog client commands (`af`, SpringSource Tool Suite, or the Eclipse plugin) to create instances of these services, bind them to your applications, then deploy your applications AppFog. See [Deploying Apps](#deploy) for details on how to use these tools.
+After you have finished specifying all the AppFog services you are going to use in your app, you use the standard AppFog client commands (`af`, SpringSource Tool Suite, or the Eclipse plugin) to create instances of these services, bind them to your apps, then deploy your apps to AppFog. See [Deploying Apps](#deploy) for details on how to use these tools.
 
 ### `<cloud:data-source>` {#clouddata-source}
 
-The `<cloud:data-source>` element provides an easy way for you to configure a JDBC data source for your Spring app. Later, when you actually deploy the application, you bind a particular database service instance to it, such as MySQL or Postgres.
+The `<cloud:data-source>` element provides an easy way for you to configure a JDBC data source for your Spring app. Later, when you actually deploy the app, you bind a particular database service instance to it, such as MySQL or Postgres.
 
 The following example shows a simple way to configure a JDBC data source that will be injected into a org.springframework.jdbc.core.JdbcTemplate bean:
 
@@ -529,7 +529,7 @@ In the preceding example, the channel cache size of the RabbitMQ connection fact
 
 The `<cloud:service-scan>` element scans all services bound to the app and creates a Spring bean of an appropriate type for each one that has been annoted with the `@org.springframework.beans.factory.annotation.Autowired` annotation. The `<cloud:service-scan>` element acts as a cloud equivalent of `<context:component-scan>` in core Spring, which scans the CLASSPATH for beans with certain annotations and creates a bean for each.
 
-The `<cloud:service-scan>` is especially useful during the initial phases of app development, because you can get immediate access to service beans without explicitly adding a `<cloud:>` element to your Spring application context file for each new service that you bind.
+The `<cloud:service-scan>` is especially useful during the initial phases of app development, because you can get immediate access to service beans without explicitly adding a `<cloud:>` element to your Spring app context file for each new service that you bind.
 
 The `<cloud:service-scan>` element has no attributes or child elements; for example:
 
@@ -552,7 +552,7 @@ In your Java code, you must annotate each dependency with `@Autowired` so that a
 
     ...
 
-Use of only the `@Autowired` annotation is adequate if you have bound only one service of each service type to your app. If you bind more than one (for example, you bind two different MySQL service instances to the same application) then you must also use the `@Qualifier` annotation to match the Spring bean with the specific service instance.
+Use of only the `@Autowired` annotation is adequate if you have bound only one service of each service type to your app. If you bind more than one (for example, you bind two different MySQL service instances to the same app) then you must also use the `@Qualifier` annotation to match the Spring bean with the specific service instance.
 
 For example, assume you bound two MySQL services (named `inventory-db` and `pricing-db`) to your app; use the `@Qualifier` annotation as shown in the following example to specify which service instance applies to which Spring bean:
 
@@ -562,7 +562,7 @@ For example, assume you bound two MySQL services (named `inventory-db` and `pric
 
 ### `<cloud:properties>` {#cloudproperties}
 
-The `<cloud:properties>` element exposes basic information about the app and its bound services as properties. Your application can then consume these properties using the Spring property placeholder support.
+The `<cloud:properties>` element exposes basic information about the app and its bound services as properties. Your app can then consume these properties using the Spring property placeholder support.
 
 The `<cloud:properties>` element has just a single attribute (`id`) which specifies the name of the Properties bean. Use this ID as a reference to `<context:property-placeholder>` which you can use to hold all the properties exposed by AppFog. You can then use these properties in your other bean defintions.
 
@@ -594,7 +594,7 @@ This section provides additional information about using RabbitMQ in your Spring
 * [Download](http://www.rabbitmq.com/download.html), [install](http://www.rabbitmq.com/install.html) and [configure](http://www.rabbitmq.com/configure.html) RabbitMQ.
 * [Spring AMPQ reference documentation](http://static.springsource.org/spring-amqp/docs/1.0.x/reference/html/)
 
-The RabbitMQ service is accessed through the [AMQP protocol](http://www.amqp.org/) (versions 0.8 and 0.9.1) and your app will need access to a AMQP client library in order to use the service. The Spring AMQP project enables AMQP applications to be built using Spring constructs.
+The RabbitMQ service is accessed through the [AMQP protocol](http://www.amqp.org/) (versions 0.8 and 0.9.1) and your app will need access to a AMQP client library in order to use the service. The Spring AMQP project enables AMQP apps to be built using Spring constructs.
 
 The following sample `pom.xml` file shows RabbitMQ dependencies and repositories in addition to the `cloudfoundry-runtime` dependency described above:
 
@@ -672,11 +672,11 @@ Then update your app controller/logic as follows:
 
 ### Using Spring Profiles to Conditionalize AppFog Configuration {#spring-conditionalize}
 
-The preceding sections describe how to use the `<cloud:>` namespace to easily configure services (such as data sources and RabbitMQ connection factories) for Spring apps deployed to AppFog. However, you might not always want to deploy your applications to AppFog; for example, you might sometimes want to use a local environment to test the application during iterative development. In this case, it would be useful to *conditionalize* the application configuration so that only specific fragments are activated when a certain condition is true. Setting up such conditionalized configuration makes your application portable to many different environments so that you do not have to manually change the configuration when you deploy it to, for example, your local environment and then to AppFog. To enable this, use the Spring *profiles* feature, available in Spring Framework 3.1 or later.
+The preceding sections describe how to use the `<cloud:>` namespace to easily configure services (such as data sources and RabbitMQ connection factories) for Spring apps deployed to AppFog. However, you might not always want to deploy your apps to AppFog; for example, you might sometimes want to use a local environment to test the app during iterative development. In this case, it would be useful to *conditionalize* the app configuration so that only specific fragments are activated when a certain condition is true. Setting up such conditionalized configuration makes your app portable to many different environments so that you do not have to manually change the configuration when you deploy it to, for example, your local environment and then to AppFog. To enable this, use the Spring *profiles* feature, available in Spring Framework 3.1 or later.
 
 The basic idea is that you group the configuration for a specific environment using the profile attribute of a nested `<beans>` element in the appropriate Spring app context file. You can create your own custom profiles, but the ones that are most relevant in the context of AppFog are `default` and `cloud`.
 
-When you deploy a Spring app to AppFog, AppFog automatically enables the `cloud` profile. This allows for a pre-defined, convenient location for AppFog-specific application configuration. You should then group all specific usages of the `<cloud:>` namespace within the `cloud` profile block to allow the application to run outside of AppFog environments. You then use the `default` profile (or a custom profile) to group the non-AppFog configuration that will be used if you deploy your application to a non-AppFog environment.
+When you deploy a Spring app to AppFog, AppFog automatically enables the `cloud` profile. This allows for a pre-defined, convenient location for AppFog-specific app configuration. You should then group all specific usages of the `<cloud:>` namespace within the `cloud` profile block to allow the app to run outside of AppFog environments. You then use the `default` profile (or a custom profile) to group the non-AppFog configuration that will be used if you deploy your app to a non-AppFog environment.
 
 Here is an example of a Spring `MongoTemplate` being populated from two alternately configured connection factories. When running on AppFog (`cloud` profile), the connection factory is automatically configured. When not running on AppFog (`default` profile), the connection factory is manually configured with the connection settings to a running MongoDB instance.
 
@@ -719,11 +719,11 @@ See the [SpringSource Blog](http://blog.springsource.com/2011/02/11/spring-frame
 
 ### Sending Email From Spring Apps Deployed to AppFog {#spring-email}
 
-In order to prevent spam and other abuse, SMTP is blocked from apps running in AppFog. However, your applications can still send email when deployed to AppFog, as described in this section.
+In order to prevent spam and other abuse, SMTP is blocked from apps running in AppFog. However, your apps can still send email when deployed to AppFog, as described in this section.
 
-Service providers, such as [SendGrid](http://sendgrid.com/), can send email on your behalf via HTTP web services, which is an option you can use when deploying your app to AppFog. If, however, you also run your application inside your datacenter, you might want to use your corporate SMTP servers in that case. This is a good example of using [Spring Profiles](#spring-conditionalize) to conditionalize how your application sends email, depending on where exactly the application happens to be deployed. This makes your application portable to different environments without you having to manually update its configuration.
+Service providers, such as [SendGrid](http://sendgrid.com/), can send email on your behalf via HTTP web services, which is an option you can use when deploying your app to AppFog. If, however, you also run your app inside your datacenter, you might want to use your corporate SMTP servers in that case. This is a good example of using [Spring Profiles](#spring-conditionalize) to conditionalize how your app sends email, depending on where exactly the app happens to be deployed. This makes your app portable to different environments without you having to manually update its configuration.
 
-The following snippet of a Spring app context shows how to specify that your application should use SendGrid to send email when the application is running in AppFog; note the use of the `cloud` profile:
+The following snippet of a Spring app context shows how to specify that your app should use SendGrid to send email when the app is running in AppFog; note the use of the `cloud` profile:
 
 {: .prettyprint .linenums}
     <?xml version="1.0" encoding="UTF-8"?>
@@ -746,11 +746,11 @@ The following snippet of a Spring app context shows how to specify that your app
 
     </beans>
 
-In the example, `example.SendGridMailSender` is the Spring bean that sends email using the SendGrid service provider; however, this bean will only be activated when your app is deployed to AppFog. If your application is actually running inside your datacenter, then your default email server is used.
+In the example, `example.SendGridMailSender` is the Spring bean that sends email using the SendGrid service provider; however, this bean will only be activated when your app is deployed to AppFog. If your app is actually running inside your datacenter, then your default email server is used.
 
 ### Accessing AppFog Properties {#spring-accessing-properties}
 
-AppFog exposes a number of app and service properties directly into its deployed applications. Your deployed application can in turn consume these properties. The properties exposed by AppFog include basic information about the application, such as its name and the Cloud provider, and detailed connection information for all services currently bound to the application.
+AppFog exposes a number of app and service properties directly into its deployed apps. Your deployed app can in turn consume these properties. The properties exposed by AppFog include basic information about the app, such as its name and the Cloud provider, and detailed connection information for all services currently bound to the app.
 
 Service properties generally take one of the following forms:
 
@@ -760,7 +760,7 @@ Service properties generally take one of the following forms:
 
 where `{service-name}` refers to the name you gave the service when you bound it to your app at deploy time. The specific connection properties that are available depend on the type of service; see the table at the end of this section for the complete list.
 
-For example, assume that in `af` you created a Postgres service called `my-postgres` and then bound it to your app; AppFog exposes the following properties about this service that your application in turn can consume:
+For example, assume that in `af` you created a Postgres service called `my-postgres` and then bound it to your app; AppFog exposes the following properties about this service that your app in turn can consume:
 
 {: .prettyprint .linenums}
     cloud.services.my-postgres.connection.host
@@ -773,7 +773,7 @@ For example, assume that in `af` you created a Postgres service called `my-postg
     cloud.services.my-postgres.plan
     cloud.services.my-postgres.type
 
-For convenience, if you have bound just one service of a given type to your app, AppFog creates an alias based on the service type instead of the service name. For example, if only one MySQL service is bound to an application, the properties will take the form `cloud.services.mysql.connection.{property}`. AppFog uses the following aliases in this case:
+For convenience, if you have bound just one service of a given type to your app, AppFog creates an alias based on the service type instead of the service name. For example, if only one MySQL service is bound to an app, the properties will take the form `cloud.services.mysql.connection.{property}`. AppFog uses the following aliases in this case:
 
 * `mysql`
 * `mongodb`
@@ -783,7 +783,7 @@ For convenience, if you have bound just one service of a given type to your app,
 
 If you want to use these AppFog properties in your app, use a Spring property placholder inside of a `cloud` profile; Spring profiles are briefly described in [Using Spring Profiles to Conditionalize AppFog Configuration](#spring-conditionalize).
 
-For example, assume that you have bound a MySQL service called `spring-mysql` to your app, but your application requires a c3p0 connection pool instead of the connection pool provided by AppFog. But you still want to use the same connection properties defined by AppFog for the MySQL service, in particular the username and password and JDBC URL. The following Spring application context snippet shows how you might implement this:
+For example, assume that you have bound a MySQL service called `spring-mysql` to your app, but your app requires a c3p0 connection pool instead of the connection pool provided by AppFog. But you still want to use the same connection properties defined by AppFog for the MySQL service, in particular the username and password and JDBC URL. The following Spring app context snippet shows how you might implement this:
 
 {: .prettyprint .linenums}
     <beans profile="cloud">
@@ -796,7 +796,7 @@ For example, assume that you have bound a MySQL service called `spring-mysql` to
        </bean>
     </beans>
 
-The following table lists all the app and service properties that AppFog exposes to deployed applications. In the property names, `{service-name}` refers to the actual name of the bound service.
+The following table lists all the app and service properties that AppFog exposes to deployed apps. In the property names, `{service-name}` refers to the actual name of the bound service.
 
 <table class="table table-bordered table-striped attributes">
 <thead>
@@ -1008,3 +1008,98 @@ The following table lists all the app and service properties that AppFog exposes
 </table>
 
 # Grails {#grails}
+
+[Grails](http://grails.org/) is a framework for rapidly developing web apps that can be deployed to any Java servlet container, such as Tomcat. Based on the dynamic language [Groovy](http://groovy.codehaus.org/) and the [Spring](http://www.springframework.org/) framework, it brings the paradigm of Convention over Configuration to the Java platform with the expressiveness of a Java-like dynamic language.
+
+This guide assumes that you already have Java and [Grails](http://grails.org/Installation) installed and know how to build a simple Grails app. That’s all you need to start working with AppFog.
+
+* [Services](#grails-services)
+* [Deployment](#deployment)
+* [Further Reading](#further-reading)
+
+### Services {#grails-services}
+
+AppFog provides a rich set of services, all of which can be used by Grails apps: MySQL, PostgreSQL, MongoDB, Redis, and RabbitMQ. Each of these services has a corresponding Grails plug-in. When these plug-ins are installed, you don’t have to configure any connection settings for the associated AppFog service - it’s done all automatically when your app is deployed. And when you first deploy your app with cf-push, Grails will ask you whether you want to create and bind the relevant services based on which plug-ins you have installed.
+
+#### SQL services
+
+Currently, you can either use MySQL or Postgres on AppFog if you want a relational database for your app. All you need to access them is the [Hibernate plug-in](http://grails.org/plugin/hibernate), which is included by default in all new Grails apps. You also need to make sure that the relevant driver is available to your app, for example by declaring it in `BuildConfig.groovy`:
+
+{: .prettyprint }
+    grails.project.dependency.resolution = {
+        ...
+        dependencies {
+            runtime "mysql:mysql-connector-java:5.1.18"
+            ...
+        }
+    }
+
+and that the JDBC driver class is set in `DataSource.groovy`:
+
+{: .prettyprint }
+    environments {
+        production {
+            dataSource {
+                driverClassName = "com.mysql.jdbc.Driver"
+                ...
+            }
+        }
+    }
+
+In this case, we’re going to deploy the app for the standard production environment, but you could easily set up a ‘cloud’ or similar environment. Also, you can easily configure the JDBC URL, username and password for the production environment to point to a local MySQL database because those settings are overridden when the app is deployed to AppFog.
+
+<!--- ### Redis
+To use the key-value store [Redis](http://redis.io/), you need to either install the [Redis plug-in](http://grails.org/plugin/redis) or [Redis for GORM](http://grails.org/plugin/redis-gorm). As with the SQL stores, when you deploy your app to AppFog it will automatically use whichever Redis service has been bound to it.
+
+The former plug-in provides low-level access to Redis via a `redis` bean, while the latter allows you to map GORM domain classes to Redis. See the [plug-in documentation](http://grails.github.com/inconsequential/redis/manual/index.html) for more information. --->
+
+#### MongoDB
+
+To use the document store [MongoDB](http://www.mongodb.org/), just install the [MongoDB](http://grails.org/plugin/mongodb) plug-in.
+
+The MongoDB plug-in for Grails allows you to map GORM entities to MongoDB Collections. It also provides a low-level API for accessing the MongoDB driver for Java directly. Refer to the [plug-in documentation](http://grails.github.com/inconsequential/mongo/manual/index.html) for more information.
+
+### Deployment {#deployment}
+
+Deploying your Grails app to AppFog is simple. Just generate your `.war` file, then push: 
+
+{: .prettyprint }
+    $ grails prod war
+    | Done creating WAR target/af-java-grails-example-0.1.war
+    $ cd target
+    $ af push
+    Would you like to deploy from the current directory? [Yn]:
+    Application Name: grails-example
+    Detected a Java SpringSource Grails Application, is this correct? [Yn]:
+    1: AWS US East - Virginia
+    2: AWS EU West - Ireland
+    3: AWS Asia SE - Singapore
+    4: Rackspace AZ 1 - Dallas
+    Select Infrastructure: 1
+    Application Deployed URL [grails-example.aws.af.cm]:
+    Memory reservation (128M, 256M, 512M, 1G, 2G) [512M]:
+    How many instances? [1]:
+    Bind existing services to 'grails-example'? [yN]:
+    Create services to bind to 'grails-example'? [yN]: y
+    1: mongodb
+    2: mysql
+    3: postgresql
+    What kind of service?: 2
+    Specify the name of the service [mysql-6dc25]:
+    Create another? [yN]:
+    Would you like to save this configuration? [yN]:
+    Creating Application: OK
+    Creating Service [mysql-6dc25]: OK
+    Binding Service [mysql-6dc25]: OK
+    Uploading Application:
+      Checking for available resources: OK
+      Processing resources: OK
+      Packing application: OK
+      Uploading (11K): OK
+    Push Status: OK
+    Staging Application 'grails-example': OK
+    Starting Application 'grails-example': OK
+
+### Further Reading {#further-reading}
+
+For more information, check out [Cloud Foundry's documentation on Grails](http://docs.cloudfoundry.com/frameworks/java/spring/grails.html).

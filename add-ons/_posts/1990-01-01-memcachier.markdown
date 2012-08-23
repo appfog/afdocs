@@ -10,7 +10,7 @@ The information below will quickly get you up and running with the MemCachier ad
 
 ### Install MemCachier
 
-In the “Add-ons” tab in your app console click “Install” for the Searchify add-on. That’s it!
+In the “Add-ons” tab in your app console click “Install” for the MemCachier add-on. That’s it!
 
 Next, set up your app to start using the cache. We have documentation for the following languages and frameworks: 
 

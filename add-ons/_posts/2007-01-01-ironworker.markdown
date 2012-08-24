@@ -75,22 +75,6 @@ Use the `getTaskDetails()` method.
 
     echo $details->status; # prints 'queued', 'complete', 'error' etc.
 
-### Connect Your Worker to Your PHP Fog App's Database {#database}
-
-PHP Fog doesn't allow remote connections to your app's database, but we've made a special provision for IronWorker workers. Here are the settings you'll need for that: 
-
-    Host: mysql-proxy.phpfog.com
-
-The port you should use depends on which particular database your app is connected to. You can check which database you're connected to by going to your PHP Fog app console. Click on the "Env. Variables" tab and check the value of the variable called "`MYSQL_DB_HOST`".
-
-`db01.phpfog.com`:
-
-    Port: 3306
-
-`mysql-shared-02.phpfog.com`:
-    
-    Port: 3307
-
 ### And More...
 
 You can also pass payloads to your tasks, set progress status, logs, etc. For more information, check out some of these resources:

@@ -252,9 +252,9 @@
 
 <h1 id="your-api-key">Your API Key</h1>
 
-<p>AppFog keeps your StatsMix API key in an environment variable called <code>STATSMIX_URL</code>, which you can retrieve using the command <code>ENV['STATSMIX_URL']</code>. Populate your API key for the StatsMix gem with this: </p>
+<p>AppFog keeps your StatsMix API key in an environment variable called <code>STATSMIX_API_KEY</code>, which you can retrieve using the command <code>ENV['STATSMIX_API_KEY']</code>. Populate your API key for the StatsMix gem with this: </p>
 
-<pre class="prettyprint"><code>$ StatsMix.api_key = ENV['STATSMIX_URL']
+<pre class="prettyprint"><code>$ StatsMix.api_key = ENV['STATSMIX_API_KEY']
 </code></pre>
 
 <h1 id="using-statsmix-to-track-events">Using StatsMix to Track Events</h1>
@@ -353,7 +353,7 @@ StatsMix.track("Blog Posts", 1, {:generated_at =&gt; 1.days.ago})
 <p>The basic pattern:</p>
 
 <pre class="prettyprint linenums"><code>require "StatsMix.php";
-StatsMix::set_api_key(getenv("STATSMIX_URL");
+StatsMix::set_api_key(getenv("STATSMIX_API_KEY");
 StatsMix::track($name_of_metric,$value = 1,$options = array());
 </code></pre>
 

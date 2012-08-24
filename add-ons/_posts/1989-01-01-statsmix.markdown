@@ -54,10 +54,10 @@ Add the following to your Gemfile, then restart the server:
 
 # Your API Key
 
-AppFog keeps your StatsMix API key in an environment variable called `STATSMIX_URL`, which you can retrieve using the command `ENV['STATSMIX_URL']`. Populate your API key for the StatsMix gem with this: 
+AppFog keeps your StatsMix API key in an environment variable called `STATSMIX_API_KEY`, which you can retrieve using the command `ENV['STATSMIX_API_KEY']`. Populate your API key for the StatsMix gem with this: 
 
 {: .prettyprint }
-    $ StatsMix.api_key = ENV['STATSMIX_URL']
+    $ StatsMix.api_key = ENV['STATSMIX_API_KEY']
 
 # Using StatsMix to Track Events
 
@@ -157,7 +157,7 @@ The basic pattern:
 
 {: .prettyprint .linenums}
 	require "StatsMix.php";
-	StatsMix::set_api_key(getenv("STATSMIX_URL");
+	StatsMix::set_api_key(getenv("STATSMIX_API_KEY");
 	StatsMix::track($name_of_metric,$value = 1,$options = array());
 
 Push a stat with the value 1 (default) to a metric called "My First Metric":

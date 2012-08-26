@@ -9,12 +9,12 @@ In the "Add-ons" tab in your app console click "Install" for the MongoHQ add-on.
 
 Installing the MongoHQ add-on automatically sets an environment variable for your app called "`MONGOHQ_URL`". You can access this in your code with `getenv(["MONGOHQ_URL")`. This variable includes the full URI including the hostname, database path, username and password. It looks like this: 
 
-{: .prettyprint}
+
     mongodb://username:password@host:port/database
 
 Using MongoDB from a PHP app is very easy. The required extensions are already installed on all servers, so you can use the Mongo objects from your app immediately. Here is a little sample app you can use to test out your newly created MongoDB:
 
-{: .prettyprint .linenums}
+
     <?php
         // connect
         $m = new Mongo(getenv("MONGOLAB_URI"));

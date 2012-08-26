@@ -11,7 +11,7 @@ AppFog does not yet have a persistent data storage system, though we're working 
 
 You can connect your PHP app to AppFog services by using the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. You can access the variable in PHP like this: 
 
-{: .prettyprint}
+
     getenv('VCAP_SERVICES')
 
 For more information on this, check out our [Services Overview](/services/overview) page.
@@ -26,14 +26,14 @@ The following is a step-by-step guide to deploying a WordPress app to AppFog.
 
 Then create your `wp-config.php` file:
 
-{: .prettyprint}
+
     $ cp wp-config-sample.php wp-config.php
 
 ### Services
 
 In `wp-config.php`, replace: 
 
-{: .prettyprint .linenums}
+
     /** The name of the database for WordPress */
     define('DB_NAME', 'database_name_here');
 
@@ -48,7 +48,7 @@ In `wp-config.php`, replace:
 
 with: 
 
-{: .prettyprint .linenums}
+
     $services = getenv("VCAP_SERVICES");
     $services_json = json_decode($services,true);
     $mysql_config = $services_json["mysql-5.1"][0]["credentials"];
@@ -61,7 +61,7 @@ with:
 
 ### Deploy to AppFog
 
-{: .prettyprint}
+
     $ af push wordpress-example
     Would you like to deploy from the current directory? [Yn]:
     Detected a PHP Application, is this correct? [Yn]:

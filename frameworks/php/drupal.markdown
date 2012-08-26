@@ -11,7 +11,7 @@ AppFog does not yet have a persistent data storage system, though we're working 
 
 You can connect your PHP app to AppFog services by using the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. You can access the variable in PHP like this: 
 
-{: .prettyprint}
+
     getenv('VCAP_SERVICES')
 
 For more information on this, check out our [Services Overview](/services/overview) page.
@@ -26,14 +26,14 @@ The following is a step-by-step guide to deploying a Drupal app to AppFog.
 
 Then create your `settings.php` file:
 
-{: .prettyprint}
+
     $ cp ./sites/default/default.settings.php ./sites/default/settings.php
 
 ### Services
 
 In `settings.php`, replace `$databases = array();` with:
 
-{: .prettyprint .linenums}
+
     $services = getenv('VCAP_SERVICES'); 
     $services_json = json_decode($services,true); 
     $mysql_config = $services_json["mysql-5.1"][0]["credentials"]; 

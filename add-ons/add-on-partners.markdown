@@ -36,14 +36,14 @@ PUT to path as defined in `callback_url` on provisioning call.
        
 Request Body:
 
-{: .prettyprint}
+
     {
         "config":{"VAR_XYZ":"http://partner.com/5678ADFD"} 
     }
         
 Response:
 
-{: .prettyprint}
+
     200 OK
 
 
@@ -55,7 +55,7 @@ Request: `POST /phpfog/resources`
   
 Request Body:
 
-{: .prettyprint}
+
     {
         "customer_id":"user@email.com",
         "plan":"free",
@@ -65,7 +65,7 @@ Request Body:
        
 Response Body:
 
-{: .prettyprint}
+
     {
         "id":789,
         "config":{"ADDONNAME_VAR1":"some configuration value"},
@@ -93,7 +93,7 @@ Request Body: none
 
 Response: 
 
-{: .prettyprint}
+
     200 OK
 
 
@@ -123,7 +123,7 @@ Add-on partners should provide the manifest file out-of-band by emailing it to t
 
 `example-manifest.json`
 
-{: .prettyprint .linenums}
+
     {
         "id":"provider",
         "name":"Provider Inc",
@@ -161,7 +161,7 @@ Once a resource is fully provisioned, a "Manage" button will appear in the AppFo
 
 After the user clicks the button, they will be redirected to the following generated `URL`:
 
-{: .prettyprint}
+
     https://partner.com/appfog/resources/:id?token=:token&timestamp=:timestamp
   
 
@@ -173,7 +173,7 @@ The salt is the "`sso_salt`" variable as defined in the manifest.
 
 The timestamp is the current UNIX timestamp.
 
-{: .prettyprint}
+
     token = sha1(id + ':' + salt + ':' + timestamp)
 
 After the partner validates the salt (shared secret) and the timestamp (we recommend 30 seconds), they can be allowed to manage the resource as defined by the `id`.

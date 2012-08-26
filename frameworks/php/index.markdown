@@ -11,7 +11,7 @@ weight: 1
 
 For the most reliable experience, make sure you have the same version of PHP installed on your local development environment as the target AppFog instance. You can check the available runtimes by running: 
 
-{: .prettyprint }
+
     $ af runtimes
     
     +--------------+-----------------+-----------+
@@ -38,7 +38,7 @@ AppFog does not yet have a persistent data storage system, though we're working 
 
 You can connect your PHP app to AppFog services by using the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. You can access the variable in PHP like this: 
 
-{: .prettyprint}
+
     getenv('VCAP_SERVICES')
 
 For more information on this, check out our [Services Overview](/services/overview) page.
@@ -49,18 +49,18 @@ For more information on this, check out our [Services Overview](/services/overvi
 
 Create a directory for the app and change into it:
 
-{: .prettyprint }
+
     $ mkdir php-example
     $ cd php-example
 
 Create an `index.php` file with the following:
 
-{: .prettyprint .linenums}
+
     <?php echo "Hello world!"; ?>
 
 ### Deploy to AppFog
 
-{: .prettyprint }
+
     $ af push php-example
     Would you like to deploy from the current directory? [Yn]:
     Detected a PHP Application, is this correct? [Yn]:
@@ -79,7 +79,7 @@ Create an `index.php` file with the following:
     Staging Application 'php-example': OK
     Starting Application 'php-example': OK
 
-{: .prettyprint }
+
     $ af curl php-example.aws.af.cm
     Hello world!% 
 
@@ -91,7 +91,7 @@ AppFog does not support direct access to `php.ini`. However, the `AllowOverride`
 
 Setting the value of a directive in `.htaccess` is easy. Simply place the following line of code in your `.htaccess` file, and insert the name and value of the directive you want to use:
 
-{: .prettyprint}
+
     php_value <name> <value>
 
 For more information on this topic, check out the following references: 
@@ -107,7 +107,7 @@ Please consult the [PHP manual on `ini_set()`](http://www.php.net/manual/en/func
 
 You can modify your document root adding the following into your `.htaccess`:
 
-{: .prettyprint .linenums}
+
     RewriteEngine on
     RewriteCond %{HTTP_HOST} ^domain.com$ [NC,OR]
     RewriteCond %{HTTP_HOST} ^www.domain.com$

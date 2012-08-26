@@ -11,7 +11,7 @@ AppFog autodetects your Sintra app by searching for `require 'sinatra'` in the `
 
 If you use Bundler to load Sinatra, AppFog may not recognize your app. In this case, you can simply manually tell AppFog that it's a Sinatra app when you push your code: 
 
-{: .prettyprint}
+
     $ af push
     Would you like to deploy from the current directory? [Yn]:
     Application Name: sinatra-example
@@ -36,7 +36,7 @@ If you use Bundler to load Sinatra, AppFog may not recognize your app. In this c
 
 <!--- You can put a comment in your app’s main file like this:
 
-{: .prettyprint .linenums}
+
     # require 'sinatra'   # required for framework detection in AppFog...
     require 'rubygems'
     require 'bundler'
@@ -48,7 +48,7 @@ If you use Bundler to load Sinatra, AppFog may not recognize your app. In this c
 
 #### Gemfile
 
-{: .prettyprint .linenums}
+
     source 'http://rubygems.org'
 
     gem 'sinatra'
@@ -70,7 +70,7 @@ The name of this sinatra app will be `sinatra_dm.rb`.
 
 <!---    # require 'sinatra'   # required for framework detection in AppFog. --->
 
-{: .prettyprint .linenums}
+
     # Sample Sinatra app with DataMapper
     # Based on http://sinatra-book.gittr.com/ DataMapper example
     require 'rubygems'
@@ -128,7 +128,7 @@ The name of this sinatra app will be `sinatra_dm.rb`.
 
 #### Index
 
-{: .prettyprint .linenums}
+
     <!-- views/index.erb -->
 
     <h1>All Blog Posts</h1>
@@ -142,7 +142,7 @@ The name of this sinatra app will be `sinatra_dm.rb`.
 
 #### New
 
-{: .prettyprint .linenums}
+
     <!-- views/new.erb -->
 
     <h1>Create a new blog post</h1>
@@ -154,7 +154,7 @@ The name of this sinatra app will be `sinatra_dm.rb`.
 
 #### Post
 
-{: .prettyprint .linenums}
+
     <!-- views/post.erb -->
 
     <h1><%= @post.title %></h1>
@@ -163,13 +163,13 @@ The name of this sinatra app will be `sinatra_dm.rb`.
 
 ### Test Locally
 
-{: .prettyprint}
+
     $ ruby sinatra_dm.rb
     
 Then visit <http://localhost:4567/> in your browser.
 
 ### Bundle and Push
 
-{: .prettyprint .linenums}
+
     $ bundle install; bundle package
     $ af push

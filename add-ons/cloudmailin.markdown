@@ -17,7 +17,7 @@ Go to "Edit Target" and specify the address in your application that will receiv
 
 Here's the code that goes into that page:
 
-{: .prettyprint .linenums}
+
     <?php
         $from = $_POST['from'];
         $to = $_POST['to'];

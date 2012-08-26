@@ -33,7 +33,7 @@ Full PHP client documentation and download links are available [here](http://www
 
 Once you've installed the client library, you can use it to add documents to your index as well as to perform searches. The following code sample demonstrates basic document indexing and searching.
 
-{: .prettyprint .linenums}
+
     <?php
         include_once "indextank.php";
 
@@ -46,7 +46,7 @@ Once you've installed the client library, you can use it to add documents to you
 Once you have an instance of the client all you need is the content you want to index.
 The simplest way to add a document is sending that content in a single field called "text":
 
-{: .prettyprint .linenums}
+
     <?php
         $text = 'this is a text';
         $doc_id = 1234;
@@ -55,7 +55,7 @@ The simplest way to add a document is sending that content in a single field cal
 
 That's it, you've indexed a document! You can now search the index for any indexed document by simply providing the search query:
 
-{: .prettyprint .linenums}
+
     <?php
         $query = "<YOUR QUERY>";
         $res = $index->search($query);
@@ -71,7 +71,7 @@ An index may be deleted and re-created anytime to clean it up, either from code 
 
 #### Deleting an index
 
-{: .prettyprint .linenums}
+
     <?php
         include_once "indextank.php";
         $API_URL = getenv('SEARCHIFY_API_URL');
@@ -83,7 +83,7 @@ An index may be deleted and re-created anytime to clean it up, either from code 
 
 #### Creating a new index
 
-{: .prettyprint .linenums}
+
     <?php
         $client = new Indextank_Api($API_URL);
 

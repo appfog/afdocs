@@ -24,17 +24,17 @@ description: "Code deployment made easy."
 
 ### Usage {#usage}
 
-{: .prettyprint}
+
     $ af [options] command [<args>] [command_options]
 
 For more information, try:
 
-{: .prettyprint}
+
     $ af help [command]
 
 or
 
-{: .prettyprint}
+
     $ af help options
 
 ### Getting Started {#getting-started}
@@ -203,7 +203,7 @@ Note: For multi-app hierarchies, these will operate only on the sub-app you’re
 
 The easiest way to get going is to generate a manifest document from basic app info. If you haven’t pushed your app yet, you can start with `af push` as usual, which will ask if you want to save the configurations as a manifest document:
 
-{: .prettyprint}
+
     $ af push
     Would you like to deploy from the current directory? [Yn]:
     Application Name: php-example
@@ -234,7 +234,7 @@ The easiest way to get going is to generate a manifest document from basic app i
 
 As you can see, just before pushing, we saved the deployment configurations in `manifest.yml` in the same directory. Let’s take a peek at the file:
 
-{: .prettyprint .linenums}
+
     ---
     applications:
       .:
@@ -256,7 +256,7 @@ The manifest document has captured all of the configuration that we entered abov
 
 Now if we try pushing again, `af push` will use this to automate everything:
 
-{: .prettyprint}
+
     $ af delete php-example
     Provisioned service [mysql-398b1] detected, would you like to delete it? [yN]: y
     Deleting application [php-example]: OK
@@ -284,7 +284,7 @@ Now that you have a manifest document, you don’t really have to do anything el
 
 A manifest document can inherit properties from a parent manifest like so:
 
-{: .prettyprint}
+
     inherit: path/to/parent.yml
 
 This slurps in everything from the parent document ensuring that properties defined in the child manifest are deep-merged with the parent. The symbols are resolved after this merge has taken place, so any properties you set in the child manifest may be used in properties set in the parent.
@@ -305,7 +305,7 @@ Otherwise, symbol resolution simulates lexical scoping, so you can define arbitr
 
 For example, the following parent:
 
-{: .prettyprint .linenums}
+
     applications:
       ./foo:
         name: bar
@@ -313,7 +313,7 @@ For example, the following parent:
 
 ...combined with this child manifest:
 
-{: .prettyprint .linenums}
+
     applications:
       ./foo:
         name: baz
@@ -328,7 +328,7 @@ Our `publisher` app will publish messages every second, with the message startin
 
 To start with, you may want to arrange your apps like so:
 
-{: .prettyprint}
+
     ./parent-app
     ./parent-app/publisher
     ./parent-app/subscriber
@@ -337,7 +337,7 @@ This will make using the manifest document more natural.
 
 Switch to the `parent-app` directory and use `af manifest` to create your manifest document:
 
-{: .prettyprint}
+
     $ cd parent-app
     parent-app $ af manifest
     Configure for which application? [.]: ./publisher
@@ -372,7 +372,7 @@ In this single interactive session we’ve configured a manifest that defines tw
 
 There’s one thing missing, though. We didn’t specify any dependencies between the apps. If we were to start it now, we could lose some data if the publisher starts before the subscriber:
 
-{: .prettyprint}
+
     parent-app $ af push
     Would you like to deploy from the current directory? [Yn]:
     Pushing application 'publisher'...
@@ -389,7 +389,7 @@ As you can see, we’ve lost some data here. In the time between the publisher s
 
 We can fix this by editing the `manifest.yml` document to indicate that the publisher depends on the subscriber being started:
 
-{: .prettyprint .linenums}
+
     ---
     applications:
     ./publisher:
@@ -400,7 +400,7 @@ We can fix this by editing the `manifest.yml` document to indicate that the publ
 
 Now let’s delete both apps and retry.
 
-{: .prettyprint}
+
     parent-app $ af delete publisher
     Deleting application [publisher]: OK
 
@@ -418,6 +418,6 @@ Now let’s delete both apps and retry.
 
 As you can see, now the subscriber starts before the publisher, so we shouldn’t have any data loss this time.
 
-{: .prettyprint}
+
     parent-app $ curl subscriber-bf872.aws.af.cm
     Received: ["1", "2", "3", "4", "5", "6", "7"]

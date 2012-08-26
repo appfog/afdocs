@@ -27,7 +27,7 @@ There are three basic actions you can perform on a message queue:
 
 These three simple actions are the main actions you'll typically use. Here's some sample code using our client that shows how to use these functions.
 
-{: .prettyprint .linenums}
+
     // Get package here: https://github.com/iron-io/iron_mq_php
     require_once "IronMQ.class.php"
 

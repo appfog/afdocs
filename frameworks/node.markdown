@@ -7,7 +7,7 @@ weight: 1
 
 For the most reliable development experience, make sure you have the same version of Node.js installed on your local development environment as your target AppFog instance. You can check the available runtimes by running:
 
-{: .prettyprint }
+
     $ af runtimes
     
     +--------------+-----------------+-----------+
@@ -42,12 +42,12 @@ You can install your dependencies to your local machine in one of two ways: dire
 
 Direct installation of `express`, for example, would look like this: 
 
-{: .prettyprint }
+
     $ npm install express
 
 Or you can have a `package.json` file that names the dependency: 
 
-{: .prettyprint .linenums}
+
     {
         "name":"hello-node",
         "version":"0.0.1",
@@ -58,7 +58,7 @@ Or you can have a `package.json` file that names the dependency:
 
 Once you have the `package.json` file ready, you can simply run:
 
-{: .prettyprint }
+
     $ npm install
 
 This will install all of the packages named in `package.json`.
@@ -71,7 +71,7 @@ AppFog also supports [npm shrinkwrap](https://npmjs.org/doc/shrinkwrap.html). Th
 
 To make use of this feature, simply run:
 
-{: .prettyprint}
+
     $ npm shrinkwrap
 
 This command looks at your `node_modules` directory and generates an `npm-shrinkwrap.json` file, which reflects the whole tree of dependencies with fixed versions. This functions as a snapshot of your app's dependencies in much the same way that `Gemfile.lock` does for Ruby apps. This file guarantees that AppFog provides the exact node module versions to avoid compatibility issues.
@@ -80,7 +80,7 @@ By default, AppFog uses the `node_modules` directory unless you explicitly tell 
 
 `cloudfoundry.json`:
 
-{: .prettyprint}
+
     { "ignoreNodeModules" : true }
 
 If you deploy your app with those conditions in place, AppFog will install the node modules to the app during the staging process. If the require node module doesn't work with the node engine that the app is running on, however, AppFog will not install the module.
@@ -93,13 +93,13 @@ The following is a step-by-step guide to writing and deploying a â€œhello worldâ
 
 Create a directory for the app and change into it:
 
-{: .prettyprint }
+
     $ mkdir hello-node
     $ cd hello-node
 
 Create a `package.json` file with the following contents:
 
-{: .prettyprint .linenums}
+
     {
         "name":"hello-node",
         "version":"0.0.1",
@@ -110,12 +110,12 @@ Create a `package.json` file with the following contents:
 
 Use `npm` (Node Package Manager) to install the dependencies named in `package.json`:
 
-{: .prettyprint }
+
     $ npm install
 
 Create a file called `app.js` with the following code:
 
-{: .prettyprint .linenums}
+
     var app = require('express').createServer();
     app.get('/', function(req, res) {
         res.send('Hello from AppFog');
@@ -126,12 +126,12 @@ Notice that AppFog passes the listen port for your app in an environment variabl
 
 ### Deploy the App
 
-{: .prettyprint}
+
     $ af login
 
 Push the app. You can hit `Enter` to accept the defaults at most of the prompts, but be sure to enter a unique `URL` for the app. Here's an example push:
 
-{: .prettyprint}
+
     $ af push
     Would you like to deploy from the current directory? [Yn]:
     Application Name: hello-node
@@ -162,7 +162,7 @@ Express supports arbitrary environments, like `production` and `development`. Yo
 
 Use the `af create-service <service> <name> <app>` command to create the `mongodb` service and bind it in one step:
 
-{: .prettyprint}
+
     $ af create-service mongodb mongo-example hello-node
     Creating Service: OK
     Binding Service [mongo-example]: OK
@@ -176,7 +176,7 @@ Your app now has a new `mongodb` service bound to it, but it's not using the ser
 
 Add the following code to the beginning of `app.js`, right after the line `var app = require('express').createServer();`:
 
-{: .prettyprint .linenums}
+
     var app = require('express').createServer();
     var mongo;
     app.configure('development', function(){
@@ -217,14 +217,14 @@ Next, install the MongoDB native drivers locally and update the app to use Mongo
 
 Install MongoDB native drivers locally:
 
-{: .prettyprint}
+
     $ npm install mongodb
 
 This adds a new local directory called `mongodb` in the `node_modules` directory.
 
 In `app.js`, create a new function called `record_visit` that stores the server request to MongoDB:
 
-{: .prettyprint .linenums}
+
     var record_visit = function(req, res){
         /* Connect to the DB and auth */
         require('mongodb').connect(mongourl, function(err, conn){
@@ -247,7 +247,7 @@ The `.connect` method connects to MongoDB using either the local or AppFog `mong
 
 Update the `app.get` method so that it calls the `record_visit` function when the server request is made:
 
-{: .prettyprint .linenums}
+
     app.get('/', function(req, res) {
         record_visit(req, res);
     });
@@ -255,17 +255,17 @@ Update the `app.get` method so that it calls the `record_visit` function when th
 
 ### Test Your App Locally
 
-{: .prettyprint}
+
     $ mongod
 
 and from another terminal:
 
-{: .prettyprint}
+
     $ node app.js
 
 and from a third terminal:
 
-{: .prettyprint}
+
     $ curl localhost:3000
     {"ip":"127.0.0.1","ts":"2011-12-29T23:22:38.192Z","_id":"4efcf63ecab9a5b41e000001"}
 
@@ -275,7 +275,7 @@ Hit `Control-C` in the first terminal to stop the web server.
 
 Next, add the `NODE_ENV` environment variable to the app deployment and set it to `production` so that Express knows to run the app in `production` mode:
 
-{: .prettyprint}
+
     $ af env-add hello-node NODE_ENV=production
     Adding Environment Variable [NODE_ENV=production]: OK
     Stopping Application 'hello-node': aOK
@@ -284,7 +284,7 @@ Next, add the `NODE_ENV` environment variable to the app deployment and set it t
 
 ### Test Your App on AppFog
 
-{: .prettyprint}
+
     $ af update hello-node
     Uploading Application:
         Checking for available resources: OK

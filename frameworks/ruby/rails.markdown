@@ -23,7 +23,7 @@ Rails 2.3 has its own gem handling system, but we can override that and use Bund
 
 Insert the following code in `config/boot.rb`, right above `Rails.boot!`:
 
-{: .prettyprint .linenums}
+
     class Rails::Boot
         def run
             load_initializer
@@ -40,7 +40,7 @@ Insert the following code in `config/boot.rb`, right above `Rails.boot!`:
 
 Then create a new file called `config/preinitializer.rb` with the following:
 
-{: .prettyprint .linenums}
+
     begin
         require "rubygems"
         require "bundler"
@@ -64,7 +64,7 @@ Then create a new file called `config/preinitializer.rb` with the following:
 
 Get all `config.gem` declarations from your app and put them into the `Gemfile`. If you have declarations in `development.rb`, for example, place them in the named group. Make sure to include Rails itself and at least one source.
 
-{: .prettyprint .linenums}
+
     source 'http://rubygems.org'
     gem "rails", "~> 2.3.5"
     
@@ -101,7 +101,7 @@ Ruby on Rails app deployments on AppFog automatically recognize MySQL. For other
 
 Make sure to use the correct version of the MySQL2 gem in your Gemfile:
 
-{: .prettyprint .linenums}
+
     # If you use a different database in development, hide it from AppFog
     group :development do
     gem 'sqlite3'
@@ -114,13 +114,13 @@ Make sure to use the correct version of the MySQL2 gem in your Gemfile:
 
 ### Bundle your app:
 
-{: .prettyprint}
+
     $ bundle package
     $ bundle install
 
 Deploy:
 
-{: .prettyprint}
+
     $ af push
 
 # Rails 3.1 {#rails31}
@@ -131,7 +131,7 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
 
 #### Ruby 1.8
 
-{: .prettyprint .linenums}
+
     # If you use a different database in development, hide it from AppFog.
     group :development do
     gem 'sqlite3'
@@ -144,7 +144,7 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
 
 #### Ruby 1.9
 
-{: .prettyprint .linenums}
+
     # If you use a different database in development, hide it from AppFog.
     group :development do
     gem 'sqlite3'
@@ -165,7 +165,7 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
 
 ### Bundle your app:
 
-{: .prettyprint}
+
     $ bundle package
     $ bundle install
 
@@ -173,19 +173,19 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
 
 In `config/environments/production.rb`, change
 
-{: .prettyprint}
+
     config.server_static_assets = false
 
 to
 
-{: .prettyprint}
+
     config.server_static_assets = true
 
 ### Assets
 
 Pre-compile your asset pipeline:
 
-{: .prettyprint}
+
     $ bundle exec rake assets:precompile
 
 ### Version Control System
@@ -194,7 +194,7 @@ Commit the current configuration to your version control system. Consider includ
 
 ### Deploy
 
-{: .prettyprint}
+
     $ af push
 
 # Services
@@ -209,7 +209,7 @@ This assumes that you have your Rails app set up, and you have a MySQL service b
 
 Use the [af tunnel](/services/tunneling) command to connect to the MySQL service that's bound to your Rails app. When prompted, enter '1' for no client.
 
-{: .prettyprint}
+
     $ af tunnel 
     1: rails-mysql-example 
     Which service to tunnel to?: 1
@@ -233,7 +233,7 @@ You now have a secure tunnel set up to your MySQL service through which you can 
 
 ### Create a new section in your `config/database.yml` file
 
-{: .prettyprint}
+
     proxied-appfog: 
     adapter: mysql2 
     database: <db-name> 
@@ -248,12 +248,12 @@ Start with a simple `seeds.rb` file that just creates one record in your databas
 
 Then, leaving open the terminal window with the tunnel running in it, open a new terminal window and run:
 
-{: .prettyprint}
+
     $ RAILS_ENV=proxied-appfog rake db:seed
 
 If all goes well, you should have a log file in your `log/` directory called `proxied-appfog.log` that shows the SQL commands running from your `seeds.rb` file. 
 
-{: .prettyprint}
+
     $ af files ror-example logs/
     startup.log                               8.2K
     stdout.log                                  0B
@@ -265,7 +265,7 @@ Ruby on Rails apps deployed on AppFog support auto-reconfiguration for relationa
 
 Note: Auto-reconfiguration is currently disabled by default. To enable, add a `config/cloudfoundry.yml` file containing the following:
 
-{: .prettyprint}
+
     ---
     autoconfig: true
 

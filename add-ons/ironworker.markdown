@@ -11,7 +11,7 @@ In the "Add-ons" tab in your app console click "Install" for the IronWorker add-
 
 Just copy [IronWorker.class.php](https://github.com/iron-io/iron_worker_php/blob/master/IronWorker.class.php) and include it in your script:
 
-{: .prettyprint .linenums}
+
     <?php
     require_once "IronWorker.class.php
 
@@ -27,7 +27,7 @@ $worker = new IronWorker(array(
 
 Here's an example worker:
 
-{: .prettyprint .linenums}
+
     <?php
     echo "Hello PHP World!\n";
 
@@ -37,7 +37,7 @@ We'll call this worker "HelloWorld.php".
 
 Here's how to take the example above, zip it up, and upload it to IronWorker.
 
-{: .prettyprint .linenums}
+
     <?php
     # Zip single file:
     IronWorker::createZip(dirname(__FILE__), array('HelloWorld.php'), 'worker.zip', true);
@@ -45,7 +45,7 @@ Here's how to take the example above, zip it up, and upload it to IronWorker.
 
 ###  Queue Your Worker
 
-{: .prettyprint .linenums}
+
     <?php
     $task_id = $iw->postTask('HelloWorld');
 
@@ -55,7 +55,7 @@ Your worker should start in a few seconds.
 
 If you want to run your code more than once or run it in regular intervals, you can schedule it:
 
-{: .prettyprint .linenums}
+
     <?php
     # 3 minutes from now
     $start_at = time() + 3*60;
@@ -67,7 +67,7 @@ If you want to run your code more than once or run it in regular intervals, you 
 
 Use the `getTaskDetails()` method.
 
-{: .prettyprint .linenums}
+
     <?php
     $task_id = $iw->postTask('HelloWorld');
     $details = $iw->getTaskDetails($task_id);

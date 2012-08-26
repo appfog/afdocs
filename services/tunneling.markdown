@@ -50,12 +50,12 @@ You can interact with your provisioned services interactively by using the `af t
 
 Get a list of your services by using the `af services` command:
 
-{: .prettyprint}
+
     $ af services
 
 Which should return something like this: 
 
-{: .prettyprint}
+
     ============== System Services ==============
     
     +------------+---------+-----------------------------+
@@ -79,12 +79,12 @@ Which should return something like this:
 
 Create a tunnel to the service with `af tunnel <service>`. For example:
 
-{: .prettyprint}
+
     $ af tunnel exampleapp1-mysql
 
 The first time you create a tunnel, `af` uploads Caldecott to your Cloud:
 
-{: .prettyprint}
+
     Uploading Application:
     Checking for available resources: OK
     Processing resources: OK
@@ -97,7 +97,7 @@ The first time you create a tunnel, `af` uploads Caldecott to your Cloud:
 
 Then Caldecott creates the tunnel and prompts you to start a client. Here's an example session with `mysql`.
 
-{: .prettyprint}
+
     Starting tunnel to exampleapp1-mysql on port 10000.
     1: none
     2: mysql
@@ -123,7 +123,7 @@ You can simply enter the `af tunnel` command and respond to the prompts to creat
 
 The full syntax of the `af tunnel` command is:
 
-{: .prettyprint}
+
     af tunnel [<servicename>] [--port <portnumber>] [<clientcmd>]
 
 The `<servicename>` argument is the name of the service, as shown by the `af services` command. If you exclude `<servicename>`, `af` provides a list of existing services to choose from.

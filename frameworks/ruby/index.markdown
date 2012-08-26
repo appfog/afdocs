@@ -11,14 +11,14 @@ weight: 1
 
 For a list of runtimes that AppFog supports run:
 
-{: .prettyprint}
+
     $ af runtimes
 
 Ruby 1.8.7 is the default Ruby runtime.
 
 To use Ruby 1.9.3, for example, add the `af  --runtime ruby193` option when you push your code:
 
-{: .prettyprint}
+
     $ af push <appname> --runtime ruby193
 
 # Gems and Gemfiles {#gems}

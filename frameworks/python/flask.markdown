@@ -9,7 +9,7 @@ The following is a step-by-step guide to writing and deploying a "hello world" P
 
 Create a directory for the app and change into it: 
 
-{: .prettyprint}
+
     $ mkdir flask-example
     $ cd flask-example
 
@@ -17,7 +17,7 @@ Create a directory for the app and change into it:
 
 <!---Create a `virtualenv` environment:
 
-{: .prettyprint}
+
     $ virtualenv venv
     New python executable in venv/bin/python
     Installing setuptools............done.
@@ -27,7 +27,7 @@ Create a directory for the app and change into it:
 
 Note: There is currently an issue with using `virtualenv` in an app directory, so we'll use a workaround. 
 
-{: .prettyprint}
+
     $ mkdir ../flask-example-venv
     $ virtualenv ../flask-example-venv
     New python executable in ../flask-example-venv/bin/python
@@ -36,13 +36,13 @@ Note: There is currently an issue with using `virtualenv` in an app directory, s
 
 Activate the environment:
 
-{: .prettyprint}
+
     $ . ../flask-example-venv/bin/activate
     (flask-example-venv) $
 
 Use `pip` to install Flask:
 
-{: .prettyprint}
+
     (flask-example-venv) $ pip install Flask
     Downloading/unpacking Flask
     Downloading Flask-0.9.tar.gz (481Kb): 481Kb downloaded
@@ -62,7 +62,7 @@ Use `pip` to install Flask:
 
 Create a file called `wsgi.py` with the following code: 
 
-{: .prettyprint .linenums}
+
     from flask import Flask, Request, Response
     application = app = Flask(__name__)
 
@@ -75,13 +75,13 @@ Create a file called `wsgi.py` with the following code:
 
 ### Test Your App Locally
 
-{: .prettyprint}
+
     (flask-example-venv) $ python wsgi.py
      * Running on http://127.0.0.1:5000/
 
 In another terminal:
 
-{: .prettyprint}
+
     $ curl 127.0.0.1:5000
     Hello World!% 
 
@@ -89,12 +89,12 @@ In another terminal:
 
 Create a `requirements.txt` file with the following:
 
-{: .prettyprint .linenums}
+
     flask==0.8
 
 ### Deploy to Appfog
 
-{: .prettyprint}
+
     af push flask-example
     Would you like to deploy from the current directory? [Yn]:
 
@@ -118,7 +118,7 @@ Create a `requirements.txt` file with the following:
 
 ### Test Your App on AppFog:
 
-{: .prettyprint}
+
     $ curl flask-example.aws.af.cm
     Hello World!% 
 
@@ -130,7 +130,7 @@ Now we'll connect Flask to a MongoDB service provided by AppFog.
 
 Use the `af create-service <service> <name> <app>` command to create the `mongodb` service and bind it in one step:
 
-{: .prettyprint}
+
     $ af create-service mongodb mongo-example flask-example
     Creating Service: OK
     Binding Service [mongo-example]: OK
@@ -144,12 +144,12 @@ Your app now has a new `mongodb` service bound to it, but it's not using the ser
 
 First, add this to `requirements.txt`:
 
-{: .prettyprint .linenums}
+
     pymongo==2.1.1
 
 Then add the following to the beginning of `wsgi.py`:
 
-{: .prettyprint .linenums}
+
     import time
     import sys
     import os
@@ -157,7 +157,7 @@ Then add the following to the beginning of `wsgi.py`:
 
 And add the following to the end, right before `if __name__ == '__main__':`
 
-{: .prettyprint .linenums}
+
     @app.route('/mongo')
     def mongotest():
         from pymongo import Connection
@@ -186,7 +186,7 @@ And add the following to the end, right before `if __name__ == '__main__':`
 
 We also need to install `pymongo` for our local test:
 
-{: .prettyprint}
+
     $ pip install pymongo
     Downloading/unpacking pymongo
     Downloading pymongo-2.2.1.tar.gz (230Kb): 230Kb downloaded
@@ -200,19 +200,19 @@ We also need to install `pymongo` for our local test:
 
 ### Test Your App Locally
 
-{: .prettyprint}
+
     (flask-example-venv) $ python wsgi.py
      * Running on http://127.0.0.1:5000/
 
 In another terminal:
 
-{: .prettyprint}
+
     $ curl 127.0.0.1:5000/mongo
     1342592886% 
 
 ### Deploy to AppFog
 
-{: .prettyprint}
+
     $ af update flask-example
     Uploading Application:
         Checking for available resources: OK
@@ -226,6 +226,6 @@ In another terminal:
 
 ### Test Your App on AppFog
 
-{: .prettyprint}
+
     $ curl flask-example.aws.af.cm/mongo
     1342483543%

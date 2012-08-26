@@ -17,7 +17,7 @@ This variable contains a JSON document with a list of all credentials and connec
 
 Here's an example that of the environment variable for an app that has two MySQL database services bound to it:
 
-{: .prettyprint .linenums}
+
     {"postgresql-9.1":[
         {
             "name":"postgresql-5633b",
@@ -41,34 +41,34 @@ You can use your app's language-specific facility to call the environment variab
 
 In Java:
 
-{: .prettyprint}
+
     java.lang.System.getenv("VCAP_SERVICES")
 
 In Ruby:
 
-{: .prettyprint}
+
     ENV['VCAP_SERVICES']
 
 In Javascript:
 
-{: .prettyprint}
+
     process.env.VCAP_SERVICES
 
 In Python:
 
-{: .prettyprint}
+
     os.getenv("VCAP_SERVICES")
 
 In PHP:
 
-{: .prettyprint}
+
     getenv("VCAP_SERVICES")
 
 # PHP {#php}
 
 Connecting your PHP app to a bound PostgreSQL service is simple:
 
-{: .prettyprint .linenums}
+
     $services_json = json_decode(getenv("VCAP_SERVICES"),true);
     $postgresql_config = $services_json["postgresql-9.1"][0]["credentials"];
 
@@ -84,7 +84,7 @@ Connecting your PHP app to a bound PostgreSQL service is simple:
 
 Connecting your Ruby app to a bound PostgreSQL service is simple:
 
-{: .prettyprint .linenums}
+
     require "pg"
 
     services = JSON.parse(ENV['VCAP_SERVICES'])

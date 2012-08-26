@@ -8,7 +8,7 @@ weight: 1
 
 AppFog currently supports Python 2.7.3. You can check the available runtimes by running `af runtimes`.
 
-{: .prettyprint}
+
     $ af runtimes
     
     +--------------+-----------------+-----------+

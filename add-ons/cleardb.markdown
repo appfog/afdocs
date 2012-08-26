@@ -9,7 +9,7 @@ In the "Add-ons" tab in your app console click "Install" for the ClearDB add-on.
 
 Installing the ClearDB add-on automatically sets an environment variable for your app called "`CLEARDB_DATABASE_URL`". You can access this in your code with `getenv("CLEARDB_DATABASE_URL")`. This variable includes the full URI including the hostname, database path, username and password. The following code demonstrates how to parse the environment variable:
 
-{: .prettyprint .linenums}
+
     <?php
         $url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 

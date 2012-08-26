@@ -199,10 +199,12 @@
 				<p><code>af</code> is based on CloudFoundry’s <code>vmc</code> but includes features specific to AppFog and has the default target set to AppFog’s service. Check out <a href="https://github.com/appfog/af">the GitHub repo</a>.</p>
 
 <ul>
+  <li><a href="#installation">Installation</a></li>
   <li><a href="#usage">Usage</a></li>
   <li><a href="#getting-started">Getting Started</a></li>
   <li><a href="#apps">Apps</a></li>
   <li><a href="#app-creation">App Creation</a></li>
+  <li><a href="#app-download">App Download</a></li>
   <li><a href="#app-ops">App Operations</a></li>
   <li><a href="#app-updates">App Updates</a></li>
   <li><a href="#app-info">App Information</a></li>
@@ -214,6 +216,15 @@
   <li><a href="#help">Help</a></li>
   <li><a href="#manifests">Manifests</a></li>
 </ul>
+
+<h3 id="installation">Installation</h3>
+
+<p>The <code>af</code> command line tool is written in Ruby and installed as a gem: </p>
+
+<pre class="prettyprint"><code>$ gem install af
+</code></pre>
+
+<p>Note: <code>af</code> requires Ruby 1.8.7 or newer.</p>
 
 <h3 id="usage">Usage</h3>
 
@@ -257,12 +268,19 @@
 <table class="table table-bordered table-striped">
 
 <tr><td><code>push [appname]</code></td>                <td>Create, push, map, and start a new application</td></tr>
+<tr><td><code>push [appname] --infra </code></td>                <td>Push application to specificed infrastructure</td></tr>
 <tr><td><code>push [appname] --path</code></td>                <td>Push application from specified path</td></tr>
 <tr><td><code>push [appname] --url</code></td>                <td>Set the url for the application</td></tr>
 <tr><td><code>push [appname] --instances &lt;N&gt;</code></td>                <td>Set the expected number <code>&lt;N&gt;</code> of instances</td></tr>
 <tr><td><code>push [appname] --mem M</code></td>                <td>Set the memory reservation for the application</td></tr>
 <tr><td><code>push [appname] --no-start</code></td>                <td>Do not auto-start the application</td></tr>
 
+</table>
+
+<h3 id="app-download">App Download</h3>
+
+<table class="table table-bordered table-striped">
+<tr><td><code>pull &lt;appname&gt; [path]                   </code></td><td>Download last pushed source of &lt;appname&gt; to [path]</td></tr>
 </table>
 
 <h3 id="app-ops">App Operations</h3>
@@ -318,6 +336,7 @@
 
 <tr><td><code>services                                               </code></td><td>Lists of services available and provisioned</td></tr>
 <tr><td><code>create-service &lt;service&gt; [--name,--bind]            </code></td><td>Create a provisioned service</td></tr>
+<tr><td><code>create-service &lt;service&gt; --infra            </code></td><td>Create a provisioned service on a specified infrastructure</td></tr>
 <tr><td><code>create-service &lt;service&gt; &lt;name&gt;                  </code></td><td>Create a provisioned service and assign it &lt;name&gt;</td></tr>
 <tr><td><code>create-service &lt;service&gt; &lt;name&gt; &lt;app&gt;        </code></td><td>Create a provisioned service and assign it &lt;name&gt;, and bind to &lt;app&gt;</td></tr>
 <tr><td><code>delete-service [servicename]                           </code></td><td>Delete a provisioned service</td></tr>
@@ -345,6 +364,7 @@
 
 <tr><td><code>runtimes                                     </code></td><td>Display the supported runtimes of the target system</td></tr>
 <tr><td><code>frameworks                                   </code></td><td>Display the recognized frameworks of the target system</td></tr>
+<tr><td><code>infras                                   </code></td><td>Display the available infrastructures</td></tr>
 
 </table>
 
@@ -734,6 +754,10 @@ Received: ["1", "2", "3", "4", "5", "6", "7"]
 							
 							<li><a href="/add-ons/cleardb" >ClearDB</a></li>
 							
+							<li><a href="/add-ons/memcachier" >MemCachier</a></li>
+							
+							<li><a href="/add-ons/statsmix" >StatsMix</a></li>
+							
 							<li><a href="/add-ons/partners" >Add-on Partnership</a></li>
 							
 							</div>
@@ -744,7 +768,7 @@ Received: ["1", "2", "3", "4", "5", "6", "7"]
 						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
 						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
-						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
+						<!--<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>-->
 						<div class="row border-bottom"><div class="span3"><a href="/roadmap" ><h6>Feature Roadmap</h6></div></a></div>
 
 					</div>

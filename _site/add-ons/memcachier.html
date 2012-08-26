@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Add-on Partnership</title> 
+		<title>AppFog &mdash; Documentation MemCachier</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -177,7 +177,7 @@
 						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Add-on Partnership</a></li>
+						<li><a href="#">MemCachier</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,186 +195,276 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Add-on Partnership</h1>
-				<p>AppFog provides your app with extra functionality by partnering with various third-party services. You can add everything from logs to databases to powerful metrics to your app with a single click . </p>
+				<h1>MemCachier</h1>
+				<p><a href="http://www.memcachier.com/">MemCachier</a> is an implementation of the <a href="http://memcached.org/">Memcache</a> in-memory key/value store used for caching data. It is a key technology in modern web apps for scaling and reducing server loads. The MemCachier add-on manages and scales clusters of memcache servers so you can focus on your app. Tell us how much memory you need and get started for free instantly. Add capacity later as you need it.</p>
 
-<h1 id="how-add-ons-work">How Add-ons Work</h1>
+<p>The information below will quickly get you up and running with the MemCachier add-on for AppFog. For information on the benefits of MemCachier and how it works, please refer to the more extensive <a href="http://www.memcachier.com/documentation/memcache-user-guide/">User Guide</a>.</p>
 
-<p>Our add-on partners can create provisioning services that are compatible with AppFog. </p>
+<h3 id="install-memcachier">Install MemCachier</h3>
+
+<p>In the “Add-ons” tab in your app console click “Install” for the MemCachier add-on. That’s it!</p>
+
+<p>Next, set up your app to start using the cache. We have documentation for the following languages and frameworks: </p>
 
 <ul>
-  <li><a href="#provision">Provisioning Workflow</a></li>
-  <li><a href="#callback">API Callback Spec</a></li>
-  <li><a href="#api">API Spec</a></li>
-  <li><a href="#authentication">Authentication</a></li>
-  <li><a href="#manifest">Manifest Format</a></li>
-  <li><a href="#sso">Single Sign-on</a></li>
+  <li><a href="#ruby">Ruby</a></li>
+  <li><a href="#rails">Rails</a></li>
+  <li><a href="#django">Django</a></li>
+  <li><a href="#php">PHP</a></li>
+  <li><a href="#java">Java</a></li>
+  <li><a href="#local">Local Setup</a></li>
+  <li><a href="#upgrade">Upgrading and Downgrading</a></li>
+  <li><a href="#support">Support</a></li>
 </ul>
 
-<h1 id="provision">Provisioning Workflow</h1>
+<p>Your credentials may take up to three (3) minutes to be synced to our servers. You may see authentication errors if you start using the cache immediately.</p>
 
-<ol>
-  <li>The user installs the add-on from the AppFog app console. This sends a request to the add-on partner to provision the service.</li>
-  <li>AppFog makes a <code>POST</code> request to https://partner.com/appfog/resources. It passes in the <code>customer_id</code> (email address), plan, and the <code>callback_url</code>. </li>
-  <li>The partner returns the local ID of the newly created resource. If it’s able to provision the resource synchronously, the config parameter can be set. It may not be possible to provision the resource synchronously, so the config can be empty.</li>
-  <li>If the config is empty, the user sees a message stating that the resource is waiting to be provisioned.</li>
-  <li>Once the resource is provisioned, the partner makes a call to the callback URL, as specified in the initial provisioning call, and passes the new config parameters to be set.</li>
-  <li>Once the config parameters are set, they are set as environment variables in the user’s app and instructions are displayed to the user on how to perform the integration.</li>
-</ol>
+<h1 id="ruby">Ruby</h1>
 
-<p><img class="screenshot" src="/img/screenshots/Slide2.jpeg" alt="Provisioning Workflow" /></p>
+<p>Start by adding the <a href="https://github.com/memcachier/memcachier-gem">memcachier</a> and <a href="http://github.com/mperham/dalli">dalli</a> gems to your <code>Gemfile</code>.</p>
 
-<h1 id="callback">API Callback Spec</h1>
+<pre class="prettyprint"><code>gem 'memcachier'
+gem 'dalli'
+</code></pre>
 
-<p>This is a method implemented by the AppFog services. It is used to update the configuration values for a given resource as provided by the add-on partner. The configuration parameters can be specified by the partner when the provisioning call is made by AppFog; however, if the call takes a while to process the partner can use this method to update those parameters later.</p>
+<p>Then bundle install:</p>
 
-<p>PUT to path as defined in <code>callback_url</code> on provisioning call.</p>
+<pre class="prettyprint"><code>$ bundle install
+</code></pre>
 
-<p>Request Body:</p>
+<p><code>Dalli</code> is a Ruby memcache client, and the <code>memcachier</code> gem modifies the environment (<code>ENV</code>) such that the environment variables set by MemCachier will work with Dalli. Once these gems are installed you can start writing code. The following is a basic example showing get and set.</p>
 
-<pre class="prettyprint"><code>{
-    "config":{"VAR_XYZ":"http://partner.com/5678ADFD"} 
+<pre class="prettyprint linenums"><code>require 'dalli'
+require 'memcachier'
+cache = Dalli::Client.new
+cache.set("foo", "bar")
+puts cache.get("foo")
+</code></pre>
+
+<p>Without the <code>memcachier</code> gem, you’ll need to pass the proper credentials to <code>Dalli</code>:</p>
+
+<pre class="prettyprint linenum"><code>cache = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
+                    {:username =&gt; ENV["MEMCACHIER_USERNAME"],
+                     :password =&gt; ENV["MEMCACHIER_PASSWORD"]})
+</code></pre>
+
+<h1 id="rails">Rails</h1>
+
+<p>Start by adding the <a href="https://github.com/memcachier/memcachier-gem">memcachier</a> and <a href="http://github.com/mperham/dalli">dalli</a> gems to your <code>Gemfile</code>.</p>
+
+<pre class="prettyprint"><code>gem 'memcachier'
+gem 'dalli'
+</code></pre>
+
+<p>Then bundle install:</p>
+
+<pre class="prettyprint"><code>$ bundle install
+</code></pre>
+
+<p><code>Dalli</code> is a Ruby memcache client, and the <code>memcachier</code> gem modifies the environment (<code>ENV</code>) such that the environment variables set by MemCachier will work with <code>Dalli</code>. Once these gems are installed you’ll want to configure the Rails <code>cache_store</code> appropriately. Modify <code>config/environments/production.rb</code> with the following:</p>
+
+<pre class="prettyprint"><code>config.cache_store = :dalli_store
+</code></pre>
+
+<p>From here you can use the following code examples to use the cache in your Rails app:</p>
+
+<pre class="prettyprint"><code>Rails.cache.write("foo", "bar")
+puts Rails.cache.read("foo")
+</code></pre>
+
+<p>Without the <code>memcachier</code> gem, you’ll need to pass the proper credentials to <code>Dalli</code> in <code>config/environments/production.rb</code>:</p>
+
+<pre class="prettyprint linenums"><code>config.cache_store = :dalli_store, ENV["MEMCACHIER_SERVERS"],
+                    {:username =&gt; ENV["MEMCACHIER_USERNAME"],
+                     :password =&gt; ENV["MEMCACHIER_PASSWORD"]}
+</code></pre>
+
+<h3 id="testing">Testing</h3>
+
+<p>To test locally you can simply use the rails console:</p>
+
+<pre class="prettyprint"><code>rails console
+&gt;&gt; Rails.cache.write('memcachier', 'rocks')
+=&gt; true
+&gt;&gt; Rails.cache.read('memcachier')
+=&gt; "rocks"
+</code></pre>
+
+<h1 id="django">Django</h1>
+
+<p>MemCachier has been tested with the <code>pylibmc</code> memcache client, but the default client doesn’t support SASL authentication. Run the following commands on your local machine to install the necessary pips:</p>
+
+<pre class="prettyprint"><code>$ sudo port install libmemcached
+$ LIBMEMCACHED=/opt/local pip install pylibmc
+$ pip install django-pylibmc-sasl
+</code></pre>
+
+<p>Be sure to update your <code>requirements.txt</code> file with these new requirements (note that your versions may differ from what’s below):</p>
+
+<pre class="prettyprint"><code>pylibmc==1.2.2
+django-pylibmc-sasl==0.2.4
+</code></pre>
+
+<p>Next, configure your <code>settings.py</code> file the following way:</p>
+
+<pre class="prettyprint linenums"><code>os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '')
+os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
+os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
+
+CACHES = {
+  'default': {
+    'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+    'LOCATION': os.environ.get('MEMCACHIER_SERVERS', ''),
+    'TIMEOUT': 500,
+    'BINARY': True,
+  }
 }
 </code></pre>
 
-<p>Response:</p>
+<p>From here you can start writing cache code in your Django app:</p>
 
-<pre class="prettyprint"><code>200 OK
+<pre class="prettyprint linenums"><code>from django.core.cache import cache
+cache.set("foo", "bar")
+print cache.get("foo")
 </code></pre>
 
-<h1 id="api">API Spec</h1>
+<h1 id="php">PHP</h1>
 
-<h3 id="example-provisioning-request">Example Provisioning Request</h3>
+<p>Start by downloading the <a href="https://github.com/ronnywang/PHPMemcacheSASL">PHPMemcacheSASL</a> library. From here you can start writing cache code in your PHP app:</p>
 
-<p>Request: <code>POST /phpfog/resources</code></p>
+<pre class="prettyprint linenums"><code>include('MemcacheSASL.php');
+$m = new MemcacheSASL;
+$m-&gt;addServer($_ENV["MEMCACHIER_SERVERS"], '11211');
+$m-&gt;setSaslAuthData($_ENV["MEMCACHIER_USERNAME"], $_ENV["MEMCACHIER_PASSWORD"]);
 
-<p>Request Body:</p>
+$m-&gt;add("foo", "bar");
+echo $m-&gt;get("foo");
+</code></pre>
 
-<pre class="prettyprint"><code>{
-    "customer_id":"user@email.com",
-    "plan":"free",
-    "callback_url":"https://path_to_resource",
-    "options":{} 
+<p>The more common PHP memcache clients, <a href="http://www.php.net/manual/en/book.memcache.php">Memcache</a> and <a href="http://www.php.net/manual/en/book.memcached.php">Memcached</a>, don’t support SASL authentication at this time and can’t be used with MemCachier.</p>
+
+<h1 id="java">Java</h1>
+
+<p>For Java we recommend using the <a href="https://code.google.com/p/spymemcached/">SpyMemcached</a> client. We also recommend using the <a href="https://maven.apache.org/">Apache Maven</a> build manager for working with Java app. If you aren’t using <code>maven</code> and are instead using <a href="https://ant.apache.org/">Apache Ant</a> or your own build system, then simply add the <code>spymemcached</code> jar file as a dependency of your app.</p>
+
+<p>For <code>maven</code> however, start by configuring it to have the proper <code>spymemcached</code> repository:</p>
+
+<pre class="prettyprint linenums"><code>&lt;repository&gt;
+  &lt;id&gt;spy&lt;/id&gt;
+  &lt;name&gt;Spy Repository&lt;/name&gt;
+  &lt;layout&gt;default&lt;/layout&gt;
+  &lt;url&gt;http://files.couchbase.com/maven2/&lt;/url&gt;
+  &lt;snapshots&gt;
+    &lt;enabled&gt;false&lt;/enabled&gt;
+  &lt;/snapshots&gt;
+&lt;/repository&gt;
+</code></pre>
+
+<p>Then add the <code>spymemcached</code> library to your dependencies:</p>
+
+<pre class="prettyprint linenums"><code>&lt;dependency&gt;
+  &lt;groupId&gt;spy&lt;/groupId&gt;
+  &lt;artifactId&gt;spymemcached&lt;/artifactId&gt;
+  &lt;version&gt;2.8.1&lt;/version&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>Once your build system is configured, you can start adding caching to your Java app:</p>
+
+<pre class="prettyprint linenums"><code>import java.io.IOException;
+import net.spy.memcached.AddrUtil;
+import net.spy.memcached.MemcachedClient;
+import net.spy.memcached.ConnectionFactoryBuilder;
+import net.spy.memcached.auth.PlainCallbackHandler;
+import net.spy.memcached.auth.AuthDescriptor;
+
+public class Foo {
+  public static void main(String[] args) {
+    AuthDescriptor ad = new AuthDescriptor(new String[] { "PLAIN" },
+        new PlainCallbackHandler(System.getenv("MEMCACHIER_USERNAME"),
+            System.getenv("MEMCACHIER_PASSWORD")));
+
+    try {
+      MemcachedClient mc = new MemcachedClient(new ConnectionFactoryBuilder()
+          .setProtocol(ConnectionFactoryBuilder.Protocol.BINARY)
+          .setAuthDescriptor(ad).build(), AddrUtil.getAddresses(System
+          .getenv("MEMCACHIER_SERVERS") + ":11211"));
+      mc.set("foo", "bar");
+      System.out.println(mc.get("foo"));
+    } catch (IOException ioe) {
+      System.err.println("Couldn't create a connection to MemCachier: \nIOException "
+              + ioe.getMessage());
+    }
+  }
 }
 </code></pre>
 
-<p>Response Body:</p>
+<p>You may wish to look the <code>spymemcached</code> <a href="http://dustin.github.com/java-memcached-client/apidocs/">JavaDocs</a> or some more <a href="https://code.google.com/p/spymemcached/wiki/Examples">example code</a> to help in using MemCachier effectively.</p>
 
-<pre class="prettyprint"><code>{
-    "id":789,
-    "config":{"ADDONNAME_VAR1":"some configuration value"},
-    "message":"" 
-}
+<h1 id="libsupport">Library Support</h1>
+
+<p>MemCachier will work with any memcached binding that supports <a href="https://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer">SASL authentication</a> and the <a href="https://code.google.com/p/memcached/wiki/MemcacheBinaryProtocol">binary protocol</a>. We have tested MemCachier with the following language bindings, although the chances are good that other SASL binary protocol packages will also work.</p>
+
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+    <td>Language</td><td>Bindings</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+    <td>Ruby</td>                                <td>dalli</td>
+</tr>
+<tr>
+    <td>Python</td>                                <td>pylibmc</td>
+</tr>
+<tr>
+    <td>Django</td>                                <td>django-pylibmc</td>
+</tr>
+<tr>
+    <td>PHP</td>                                <td>PHPMemcacheSASL</td>
+</tr>
+<tr>
+    <td>Java</td>                                <td>spymemcached</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="local">Local Setup</h1>
+
+<p>To test against your AppFog app locally, you’ll need to run a local memcached process. MemCachier can only run in AppFog. But because MemCachier and memcached speak the same protocol, you shouldn’t have any issues testing locally. Installation depends on your platform.</p>
+
+<h3 id="ubuntu">Ubuntu</h3>
+
+<pre class="prettyprint"><code>$ sudo apt-get install memcached
 </code></pre>
 
-<h3 id="request-fields">Request Fields</h3>
+<h3 id="mac-os-x-with-homebrew">Mac OS X (with Homebrew)</h3>
 
-<ul>
-  <li><code>customer_id</code> - The identification of the user in the AppFog system (i.e. email address).</li>
-  <li><code>plan</code> - The plan being provisioned. This will be “free” for the moment; however, in the future this can be higher-tier plans once they’re supported.</li>
-  <li><code>callback_url</code> - This is the address of the resource in AppFog’s system. The provider can use this to update the configuration for this resource (e.g. during provisioning).</li>
-  <li><code>options</code> - This contains additional options for the specific service. It’s a placeholder for now and AppFog will not send these requests yet.</li>
-</ul>
-
-<h3 id="response-fields">Response Fields</h3>
-
-<ul>
-  <li><code>id</code> - This is the ID of the resource in the provider’s system. </li>
-  <li><code>config</code> - The required key/value pairs of parameters required to provision the service. The manifest specifies what keys are allowed. Configuration paramters are required, but the particular configuration parameters up to the provider. They can also be updated later using the <code>callback_url</code> to update the config.</li>
-  <li><code>message</code> - This is a message to the system. It’s ignored for now.</li>
-</ul>
-
-<h3 id="example-deprovisioning-request">Example Deprovisioning Request</h3>
-
-<p>Request: <code>DELETE /phpfog/resources/:id</code></p>
-
-<p>Request Body: none</p>
-
-<p>Response: </p>
-
-<pre class="prettyprint"><code>200 OK
+<pre class="prettyprint"><code>$ brew install memcached
 </code></pre>
 
-<h3 id="request-fields-1">Request Fields</h3>
+<h3 id="windows">Windows</h3>
 
-<p>This is a DELETE request to the particular <code>URL</code> and doesn’t contain a body.</p>
+<p>Please refer to <a href="http://www.codeforest.net/how-to-install-memcached-on-windows-machine">these instructions</a>.</p>
 
-<h3 id="response-fields-1">Response Fields</h3>
+<p>For further information and resources (such as the memcached source code) please refer to the <a href="http://memcached.org/">Memcache.org homepage</a>.</p>
 
-<p>Only an HTTP response status is required.</p>
+<p>To run memcached simply execute the following command:</p>
 
-<h1 id="authentication">Authentication</h1>
-
-<p>All calls to both the provisioning API on the partners service as well as the AppFog callback service must be authenticated using <code>HTTP Basic Auth</code>.</p>
-
-<p>All requests must be completed over <code>HTTPS</code>. </p>
-
-<p>The manifest file specifies the username and password to be used for all of these calls. The “<code>id</code>” in the manifest is the username, the “<code>api_password</code>” is the password.</p>
-
-<h1 id="manifest">Manifest Format</h1>
-
-<p>The manifest file is a <code>JSON</code> document that defines the information necessary for AppFog to make provisioning calls to the provider.</p>
-
-<p>Add-on partners should provide the manifest file out-of-band by emailing it to the AppFog team to incorporate into the system.</p>
-
-<h3 id="example-manifest">Example Manifest</h3>
-
-<p><code>example-manifest.json</code></p>
-
-<pre class="prettyprint linenums"><code>{
-    "id":"provider",
-    "name":"Provider Inc",
-    "plans":[
-        {"id":"free"}
-        ],    
-    "api": {
-        "config_vars":["PROVIDER_VAR_XYZ"],
-        "production":"https://provider.com/",
-        "test":"https://provider-qa.com/",
-        "path":"PathToResource",
-        "username":"SomeUsername",
-        "password":"ChangeYourPassword",
-        "sso_salt":"xPedFGIIJIei30D"       
-    } 
-}
+<pre class="prettyprint"><code>$ memcached -v
 </code></pre>
 
-<h3 id="fields">Fields</h3>
+<h1 id="upgrade">Upgrading and Downgrading</h1>
 
-<ul>
-  <li><code>id</code> - The add-on id. All lowercase, no spaces or punctuation. This is used in conjunction with the password to authenticate provisioning calls.</li>
-  <li><code>name</code> - The friendly name to appear in the add-on tab of the app console in AppFog.</li>
-  <li><code>api/config_vars</code> - A list of variables to be returned on provisioning calls. The variable names must be prefixed with the add-on id and an underscore. Example: “<code>PROVIDER_</code>”</li>
-  <li><code>api/production</code> - The root <code>URL</code> of the provisioning service of provider.</li>
-  <li><code>api/test</code> - Same <code>URL</code> as production, but for testing in a QA environment.</li>
-  <li><code>api/path</code> - (Optional) Overrides the default path “<code>appfog/resources</code>”.</li>
-  <li><code>api/username</code> - (Optional) The username used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>. The “<code>id</code>” is used if the username is not specified.</li>
-  <li><code>api/password</code> - The password used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>.</li>
-  <li><code>api/sso_salt</code> - Shared secret used in single sign-on between AppFog and the provider.</li>
-  <li><code>plans/id</code> - The name of the “free” plan that will be offered to AppFog users and used for testing and integration purposes.</li>
-</ul>
+<p>Changing your plan, either by upgrading or downgrading, requires no code changes. Your cache won’t be lost, either. Upgrading and downgrading Just Works™.</p>
 
-<h1 id="sso">Single Sign-on</h1>
+<h1 id="support">Support</h1>
 
-<p>Once a resource is fully provisioned, a “Manage” button will appear in the AppFog app console for the given add-on. This button will redirect the user to the management page of the particular resource on the partner’s website.</p>
+<p>You can submit all Memcachier support and runtime issues to <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#097;&#112;&#112;&#102;&#111;&#103;&#046;&#099;&#111;&#109;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#097;&#112;&#112;&#102;&#111;&#103;&#046;&#099;&#111;&#109;</a> and any non-support related issues or product feedback to <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#109;&#101;&#109;&#099;&#097;&#099;&#104;&#105;&#101;&#114;&#046;&#099;&#111;&#109;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#109;&#101;&#109;&#099;&#097;&#099;&#104;&#105;&#101;&#114;&#046;&#099;&#111;&#109;</a>.</p>
 
-<p>After the user clicks the button, they will be redirected to the following generated <code>URL</code>:</p>
-
-<pre class="prettyprint"><code>https://partner.com/appfog/resources/:id?token=:token&amp;timestamp=:timestamp
-</code></pre>
-
-<p>The <code>:id</code> is the <code>id</code> of the resource which was defined in the response to the provisioning call for creating this resource.</p>
-
-<p>The token is defined as a combination of the <code>id</code>, <code>salt</code>, and <code>timestamp</code>. </p>
-
-<p>The salt is the “<code>sso_salt</code>” variable as defined in the manifest.</p>
-
-<p>The timestamp is the current UNIX timestamp.</p>
-
-<pre class="prettyprint"><code>token = sha1(id + ':' + salt + ':' + timestamp)
-</code></pre>
-
-<p>After the partner validates the salt (shared secret) and the timestamp (we recommend 30 seconds), they can be allowed to manage the resource as defined by the <code>id</code>.</p>
+<p>Memcachier reports issues related to service at <a href="http://status.memcachier.com/">Memcachier Status</a>.</p>
 
 
 			</div>
@@ -489,11 +579,11 @@
 							
 							<li><a href="/add-ons/cleardb" >ClearDB</a></li>
 							
-							<li><a href="/add-ons/memcachier" >MemCachier</a></li>
+							<li><a href="/add-ons/memcachier" class="on">MemCachier</a></li>
 							
 							<li><a href="/add-ons/statsmix" >StatsMix</a></li>
 							
-							<li><a href="/add-ons/partners" class="on">Add-on Partnership</a></li>
+							<li><a href="/add-ons/partners" >Add-on Partnership</a></li>
 							
 							</div>
 						</ul>

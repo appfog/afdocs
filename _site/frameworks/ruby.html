@@ -203,6 +203,7 @@
   <li><a href="#rails23">Rails 2.3</a></li>
   <li><a href="#rails30">Rails 3.0</a></li>
   <li><a href="#rails31">Rails 3.1</a></li>
+  <li><a href="#rails-console">Rails Console</a></li>
   <li><a href="#rake-db-seed">rake db:seed</a></li>
   <li><a href="#autoreconfig">Auto-reconfiguration</a></li>
   <li><a href="#sinatra">Sinatra</a></li>
@@ -412,12 +413,12 @@ $ bundle install
 
 <p>In <code>config/environments/production.rb</code>, change</p>
 
-<pre class="prettyprint"><code>config.server_static_assets = false
+<pre class="prettyprint"><code>config.serve_static_assets = false
 </code></pre>
 
 <p>to</p>
 
-<pre class="prettyprint"><code>config.server_static_assets = true
+<pre class="prettyprint"><code>config.serve_static_assets = true
 </code></pre>
 
 <h3 id="assets">Assets</h3>
@@ -439,6 +440,51 @@ $ bundle install
 <h1 id="services">Services</h1>
 
 <p>AppFog automatically creates and binds a new MySQL service with the Ruby on Rails jumpstart, and the app is <a href="#autoreconfig">automatically reconfigured</a> to connect to the service. For more information on services and how to connect to them manually, check out our docs on <a href="/services/overview">Services</a>.</p>
+
+<h1 id="rails-console">Rails Console</h1>
+
+<p>To use the Rails console with your database service, <a href="/services/tunneling">tunnel into the service</a>, and choose ‘none’ when it asks you which client to start:</p>
+
+<pre class="prettyprint"><code>$ af tunnel ror-example-mysql
+Binding Service [ror-example-mysql]: OK
+Stopping Application 'caldecott-aws': OK
+Staging Application 'caldecott-aws': OK
+Starting Application 'caldecott-aws': OK
+Getting tunnel connection info: OK
+
+Service connection info:
+  username : uKaJETLlNmkrs
+  password : pYfnUUY3L5jLU
+  name     : d77261f24bbae4c889d0a231b3e70a763
+  infra    : aws
+
+Starting tunnel to ror-example-mysql on port 10000.
+1: none
+2: mysql
+3: mysqldump
+Which client would you like to start?: 1
+Open another shell to run command-line clients or
+use a UI tool to connect using the displayed information.
+Press Ctrl-C to exit...
+</code></pre>
+
+<p>Next, create another database section in your <code>config/database.yml</code> file with the service connection info in the <code>af tunnel</code> output:</p>
+
+<pre class="prettyprint linenums"><code>proxied-appfog: 
+adapter: mysql2 
+database : d77261f24bbae4c889d0a231b3e70a763
+username : uKaJETLlNmkrs
+password : pYfnUUY3L5jLU
+port: 10000 
+host: 127.0.0.1
+</code></pre>
+
+<p>Finally, in a another terminal, run <code>rails console</code>, passing in the database environment you created:</p>
+
+<pre class="prettyprint"><code>$ RAILS_ENV=proxied-appfog rails console
+</code></pre>
+
+<p>That’s it, you now have a Rails console proxied to your AppFog database service!</p>
 
 <h1 id="rake-db-seed">rake db:seed</h1>
 
@@ -823,6 +869,10 @@ $ af push
 							
 							<li><a href="/add-ons/cleardb" >ClearDB</a></li>
 							
+							<li><a href="/add-ons/memcachier" >MemCachier</a></li>
+							
+							<li><a href="/add-ons/statsmix" >StatsMix</a></li>
+							
 							<li><a href="/add-ons/partners" >Add-on Partnership</a></li>
 							
 							</div>
@@ -833,7 +883,7 @@ $ af push
 						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
 						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
-						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
+						<!--<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>-->
 						<div class="row border-bottom"><div class="span3"><a href="/roadmap" ><h6>Feature Roadmap</h6></div></a></div>
 
 					</div>

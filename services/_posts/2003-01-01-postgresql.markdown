@@ -16,7 +16,7 @@ When you provision and bind a service to your app, AppFog creates an environment
 
 This variable contains a JSON document with a list of all credentials and connection information for the bound services.
 
-Here's an example that of the environment variable for an app that has two MySQL database services bound to it:
+Here's an example that of the environment variable for an app that has a PostgreSQL service bound to it:
 
 {: .prettyprint .linenums}
     {"postgresql-9.1":[

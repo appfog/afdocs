@@ -8,6 +8,7 @@ weight: 14
 * [How can I update my app without downtime?](#downtime)
 * [What are the security group settings for connecting my app to Amazon RDS?](#security-group)
 * [How much does bandwidth cost beyond the included limits for the account?](#bandwidth)
+* [Does AppFog have a persistent file system?](#persistentfs)
 
 ### How does billing work? {#billing}
 
@@ -68,3 +69,7 @@ This information is coming soon. For now, you'll have to connect using credentia
 ### How much does bandwidth cost beyond the included limits for the account? {#bandwidth}
 
 Additional data transfer costs $0.15 per gigabyte.
+
+### Does AppFog have a persistent file system? {#persistentfs}
+
+Not yet. We're working on this feature, but in the meantime, the file system is volatile. This means that any changes you make to the file system through a web interface, including any admin changes and content uploads, will be lost on the app's next start, stop, restart, deploy, or resource change. Because of this, you should make any changes to the file system on a local development environment and keep media assets and content uploads on an external storage system like Amazon's S3. 

@@ -7,10 +7,12 @@ description: "Code deployment made easy."
 
 `af` is based on CloudFoundry's `vmc` but includes features specific to AppFog and has the default target set to AppFog's service. Check out [the GitHub repo](https://github.com/appfog/af).
 
+* [Installation](#installation)
 * [Usage](#usage)
 * [Getting Started](#getting-started)
 * [Apps](#apps)
 * [App Creation](#app-creation)
+* [App Download](#app-download)
 * [App Operations](#app-ops)
 * [App Updates](#app-updates)
 * [App Information](#app-info)
@@ -22,6 +24,15 @@ description: "Code deployment made easy."
 * [Help](#help)
 * [Manifests](#manifests)
 
+
+### Installation {#installation}
+
+The `af` command line tool is written in Ruby and installed as a gem: 
+
+{: .prettyprint}
+    $ gem install af
+
+Note: `af` requires Ruby 1.8.7 or newer.
 
 ### Usage {#usage}
 
@@ -65,12 +76,19 @@ or
 <table class="table table-bordered table-striped">
 
 <tr><td><code>push [appname]</code></td>                <td>Create, push, map, and start a new application</td></tr>
+<tr><td><code>push [appname] --infra </code></td>                <td>Push application to specificed infrastructure</td></tr>
 <tr><td><code>push [appname] --path</code></td>                <td>Push application from specified path</td></tr>
 <tr><td><code>push [appname] --url</code></td>                <td>Set the url for the application</td></tr>
 <tr><td><code>push [appname] --instances &lt;N></code></td>                <td>Set the expected number <code>&lt;N></code> of instances</td></tr>
 <tr><td><code>push [appname] --mem M</code></td>                <td>Set the memory reservation for the application</td></tr>
 <tr><td><code>push [appname] --no-start</code></td>                <td>Do not auto-start the application</td></tr>
 
+</table>
+
+### App Download {#app-download}
+
+<table class="table table-bordered table-striped">
+<tr><td><code>pull &lt;appname> [path]                   </code></td><td>Download last pushed source of &lt;appname> to [path]</td></tr>
 </table>
 
 ### App Operations {#app-ops}
@@ -126,6 +144,7 @@ or
 
 <tr><td><code>services                                               </code></td><td>Lists of services available and provisioned</td></tr>
 <tr><td><code>create-service &lt;service> [--name,--bind]            </code></td><td>Create a provisioned service</td></tr>
+<tr><td><code>create-service &lt;service> --infra            </code></td><td>Create a provisioned service on a specified infrastructure</td></tr>
 <tr><td><code>create-service &lt;service> &lt;name>                  </code></td><td>Create a provisioned service and assign it &lt;name></td></tr>
 <tr><td><code>create-service &lt;service> &lt;name> &lt;app>        </code></td><td>Create a provisioned service and assign it &lt;name>, and bind to &lt;app></td></tr>
 <tr><td><code>delete-service [servicename]                           </code></td><td>Delete a provisioned service</td></tr>
@@ -153,6 +172,7 @@ or
 
 <tr><td><code>runtimes                                     </code></td><td>Display the supported runtimes of the target system</td></tr>
 <tr><td><code>frameworks                                   </code></td><td>Display the recognized frameworks of the target system</td></tr>
+<tr><td><code>infras                                   </code></td><td>Display the available infrastructures</td></tr>
 
 </table>
 

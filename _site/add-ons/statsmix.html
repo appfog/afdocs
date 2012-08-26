@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation Add-on Partnership</title> 
+		<title>AppFog &mdash; Documentation StatsMix</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -177,7 +177,7 @@
 						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">Add-on Partnership</a></li>
+						<li><a href="#">StatsMix</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,186 +195,233 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>Add-on Partnership</h1>
-				<p>AppFog provides your app with extra functionality by partnering with various third-party services. You can add everything from logs to databases to powerful metrics to your app with a single click . </p>
+				<h1>StatsMix</h1>
+				<p><a href="http://www.statsmix.com/">StatsMix</a> makes it easy to track, chart, and share application and business metrics. </p>
 
-<h1 id="how-add-ons-work">How Add-ons Work</h1>
-
-<p>Our add-on partners can create provisioning services that are compatible with AppFog. </p>
+<p>Use StatsMix to:</p>
 
 <ul>
-  <li><a href="#provision">Provisioning Workflow</a></li>
-  <li><a href="#callback">API Callback Spec</a></li>
-  <li><a href="#api">API Spec</a></li>
-  <li><a href="#authentication">Authentication</a></li>
-  <li><a href="#manifest">Manifest Format</a></li>
-  <li><a href="#sso">Single Sign-on</a></li>
+  <li>Log every time a particular event happens (such as a user creating a new blog post)</li>
+  <li>View a real-time chart of these application events in StatsMix’s web UI</li>
+  <li>Share the charts with users inside and outside your organization</li>
+  <li>Create and share custom dashboards that aggregate multiple metrics together
+    <ul>
+      <li><a href="http://www.statsmix.com/d/0e788d59208900e7e3bc">Example dashboard</a></li>
+      <li><a href="http://www.statsmix.com/example-embedded">Example embedded dashboard</a></li>
+    </ul>
+  </li>
 </ul>
 
-<h1 id="provision">Provisioning Workflow</h1>
+<h3 id="install-statsmix">Install StatsMix</h3>
 
-<ol>
-  <li>The user installs the add-on from the AppFog app console. This sends a request to the add-on partner to provision the service.</li>
-  <li>AppFog makes a <code>POST</code> request to https://partner.com/appfog/resources. It passes in the <code>customer_id</code> (email address), plan, and the <code>callback_url</code>. </li>
-  <li>The partner returns the local ID of the newly created resource. If it’s able to provision the resource synchronously, the config parameter can be set. It may not be possible to provision the resource synchronously, so the config can be empty.</li>
-  <li>If the config is empty, the user sees a message stating that the resource is waiting to be provisioned.</li>
-  <li>Once the resource is provisioned, the partner makes a call to the callback URL, as specified in the initial provisioning call, and passes the new config parameters to be set.</li>
-  <li>Once the config parameters are set, they are set as environment variables in the user’s app and instructions are displayed to the user on how to perform the integration.</li>
-</ol>
+<p>In the “Add-ons” tab in your app console click “Install” for the StatsMix add-on. That’s it!</p>
 
-<p><img class="screenshot" src="/img/screenshots/Slide2.jpeg" alt="Provisioning Workflow" /></p>
-
-<h1 id="callback">API Callback Spec</h1>
-
-<p>This is a method implemented by the AppFog services. It is used to update the configuration values for a given resource as provided by the add-on partner. The configuration parameters can be specified by the partner when the provisioning call is made by AppFog; however, if the call takes a while to process the partner can use this method to update those parameters later.</p>
-
-<p>PUT to path as defined in <code>callback_url</code> on provisioning call.</p>
-
-<p>Request Body:</p>
-
-<pre class="prettyprint"><code>{
-    "config":{"VAR_XYZ":"http://partner.com/5678ADFD"} 
-}
-</code></pre>
-
-<p>Response:</p>
-
-<pre class="prettyprint"><code>200 OK
-</code></pre>
-
-<h1 id="api">API Spec</h1>
-
-<h3 id="example-provisioning-request">Example Provisioning Request</h3>
-
-<p>Request: <code>POST /phpfog/resources</code></p>
-
-<p>Request Body:</p>
-
-<pre class="prettyprint"><code>{
-    "customer_id":"user@email.com",
-    "plan":"free",
-    "callback_url":"https://path_to_resource",
-    "options":{} 
-}
-</code></pre>
-
-<p>Response Body:</p>
-
-<pre class="prettyprint"><code>{
-    "id":789,
-    "config":{"ADDONNAME_VAR1":"some configuration value"},
-    "message":"" 
-}
-</code></pre>
-
-<h3 id="request-fields">Request Fields</h3>
+<p>Next, set up your app to start using the cache. We have documentation for the following languages and frameworks: </p>
 
 <ul>
-  <li><code>customer_id</code> - The identification of the user in the AppFog system (i.e. email address).</li>
-  <li><code>plan</code> - The plan being provisioned. This will be “free” for the moment; however, in the future this can be higher-tier plans once they’re supported.</li>
-  <li><code>callback_url</code> - This is the address of the resource in AppFog’s system. The provider can use this to update the configuration for this resource (e.g. during provisioning).</li>
-  <li><code>options</code> - This contains additional options for the specific service. It’s a placeholder for now and AppFog will not send these requests yet.</li>
+  <li><a href="#rails">Rails</a></li>
+  <li><a href="#php">PHP</a></li>
 </ul>
 
-<h3 id="response-fields">Response Fields</h3>
+<p>For other languages and frameworks, check out <a href="http://www.statsmix.com/developers/code_libraries">this page</a>.</p>
 
-<ul>
-  <li><code>id</code> - This is the ID of the resource in the provider’s system. </li>
-  <li><code>config</code> - The required key/value pairs of parameters required to provision the service. The manifest specifies what keys are allowed. Configuration paramters are required, but the particular configuration parameters up to the provider. They can also be updated later using the <code>callback_url</code> to update the config.</li>
-  <li><code>message</code> - This is a message to the system. It’s ignored for now.</li>
-</ul>
+<p>For the StatsMix API, go <a href="http://www.statsmix.com/developers">here</a>.</p>
 
-<h3 id="example-deprovisioning-request">Example Deprovisioning Request</h3>
+<h1 id="rails">Rails</h1>
 
-<p>Request: <code>DELETE /phpfog/resources/:id</code></p>
+<p>First, install the StatsMix gem:</p>
 
-<p>Request Body: none</p>
-
-<p>Response: </p>
-
-<pre class="prettyprint"><code>200 OK
+<pre class="prettyprint"><code>$ gem install statsmix
 </code></pre>
 
-<h3 id="request-fields-1">Request Fields</h3>
+<p>Next, configure the gem according to your version of Rails:</p>
 
-<p>This is a DELETE request to the particular <code>URL</code> and doesn’t contain a body.</p>
+<h3 id="rails-2">Rails 2</h3>
 
-<h3 id="response-fields-1">Response Fields</h3>
+<p>Add the following to <code>config/environment.rb</code>, then restart the server: </p>
 
-<p>Only an HTTP response status is required.</p>
+<pre class="prettyprint"><code>$ config.gem 'statsmix'
+</code></pre>
 
-<h1 id="authentication">Authentication</h1>
+<h3 id="rails-3">Rails 3</h3>
 
-<p>All calls to both the provisioning API on the partners service as well as the AppFog callback service must be authenticated using <code>HTTP Basic Auth</code>.</p>
+<p>Add the following to your Gemfile, then restart the server: </p>
 
-<p>All requests must be completed over <code>HTTPS</code>. </p>
+<pre class="prettyprint"><code>$ gem 'statsmix'
+</code></pre>
 
-<p>The manifest file specifies the username and password to be used for all of these calls. The “<code>id</code>” in the manifest is the username, the “<code>api_password</code>” is the password.</p>
+<h1 id="your-api-key">Your API Key</h1>
 
-<h1 id="manifest">Manifest Format</h1>
+<p>AppFog keeps your StatsMix API key in an environment variable called <code>STATSMIX_API_KEY</code>, which you can retrieve using the command <code>ENV['STATSMIX_API_KEY']</code>. Populate your API key for the StatsMix gem with this: </p>
 
-<p>The manifest file is a <code>JSON</code> document that defines the information necessary for AppFog to make provisioning calls to the provider.</p>
+<pre class="prettyprint"><code>$ StatsMix.api_key = ENV['STATSMIX_API_KEY']
+</code></pre>
 
-<p>Add-on partners should provide the manifest file out-of-band by emailing it to the AppFog team to incorporate into the system.</p>
+<h1 id="using-statsmix-to-track-events">Using StatsMix to Track Events</h1>
 
-<h3 id="example-manifest">Example Manifest</h3>
+<p>Any time you want to track an event in your app, simply call:</p>
 
-<p><code>example-manifest.json</code></p>
+<pre class="prettyprint"><code>StatsMix.track(name_of_metric, value = 1, options = {})
+</code></pre>
 
-<pre class="prettyprint linenums"><code>{
-    "id":"provider",
-    "name":"Provider Inc",
-    "plans":[
-        {"id":"free"}
-        ],    
-    "api": {
-        "config_vars":["PROVIDER_VAR_XYZ"],
-        "production":"https://provider.com/",
-        "test":"https://provider-qa.com/",
-        "path":"PathToResource",
-        "username":"SomeUsername",
-        "password":"ChangeYourPassword",
-        "sso_salt":"xPedFGIIJIei30D"       
-    } 
+<p>If a metric with that name doesn’t exist in your account, StatsMix will create one automatically. If the profile isn’t set, the metric will use the first <code>profile_id</code> created in your account. (Developer, Basic, and Standard plans only have one profile.)</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>Track every time a new blog post is created:</p>
+
+<pre class="prettyprint"><code># create a stat with the value 1 (default) for the metric called "Blog Posts"
+StatsMix.track("Blog Posts")
+</code></pre>
+
+<p>Count the number of new user accounts in the last 24 hours (i.e. run daily in a daily rake task):</p>
+
+<pre class="prettyprint"><code>count = User.count(:conditions =&gt; ["created_at &gt;= ?", 24.hours.ago]) 
+# create a stat with the value count for the metric called "Daily New Users"
+StatsMix.track("Daily New Users", count)
+</code></pre>
+
+<h1 id="adding-metadata">Adding Metadata</h1>
+
+<p>You can optionally “tag” your data with metadata in the <code>:meta</code> option. For example, if you have a file upload utility and want to track what kinds of files you are receiving:</p>
+
+<pre class="prettyprint"><code># a user just uploaded a PDF file; track the type of file using metadata
+StatsMix.track("File Uploads", 1, {:meta =&gt; {"file type" =&gt; "PDF"}})
+</code></pre>
+
+<p>You can include multiple key-value pairs in the same stat:</p>
+
+<pre class="prettyprint"><code>StatsMix.track("File Uploads", 1, {:meta =&gt; {"file type" =&gt; "PDF", "size" =&gt; "1 mb", "country of origin" =&gt; "Absurdistan"}})
+</code></pre>
+
+<h1 id="adding-your-own-identifier">Adding Your Own Identifier</h1>
+
+<p>If you need the ability to update a stat after the fact, you can pass in a unique identifier <code>ref_id</code> (scoped to that metric).</p>
+
+<p>For example, perhaps you want to update the number of users every hour instead of every day. If you pass in the date as <code>ref_id</code>, StatsMix will check whether a stat with that <code>ref_id</code> already exists for that metric. If found, StatsMix will update instead of inserting.</p>
+
+<pre class="prettyprint"><code>count = User.count(:conditions =&gt; ["created_at &gt;= ?", Time.now.strftime("%Y-%m-%d")]) 
+# create/update a stat using today"s date as the unique identifier
+StatsMix.track("Daily New Users", count, {:ref_id =&gt; Time.now.strftime("%Y-%m-%d")})
+</code></pre>
+
+<h3 id="additional-options">Additional Options</h3>
+
+<p>If you’d like to change the timestamp of a stat, pass in the parameter <code>generated_at</code>.</p>
+
+<pre class="prettyprint"><code># backdate the stat to yesterday
+StatsMix.track("Blog Posts", 1, {:generated_at =&gt; 1.days.ago})
+</code></pre>
+
+<p>Higher level StatsMix accounts can have additional profiles. A profile can be described as a grouping or “bucket” of metrics. For example, an agency may want to create a profile for each customer.</p>
+
+<p>If you are tracking metrics with the same name in two different profiles, you must specify which profile to use with <code>profile_id</code>. (If you don’t specify <code>profile_id</code>, StatsMix will default to the first profile in your account.)</p>
+
+<pre class="prettyprint"><code>StatsMix.track("Blog Posts", 1, {:profile_id =&gt; 789})
+</code></pre>
+
+<p>You can find the profile ID in StatsMix by creating a metric and looking at the API Details under Code Snippets in the Data &amp; API section. (It will also be in the URL as /<code>profiles/123/metrics/456</code> - in this case the profile id is 123.)</p>
+
+<h3 id="limitations">Limitations</h3>
+
+<p>If you hit a plan level limit (i.e. you go over the number of API requests available to your account), the API will return a 403 Forbidden error and an explanation.</p>
+
+<p>The number of API requests and profiles you can create is based on the type of account you have. For example, Standard plans are limited to 300,000 API requests per month. You can see the current options on StatsMix’s <a href="http://www.statsmix.com/home/plans">pricing page</a>.</p>
+
+<h3 id="local-setup">Local Setup</h3>
+
+<p>When running StatsMix in development, you can tell StatsMix to either ignore calls to it altogether or funnel them all into a single test metric.</p>
+
+<p>For ignoring calls altogether, just put the following in a configuration file such as environment.rb or an initializer:</p>
+
+<pre class="prettyprint"><code>StatsMix.ignore = true
+</code></pre>
+
+<p>For logging to a test metric, add this instead:</p>
+
+<pre class="prettyprint"><code>StatsMix.test_metric_name = "My Test Metric"
+</code></pre>
+
+<p>This routes all <code>StatsMix.track</code> calls to “My Test Metric” regardless of the metric name passed.</p>
+
+<p>Note: If StatsMix.ignore is set, then the test metric will not be used unless StatsMix.ignore is first reset to false.</p>
+
+<h1 id="php">PHP</h1>
+
+<p>You can get 98% of our functionality by copying &amp; pasting the examples below. </p>
+
+<p>The basic pattern:</p>
+
+<pre class="prettyprint linenums"><code>require "StatsMix.php";
+StatsMix::set_api_key(getenv("STATSMIX_API_KEY");
+StatsMix::track($name_of_metric,$value = 1,$options = array());
+</code></pre>
+
+<p>Push a stat with the value 1 (default) to a metric called “My First Metric”:</p>
+
+<pre><code>StatsMix::track("My First Metric");
+</code></pre>
+
+<p>Push the value 20:</p>
+
+<pre><code>StatsMix::track("My First Metric",20);
+</code></pre>
+
+<p>Add metadata via the “meta” option in <code>$options</code> - you can use this to add granularity to your stats. This example tracks file uploads by file type.</p>
+
+<pre class="prettyprint"><code>StatsMix::track("File Uploads", 1, array('meta' =&gt; array("file type" =&gt; "PDF")));
+</code></pre>
+
+<p>If you need the ability to update a stat after the fact (i.e. you’re updating the same stat several times a day),  you can pass in a unique identifier called <code>ref_id</code>, which is scoped to the metric (so you can use the same identifier across metrics) This example uses the current date (in UTC time) for <code>ref_id</code>.</p>
+
+<pre class="prettyprint"><code>StatsMix::track("File Uploads", 1, array('ref_id' =&gt; gmstrftime('%Y-%m-%d'), 'meta' =&gt; array("file type" =&gt; "PDF")));
+</code></pre>
+
+<p>If you need to timestamp the stat for something other than now, pass in a UTC datetime with the key <code>generated_at</code></p>
+
+<pre class="prettyprint"><code>StatsMix::track("File Uploads", 1, array('generated_at' =&gt; gmstrftime('%Y-%m-%d %H:%I:%S',strtotime('yesterday'))));
+</code></pre>
+
+<p>To turn off tracking in your development environment:</p>
+
+<pre class="prettyprint"><code>StatsMix::set_ignore(true);
+</code></pre>
+
+<p>To redirect all stats in dev environment to a test metric:</p>
+
+<pre class="prettyprint"><code>StatsMix::set_test_metric_name("My Test Metric");
+</code></pre>
+
+<p>If you have multiple profiles in your account, specify which one via <code>profile_id</code>:</p>
+
+<pre class="prettyprint"><code>StatsMix::track("metric name that may be in multiple profiles", 1, array('profile_id' =&gt; "PROFILE_ID"));
+</code></pre>
+
+<p>To create metrics and stats using a more OO approach, check out the classes <strong>SmMetric</strong> and <strong>SmStat</strong> in StatsMix.php. Using them you can do things like this:</p>
+
+<p>Create a metric:</p>
+
+<pre class="prettyprint linenums"><code>$metric = new SmMetric;
+$metric-&gt;name = "My Test Metric";
+$metric-&gt;save();
+if($metric-&gt;error){
+	echo "&lt;p&gt;Error: {$metric-&gt;error}&lt;/p&gt;";
 }
+//view the xml response:
+echo $metric-&gt;get_response();
 </code></pre>
 
-<h3 id="fields">Fields</h3>
+<h3 id="more-documentation">More Documentation</h3>
 
-<ul>
-  <li><code>id</code> - The add-on id. All lowercase, no spaces or punctuation. This is used in conjunction with the password to authenticate provisioning calls.</li>
-  <li><code>name</code> - The friendly name to appear in the add-on tab of the app console in AppFog.</li>
-  <li><code>api/config_vars</code> - A list of variables to be returned on provisioning calls. The variable names must be prefixed with the add-on id and an underscore. Example: “<code>PROVIDER_</code>”</li>
-  <li><code>api/production</code> - The root <code>URL</code> of the provisioning service of provider.</li>
-  <li><code>api/test</code> - Same <code>URL</code> as production, but for testing in a QA environment.</li>
-  <li><code>api/path</code> - (Optional) Overrides the default path “<code>appfog/resources</code>”.</li>
-  <li><code>api/username</code> - (Optional) The username used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>. The “<code>id</code>” is used if the username is not specified.</li>
-  <li><code>api/password</code> - The password used by AppFog to authenticate itself with the partner service via <code>HTTP Basic Auth</code>.</li>
-  <li><code>api/sso_salt</code> - Shared secret used in single sign-on between AppFog and the provider.</li>
-  <li><code>plans/id</code> - The name of the “free” plan that will be offered to AppFog users and used for testing and integration purposes.</li>
-</ul>
+<p>The StatsMix PHP Library supports all the methods documented <a href="http://www.statsmix.com/developers/documentation">here</a>.</p>
 
-<h1 id="sso">Single Sign-on</h1>
+<h3 id="contributing-to-statsmix">Contributing to statsmix</h3>
 
-<p>Once a resource is fully provisioned, a “Manage” button will appear in the AppFog app console for the given add-on. This button will redirect the user to the management page of the particular resource on the partner’s website.</p>
+<p>Check out <a href="https://github.com/derekscruggs/PHP-library-for-StatsMix-API">this GitHub repo</a> to contribute.</p>
 
-<p>After the user clicks the button, they will be redirected to the following generated <code>URL</code>:</p>
+<h3 id="copyright">Copyright</h3>
 
-<pre class="prettyprint"><code>https://partner.com/appfog/resources/:id?token=:token&amp;timestamp=:timestamp
-</code></pre>
-
-<p>The <code>:id</code> is the <code>id</code> of the resource which was defined in the response to the provisioning call for creating this resource.</p>
-
-<p>The token is defined as a combination of the <code>id</code>, <code>salt</code>, and <code>timestamp</code>. </p>
-
-<p>The salt is the “<code>sso_salt</code>” variable as defined in the manifest.</p>
-
-<p>The timestamp is the current UNIX timestamp.</p>
-
-<pre class="prettyprint"><code>token = sha1(id + ':' + salt + ':' + timestamp)
-</code></pre>
-
-<p>After the partner validates the salt (shared secret) and the timestamp (we recommend 30 seconds), they can be allowed to manage the resource as defined by the <code>id</code>.</p>
+<p>Copyright © 2011 StatsMix, Inc. See <a href="https://github.com/tmarkiewicz/statsmix/blob/master/LICENSE.txt">LICENSE.txt</a> for further details.</p>
 
 
 			</div>
@@ -491,9 +538,9 @@
 							
 							<li><a href="/add-ons/memcachier" >MemCachier</a></li>
 							
-							<li><a href="/add-ons/statsmix" >StatsMix</a></li>
+							<li><a href="/add-ons/statsmix" class="on">StatsMix</a></li>
 							
-							<li><a href="/add-ons/partners" class="on">Add-on Partnership</a></li>
+							<li><a href="/add-ons/partners" >Add-on Partnership</a></li>
 							
 							</div>
 						</ul>

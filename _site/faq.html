@@ -198,6 +198,7 @@
   <li><a href="#downtime">How can I update my app without downtime?</a></li>
   <li><a href="#security-group">What are the security group settings for connecting my app to Amazon RDS?</a></li>
   <li><a href="#bandwidth">How much does bandwidth cost beyond the included limits for the account?</a></li>
+  <li><a href="#persistentfs">Does AppFog have a persistent file system?</a></li>
 </ul>
 
 <h3 id="billing">How does billing work?</h3>
@@ -259,6 +260,10 @@ $ af unmap example www.example.com
 <h3 id="bandwidth">How much does bandwidth cost beyond the included limits for the account?</h3>
 
 <p>Additional data transfer costs $0.15 per gigabyte.</p>
+
+<h3 id="persistentfs">Does AppFog have a persistent file system?</h3>
+
+<p>Not yet. We’re working on this feature, but in the meantime, the file system is volatile. This means that any changes you make to the file system through a web interface, including any admin changes and content uploads, will be lost on the app’s next start, stop, restart, deploy, or resource change. Because of this, you should make any changes to the file system on a local development environment and keep media assets and content uploads on an external storage system like Amazon’s S3. </p>
 
 
 			</div>
@@ -373,6 +378,10 @@ $ af unmap example www.example.com
 							
 							<li><a href="/add-ons/cleardb" >ClearDB</a></li>
 							
+							<li><a href="/add-ons/memcachier" >MemCachier</a></li>
+							
+							<li><a href="/add-ons/statsmix" >StatsMix</a></li>
+							
 							<li><a href="/add-ons/partners" >Add-on Partnership</a></li>
 							
 							</div>
@@ -383,7 +392,7 @@ $ af unmap example www.example.com
 						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
 						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
-						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
+						<!--<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>-->
 						<div class="row border-bottom"><div class="span3"><a href="/roadmap" ><h6>Feature Roadmap</h6></div></a></div>
 
 					</div>

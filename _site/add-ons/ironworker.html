@@ -267,25 +267,6 @@ $details = $iw-&gt;getTaskDetails($task_id);
 echo $details-&gt;status; # prints 'queued', 'complete', 'error' etc.
 </code></pre>
 
-<h3 id="database">Connect Your Worker to Your PHP Fog App’s Database</h3>
-
-<p>PHP Fog doesn’t allow remote connections to your app’s database, but we’ve made a special provision for IronWorker workers. Here are the settings you’ll need for that: </p>
-
-<pre><code>Host: mysql-proxy.phpfog.com
-</code></pre>
-
-<p>The port you should use depends on which particular database your app is connected to. You can check which database you’re connected to by going to your PHP Fog app console. Click on the “Env. Variables” tab and check the value of the variable called “<code>MYSQL_DB_HOST</code>”.</p>
-
-<p><code>db01.phpfog.com</code>:</p>
-
-<pre><code>Port: 3306
-</code></pre>
-
-<p><code>mysql-shared-02.phpfog.com</code>:</p>
-
-<pre><code>Port: 3307
-</code></pre>
-
 <h3 id="and-more">And More…</h3>
 
 <p>You can also pass payloads to your tasks, set progress status, logs, etc. For more information, check out some of these resources:</p>
@@ -410,6 +391,10 @@ echo $details-&gt;status; # prints 'queued', 'complete', 'error' etc.
 							
 							<li><a href="/add-ons/cleardb" >ClearDB</a></li>
 							
+							<li><a href="/add-ons/memcachier" >MemCachier</a></li>
+							
+							<li><a href="/add-ons/statsmix" >StatsMix</a></li>
+							
 							<li><a href="/add-ons/partners" >Add-on Partnership</a></li>
 							
 							</div>
@@ -420,7 +405,7 @@ echo $details-&gt;status; # prints 'queued', 'complete', 'error' etc.
 						<div class="row border-bottom"><div class="span3"><a href="http://console.appfog.com/pricing"><h6>Pricing</h6></a></div></div>
 						<div class="row border-bottom"><div class="span3"><a href="/billing" ><h6>BILLING</h6></div></a></div>
 						<div class="row border-bottom"><div class="span3"><a href="/troubleshooting" ><h6>Troubleshooting</h6></div></a></div>
-						<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>
+						<!--<div class="row border-bottom"><div class="span3"><a href="/architecture" ><h6>Architecture</h6></div></a></div>-->
 						<div class="row border-bottom"><div class="span3"><a href="/roadmap" ><h6>Feature Roadmap</h6></div></a></div>
 
 					</div>

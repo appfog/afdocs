@@ -8,6 +8,8 @@ weight: 7
 
 ## Billing Cycle {#cycle}
 
+hmm
+
 Your billing cycle begins when you start your subscription. If you start your subscription on the first of the month, then your account will automatically renew on the first of each subsequent month. 
 
 ## Upgrades and Downgrades {#upgrades}

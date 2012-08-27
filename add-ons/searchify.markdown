@@ -9,7 +9,7 @@ Searchify allows developers to easily add search to their applications, without 
 
 Searchify has client libraries for [PHP](http://www.searchify.com/documentation/php-client), [Ruby](http://www.searchify.com/documentation/ruby-client), [Python](http://www.searchify.com/documentation/python-client), [Java](http://www.searchify.com/documentation/java-client), and others, all of which communicate with Searchify's [REST API](http://www.searchify.com/documentation/api).
 
-### Install Searchify
+## Install Searchify
 
 In the "Add-ons" tab in your app console click "Install" for the Searchify add-on. That's it!
 
@@ -17,17 +17,17 @@ Installing the Searchify add-on creates an account with Searchify associated wit
 
 This will also add an environment variable called `SEARCHIFY_API_URL` in the "Env. Variables" in your app console. This contains the private API URL used to access the newly provisioned Searchify service from your app. 
 
-### Set up your local development environment
+## Set up your local development environment
 
 The `SEARCHIFY_API_URL` environment variable holds the private URL you'll use to access the Searchify service from within a local environment. Developers will typically create one search index for testing and one for production.
 
 The next step is to install the appropriate language client library to develop locally with Searchify.
 
-### Installing the client library
+## Installing the client library
 
 You can access Searchify using the IndexTank client library. 
 
-#### Installing the IndexTank Client
+### Installing the IndexTank Client
 
 Full PHP client documentation and download links are available [here](http://www.searchify.com/documentation/php-client).
 
@@ -69,7 +69,7 @@ That's it, you've indexed a document! You can now search the index for any index
 
 An index may be deleted and re-created anytime to clean it up, either from code as shown below or from Searchify's [dashboard](http://www.searchify.com/dashboard):
 
-#### Deleting an index
+### Deleting an index
 
 
     <?php
@@ -81,7 +81,7 @@ An index may be deleted and re-created anytime to clean it up, either from code 
         $index->delete_index();
     ?>
 
-#### Creating a new index
+### Creating a new index
 
 
     <?php
@@ -97,14 +97,14 @@ An index may be deleted and re-created anytime to clean it up, either from code 
         }
     ?>
 
-#### Dashboard
+### Dashboard
 
 The Searchify dashboard allows you to manage indices, allowing you to create, delete, and search indices.  Custom scoring functions can also be configured.  The dashboard can be accessed by visiting the PhpFog app console, and selecting Searchify.
 
-#### Plans
+### Plans
 
 Searchify offers plans based on the number of documents stored. If you outgrow the limits of your current Searchify plan, you can change to a larger plan. A list of all plans available can be found [here](http://www.searchify.com/plans).
 
-### Further Reading
+## Further Reading
 
 For more information on the features available from Searchify, including faceting, geolocation, snippets, autocomplete, and custom scoring functions, please see the documentation at [www.searchify.com/documentation](http://www.searchify.com/documentation).

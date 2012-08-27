@@ -27,14 +27,14 @@ AppFog currently supports Python 2.7.3. You can check the available runtimes by 
 
 AppFog supports Python by serving apps through the [WSGI](http://wsgi.readthedocs.org/en/latest/index.html) protocol using [Gunicorn](http://gunicorn.org/). 
 
-# Dependencies {#dependencies}
+## Dependencies {#dependencies}
 
 AppFog uses `pip` and `virtualenv` to deploy apps. You can define the package prequisites of your Python app in a top-level [requirements.txt](http://www.pip-installer.org/en/latest/requirements.html#the-requirements-file-format) file, which `pip` uses to install dependencies. AppFog never caches package dependencies and instead downloads and installs them every time you update or restart your app. 
 
-### Limitations
+## Limitations
 
 There is currently a known issue with Python apps that include many dependencies. We are working on a solution to this that should be available very soon.
 
-# Services {#services}
+## Services {#services}
 
 You can connect your Python app to AppFog services by using the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. For more information on this, check out our [Services Overview](/services/overview) page.

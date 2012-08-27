@@ -3,11 +3,11 @@ title: MongoLab
 weight: 16
 ---
 
-#### Install MongoLab
+## Install MongoLab
 
 In the "Add-ons" tab in your app console click "Install" for the MongoLab add-on. That's it!
 
-#### Connect to the Database
+## Connect to the Database
 
 Installing the MongoLab add-on automatically sets an environment variable for your app called "`MONGOLAB_URI`". You can access this in your code with `getenv("MONGOLAB_URI")`. This variable includes the full URI including the hostname, database path, username and password. It looks like this: 
 
@@ -46,6 +46,6 @@ Using MongoDB from a PHP app is very easy. The required extensions are already i
 
 You can find more information on using a MongoDB from a PHP app [here](http://php.net/manual/en/class.mongodb.php).
 
-#### MongoLab Admin Panel
+## MongoLab Admin Panel
 
 In the "Add-ons" tab in your app console, click on the "Manage" button for the MongoLab add-on. This will take you to your MongoLab account where you can make configuration changes and upgrade your MongoLab account.

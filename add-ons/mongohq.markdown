@@ -3,7 +3,7 @@ title: MongoHQ
 weight: 16
 ---
 
-### Install MongoHQ
+## Install MongoHQ
 
 In the "Add-ons" tab in your app console click "Install" for the MongoHQ add-on. That's it!
 
@@ -44,6 +44,6 @@ Using MongoDB from a PHP app is very easy. The required extensions are already i
 
 You can find more information on using a MongoDB from a PHP app [here](http://php.net/manual/en/class.mongodb.php).
 
-### MongoHQ Admin Panel
+## MongoHQ Admin Panel
 
 In the "Add-ons" tab in your app console, click on the "Manage" button for the MongoHQ add-on. This will take you to your MongoHQ account where you can make configuration changes and upgrade your MongoHQ account.

@@ -3,11 +3,11 @@ title: CloudMailin
 weight: 16
 ---
 
-#### Install CloudMailin
+## Install CloudMailin
 
 In the "Add-ons" tab in your app console click "Install" for the CloudMailin add-on. That's it!
 
-#### Receive Email
+## Receive Email
 
 Cloudmailin can receive email and forward them to your app by performing a POST to a specific page.
 

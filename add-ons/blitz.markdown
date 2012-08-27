@@ -3,15 +3,15 @@ title: Blitz
 weight: 16
 ---
 
-### Why Use Blitz?
+## Why Use Blitz?
 
 There's no surefire forumla for calculating the resources you'll need for a given application. The best, most reliable way to determine what level of service you'll need is to simulate load on your app. It can also be difficult to determine how much your app's performance will be affected by rapid growth. Blitz lets you test app load quickly and easily. 
 
-### Install Blitz
+## Install Blitz
 
 In the "Add-ons" tab in your app console click "Install" for the Blitz add-on. That's it!
 
-### Use Blitz
+## Use Blitz
 
 Click the "Manage" button in your app console under the "Add-ons" tab.
 

@@ -3,7 +3,7 @@ title: Node
 weight: 1
 ---
 
-### Supported Versions
+## Supported Versions
 
 For the most reliable development experience, make sure you have the same version of Node.js installed on your local development environment as your target AppFog instance. You can check the available runtimes by running:
 
@@ -30,11 +30,11 @@ Target a specific runtime when you deploy by using the runtime flag. For example
 
     $ af push --runtime=node06
 
-# Deployment
+## Deployment
 
 When you deploy a Node.js app to AppFog, the current directory must contain your app in an `app.js` file. 
 
-# Dependency Management
+## Dependency Management
 
 AppFog supports [npm](https://npmjs.org/) (Node Package Manager). 
 
@@ -65,7 +65,7 @@ This will install all of the packages named in `package.json`.
 
 Both of these installation methods will create a directory called `node_modules` which will include the entire contents of all of your dependencies. When you deploy your code with an `af push`, AppFog simply uploads your app, including the entire `node_modules` directory.
 
-### npm shrinkwrap
+## npm shrinkwrap
 
 AppFog also supports [npm shrinkwrap](https://npmjs.org/doc/shrinkwrap.html). This means that you can instruct AppFog to rebuild the modules, which you'll want to do if your app has any native dependencies, for example.
 
@@ -85,7 +85,7 @@ By default, AppFog uses the `node_modules` directory unless you explicitly tell 
 
 If you deploy your app with those conditions in place, AppFog will install the node modules to the app during the staging process. If the require node module doesn't work with the node engine that the app is running on, however, AppFog will not install the module.
 
-# "Hello World" Walkthrough
+## "Hello World" Walkthrough
 
 The following is a step-by-step guide to writing and deploying a “hello world” Node.js web server app with the [Express](http://expressjs.com/) web module:
 
@@ -154,7 +154,7 @@ Push the app. You can hit `Enter` to accept the defaults at most of the prompts,
 
 Hit the app in your browser, `http://hello-node.aws.af.cm`, in this example.
 
-# Environments in Express {#express}
+## Environments in Express {#express}
 
 Express supports arbitrary environments, like `production` and `development`. You can use the `configure()` method to set different configurations under the different environments. Here, we'll bind a `mongodb` service to the app to demonstrate.
 

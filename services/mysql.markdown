@@ -85,7 +85,7 @@ The `credentials` object contains all of the data you need to connect to MySQL t
 * `password` is the MySQL password.
 * `name` is the name of the MySQL database.
 
-# PHP {#php}
+## PHP {#php}
 
 Here's a bit more on how to use the `VCAP_SERVICES` variable to access your MySQL service: 
 
@@ -101,7 +101,7 @@ Here's a bit more on how to use the `VCAP_SERVICES` variable to access your MySQ
     $link = mysql_connect("$hostname:$port", $username, $password);
     $db_selected = mysql_select_db($db, $link);
 
-# Migration {#migration}
+## Migration {#migration}
 
 Here's a quick guide on migrating an existing database to an AppFog app. 
 
@@ -147,7 +147,7 @@ Import the data by running this command:
 
     mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f < /tmp/mydata.sql
 
-# phpMyAdmin {#phpmyadmin}
+## phpMyAdmin {#phpmyadmin}
 
 You can easily create a [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) instance to interface with your MySQL services. 
 

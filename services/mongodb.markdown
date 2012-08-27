@@ -10,11 +10,11 @@ AppFog provides a MongoDB service that's accessible to apps that are running on 
 * [Node.js with MongoDB Walkthrough](#walkthrough)
 * [PHP](#php)
 
-# Ruby {#ruby}
+## Ruby {#ruby}
 
 You can use the [MongoMapper ORM](http://mongomapper.com/) to adapt your Ruby app to access the AppFog MongoDB service.
 
-### Gemfile
+## Gemfile
 
 First, add the MongoMapper gem, as well as BSON for serialization of JSON-like documents, which is necessary for interfacing with the MongoDB Ruby driver:
 
@@ -27,7 +27,7 @@ And install the gems:
 
     $ gem install "bson_ext"
 
-### Rails
+## Rails
 
 For a Rails app, modify the production section of your app's `config/mongo.yml` to set credentials, host, and port by parsing the JSON-formatted `VCAP_SERVICES` environment variable:
 
@@ -75,7 +75,7 @@ When `af` asks if you want to bind any services, enter `y` and choose `mongodb` 
         Staging Application: OK
         Starting Application: OK
 
-# Node.js {#node}
+## Node.js {#node}
 
 Before you begin, make sure you have [Node.js](http://nodejs.org/) and [MongoDB](http://www.mongodb.org/) installed on your development computer.
 
@@ -155,7 +155,7 @@ Your app is now configured for MongoDB.
 
 Need a more detailed walkthrough? Keep reading.
 
-# Node.js with MongoDB Walkthrough {#walkthrough}
+## Node.js with MongoDB Walkthrough {#walkthrough}
 
 Before you start, make sure:
 
@@ -437,7 +437,7 @@ Stop the application locally and update it on AppFog.
     {"ip":"127.0.0.1","ts":"2011-12-29T23:49:46.738Z","_id":"4efcfc9acbfffadc0b000001"}
     {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
 
-# PHP {#php}
+## PHP {#php}
 
 Connecting your PHP app to a bound MongoDB service is simple:
 
@@ -455,7 +455,7 @@ Connecting your PHP app to a bound MongoDB service is simple:
     $m = new Mongo($connect);
     $db = $m->selectDB($db); 
 
-# Links
+## Links
 
 For another complete sample app for a Node.js app with MongoDB, check out [our GitHub repo](https://github.com/appfog/af-node-sample-mongodb).
 

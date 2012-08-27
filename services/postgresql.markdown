@@ -9,7 +9,7 @@ AppFog provides a PosgreSQL service that's accessible to apps that are running o
 * [PHP](#php)
 * [Ruby](#ruby)
 
-# The VCAP\_SERVICES Environment Variable {#vcap}
+## The VCAP\_SERVICES Environment Variable {#vcap}
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. For apps that can't be automatically configured, you can find the information your app needs to connect to the database in this variable.
 
@@ -64,7 +64,7 @@ In PHP:
 
     getenv("VCAP_SERVICES")
 
-# PHP {#php}
+## PHP {#php}
 
 Connecting your PHP app to a bound PostgreSQL service is simple:
 
@@ -80,7 +80,7 @@ Connecting your PHP app to a bound PostgreSQL service is simple:
 
     $link = pg_connect("host=$hostname port=$port dbname=$db user=$username password=$password");
 
-# Ruby {#ruby}
+## Ruby {#ruby}
 
 Connecting your Ruby app to a bound PostgreSQL service is simple:
 

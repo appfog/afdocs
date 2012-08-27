@@ -7,7 +7,7 @@ weight: 1
 * [php.ini](#php_ini)
 * [Document Root](#docroot)
 
-### Supported Versions
+## Supported Versions
 
 For the most reliable experience, make sure you have the same version of PHP installed on your local development environment as the target AppFog instance. You can check the available runtimes by running: 
 
@@ -30,11 +30,11 @@ For the most reliable experience, make sure you have the same version of PHP ins
 
 AppFog supports PHP with `Apache 2.2.22` and `mod_php`. You can take a closer look at the PHP and Apache configurations [here](http://phpinfo.aws.af.cm/info.php).
 
-### Persistent Data Storage
+## Persistent Data Storage
 
 AppFog does not yet have a persistent data storage system, though we're working on it. This means that the file system is volatile and any data that needs to be persistent should be included in the code base (by making all changes in a local development environment) or offloaded to a database or an external storage system like Amazon's S3.  
 
-### Services
+## Services
 
 You can connect your PHP app to AppFog services by using the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. You can access the variable in PHP like this: 
 
@@ -43,7 +43,7 @@ You can connect your PHP app to AppFog services by using the `VCAP_SERVICES` env
 
 For more information on this, check out our [Services Overview](/services/overview) page.
 
-# Custom PHP App {#custom}
+## Custom PHP App {#custom}
 
 ### Create the App
 
@@ -83,7 +83,7 @@ Create an `index.php` file with the following:
     $ af curl php-example.aws.af.cm
     Hello world!% 
 
-# `php.ini` {#php_ini}
+## `php.ini` {#php_ini}
 
 AppFog does not support direct access to `php.ini`. However, the `AllowOverride` directive in `php.ini` is set to "`All`" which enables you to set the values of the directives in your `.htaccess` or in your PHP file via `ini_set()`.
 
@@ -103,7 +103,7 @@ For more information on this topic, check out the following references:
 
 Please consult the [PHP manual on `ini_set()`](http://www.php.net/manual/en/function.ini-set.php).
 
-# Document Root {#docroot}
+## Document Root {#docroot}
 
 You can modify your document root adding the following into your `.htaccess`:
 

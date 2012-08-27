@@ -44,9 +44,9 @@ If you use Bundler to load Sinatra, AppFog may not recognize your app. In this c
     ...
 ---> 
 
-# Sample Sinatra App Using DataMapper and Bundler
+## Sample Sinatra App Using DataMapper and Bundler
 
-#### Gemfile
+### Gemfile
 
 
     source 'http://rubygems.org'
@@ -62,7 +62,7 @@ If you use Bundler to load Sinatra, AppFog may not recognize your app. In this c
         gem 'dm-mysql-adapter'
     end
 
-#### `sinatra_dm.rb`
+### `sinatra_dm.rb`
 
 The name of this sinatra app will be `sinatra_dm.rb`.
 
@@ -124,9 +124,9 @@ The name of this sinatra app will be `sinatra_dm.rb`.
         end
     end
 
-### Views
+## Views
 
-#### Index
+### Index
 
 
     <!-- views/index.erb -->
@@ -140,7 +140,7 @@ The name of this sinatra app will be `sinatra_dm.rb`.
     <br />
     <a href="/post/new">Create new post</a>
 
-#### New
+### New
 
 
     <!-- views/new.erb -->
@@ -152,7 +152,7 @@ The name of this sinatra app will be `sinatra_dm.rb`.
         <input type="submit" name="Publish" />
     </form>
 
-#### Post
+### Post
 
 
     <!-- views/post.erb -->

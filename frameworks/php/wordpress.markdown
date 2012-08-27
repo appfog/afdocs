@@ -3,11 +3,11 @@ title: PHP
 weight: 3
 ---
 
-### Persistent Data Storage
+## Persistent Data Storage
 
 AppFog does not yet have a persistent data storage system, though we're working on it. This means that the file system is volatile and any data that needs to be persistent should be included in the code base (by making all changes in a local development environment) or offloaded to a database or an external storage system like Amazon's S3.  
 
-### Services
+## Services
 
 You can connect your PHP app to AppFog services by using the `VCAP_SERVICES` environment variable, which becomes available to your app when you bind a service to it. You can access the variable in PHP like this: 
 
@@ -16,7 +16,7 @@ You can connect your PHP app to AppFog services by using the `VCAP_SERVICES` env
 
 For more information on this, check out our [Services Overview](/services/overview) page.
 
-# WordPress {#wordpress}
+## WordPress {#wordpress}
 
 The following is a step-by-step guide to deploying a WordPress app to AppFog.
 
@@ -93,7 +93,7 @@ with:
 
 Point your browser to your app's install script, in this case wordpress-example.aws.af.cm/wp-admin/install.php. That should take you through the rest of the install process. 
 
-### Further Development
+## Further Development
 
 AppFog does not yet have a persistent data storage system, though we're working on it. This means that the file system is volatile and any changes made to the file system by the app will be lost on an app start, stop, or deploy. 
 

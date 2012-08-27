@@ -3,11 +3,11 @@ title: IronMQ
 weight: 16
 ---
 
-#### Install IronMQ
+## Install IronMQ
 
 In the "Add-ons" tab in your app console click "Install" for the IronMQ add-on. That's it!
 
-#### Authentication
+## Authentication
 
 You need two things to authenticate and tell IronMQ which project to attach your queues to:
 
@@ -17,7 +17,7 @@ You need two things to authenticate and tell IronMQ which project to attach your
 
 You can find these environment variables in the "Env. Variables" tab in your app console. You can also access these variables in PHP through the `getenv()` function.
 
-#### The Basics
+## The Basics
 
 There are three basic actions you can perform on a message queue:
 

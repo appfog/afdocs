@@ -3,7 +3,7 @@ title: ClearDB
 weight: 16
 ---
 
-#### Install ClearDB
+## Install ClearDB
 
 In the "Add-ons" tab in your app console click "Install" for the ClearDB add-on. That's it!
 

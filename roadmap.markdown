@@ -51,7 +51,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>Node 0.8 </td><td> </td><td class="x-mark-2">&times;</td></tr>
 <tr><td>PHP 5.3 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>PHP 5.4 </td><td> </td><td class="x-mark-2">&times;</td></tr>
-<tr><td>Erlang R14B02 </td><td class="x-mark-2">&times;</td><td></td></tr>
+<tr><td>Erlang R14B02 </td><td> </td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Python 2.7.3 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>.NET (Apache mod\_mono) </td><td> </td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Java Tomcat 6 </td><td class="x-mark-2">&times;</td><td></td></tr>

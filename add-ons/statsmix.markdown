@@ -15,7 +15,7 @@ Use StatsMix to:
 	* [Example dashboard](http://www.statsmix.com/d/0e788d59208900e7e3bc)
 	* [Example embedded dashboard](http://www.statsmix.com/example-embedded)
 
-## Install StatsMix
+### Install StatsMix
 
 In the “Add-ons” tab in your app console click “Install” for the StatsMix add-on. That’s it!
 
@@ -29,7 +29,7 @@ For other languages and frameworks, check out [this page](http://www.statsmix.co
 
 For the StatsMix API, go [here](http://www.statsmix.com/developers).
 
-## Rails {#rails}
+# Rails {#rails}
 
 First, install the StatsMix gem:
 
@@ -38,28 +38,28 @@ First, install the StatsMix gem:
 
 Next, configure the gem according to your version of Rails:
 
-## Rails 2
+### Rails 2
 
 Add the following to `config/environment.rb`, then restart the server: 
 
 
     $ config.gem 'statsmix'
 
-## Rails 3
+### Rails 3
 
 Add the following to your Gemfile, then restart the server: 
 
 
     $ gem 'statsmix'
 
-## Your API Key
+# Your API Key
 
 AppFog keeps your StatsMix API key in an environment variable called `STATSMIX_API_KEY`, which you can retrieve using the command `ENV['STATSMIX_API_KEY']`. Populate your API key for the StatsMix gem with this: 
 
 
     $ StatsMix.api_key = ENV['STATSMIX_API_KEY']
 
-## Using StatsMix to Track Events
+# Using StatsMix to Track Events
 
 Any time you want to track an event in your app, simply call:
 
@@ -68,7 +68,7 @@ Any time you want to track an event in your app, simply call:
 
 If a metric with that name doesn't exist in your account, StatsMix will create one automatically. If the profile isn't set, the metric will use the first `profile_id` created in your account. (Developer, Basic, and Standard plans only have one profile.)
 
-## Examples
+### Examples
 
 Track every time a new blog post is created:
 
@@ -83,7 +83,7 @@ Count the number of new user accounts in the last 24 hours (i.e. run daily in a 
     # create a stat with the value count for the metric called "Daily New Users"
 	StatsMix.track("Daily New Users", count)
 
-## Adding Metadata
+# Adding Metadata
 
 You can optionally "tag" your data with metadata in the `:meta` option. For example, if you have a file upload utility and want to track what kinds of files you are receiving:
 
@@ -96,7 +96,7 @@ You can include multiple key-value pairs in the same stat:
 
 	StatsMix.track("File Uploads", 1, {:meta => {"file type" => "PDF", "size" => "1 mb", "country of origin" => "Absurdistan"}})
 
-## Adding Your Own Identifier
+# Adding Your Own Identifier
 
 If you need the ability to update a stat after the fact, you can pass in a unique identifier `ref_id` (scoped to that metric).
 
@@ -107,7 +107,7 @@ For example, perhaps you want to update the number of users every hour instead o
     # create/update a stat using today"s date as the unique identifier
 	StatsMix.track("Daily New Users", count, {:ref_id => Time.now.strftime("%Y-%m-%d")})
 
-## Additional Options
+### Additional Options
 
 If you’d like to change the timestamp of a stat, pass in the parameter `generated_at`.
 
@@ -125,13 +125,13 @@ If you are tracking metrics with the same name in two different profiles, you mu
 You can find the profile ID in StatsMix by creating a metric and looking at the API Details under Code Snippets in the Data & API section. (It will also be in the URL as /`profiles/123/metrics/456` - in this case the profile id is 123.)
 
 
-## Limitations
+### Limitations
 
 If you hit a plan level limit (i.e. you go over the number of API requests available to your account), the API will return a 403 Forbidden error and an explanation.
 
 The number of API requests and profiles you can create is based on the type of account you have. For example, Standard plans are limited to 300,000 API requests per month. You can see the current options on StatsMix's [pricing page](http://www.statsmix.com/home/plans).
 
-## Local Setup
+### Local Setup
 
 When running StatsMix in development, you can tell StatsMix to either ignore calls to it altogether or funnel them all into a single test metric.
 
@@ -149,7 +149,7 @@ This routes all `StatsMix.track` calls to "My Test Metric" regardless of the met
 
 Note: If StatsMix.ignore is set, then the test metric will not be used unless StatsMix.ignore is first reset to false.
 
-## PHP {#php}
+# PHP {#php}
 
 You can get 98% of our functionality by copying & pasting the examples below. 
 
@@ -212,14 +212,14 @@ Create a metric:
 	//view the xml response:
 	echo $metric->get_response();
 
-## More Documentation
+### More Documentation
 
 The StatsMix PHP Library supports all the methods documented [here](http://www.statsmix.com/developers/documentation).
 
-## Contributing to statsmix
+### Contributing to statsmix
  
 Check out [this GitHub repo](https://github.com/derekscruggs/PHP-library-for-StatsMix-API) to contribute.
 
-## Copyright
+### Copyright
 
 Copyright &copy; 2011 StatsMix, Inc. See [LICENSE.txt](https://github.com/tmarkiewicz/statsmix/blob/master/LICENSE.txt) for further details.

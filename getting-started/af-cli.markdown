@@ -24,7 +24,7 @@ description: "Code deployment made easy."
 * [Manifests](#manifests)
 
 
-### Installation {#installation}
+## Installation {#installation}
 
 The `af` command line tool is written in Ruby and installed as a gem: 
 
@@ -33,7 +33,7 @@ The `af` command line tool is written in Ruby and installed as a gem:
 
 Note: `af` requires Ruby 1.8.7 or newer.
 
-### Usage {#usage}
+## Usage {#usage}
 
 
     $ af [options] command [<args>] [command_options]
@@ -48,7 +48,7 @@ or
 
     $ af help options
 
-### Getting Started {#getting-started}
+## Getting Started {#getting-started}
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -62,7 +62,7 @@ or
 </tr>
 </table>
 
-### Apps {#apps}
+## Apps {#apps}
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -70,7 +70,7 @@ or
 </tr>
 </table>
 
-### App Creation {#app-creation}
+## App Creation {#app-creation}
 
 <table class="table table-bordered table-striped">
 
@@ -84,13 +84,13 @@ or
 
 </table>
 
-### App Download {#app-download}
+## App Download {#app-download}
 
 <table class="table table-bordered table-striped">
 <tr><td><code>pull &lt;appname> [path]                   </code></td><td>Download last pushed source of &lt;appname> to [path]</td></tr>
 </table>
 
-### App Operations {#app-ops}
+## App Operations {#app-ops}
 
 <table class="table table-bordered table-striped">
 
@@ -102,7 +102,7 @@ or
 
 </table>
 
-### App Updates {#app-updates}
+## App Updates {#app-updates}
 
 <table class="table table-bordered table-striped">
 
@@ -114,7 +114,7 @@ or
 
 </table>
 
-### App Information {#app-info}
+## App Information {#app-info}
 
 <table class="table table-bordered table-striped">
 
@@ -127,7 +127,7 @@ or
 
 </table>
 
-### App Environment {#app-env}
+## App Environment {#app-env}
 
 <table class="table table-bordered table-striped">
 
@@ -137,7 +137,7 @@ or
 
 </table>
 
-### Services {#services}
+## Services {#services}
 
 <table class="table table-bordered table-striped">
 
@@ -153,7 +153,7 @@ or
 
 </table>
 
-### Administration {#admin}
+## Administration {#admin}
 
 <table class="table table-bordered table-striped">
 
@@ -165,7 +165,7 @@ or
 
 </table>
 
-### System {#system}
+## System {#system}
 
 <table class="table table-bordered table-striped">
 
@@ -175,7 +175,7 @@ or
 
 </table>
 
-### Misc {#misc}
+## Misc {#misc}
 
 <table class="table table-bordered table-striped">
 
@@ -186,7 +186,7 @@ or
 
 </table>
 
-### Help {#help}
+## Help {#help}
 
 <table class="table table-bordered table-striped">
 
@@ -219,7 +219,7 @@ Here’s the full list of commands that can take advantage of the manifest docum
 
 Note: For multi-app hierarchies, these will operate only on the sub-app you’re in, rather than always operating on every app in the hierarchy. To operate on every app, invoke the command from the root of the hierarchy.
 
-### Getting Started
+## Getting Started
 
 The easiest way to get going is to generate a manifest document from basic app info. If you haven’t pushed your app yet, you can start with `af push` as usual, which will ask if you want to save the configurations as a manifest document:
 
@@ -300,7 +300,7 @@ You can also use `af manifest` to create a manifest without pushing. `af manifes
 
 Now that you have a manifest document, you don’t really have to do anything else if you don’t want to get fancy. It’ll passively improve `af`’s user interface experience for the commands listed above: `af push` will be interaction-free, making deployment much easier, and many other commands will be efficient to invoke.
 
-### Child Manifests
+## Child Manifests
 
 A manifest document can inherit properties from a parent manifest like so:
 
@@ -314,7 +314,7 @@ This allows you to provide the basic information, such as service bindings and f
 * Having various child manifests for different deployment modes (e.g. debug, local, public) that extend base app information provided by a "base" manifest.
 * Packaging the basic configuration along with your app, which users can extend with their own manifest to override your settings or fill in the blanks for their own deployment.
 
-### Symbol Resolution
+## Symbol Resolution
 
 There are currently two special symbols:
 
@@ -340,7 +340,7 @@ For example, the following parent:
 
 ...and with a target of `api.appfog.com`, will result in a `url` of `baz.appfog.com` when using the child manifest, and `bar.appfog.com` when using the parent.
 
-### Multi-App Manifests
+## Multi-App Manifests
 
 Manifests also present a way to deploy multiple apps with a single push command. Let’s say you have a modular app comprised of several independent parts, for example, a publisher and a subscriber. You’ll want the subscriber to start before the publisher, so it doesn’t miss anything that was published. It’s best to have these two apps defined as parts of a whole, so you can specify this dependency. You can do this with multi-app manifest documents.
 

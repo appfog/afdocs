@@ -567,14 +567,14 @@ proxied-appfog.log                          0B
 
 <p>The auto-reconfiguration mechanism also expects typical Ruby apps. If your app configuration is complex, it may not work. In those cases, you can opt out of auto-reconfiguration:</p>
 
-<!---
+<h3 id="opting-out-of-auto-reconfiguration">Opting out of auto-reconfiguration</h3>
 
-### Opting out of auto-reconfiguration
+<p>AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.</p>
 
-AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.
-
-* Create a file in your Rails app called `config/cloudfoundry.yml`. Add the entry `autoconfig: false`.
-* Include the `cf-runtime` gem in your app's `Gemfile`. --->
+<ul>
+  <li>Create a file in your Rails app called <code>config/cloudfoundry.yml</code>. Add the entry <code>autoconfig: false</code>.</li>
+  <li>Include the <code>cf-runtime</code> gem in your app’s <code>Gemfile</code>.</li>
+</ul>
 
 <h3 id="further-reading">Further Reading</h3>
 

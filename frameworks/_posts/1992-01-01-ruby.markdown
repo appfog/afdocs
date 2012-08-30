@@ -367,14 +367,13 @@ If your app doesn’t follow these limitations, AppFog won't auto-reconfigure yo
 
 The auto-reconfiguration mechanism also expects typical Ruby apps. If your app configuration is complex, it may not work. In those cases, you can opt out of auto-reconfiguration:
 
-<!---
 
 ### Opting out of auto-reconfiguration
 
 AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.
 
 * Create a file in your Rails app called `config/cloudfoundry.yml`. Add the entry `autoconfig: false`.
-* Include the `cf-runtime` gem in your app's `Gemfile`. --->
+* Include the `cf-runtime` gem in your app's `Gemfile`.
 
 ### Further Reading
 

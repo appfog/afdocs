@@ -8,7 +8,7 @@ description: "Code deployment made easy."
 
 * [Installation](#installation)
 * [Usage](#usage)
-* [Getting Started](#getting-started)
+* [Getting Started](#af-cli-getting-started)
 * [Apps](#apps)
 * [App Creation](#app-creation)
 * [App Download](#app-download)
@@ -48,7 +48,7 @@ or
 
     $ af help options
 
-## Getting Started {#getting-started}
+## Getting Started {#af-cli-getting-started}
 
 <table class="table table-bordered table-striped">
 <tr>

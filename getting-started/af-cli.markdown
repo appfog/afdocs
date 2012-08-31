@@ -16,7 +16,7 @@ description: "Code deployment made easy."
 * [App Updates](#app-updates)
 * [App Information](#app-info)
 * [App Environment](#app-env)
-* [Services](#services)
+* [Services](#af-cli-services)
 * [Administration](#admin)
 * [System](#system)
 * [Misc](#misc)
@@ -137,7 +137,7 @@ or
 
 </table>
 
-## Services {#services}
+## Services {#af-cli-services}
 
 <table class="table table-bordered table-striped">
 

@@ -8,7 +8,7 @@ description: "Code deployment made easy."
 
 * [Installation](#installation)
 * [Usage](#usage)
-* [Getting Started](#getting-started)
+* [Getting Started](#af-cli-getting-started)
 * [Apps](#apps)
 * [App Creation](#app-creation)
 * [App Download](#app-download)
@@ -16,7 +16,7 @@ description: "Code deployment made easy."
 * [App Updates](#app-updates)
 * [App Information](#app-info)
 * [App Environment](#app-env)
-* [Services](#services)
+* [Services](#af-cli-services)
 * [Administration](#admin)
 * [System](#system)
 * [Misc](#misc)
@@ -43,7 +43,7 @@ or
 
     $ af help options
 
-## Getting Started {#getting-started}
+## Getting Started {#af-cli-getting-started}
 
 | table | table 2 |
 | element | element2 |
@@ -135,7 +135,7 @@ or
 
 </table>
 
-## Services {#services}
+## Services {#af-cli-services}
 
 <table class="table table-bordered table-striped">
 

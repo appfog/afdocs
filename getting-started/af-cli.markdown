@@ -23,11 +23,9 @@ description: "Code deployment made easy."
 * [Help](#help)
 * [Manifests](#manifests)
 
-
 ## Installation {#installation}
 
 The `af` command line tool is written in Ruby and installed as a gem: 
-
 
     $ gem install af
 
@@ -35,20 +33,20 @@ Note: `af` requires Ruby 1.8.7 or newer.
 
 ## Usage {#usage}
 
-
     $ af [options] command [<args>] [command_options]
 
 For more information, try:
-
 
     $ af help [command]
 
 or
 
-
     $ af help options
 
 ## Getting Started {#getting-started}
+
+| table | table 2 |
+| element | element2 |
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -223,7 +221,6 @@ Note: For multi-app hierarchies, these will operate only on the sub-app you’re
 
 The easiest way to get going is to generate a manifest document from basic app info. If you haven’t pushed your app yet, you can start with `af push` as usual, which will ask if you want to save the configurations as a manifest document:
 
-
     $ af push
     Would you like to deploy from the current directory? [Yn]:
     Application Name: php-example
@@ -254,7 +251,6 @@ The easiest way to get going is to generate a manifest document from basic app i
 
 As you can see, just before pushing, we saved the deployment configurations in `manifest.yml` in the same directory. Let’s take a peek at the file:
 
-
     ---
     applications:
       .:
@@ -275,7 +271,6 @@ As you can see, just before pushing, we saved the deployment configurations in `
 The manifest document has captured all of the configuration that we entered above for the app push into a description of the app deployment. Once you have a `manifest.yml` file, you can modify it however you'd like, as it’s meant to be human-editable. The structure of the document is freeform, so if you want to define arbitrary values and use them throughout your document, you can.
 
 Now if we try pushing again, `af push` will use this to automate everything:
-
 
     $ af delete php-example
     Provisioned service [mysql-398b1] detected, would you like to delete it? [yN]: y
@@ -304,7 +299,6 @@ Now that you have a manifest document, you don’t really have to do anything el
 
 A manifest document can inherit properties from a parent manifest like so:
 
-
     inherit: path/to/parent.yml
 
 This slurps in everything from the parent document ensuring that properties defined in the child manifest are deep-merged with the parent. The symbols are resolved after this merge has taken place, so any properties you set in the child manifest may be used in properties set in the parent.
@@ -325,14 +319,12 @@ Otherwise, symbol resolution simulates lexical scoping, so you can define arbitr
 
 For example, the following parent:
 
-
     applications:
       ./foo:
         name: bar
         url: ${name}.${target-base}
 
 ...combined with this child manifest:
-
 
     applications:
       ./foo:
@@ -348,7 +340,6 @@ Our `publisher` app will publish messages every second, with the message startin
 
 To start with, you may want to arrange your apps like so:
 
-
     ./parent-app
     ./parent-app/publisher
     ./parent-app/subscriber
@@ -356,7 +347,6 @@ To start with, you may want to arrange your apps like so:
 This will make using the manifest document more natural.
 
 Switch to the `parent-app` directory and use `af manifest` to create your manifest document:
-
 
     $ cd parent-app
     parent-app $ af manifest
@@ -392,7 +382,6 @@ In this single interactive session we’ve configured a manifest that defines tw
 
 There’s one thing missing, though. We didn’t specify any dependencies between the apps. If we were to start it now, we could lose some data if the publisher starts before the subscriber:
 
-
     parent-app $ af push
     Would you like to deploy from the current directory? [Yn]:
     Pushing application 'publisher'...
@@ -409,7 +398,6 @@ As you can see, we’ve lost some data here. In the time between the publisher s
 
 We can fix this by editing the `manifest.yml` document to indicate that the publisher depends on the subscriber being started:
 
-
     ---
     applications:
     ./publisher:
@@ -419,7 +407,6 @@ We can fix this by editing the `manifest.yml` document to indicate that the publ
     # ...
 
 Now let’s delete both apps and retry.
-
 
     parent-app $ af delete publisher
     Deleting application [publisher]: OK
@@ -437,7 +424,6 @@ Now let’s delete both apps and retry.
     Starting Application 'publisher': OK
 
 As you can see, now the subscriber starts before the publisher, so we shouldn’t have any data loss this time.
-
 
     parent-app $ curl subscriber-bf872.aws.af.cm
     Received: ["1", "2", "3", "4", "5", "6", "7"]

@@ -1,0 +1,17 @@
+---
+layout: doc-page
+title: SSL for Custom Domains
+weight: 1
+---
+
+SSL is automatically enabled on all apps with default domain names, i.e. domain names that end in the following: 
+
+* \*.aws.af.cm
+* \*.ap01.aws.af.cm
+* \*.eu01.aws.af.cm
+* \*.rs.af.cm
+* \*.hp.af.cm
+
+If you're on a paid account, you can enable SSL on your custom domain by following these instructions: 
+
+### 1. 

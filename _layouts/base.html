@@ -183,7 +183,7 @@
 					<ul id="docs_nav">
 						{% if page.categories %}
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="/{{ page.categories }}">{% if page.categories[0] == "getting-started" %}Getting Started{% endif %}{% if page.categories[0] == "frameworks" %}Frameworks{% endif %}{% if page.categories[0] == "services" %}Services{% endif %}{% if page.categories[0] == "other" %}Other{% endif %}{% if page.categories[0] == "add-ons" %}Add-ons{% endif %}</a></li>
+						<li><a href="/{{ page.categories }}">{% if page.categories[0] == "getting-started" %}Getting Started{% endif %}{% if page.categories[0] == "customize" %}Customize{% endif %}{% if page.categories[0] == "frameworks" %}Frameworks{% endif %}{% if page.categories[0] == "services" %}Services{% endif %}{% if page.categories[0] == "other" %}Other{% endif %}{% if page.categories[0] == "add-ons" %}Add-ons{% endif %}</a></li>
 						{% endif %}
 						<li class="breadcrumb-separator">&raquo;</li>
 						<li><a href="#">{{ page.title }}</a></li>
@@ -216,16 +216,34 @@
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon {% if page.categories contains 'getting-started' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Getting Started</h6></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseZero"><h6><i class="accordion-icon {% if page.categories contains 'getting-started' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Getting Started</h6></a>
 							</div>
 						</div>
 						{% if page.categories contains 'getting-started' %}
+						<ul class="pages accordion-body collapse in" id="collapseZero" style="height: auto;">
+						{% else %}
+						<ul class="pages accordion-body collapse" id="collapseZero" style="height: 0;">
+						{% endif %}
+							<div class="accordion-inner">
+								{% for current in site.categories.getting-started %}
+								<li><a href="{{ current.url | remove: ".html" }}" {% if current.url == page.url %}class="on"{% endif %}>{{ current.title }}</a></li>
+								{% endfor %}
+							</div>
+						</ul>
+					</div>
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon {% if page.categories contains 'customize' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Customize</h6></a>
+							</div>
+						</div>
+						{% if page.categories contains 'customize' %}
 						<ul class="pages accordion-body collapse in" id="collapseOne" style="height: auto;">
 						{% else %}
 						<ul class="pages accordion-body collapse" id="collapseOne" style="height: 0;">
 						{% endif %}
 							<div class="accordion-inner">
-								{% for current in site.categories.getting-started %}
+								{% for current in site.categories.customize %}
 								<li><a href="{{ current.url | remove: ".html" }}" {% if current.url == page.url %}class="on"{% endif %}>{{ current.title }}</a></li>
 								{% endfor %}
 							</div>

@@ -5,9 +5,9 @@ weight: 1
 ---
 
 * [Supported Java Versions](#javaversions)
+* [Deploying Java Apps](#deploy)
 * [Spring](#spring)
 * [Grails](#grails)
-* [Deploying Java Apps](#deploy)
 
 ### Supported Java Versions {#javaversions}
 
@@ -20,6 +20,10 @@ For a list of runtimes that AppFog supports run:
     | Name         | Description     | Version   |
     +--------------+-----------------+-----------+
     | java         | Java 7          | 1.7.0     |
+
+# Deploying Java Apps {#deploy}
+
+You can deploy most Java apps by simply generating a `WAR` file, then running `af push` from the target directory.  
 
 # Spring {#spring}
 

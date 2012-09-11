@@ -196,7 +196,15 @@
 		<div class="row">
 			<div class="span8">
 				<h1>Node</h1>
-				<h3 id="supported-versions">Supported Versions</h3>
+				<ul>
+  <li><a href="#node-supported-versions">Supported Versions</a></li>
+  <li><a href="#node-deployment">Deployment</a></li>
+  <li><a href="#node-dep-mgmt">Dependency Management</a></li>
+  <li><a href="#node-coffee-script">CoffeeScript</a></li>
+  <li><a href="#node-walkthrough">“Hello World” Walkthrough</a></li>
+</ul>
+
+<h3 id="node-supported-versions">Supported Versions</h3>
 
 <p>For the most reliable development experience, make sure you have the same version of Node.js installed on your local development environment as your target AppFog instance. You can check the available runtimes by running:</p>
 
@@ -224,11 +232,11 @@
 <pre><code>$ af push --runtime=node06
 </code></pre>
 
-<h1 id="deployment">Deployment</h1>
+<h1 id="node-deployment">Deployment</h1>
 
 <p>When you deploy a Node.js app to AppFog, the current directory must contain your app in an <code>app.js</code> file. </p>
 
-<h1 id="dependency-management">Dependency Management</h1>
+<h1 id="node-dep-mgmt">Dependency Management</h1>
 
 <p>AppFog supports <a href="https://npmjs.org/">npm</a> (Node Package Manager). </p>
 
@@ -279,7 +287,19 @@
 
 <p>If you deploy your app with those conditions in place, AppFog will install the node modules to the app during the staging process. If the require node module doesn’t work with the node engine that the app is running on, however, AppFog will not install the module.</p>
 
-<h1 id="hello-world-walkthrough">“Hello World” Walkthrough</h1>
+<h1 id="node-coffee-script">CoffeeScript</h1>
+
+<p>You can deploy a <a href="">CoffeeScript</a> Node app to AppFog by using a shim file to load the CoffeeScripts.</p>
+
+<p>Assuming you have two files, <code>app.coffee</code> and <code>app.js</code>, <code>app.js</code> can simply look like this: </p>
+
+<pre class="prettyprint"><code>require('coffee-script');
+require('./app')
+</code></pre>
+
+<p>The <code>app.coffee</code> file is what you would normally run with <code>coffee app.coffee</code>. Make sure <code>coffee-script</code> is also in your <code>node-modules</code> directory. Requiring the <code>coffee-script</code> module will enhance node’s <code>require</code> functionality and compile the coffee files at require time.</p>
+
+<h1 id="node-walkthrough">“Hello World” Walkthrough</h1>
 
 <p>The following is a step-by-step guide to writing and deploying a “hello world” Node.js web server app with the <a href="http://expressjs.com/">Express</a> web module:</p>
 

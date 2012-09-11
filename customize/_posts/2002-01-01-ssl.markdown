@@ -12,13 +12,16 @@ SSL is automatically enabled on all apps with default domain names, i.e. domain 
 * \*.rs.af.cm
 * \*.hp.af.cm
 
-SSL for custom domain names is currently restricted to apps on Amazon AWS infrastructures and only for paid accounts.
+SSL for custom domain names is currently restricted in the following ways: 
 
-* Silver: 2 SSL Endpoints
-* Gold: 8 SSL Endpoints
-* Platinum: 16 SSL Endpoints
+* Apps on Amazon AWS infrastructures 
+* Only for paid accounts:
 
-Adding SSL to your custom domain is simple! First, make sure you have the following: 
+	* Silver: 2 SSL Endpoints
+	* Gold: 8 SSL Endpoints
+	* Platinum: 16 SSL Endpoints
+
+Adding SSL to your custom domain is simple. First, make sure you have the following: 
 
 * Your RSA private key
 * Your SSL certificate

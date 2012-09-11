@@ -199,6 +199,7 @@
 				<ul>
   <li><a href="#javaversions">Supported Java Versions</a></li>
   <li><a href="#deploy">Deploying Java Apps</a></li>
+  <li><a href="#custom-jvm-params">Custom JVM Parameters</a></li>
   <li><a href="#spring">Spring</a></li>
   <li><a href="#grails">Grails</a></li>
 </ul>
@@ -218,6 +219,15 @@
 <h1 id="deploy">Deploying Java Apps</h1>
 
 <p>You can deploy most Java apps by simply generating a <code>WAR</code> file, then running <code>af push</code> from the target directory.  </p>
+
+<h1 id="custom-jvm-params">Custom JVM Parameters</h1>
+
+<p>You can add custom JVM parameters like <code>-Duser.timezone</code> by specifiying <code>JAVA_OPTS</code> as an environment variable:</p>
+
+<pre><code>$ af env-add &lt;app-name&gt; JAVAOPTS=&lt;value&gt;
+</code></pre>
+
+<p>You can also include the <code>$HOME</code> variable to point to the Tomcat’s <code>lib</code> directory.</p>
 
 <h1 id="spring">Spring</h1>
 

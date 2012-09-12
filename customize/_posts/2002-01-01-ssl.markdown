@@ -59,7 +59,7 @@ If your private key is password-protected, you'll have to remove the password fi
 
 ### Upload Certificate Data
 
-Now you're ready to head over to the [AppFog web console](console.appfog.com). Click on one of your apps, hit the "SSL" tab on the left, and hit the "Get Started" button.
+Now you're ready to head over to the [AppFog web console](http://console.appfog.com). Click on one of your apps, hit the "SSL" tab on the left, and hit the "Get Started" button.
 
 On the "Upload Certificate Data" screen, click on the "Upload Your Certificate" button and navigate to your certificate file (`server.crt` if you followed the instructions above).
 

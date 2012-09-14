@@ -381,7 +381,14 @@ Which client would you like to start?: 1
 <pre class="prettyprint"><code>$ cd af-php-myadmin
 </code></pre>
 
-<p>And update the plain PHP app:</p>
+<p>Add a username and password to the `.htpasswd’ file: </p>
+
+<pre class="prettyprint"><code>$ htpasswd ./.htpasswd &lt;username&gt;
+</code></pre>
+
+<p>(You’ll be prompted for a password).</p>
+
+<p>Next, update the plain PHP app:</p>
 
 <pre class="prettyprint"><code>$ af update myadmin-example
 Uploading Application:

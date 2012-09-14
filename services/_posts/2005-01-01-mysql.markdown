@@ -185,7 +185,14 @@ Change into the directory:
 {: .prettyprint}
     $ cd af-php-myadmin
 
-And update the plain PHP app:
+Add a username and password to the `.htpasswd' file: 
+
+{: .prettyprint }
+    $ htpasswd ./.htpasswd <username>
+
+(You'll be prompted for a password).
+
+Next, update the plain PHP app:
 
 {: .prettyprint}
     $ af update myadmin-example

@@ -322,20 +322,28 @@
 <p><code>example-manifest.json</code></p>
 
 <pre class="prettyprint linenums"><code>{
-    "id":"provider",
-    "name":"Provider Inc",
-    "plans":[
-        {"id":"free"}
-        ],    
+    "id": "company",
+    "name": "Product",
+    "plans": [
+        {
+            "id": "free"
+        }
+    ],
     "api": {
-        "config_vars":["PROVIDER_VAR_XYZ"],
-        "production":"https://provider.com/",
-        "test":"https://provider-qa.com/",
-        "path":"PathToResource",
-        "username":"SomeUsername",
-        "password":"ChangeYourPassword",
-        "sso_salt":"xPedFGIIJIei30D"       
-    } 
+        "config_vars": [
+            "PRODUCT_URI"
+        ],
+        "password": "SDasdf98asdf68ZoRak5Tl",
+        "sso_salt": "DfauasdfDF0s0afsadf0",
+        "production": {
+            "base_url": "https://api.company.com/partners/af/resources",
+            "sso_url": "https://www.company.com/login/partners/af"
+        },
+        "test": {
+            "base_url": "https://localhost:8081/partners/af/resources",
+            "sso_url": "https://localhost:8081/login/partners/af"
+        }
+    }
 }
 </code></pre>
 

@@ -115,14 +115,14 @@ Get all `config.gem` declarations from your app and put them into the `Gemfile`.
     # gem "geokit"
     
     group :development do
-		# bundler requires these gems in development
-		# gem "rails-footnotes"
+        # bundler requires these gems in development
+        # gem "rails-footnotes"
     end
     
     group :test do
-		# bundler requires these gems while running tests
-		# gem "rspec"
-		# gem "faker"
+        # bundler requires these gems while running tests
+        # gem "rspec"
+        # gem "faker"
     end
 
 For more details on Bundler support for Rails 2.3, check out [this guide](http://gembundler.com/rails23.html).
@@ -248,38 +248,38 @@ AppFog automatically creates and binds a new MySQL service with the Ruby on Rail
 To use the Rails console with your database service, [tunnel into the service](/services/tunneling), and choose 'none' when it asks you which client to start:
 
 {: .prettyprint }
-	$ af tunnel ror-example-mysql
-	Binding Service [ror-example-mysql]: OK
-	Stopping Application 'caldecott-aws': OK
-	Staging Application 'caldecott-aws': OK
-	Starting Application 'caldecott-aws': OK
-	Getting tunnel connection info: OK
+    $ af tunnel ror-example-mysql
+    Binding Service [ror-example-mysql]: OK
+    Stopping Application 'caldecott-aws': OK
+    Staging Application 'caldecott-aws': OK
+    Starting Application 'caldecott-aws': OK
+    Getting tunnel connection info: OK
 
-	Service connection info:
-	  username : uKaJETLlNmkrs
-	  password : pYfnUUY3L5jLU
-	  name     : d77261f24bbae4c889d0a231b3e70a763
-	  infra    : aws
+    Service connection info:
+      username : uKaJETLlNmkrs
+      password : pYfnUUY3L5jLU
+      name     : d77261f24bbae4c889d0a231b3e70a763
+      infra    : aws
 
-	Starting tunnel to ror-example-mysql on port 10000.
-	1: none
-	2: mysql
-	3: mysqldump
-	Which client would you like to start?: 1
-	Open another shell to run command-line clients or
-	use a UI tool to connect using the displayed information.
-	Press Ctrl-C to exit...
+    Starting tunnel to ror-example-mysql on port 10000.
+    1: none
+    2: mysql
+    3: mysqldump
+    Which client would you like to start?: 1
+    Open another shell to run command-line clients or
+    use a UI tool to connect using the displayed information.
+    Press Ctrl-C to exit...
 
 Next, create another database section in your `config/database.yml` file with the service connection info in the `af tunnel` output:
 
 {: .prettyprint .linenums }
-	proxied-appfog: 
-	adapter: mysql2 
-	database : d77261f24bbae4c889d0a231b3e70a763
-	username : uKaJETLlNmkrs
-	password : pYfnUUY3L5jLU
-	port: 10000 
-	host: 127.0.0.1
+    proxied-appfog: 
+    adapter: mysql2 
+    database : d77261f24bbae4c889d0a231b3e70a763
+    username : uKaJETLlNmkrs
+    password : pYfnUUY3L5jLU
+    port: 10000 
+    host: 127.0.0.1
 
 Finally, in a another terminal, run `rails console`, passing in the database environment you created:
 

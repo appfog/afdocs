@@ -111,7 +111,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 
 * Persistent Distributed Filesystems
 * Root Domains
-* Custom SSL
+* <s><a href="/customize/ssl">Custom SSL</a></s>
 * Group/Team Support
 
 ### Coming Soon

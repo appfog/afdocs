@@ -4,7 +4,7 @@ title: Task-scheduling
 weight: 1
 ---
 
-AppFog apps don't have native cron support, but there are a few ways to schedule tasks using a "standalone" app in just about any language that runs on our platform.
+There are a few ways to schedule tasks using a "standalone" app in just about any language that runs on AppFog.
 
 ### Using Background Workers on AppFog
 

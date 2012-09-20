@@ -99,7 +99,6 @@ or
 <tr><td><code>stop  &lt;appname></code>                              </td><td>Stop the application</td></tr>
 <tr><td><code>restart &lt;appname></code>                            </td><td>Restart the application</td></tr>
 <tr><td><code>delete &lt;appname></code>                             </td><td>Delete the application</td></tr>
-<tr><td><code>rename &lt;appname> &lt;newname></code>                   </td><td>Rename the application</td></tr>
 
 </table>
 

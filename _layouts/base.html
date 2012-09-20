@@ -233,24 +233,6 @@
 					</div>
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
-							<div class="span3">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon {% if page.categories contains 'customize' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Customize</h6></a>
-							</div>
-						</div>
-						{% if page.categories contains 'customize' %}
-						<ul class="pages accordion-body collapse in" id="collapseOne" style="height: auto;">
-						{% else %}
-						<ul class="pages accordion-body collapse" id="collapseOne" style="height: 0;">
-						{% endif %}
-							<div class="accordion-inner">
-								{% for current in site.categories.customize %}
-								<li><a href="{{ current.url | remove: ".html" }}" {% if current.url == page.url %}class="on"{% endif %}>{{ current.title }}</a></li>
-								{% endfor %}
-							</div>
-						</ul>
-					</div>
-					<div class="accordion-group">
-						<div class="row border-bottom accordion-heading">
 						<div class="span3">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo"><h6><i class="accordion-icon {% if page.categories contains 'frameworks' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Frameworks</h6></a>
 							</div>
@@ -287,6 +269,24 @@
 						</ul>
 					</div>
 
+					<div class="accordion-group">
+						<div class="row border-bottom accordion-heading">
+							<div class="span3">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne"><h6><i class="accordion-icon {% if page.categories contains 'customize' %}icon-chevron-down{% else %}icon-chevron-right{% endif %}"></i> Customize</h6></a>
+							</div>
+						</div>
+						{% if page.categories contains 'customize' %}
+						<ul class="pages accordion-body collapse in" id="collapseOne" style="height: auto;">
+						{% else %}
+						<ul class="pages accordion-body collapse" id="collapseOne" style="height: 0;">
+						{% endif %}
+							<div class="accordion-inner">
+								{% for current in site.categories.customize %}
+								<li><a href="{{ current.url | remove: ".html" }}" {% if current.url == page.url %}class="on"{% endif %}>{{ current.title }}</a></li>
+								{% endfor %}
+							</div>
+						</ul>
+					</div>
 					<div class="accordion-group">
 						<div class="row border-bottom accordion-heading">
 							<div class="span3">

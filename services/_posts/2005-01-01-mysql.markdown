@@ -166,7 +166,7 @@ You can easily create a [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.p
 
 ### Create the App on AppFog
 
-Head over to the [AppFog Console](console.appfog.com) and create a new PHP app on the same infrastructure as your MySQL service. 
+Head over to the [AppFog Console](http://console.appfog.com) and create a new PHP app on the same infrastructure as your MySQL service. 
 
 Then bind the service you want to access to this new PHP app. 
 

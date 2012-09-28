@@ -196,14 +196,14 @@
 		<div class="row">
 			<div class="span8">
 				<h1>Custom Domain Names</h1>
-				<p>Note: AppFog does not support root domain names (e.g. “example.com”) yet. Root domain support is coming soon.</p>
-
-<p>AppFog offers two ways to add custom domain names to your app: through the app console and with the <code>af</code> command line tool. </p>
+				<p>AppFog offers two ways to add custom domain names to your app: through the app console and with the <code>af</code> command line tool. </p>
 
 <ul>
   <li><a href="#custom-domain-app-console">App Console</a></li>
   <li><a href="#custom-domain-af-cli">AF CLI</a></li>
 </ul>
+
+<p>Once you’ve finished adding the domain to your app in one of those two ways, you’ll need to <a href="#custom-domain-dns">change your DNS settings at your DNS host</a>.</p>
 
 <h1 id="custom-domain-app-console">App Console</h1>
 
@@ -239,7 +239,79 @@
 <pre><code>$ af map exampleapp www.example.com
 </code></pre>
 
-<p>That’s it!</p>
+<h1 id="custom-domain-dns">DNS</h1>
+
+<p>We recommend using the <code>www.</code> subdomain as your canonical domain. Here’s how to do that: </p>
+
+<h3 id="redirect-your-root-domain">Redirect Your Root Domain</h3>
+
+<p>At your DNS host, set up a redirect (302) from your root domain (<code>yourdomain.com</code>) to <code>www.yourdomain.com</code>.</p>
+
+<p>This is a fairly standard tool that DNS services provide. If you don’t see an option for it at your domain host, contact their support services and they should be able to do that for you.</p>
+
+<h3 id="create-a-cname-alias">Create a CNAME Alias</h3>
+
+<p>Depending on which infrastructure your app is running on, create a CNAME alias record for <code>www.yourdomain.com</code> to:</p>
+
+<p>AWS US East:</p>
+
+<pre><code>cname01.aws.af.cm
+</code></pre>
+
+<p>AWS Europe West:</p>
+
+<pre><code>cname01.eu01.aws.af.cm
+</code></pre>
+
+<p>AWS Asia Southeast:</p>
+
+<pre><code>cname01.ap01.aws.af.cm
+</code></pre>
+
+<p>HP Openstack AZ 2:</p>
+
+<pre><code>cname01.hp.af.cm
+</code></pre>
+
+<p>Rackspace DFW:</p>
+
+<pre><code>cname01.rs.af.cm
+</code></pre>
+
+<h3 id="root-domain">Root Domain</h3>
+
+<p>If you need to set your root domain (<code>yourdomain.com</code>) instead of the <code>www</code> subdomain, then create <code>A</code> records for your root domain to the following IP addresses (depending on the infratructure your app is running on):</p>
+
+<p>AWS US East:</p>
+
+<pre><code>107.21.3.47
+107.23.45.102
+</code></pre>
+
+<p>AWS Europe West:</p>
+
+<pre><code>176.34.144.39
+176.34.141.96
+</code></pre>
+
+<p>AWS Asia Southeast:</p>
+
+<pre><code>46.51.219.242
+46.51.223.163
+</code></pre>
+
+<p>HP Openstack AZ 2 (BETA – SUBJECT TO CHANGE):</p>
+
+<pre><code>15.185.162.179
+15.185.166.58
+</code></pre>
+
+<p>Rackspace DFW:</p>
+
+<pre><code>50.56.172.102
+</code></pre>
+
+<p>That’s it! DNS propagation can take anywhere from a few minutes to 48 hours depending on your location, but once that’s finished your app should resolve at your new custom domain. </p>
 
 
 			</div>

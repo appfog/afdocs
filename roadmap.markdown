@@ -25,7 +25,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 	<tr><td>AWS US West (Oregon) </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
 	<tr><td>AWS EU West (Ireland) </td><td class="x-mark-2">&times;</td><td> </td><td> </td><td></td></tr>
 	<tr><td>AWS Asia Pacific (Tokyo) </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
-	<tr><td>AWS Asia SE (Singapore) </td><td class="x-mark-2">&times;</td><td> </td><td> </td><td></td></tr>
+	<tr><td>AWS Asia Southeast (Singapore) </td><td class="x-mark-2">&times;</td><td> </td><td> </td><td></td></tr>
 	<tr><td>AWS Brazil </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
 	<tr><td>Azure (Dallas, TX) </td><td> </td><td> </td><td class="x-mark-2">&times;</td><td></td></tr>
 	<tr><td>Azure Europe </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
@@ -110,7 +110,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 ### Top Priorities
 
 * Persistent Distributed Filesystems
-* Root Domains
+* <s><a href="/customize/custom-domain-names">Root Domains</a></s>
 * <s><a href="/customize/ssl">Custom SSL</a></s>
 * Group/Team Support
 
@@ -119,6 +119,6 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * Dedicated Databases (MySQL, PostgreSQL, MongoDB)
 * FTP Access
 * Wildcard Domains
-* Scheduled Jobs (cron)
+* <s><a href="/customize/task-scheduling">Scheduled Jobs (cron)</a></s>
 * Github Hooks
 * Websockets

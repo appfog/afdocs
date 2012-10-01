@@ -4,11 +4,18 @@ title: Frequently Asked Questions
 weight: 14
 ---
 
+* [What's the difference between PHP Fog and AppFog?](#difference-af-pf)
 * [How does billing work?](#billing)
 * [How can I update my app without downtime?](#downtime)
 * [What are the security group settings for connecting my app to Amazon RDS?](#security-group)
 * [How much does bandwidth cost beyond the included limits for the account?](#bandwidth)
 * [Does AppFog have a persistent file system?](#persistentfs)
+
+### What's the difference between PHP Fog and AppFog? {#difference-af-pf}
+
+[PHP Fog](https://phpfog.com), our original product, is a Platform-as-a-Service built specifically for PHP web apps. It runs exclusively in Amazon's AWS US East datacenter and you deploy apps using git. Read more about PHP Fog [here](http://docs.phpfog.com).
+
+[AppFog](https://appfog.com) is our more generalized Platform-as-a-Service based on [the Cloud Foundry Open Source Project](http://cloudfoundry.org/). You can choose from [a growing list of languages and frameworks](http://docs.appfog.com/roadmap#langs) and you can deploy from [a growing list of infrastructures and datacenters](http://docs.appfog.com/roadmap#infras) using our [command line tool](http://docs.appfog.com/getting-started/af-cli).
 
 ### How does billing work? {#billing}
 

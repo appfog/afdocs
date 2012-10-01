@@ -17,8 +17,7 @@ Use StatsMix to:
 
 ### Install StatsMix
 
-In the “Add-ons” tab in your app console click “Install” for the StatsMix add-on. That’s it!
-
+In the "Add-ons" tab in your app console click "Install" for the StatsMix add-on. That’s it!
 
 Next, set up your app to start using the cache. We have documentation for the following languages and frameworks: 
 

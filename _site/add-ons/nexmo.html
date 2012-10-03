@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation MemCachier</title> 
+		<title>AppFog &mdash; Documentation Nexmo</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -177,7 +177,7 @@
 						<li><a href="/add-ons">Add-ons</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">MemCachier</a></li>
+						<li><a href="#">Nexmo</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,276 +195,23 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>MemCachier</h1>
-				<p><a href="http://www.memcachier.com/">MemCachier</a> is an implementation of the <a href="http://memcached.org/">Memcache</a> in-memory key/value store used for caching data. It is a key technology in modern web apps for scaling and reducing server loads. The MemCachier add-on manages and scales clusters of memcache servers so you can focus on your app. Tell us how much memory you need and get started for free instantly. Add capacity later as you need it.</p>
+				<h1>Nexmo</h1>
+				<p><a href="http://nexmo.com/">Nexmo</a> is a cloud-based SMS API that lets you send and receive high volume of messages at wholesale rates.</p>
 
-<p>The information below will quickly get you up and running with the MemCachier add-on for AppFog. For information on the benefits of MemCachier and how it works, please refer to the more extensive <a href="http://www.memcachier.com/documentation/memcache-user-guide/">User Guide</a>.</p>
-
-<h3 id="install-memcachier">Install MemCachier</h3>
-
-<p>In the “Add-ons” tab in your app console click “Install” for the MemCachier add-on. That’s it!</p>
-
-<p>Next, set up your app to start using the cache. We have documentation for the following languages and frameworks: </p>
+<p>With Nexmo you can:</p>
 
 <ul>
-  <li><a href="#ruby">Ruby</a></li>
-  <li><a href="#rails">Rails</a></li>
-  <li><a href="#django">Django</a></li>
-  <li><a href="#php">PHP</a></li>
-  <li><a href="#java">Java</a></li>
-  <li><a href="#local">Local Setup</a></li>
-  <li><a href="#upgrade">Upgrading and Downgrading</a></li>
-  <li><a href="#support">Support</a></li>
+  <li>Benefit from Nexmo’s direct to carrier model that improves deliverability.</li>
+  <li>Get connected in less than 15 minutes through Nexmo’s simple RESTful API.</li>
+  <li>Reach over 200 countries and 5 billion mobile phones.</li>
+  <li>Know more about your traffic with analytics and delivery receipts.</li>
 </ul>
 
-<p>Your credentials may take up to three (3) minutes to be synced to our servers. You may see authentication errors if you start using the cache immediately.</p>
+<h3 id="install-nexmo">Install Nexmo</h3>
 
-<h1 id="ruby">Ruby</h1>
+<p>In the “Add-ons” tab in your app console click “Install” for the Nexmo add-on. That’s it!</p>
 
-<p>Start by adding the <a href="https://github.com/memcachier/memcachier-gem">memcachier</a> and <a href="http://github.com/mperham/dalli">dalli</a> gems to your <code>Gemfile</code>.</p>
-
-<pre class="prettyprint"><code>gem 'memcachier'
-gem 'dalli'
-</code></pre>
-
-<p>Then bundle install:</p>
-
-<pre class="prettyprint"><code>$ bundle install
-</code></pre>
-
-<p><code>Dalli</code> is a Ruby memcache client, and the <code>memcachier</code> gem modifies the environment (<code>ENV</code>) such that the environment variables set by MemCachier will work with Dalli. Once these gems are installed you can start writing code. The following is a basic example showing get and set.</p>
-
-<pre class="prettyprint linenums"><code>require 'dalli'
-require 'memcachier'
-cache = Dalli::Client.new
-cache.set("foo", "bar")
-puts cache.get("foo")
-</code></pre>
-
-<p>Without the <code>memcachier</code> gem, you’ll need to pass the proper credentials to <code>Dalli</code>:</p>
-
-<pre class="prettyprint linenum"><code>cache = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
-                    {:username =&gt; ENV["MEMCACHIER_USERNAME"],
-                     :password =&gt; ENV["MEMCACHIER_PASSWORD"]})
-</code></pre>
-
-<h1 id="rails">Rails</h1>
-
-<p>Start by adding the <a href="https://github.com/memcachier/memcachier-gem">memcachier</a> and <a href="http://github.com/mperham/dalli">dalli</a> gems to your <code>Gemfile</code>.</p>
-
-<pre class="prettyprint"><code>gem 'memcachier'
-gem 'dalli'
-</code></pre>
-
-<p>Then bundle install:</p>
-
-<pre class="prettyprint"><code>$ bundle install
-</code></pre>
-
-<p><code>Dalli</code> is a Ruby memcache client, and the <code>memcachier</code> gem modifies the environment (<code>ENV</code>) such that the environment variables set by MemCachier will work with <code>Dalli</code>. Once these gems are installed you’ll want to configure the Rails <code>cache_store</code> appropriately. Modify <code>config/environments/production.rb</code> with the following:</p>
-
-<pre class="prettyprint"><code>config.cache_store = :dalli_store
-</code></pre>
-
-<p>From here you can use the following code examples to use the cache in your Rails app:</p>
-
-<pre class="prettyprint"><code>Rails.cache.write("foo", "bar")
-puts Rails.cache.read("foo")
-</code></pre>
-
-<p>Without the <code>memcachier</code> gem, you’ll need to pass the proper credentials to <code>Dalli</code> in <code>config/environments/production.rb</code>:</p>
-
-<pre class="prettyprint linenums"><code>config.cache_store = :dalli_store, ENV["MEMCACHIER_SERVERS"],
-                    {:username =&gt; ENV["MEMCACHIER_USERNAME"],
-                     :password =&gt; ENV["MEMCACHIER_PASSWORD"]}
-</code></pre>
-
-<h3 id="testing">Testing</h3>
-
-<p>To test locally you can simply use the rails console:</p>
-
-<pre class="prettyprint"><code>rails console
-&gt;&gt; Rails.cache.write('memcachier', 'rocks')
-=&gt; true
-&gt;&gt; Rails.cache.read('memcachier')
-=&gt; "rocks"
-</code></pre>
-
-<h1 id="django">Django</h1>
-
-<p>MemCachier has been tested with the <code>pylibmc</code> memcache client, but the default client doesn’t support SASL authentication. Run the following commands on your local machine to install the necessary pips:</p>
-
-<pre class="prettyprint"><code>$ sudo port install libmemcached
-$ LIBMEMCACHED=/opt/local pip install pylibmc
-$ pip install django-pylibmc-sasl
-</code></pre>
-
-<p>Be sure to update your <code>requirements.txt</code> file with these new requirements (note that your versions may differ from what’s below):</p>
-
-<pre class="prettyprint"><code>pylibmc==1.2.2
-django-pylibmc-sasl==0.2.4
-</code></pre>
-
-<p>Next, configure your <code>settings.py</code> file the following way:</p>
-
-<pre class="prettyprint linenums"><code>os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '')
-os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
-os.environ['MEMCACHE_PASSWORD'] = os.environ.get('MEMCACHIER_PASSWORD', '')
-
-CACHES = {
-  'default': {
-    'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
-    'LOCATION': os.environ.get('MEMCACHIER_SERVERS', ''),
-    'TIMEOUT': 500,
-    'BINARY': True,
-  }
-}
-</code></pre>
-
-<p>From here you can start writing cache code in your Django app:</p>
-
-<pre class="prettyprint linenums"><code>from django.core.cache import cache
-cache.set("foo", "bar")
-print cache.get("foo")
-</code></pre>
-
-<h1 id="php">PHP</h1>
-
-<p>Start by downloading the <a href="https://github.com/ronnywang/PHPMemcacheSASL">PHPMemcacheSASL</a> library. From here you can start writing cache code in your PHP app:</p>
-
-<pre class="prettyprint linenums"><code>include('MemcacheSASL.php');
-$m = new MemcacheSASL;
-$m-&gt;addServer($_ENV["MEMCACHIER_SERVERS"], '11211');
-$m-&gt;setSaslAuthData($_ENV["MEMCACHIER_USERNAME"], $_ENV["MEMCACHIER_PASSWORD"]);
-
-$m-&gt;add("foo", "bar");
-echo $m-&gt;get("foo");
-</code></pre>
-
-<p>The more common PHP memcache clients, <a href="http://www.php.net/manual/en/book.memcache.php">Memcache</a> and <a href="http://www.php.net/manual/en/book.memcached.php">Memcached</a>, don’t support SASL authentication at this time and can’t be used with MemCachier.</p>
-
-<h1 id="java">Java</h1>
-
-<p>For Java we recommend using the <a href="https://code.google.com/p/spymemcached/">SpyMemcached</a> client. We also recommend using the <a href="https://maven.apache.org/">Apache Maven</a> build manager for working with Java app. If you aren’t using <code>maven</code> and are instead using <a href="https://ant.apache.org/">Apache Ant</a> or your own build system, then simply add the <code>spymemcached</code> jar file as a dependency of your app.</p>
-
-<p>For <code>maven</code> however, start by configuring it to have the proper <code>spymemcached</code> repository:</p>
-
-<pre class="prettyprint linenums"><code>&lt;repository&gt;
-  &lt;id&gt;spy&lt;/id&gt;
-  &lt;name&gt;Spy Repository&lt;/name&gt;
-  &lt;layout&gt;default&lt;/layout&gt;
-  &lt;url&gt;http://files.couchbase.com/maven2/&lt;/url&gt;
-  &lt;snapshots&gt;
-    &lt;enabled&gt;false&lt;/enabled&gt;
-  &lt;/snapshots&gt;
-&lt;/repository&gt;
-</code></pre>
-
-<p>Then add the <code>spymemcached</code> library to your dependencies:</p>
-
-<pre class="prettyprint linenums"><code>&lt;dependency&gt;
-  &lt;groupId&gt;spy&lt;/groupId&gt;
-  &lt;artifactId&gt;spymemcached&lt;/artifactId&gt;
-  &lt;version&gt;2.8.1&lt;/version&gt;
-  &lt;scope&gt;provided&lt;/scope&gt;
-&lt;/dependency&gt;
-</code></pre>
-
-<p>Once your build system is configured, you can start adding caching to your Java app:</p>
-
-<pre class="prettyprint linenums"><code>import java.io.IOException;
-import net.spy.memcached.AddrUtil;
-import net.spy.memcached.MemcachedClient;
-import net.spy.memcached.ConnectionFactoryBuilder;
-import net.spy.memcached.auth.PlainCallbackHandler;
-import net.spy.memcached.auth.AuthDescriptor;
-
-public class Foo {
-  public static void main(String[] args) {
-    AuthDescriptor ad = new AuthDescriptor(new String[] { "PLAIN" },
-        new PlainCallbackHandler(System.getenv("MEMCACHIER_USERNAME"),
-            System.getenv("MEMCACHIER_PASSWORD")));
-
-    try {
-      MemcachedClient mc = new MemcachedClient(new ConnectionFactoryBuilder()
-          .setProtocol(ConnectionFactoryBuilder.Protocol.BINARY)
-          .setAuthDescriptor(ad).build(), AddrUtil.getAddresses(System
-          .getenv("MEMCACHIER_SERVERS") + ":11211"));
-      mc.set("foo", "bar");
-      System.out.println(mc.get("foo"));
-    } catch (IOException ioe) {
-      System.err.println("Couldn't create a connection to MemCachier: \nIOException "
-              + ioe.getMessage());
-    }
-  }
-}
-</code></pre>
-
-<p>You may wish to look the <code>spymemcached</code> <a href="http://dustin.github.com/java-memcached-client/apidocs/">JavaDocs</a> or some more <a href="https://code.google.com/p/spymemcached/wiki/Examples">example code</a> to help in using MemCachier effectively.</p>
-
-<h1 id="libsupport">Library Support</h1>
-
-<p>MemCachier will work with any memcached binding that supports <a href="https://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer">SASL authentication</a> and the <a href="https://code.google.com/p/memcached/wiki/MemcacheBinaryProtocol">binary protocol</a>. We have tested MemCachier with the following language bindings, although the chances are good that other SASL binary protocol packages will also work.</p>
-
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-    <td>Language</td><td>Bindings</td>
-</tr>
-</thead>
-<tbody>
-<tr>
-    <td>Ruby</td>                                <td>dalli</td>
-</tr>
-<tr>
-    <td>Python</td>                                <td>pylibmc</td>
-</tr>
-<tr>
-    <td>Django</td>                                <td>django-pylibmc</td>
-</tr>
-<tr>
-    <td>PHP</td>                                <td>PHPMemcacheSASL</td>
-</tr>
-<tr>
-    <td>Java</td>                                <td>spymemcached</td>
-</tr>
-</tbody>
-</table>
-
-<h1 id="local">Local Setup</h1>
-
-<p>To test against your AppFog app locally, you’ll need to run a local memcached process. MemCachier can only run in AppFog. But because MemCachier and memcached speak the same protocol, you shouldn’t have any issues testing locally. Installation depends on your platform.</p>
-
-<h3 id="ubuntu">Ubuntu</h3>
-
-<pre class="prettyprint"><code>$ sudo apt-get install memcached
-</code></pre>
-
-<h3 id="mac-os-x-with-homebrew">Mac OS X (with Homebrew)</h3>
-
-<pre class="prettyprint"><code>$ brew install memcached
-</code></pre>
-
-<h3 id="windows">Windows</h3>
-
-<p>Please refer to <a href="http://www.codeforest.net/how-to-install-memcached-on-windows-machine">these instructions</a>.</p>
-
-<p>For further information and resources (such as the memcached source code) please refer to the <a href="http://memcached.org/">Memcache.org homepage</a>.</p>
-
-<p>To run memcached simply execute the following command:</p>
-
-<pre class="prettyprint"><code>$ memcached -v
-</code></pre>
-
-<h1 id="upgrade">Upgrading and Downgrading</h1>
-
-<p>Changing your plan, either by upgrading or downgrading, requires no code changes. Your cache won’t be lost, either. Upgrading and downgrading Just Works™.</p>
-
-<h1 id="support">Support</h1>
-
-<p>You can submit all Memcachier support and runtime issues to <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#097;&#112;&#112;&#102;&#111;&#103;&#046;&#099;&#111;&#109;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#097;&#112;&#112;&#102;&#111;&#103;&#046;&#099;&#111;&#109;</a> and any non-support related issues or product feedback to <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#109;&#101;&#109;&#099;&#097;&#099;&#104;&#105;&#101;&#114;&#046;&#099;&#111;&#109;">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#109;&#101;&#109;&#099;&#097;&#099;&#104;&#105;&#101;&#114;&#046;&#099;&#111;&#109;</a>.</p>
-
-<p>Memcachier reports issues related to service at <a href="http://status.memcachier.com/">Memcachier Status</a>.</p>
+<p>Check out <a href="http://nexmo.com/documentation/index.html">Nexmo’s Documentation</a> to start using Nexmo with your AppFog app, and don’t miss Nexmo’s <a href="http://nexmo.com/documentation/libs/index.html">client libraries</a>.</p>
 
 
 			</div>
@@ -601,11 +348,11 @@ public class Foo {
 							
 							<li><a href="/add-ons/cleardb" >ClearDB</a></li>
 							
-							<li><a href="/add-ons/memcachier" class="on">MemCachier</a></li>
+							<li><a href="/add-ons/memcachier" >MemCachier</a></li>
 							
 							<li><a href="/add-ons/statsmix" >StatsMix</a></li>
 							
-							<li><a href="/add-ons/nexmo" >Nexmo</a></li>
+							<li><a href="/add-ons/nexmo" class="on">Nexmo</a></li>
 							
 							<li><a href="/add-ons/cloudinary" >Cloudinary</a></li>
 							

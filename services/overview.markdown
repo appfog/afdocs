@@ -1,6 +1,6 @@
 ---
 title: Overview
-weight: 1
+weight: 2
 ---
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. 

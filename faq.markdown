@@ -1,5 +1,6 @@
 ---
 title: Frequently Asked Questions
+weight: 5
 ---
 
 * [How does billing work?](#billing)

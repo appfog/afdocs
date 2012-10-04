@@ -1,5 +1,5 @@
 ---
-title: Frameworks
+title: Languages
 weight: 1
 ---
 

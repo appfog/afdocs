@@ -1,6 +1,6 @@
 ---
 title: MongoHQ
-weight: 16
+weight: 3
 ---
 
 ## Install MongoHQ

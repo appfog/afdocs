@@ -1,6 +1,6 @@
 ---
 title: WSGI
-weight: 2
+weight: 1
 ---
 
 ## WSGI "Hello World" {#wsgi}

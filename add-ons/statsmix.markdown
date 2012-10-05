@@ -1,7 +1,7 @@
 ---
 title: StatsMix
 layout: doc-page
-weight: 16
+weight: 11
 ---
 
 [StatsMix](http://www.statsmix.com/) makes it easy to track, chart, and share application and business metrics. 

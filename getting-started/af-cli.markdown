@@ -1,6 +1,6 @@
 ---
 title: AF Command Line Tool
-weight: 1
+weight: 2
 description: "Code deployment made easy."
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Searchify
-weight: 17
+weight: 1
 ---
 
 [Searchify](http://www.searchify.com) is an add-on that provides hosted full-text search.

@@ -1,6 +1,6 @@
 ---
 title: Ruby
-weight: 1
+weight: 4
 ---
 
 * [Supported Ruby Versions](#rubyversions)

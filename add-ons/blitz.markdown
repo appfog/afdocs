@@ -1,6 +1,6 @@
 ---
 title: Blitz
-weight: 16
+weight: 5
 ---
 
 ## Why Use Blitz?

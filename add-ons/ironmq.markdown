@@ -1,6 +1,6 @@
 ---
 title: IronMQ
-weight: 16
+weight: 7
 ---
 
 ## Install IronMQ

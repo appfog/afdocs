@@ -1,7 +1,7 @@
 ---
 title: MemCachier
 layout: doc-page
-weight: 17
+weight: 10
 ---
 
 [MemCachier](http://www.memcachier.com/) is an implementation of the [Memcache](http://memcached.org/) in-memory key/value store used for caching data. It is a key technology in modern web apps for scaling and reducing server loads. The MemCachier add-on manages and scales clusters of memcache servers so you can focus on your app. Tell us how much memory you need and get started for free instantly. Add capacity later as you need it.

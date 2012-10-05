@@ -1,6 +1,6 @@
 ---
 title: IronWorker
-weight: 16
+weight: 6
 ---
 
 ## Install IronWorker

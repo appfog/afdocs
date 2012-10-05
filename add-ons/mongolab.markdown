@@ -1,6 +1,6 @@
 ---
 title: MongoLab
-weight: 16
+weight: 2
 ---
 
 ## Install MongoLab

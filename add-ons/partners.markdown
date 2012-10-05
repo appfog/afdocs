@@ -1,6 +1,6 @@
 ---
 title: Add-on Partnership
-weight: 5
+weight: 100
 description: Become an add-on partner. 
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: PostgreSQL
-weight: 1
+weight: 4
 ---
 
 AppFog provides a PosgreSQL service that's accessible to apps that are running on any of the supported runtimes and frameworks. 

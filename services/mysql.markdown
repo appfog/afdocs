@@ -1,6 +1,6 @@
 ---
 title: MySQL
-weight: 1
+weight: 2
 ---
 
 * [VCAP_SERVICES](#vcap)

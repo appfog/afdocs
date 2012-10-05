@@ -1,6 +1,6 @@
 ---
 title: Billing
-weight: 7
+weight: 8
 ---
 
 * [Billing Cycle](#cycle)

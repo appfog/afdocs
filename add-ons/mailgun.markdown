@@ -1,6 +1,6 @@
 ---
 title: Mailgun
-weight: 16
+weight: 4
 ---
 
 ## Install Mailgun

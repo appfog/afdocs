@@ -1,6 +1,6 @@
 ---
-title: PHP
-weight: 3
+title: WordPress
+weight: 1
 ---
 
 ## Persistent Data Storage

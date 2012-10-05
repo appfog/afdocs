@@ -1,6 +1,6 @@
 ---
 title: MongoDB
-weight: 1
+weight: 3
 ---
 
 AppFog provides a MongoDB service that's accessible to apps that are running on any of the supported runtimes and frameworks. 

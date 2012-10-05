@@ -1,6 +1,6 @@
 ---
 title: CloudMailin
-weight: 16
+weight: 8
 ---
 
 ## Install CloudMailin

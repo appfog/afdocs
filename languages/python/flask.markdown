@@ -1,6 +1,6 @@
 ---
-title: Python
-weight: 3
+title: Flask
+weight: 2
 ---
 
 The following is a step-by-step guide to writing and deploying a "hello world" Python Flask app:

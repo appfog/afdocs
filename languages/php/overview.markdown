@@ -1,6 +1,6 @@
 ---
 title: PHP
-weight: 1
+weight: 2
 ---
 
 * [Custom PHP App](#custom)

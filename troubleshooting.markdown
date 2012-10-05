@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-weight: 8
+weight: 9
 ---
 
 Here are some of the most common issues and how to deal with them. 

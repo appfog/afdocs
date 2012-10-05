@@ -1,6 +1,6 @@
 ---
 title: Python
-weight: 1
+weight: 3
 ---
 
 * [Dependencies](#dependencies)

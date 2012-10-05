@@ -1,6 +1,6 @@
 ---
 title: Sinatra
-weight: 3
+weight: 2
 ---
 
 AppFog currently only offers one app server for Sinatra apps: Thin. If you're using Bundler, and nothing in your app's bundle requires Thin, VCAP cannot safely start your app using it.

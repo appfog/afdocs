@@ -1,6 +1,6 @@
 ---
 title: ClearDB
-weight: 16
+weight: 9
 ---
 
 ## Install ClearDB

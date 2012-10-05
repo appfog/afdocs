@@ -1,6 +1,6 @@
 ---
 title: Rails
-weight: 2
+weight: 1
 ---
 
 * [Rails 2.3](#rails23)

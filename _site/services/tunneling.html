@@ -198,6 +198,14 @@
 				<h1>Tunneling</h1>
 				<p>You can interact with your provisioned services interactively by using the <code>af tunnel</code> command. This uses an app called “Caldecott”, which is a <code>TCP</code> proxy over <code>HTTPS</code>. Caldecott creates a tunnel that connects a port on your local computer to the service in AppFog. The <code>af tunnel</code> command uploads the Caldecott app to your AppFog instance, sets up the tunneling, and offers to start a standard client on your computer to work with the service. This can be useful for managing your services as well as for debugging.</p>
 
+<ul>
+  <li><a href="#prereqs">Prerequisites</a></li>
+  <li><a href="#tunneling">Tunneling</a></li>
+  <li><a href="#3rd-party-tools">Third-party Tools</a></li>
+  <li><a href="#more-info">More about the Tunnel Command</a></li>
+  <li><a href="#links">Links</a></li>
+</ul>
+
 <h3 id="prereqs">Prerequisites</h3>
 
 <ul>
@@ -310,9 +318,43 @@ mysql&gt;
 
 <p>When you exit the client, <code>af</code> disconnects the tunnel. </p>
 
-<p>If you choose the <code>1: none</code> or if Caldecott doesn’t have a default client for the service, you can simply leave the terminal window open. You can then start your preferred client in another window. Once you’re done, hit <code>Ctrl-C</code> to exit <code>af</code> and close the tunnel.</p>
+<h3 id="3rd-party-tools">Using Third-party Tools</h3>
 
-<h3 id="more-about-the-tunnel-command">More about the Tunnel Command</h3>
+<p>For the last step, if you choose the <code>1: none</code> or if Caldecott doesn’t have a default client for the service, you can simply leave the terminal window open. You can then start your preferred client in another window by using the provided “Service connection info”.</p>
+
+<pre class="prettyprint"><code>Service connection info:
+  username : uz2Nrj2p20TXA
+  password : p1tmyq30ZhjgQ
+  name     : ddc26c09b7a7d4a1b88dacf445a7c9f87
+  infra    : aws
+
+Starting tunnel to exampleapp1-mysql on port 10000.
+1: none
+2: mysql
+3: mysqldump
+Which client would you like to start?: 1
+Open another shell to run command-line clients or
+use a UI tool to connect using the displayed information.
+Press Ctrl-C to exit...
+</code></pre>
+
+<p>Leaving that terminal session open, simply start your client. Here’s an example with MySQL Workbench:</p>
+
+<p>Launch Workbench. On the left, you’ll see “Open Connection to Start Querying”. Below that, click on “New Connection” to get started. This will bring up a new menu where we’ll input the necessary information.</p>
+
+<p>For the “Connection Name”, you can use whatever you want.</p>
+
+<p>For “Hostname”, you need to use your “localhost”, and for the “port number”, use what was given to you in the command line (where it says Starting tunnel to <db-name> on port <port-number>). Port 10000 is the default.</port-number></db-name></p>
+
+<p>The username and password are in the output of the <code>af tunnel</code> command under “Service connection info”.</p>
+
+<p>The “Default Schema” can be whatever you want, just like the “Connection Name”.</p>
+
+<p>Click on “OK”, and it will take you back to the main screen, where you can click on your newly formed connection under the “Open Connection to Start Querying” header. Double-click on the connection you just made and that’s it!</p>
+
+<p>Once you’re done, hit <code>Ctrl-C</code> to exit <code>af</code> and close the tunnel.</p>
+
+<h3 id="more-info">More about the Tunnel Command</h3>
 
 <p>You can simply enter the <code>af tunnel</code> command and respond to the prompts to create a tunnel. The command allows you to select from a list of existing provisioned services, so you don’t need to know the service’s name ahead of time.</p>
 

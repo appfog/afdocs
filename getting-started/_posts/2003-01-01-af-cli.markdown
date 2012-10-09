@@ -11,17 +11,18 @@ description: "Code deployment made easy."
 * [Usage](#usage)
 * [Getting Started](#getting-started)
 * [Apps](#apps)
-* [App Creation](#app-creation)
-* [App Download](#app-download)
-* [App Operations](#app-ops)
-* [App Updates](#app-updates)
-* [App Information](#app-info)
-* [App Environment](#app-env)
-* [Services](#services)
-* [Administration](#admin)
-* [System](#system)
-* [Misc](#misc)
-* [Help](#help)
+    * [App Creation](#app-creation)
+    * [App Download](#app-download)
+    * [App Operations](#app-ops)
+    * [App Updates](#app-updates)
+    * [App Information](#app-info)
+    * [App Environment](#app-env)
+    * [Services](#services)
+    * [Administration](#admin)
+    * [System](#system)
+    * [Misc](#misc)
+    * [Help](#help)
+* [.afignore](#afignore)
 * [Manifests](#manifests)
 
 
@@ -194,6 +195,39 @@ or
 <tr><td><code>help options                                 </code></td><td>Get help on available options</td></tr>
 
 </table>
+
+# .afignore {#afignore}
+
+You can create a `.afignore` file in your app's root directory to tell `af push` and `af update` to skip files and directories, much like `.gitignore` for git. 
+
+You can set rules in the following ways:
+
+* Specify exact file names.
+* Use wildcard patterns.
+* Specify directories by appending a '/' (this will include subdirectories).
+
+You can also reverse an ignore rule by beginning the line with a `!`.
+
+Blank lines and lines beginning with `#` are ignored.
+
+Here's a sample `.afignore` file:
+
+{: .prettyprint .linenums }
+
+    # ignore local config
+    config.local
+
+    # ignore dot files
+	.*
+
+    # ignore assets directory
+	assets/
+
+    # don't ignore assets/necessary.css
+    !assets/necessary.css
+
+    # don't ignore assets/js/ directory
+	!assets/js/
 
 # Manifests {#manifests}
 

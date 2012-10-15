@@ -10,7 +10,10 @@ There are a few ways to schedule tasks using a "standalone" app in just about an
 
 AppFog supports background processing, which means you can run container-less, "standalone" apps on AppFog.
 
-# Ruby
+* [Ruby](#task-scheduling-ruby)
+* [Python](#task-scheduling-python)
+
+# Ruby {#task-scheduling-ruby}
 
 You can use the `whenever` gem with a standalone ruby app, for example, to run cron-like jobs using an incredibly simple syntax. One of the examples given in the GitHub repo demonstrates this:
 
@@ -100,3 +103,7 @@ At this point, you can test whether it's working by checking the app's logs:
     Portland: life is just better here
     Portland: life is just better here
     Portland: life is just better here
+
+# Python {#task-scheduling-python}
+
+An alternative in Python is [Advanced Python Scheduler](http://packages.python.org/APScheduler/). 

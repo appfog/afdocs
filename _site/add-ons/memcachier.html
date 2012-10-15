@@ -333,13 +333,16 @@ print cache.get("foo")
 <p>Start by downloading the <a href="https://github.com/ronnywang/PHPMemcacheSASL">PHPMemcacheSASL</a> library. From here you can start writing cache code in your PHP app:</p>
 
 <pre class="prettyprint linenums"><code>include('MemcacheSASL.php');
+$server_pieces = explode(':', getenv("MEMCACHIER_SERVERS"))
 $m = new MemcacheSASL;
-$m-&gt;addServer($_ENV["MEMCACHIER_SERVERS"], '11211');
-$m-&gt;setSaslAuthData($_ENV["MEMCACHIER_USERNAME"], $_ENV["MEMCACHIER_PASSWORD"]);
+$m-&gt;addServer($server_pieces[0], $server_pieces[1]);
+$m-&gt;setSaslAuthData(getenv("MEMCACHIER_USERNAME"), getenv("MEMCACHIER_PASSWORD"));
 
 $m-&gt;add("foo", "bar");
 echo $m-&gt;get("foo");
 </code></pre>
+
+<p>Or, check out <a href="https://github.com/ceslami/PHPMemcacheSASL">the fork of PHPMemcacheSASL</a> modified specifically for use with AppFog, by AppFog user <a href="https://github.com/ceslami">ceslami</a>.</p>
 
 <p>The more common PHP memcache clients, <a href="http://www.php.net/manual/en/book.memcache.php">Memcache</a> and <a href="http://www.php.net/manual/en/book.memcached.php">Memcached</a>, don’t support SASL authentication at this time and can’t be used with MemCachier.</p>
 

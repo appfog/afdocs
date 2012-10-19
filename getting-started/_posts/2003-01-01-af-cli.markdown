@@ -25,30 +25,63 @@ description: "Code deployment made easy."
 * [.afignore](#afignore)
 * [Manifests](#manifests)
 
-
 ### Installation {#installation}
 
 The `af` command line tool is written in Ruby and installed as a gem: 
+
+### Mac OS X and Linux
 
 {: .prettyprint}
     $ gem install af
 
 Note: `af` requires Ruby 1.8.7 or newer.
 
-### Usage {#usage}
+If you're on Mac OS X 10.7 Lion and you're having trouble, you may have to do the following:
+
+1. Install Xcode 4.3 and the Xcode command line tools (use the "downloads" preference pane to download the command line tools).
+
+2. [Install homebrew](https://github.com/mxcl/homebrew/wiki/Installation).
+
+3. Install `libksba` with homebrew.
 
 {: .prettyprint}
-    $ af [options] command [<args>] [command_options]
+    $ brew install libksba
 
-For more information, try:
+4. [Install RVM](https://rvm.io/rvm/install/).
 
-{: .prettyprint}
-    $ af help [command]
-
-or
+5. Install Ruby 1.9.3:
 
 {: .prettyprint}
-    $ af help options
+    $ rvm install ruby-1.9.3
+    $ rvm use 1.9.3
+
+5. Install `af`
+
+{: .prettyprint}
+    $ gem install af
+    $ af login
+
+### Windows
+
+Download and install [Ruby Installer for Windows](http://rubyinstaller.org/). The installer already includes RubyGems.
+
+Be sure you use the Ruby-enabled command prompt window when you later install and use `af`. You access this command prompt from the Windows Start menu (All Programs > Ruby <version> > Start Command Prompt with Ruby).
+
+Finally, update RubyGems from the Ruby Command Prompt:
+
+{: .prettyprint}
+    $ gem update --system
+    $ gem install af
+
+Login with:
+
+{: .prettyprint}
+    $ af login
+
+Finally from within your source code directory:
+
+{: .prettyprint}
+    $ af update hello-node
 
 ### Getting Started {#getting-started}
 

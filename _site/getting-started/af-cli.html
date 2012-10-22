@@ -199,7 +199,12 @@
 				<p><code>af</code> is based on CloudFoundry’s <code>vmc</code> but includes features specific to AppFog and has the default target set to AppFog’s service. Check out <a href="https://github.com/appfog/af">the GitHub repo</a>.</p>
 
 <ul>
-  <li><a href="#installation">Installation</a></li>
+  <li><a href="#installation">Installation</a>
+    <ul>
+      <li><a href="#max-os-x-linux">Mac OS X and Linux</a></li>
+      <li><a href="#af-cli-install-windows">Windows</a></li>
+    </ul>
+  </li>
   <li><a href="#usage">Usage</a></li>
   <li><a href="#getting-started">Getting Started</a></li>
   <li><a href="#apps">Apps</a>
@@ -221,31 +226,78 @@
   <li><a href="#manifests">Manifests</a></li>
 </ul>
 
-<h3 id="installation">Installation</h3>
+<h1 id="installation">Installation</h1>
 
 <p>The <code>af</code> command line tool is written in Ruby and installed as a gem: </p>
+
+<h3 id="max-os-x-linux">Mac OS X and Linux</h3>
 
 <pre class="prettyprint"><code>$ gem install af
 </code></pre>
 
 <p>Note: <code>af</code> requires Ruby 1.8.7 or newer.</p>
 
-<h3 id="usage">Usage</h3>
+<p>If you’re on Mac OS X 10.7 Lion and you’re having trouble, you may have to do the following:</p>
 
-<pre class="prettyprint"><code>$ af [options] command [&lt;args&gt;] [command_options]
+<ol>
+  <li>
+    <p>Install Xcode 4.3 and the Xcode command line tools (use the “downloads” preference pane to download the command line tools).</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/mxcl/homebrew/wiki/Installation">Install homebrew</a>.</p>
+  </li>
+  <li>
+    <p>Install <code>libksba</code> with homebrew.</p>
+  </li>
+</ol>
+
+<pre class="prettyprint"><code>$ brew install libksba
 </code></pre>
 
-<p>For more information, try:</p>
+<ol>
+  <li>
+    <p><a href="https://rvm.io/rvm/install/">Install RVM</a>.</p>
+  </li>
+  <li>
+    <p>Install Ruby 1.9.3:</p>
+  </li>
+</ol>
 
-<pre class="prettyprint"><code>$ af help [command]
+<pre class="prettyprint"><code>$ rvm install ruby-1.9.3
+$ rvm use 1.9.3
 </code></pre>
 
-<p>or</p>
+<ol>
+  <li>Install <code>af</code></li>
+</ol>
 
-<pre class="prettyprint"><code>$ af help options
+<pre class="prettyprint"><code>$ gem install af
+$ af login
 </code></pre>
 
-<h3 id="getting-started">Getting Started</h3>
+<h3 id="af-cli-install-windows">Windows</h3>
+
+<p>Download and install <a href="http://rubyinstaller.org/">Ruby Installer for Windows</a>. The installer already includes RubyGems.</p>
+
+<p>Be sure you use the Ruby-enabled command prompt window when you later install and use <code>af</code>. You access this command prompt from the Windows Start menu (All Programs &gt; Ruby <version> &gt; Start Command Prompt with Ruby).</version></p>
+
+<p>Finally, update RubyGems from the Ruby Command Prompt:</p>
+
+<pre class="prettyprint"><code>$ gem update --system
+$ gem install af
+</code></pre>
+
+<p>Login with:</p>
+
+<pre class="prettyprint"><code>$ af login
+</code></pre>
+
+<p>Finally from within your source code directory:</p>
+
+<pre class="prettyprint"><code>$ af update hello-node
+</code></pre>
+
+<h1 id="getting-started">Getting Started</h1>
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -259,7 +311,7 @@
 </tr>
 </table>
 
-<h3 id="apps">Apps</h3>
+<h1 id="apps">Apps</h1>
 
 <table class="table table-bordered table-striped">
 <tr>

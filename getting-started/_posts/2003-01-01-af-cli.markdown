@@ -8,6 +8,8 @@ description: "Code deployment made easy."
 `af` is based on CloudFoundry's `vmc` but includes features specific to AppFog and has the default target set to AppFog's service. Check out [the GitHub repo](https://github.com/appfog/af).
 
 * [Installation](#installation)
+    * [Mac OS X and Linux](#max-os-x-linux)
+    * [Windows](#af-cli-install-windows)
 * [Usage](#usage)
 * [Getting Started](#getting-started)
 * [Apps](#apps)
@@ -25,11 +27,11 @@ description: "Code deployment made easy."
 * [.afignore](#afignore)
 * [Manifests](#manifests)
 
-### Installation {#installation}
+# Installation {#installation}
 
 The `af` command line tool is written in Ruby and installed as a gem: 
 
-### Mac OS X and Linux
+### Mac OS X and Linux {#max-os-x-linux}
 
 {: .prettyprint}
     $ gem install af
@@ -61,7 +63,7 @@ If you're on Mac OS X 10.7 Lion and you're having trouble, you may have to do th
     $ gem install af
     $ af login
 
-### Windows
+### Windows {#af-cli-install-windows}
 
 Download and install [Ruby Installer for Windows](http://rubyinstaller.org/). The installer already includes RubyGems.
 
@@ -83,7 +85,7 @@ Finally from within your source code directory:
 {: .prettyprint}
     $ af update hello-node
 
-### Getting Started {#getting-started}
+# Getting Started {#getting-started}
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -97,7 +99,7 @@ Finally from within your source code directory:
 </tr>
 </table>
 
-### Apps {#apps}
+# Apps {#apps}
 
 <table class="table table-bordered table-striped">
 <tr>

@@ -45,12 +45,6 @@ AppFog currently only offers one app server for Sinatra and Rails apps: Thin. If
 
 You should use [Bundler](http://gembundler.com/) to package your apps. Run `bundle package; bundle install` each time you modify your Gemfile and before you make an `af push` or `af update` command.
 
-### Gems with known issues:
-
-* rmagick (requires http://www.imagemagick.org/script/index.php native library to be installed)
-* libv8 (system-wide installation required)
-* therubyracer (depency on libv8)
-
 [Isolate](https://github.com/jbarnette/isolate) is not well-supported on AppFog.
 
 # Rails 2.3 {#rails23}

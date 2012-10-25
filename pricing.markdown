@@ -1,5 +1,5 @@
 ---
 title: Pricing
 weight: 7
-redirect: http://console.appfog.com/pricing
+redirect: http://www.appfog.com/products/appfog/pricing/
 ---

@@ -4,19 +4,18 @@ title: PostgreSQL
 weight: 1
 ---
 
-AppFog provides a PosgreSQL service that's accessible to apps that are running on any of the supported runtimes and frameworks. 
+[RabbitMQ](http://www.rabbitmq.com/) is a message broker that provides robust messaging services for your apps.
 
-* [VCAP_SERVICES](#vcap)
-* [PHP](#php)
-* [Ruby](#ruby)
+* [VCAP\_SERVICES Environment Variable](#rabbitmq-vcap)
+* [RabbitMQ with Node Tutorial](#rabbitmq-node-tutorial)
 
-# The VCAP\_SERVICES Environment Variable {#vcap}
+# The VCAP\_SERVICES Environment Variable {#rabbitmq-vcap}
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. For apps that can't be automatically configured, you can find the information your app needs to connect to the database in this variable.
 
 This variable contains a JSON document with a list of all credentials and connection information for the bound services.
 
-Here's an example that of the environment variable for an app that has a PostgreSQL service bound to it:
+Here's an example that of the environment variable for an app that has a RabbitMQ service bound to it:
 
 {: .prettyprint .linenums}
     {"postgresql-9.1":[
@@ -65,31 +64,175 @@ In PHP:
 {: .prettyprint}
     getenv("VCAP_SERVICES")
 
-# PHP {#php}
+# RabbitMQ with Node Tutorial {#rabbitmq-node-tutorial}
 
-Connecting your PHP app to a bound PostgreSQL service is simple:
+Let's quickly run through creating a Node.js app that uses RabbitMQ.
 
-{: .prettyprint .linenums}
-    $services_json = json_decode(getenv("VCAP_SERVICES"),true);
-    $postgresql_config = $services_json["postgresql-9.1"][0]["credentials"];
+### Create Application Files
 
-    $username = $postgresql_config["username"];
-    $password = $postgresql_config["password"];
-    $hostname = $postgresql_config["hostname"];
-    $port = $postgresql_config["port"];
-    $db = $postgresql_config["name"];
+Create an app directory and change into it:
 
-    $link = pg_connect("host=$hostname port=$port dbname=$db user=$username password=$password");
+    $ mkdir rabbitmq-node
+    $ cd rabbitmq-node
+    
+Create the file `package.json` with the following contents:
 
-# Ruby {#ruby}
+    {
+        "name":"node-amqp-demo",
+        "version":"0.0.1",
+        "dependencies": {
+            "amqp":"&gt;= 0.1.0",
+            "sanitizer": "*"
+        }
+    }
 
-Connecting your Ruby app to a bound PostgreSQL service is simple:
+This `package.json` specifies two dependent libraries: `amqp` for message processing and sanitizer to escape `HTML` messages.
 
-{: .prettyprint .linenums}
-    require "pg"
+Install the dependencies, using `npm`:
 
-    services = JSON.parse(ENV['VCAP_SERVICES'])
-    postgresql_key = services.keys.select { |svc| svc =~ /postgresql/i }.first
-    postgresql = services[postgresql_key].first['credentials']
-    postgresql_conn = {:host => postgresql['hostname'], :port => postgresql['port'], :username => postgresql['user'], :password => postgresql['password'], :dbname => postgresql['name']}
-    connection = PG.connect(postgresql_conn)
+    $ npm install
+
+Create `app.js` with the following code:
+
+    var http = require('http');
+    var amqp = require('amqp');
+    var URL = require('url');
+    var htmlEscape = require('sanitizer/sanitizer').escape;
+    
+    function rabbitUrl() {
+      if (process.env.VCAP_SERVICES) {
+        conf = JSON.parse(process.env.VCAP_SERVICES);
+        return conf['rabbitmq-2.4'][0].credentials.url;
+      }
+      else {
+        return "amqp://localhost";
+      }
+    }
+    
+    var port = process.env.VCAP_APP_PORT || 3000;
+    
+    var messages = [];
+    
+    function setup() {
+    
+      var exchange = conn.exchange('cf-demo', {'type': 'fanout', durable: false}, function() {
+    
+        var queue = conn.queue('', {durable: false, exclusive: true},
+        function() {
+          queue.subscribe(function(msg) {
+            messages.push(htmlEscape(msg.body));
+            if (messages.length &gt; 10) {
+              messages.shift();
+            }
+          });
+          queue.bind(exchange.name, '');
+        });
+        queue.on('queueBindOk', function() { httpServer(exchange); });
+      });
+    }
+    
+    function httpServer(exchange) {
+      var serv = http.createServer(function(req, res) {
+        var url = URL.parse(req.url);
+        if (req.method == 'GET' &amp;&amp; url.pathname == '/env') {
+          printEnv(res);
+        }
+        else if (req.method == 'GET' &amp;&amp; url.pathname == '/') {
+          res.statusCode = 200;
+          openHtml(res);
+          writeForm(res);
+          writeMessages(res);
+          closeHtml(res);
+        }
+        else if (req.method == 'POST' &amp;&amp; url.pathname == '/') {
+          chunks = '';
+          req.on('data', function(chunk) { chunks %2B= chunk; });
+          req.on('end', function() {
+            msg = unescapeFormData(chunks.split('=')[1]);
+            exchange.publish('', {body: msg});
+            res.statusCode = 303;
+            res.setHeader('Location', '/');
+            res.end();
+          });
+        }
+        else {
+          res.statusCode = 404;
+          res.end("This is not the page you were looking for.");
+        }
+      });
+      serv.listen(port);
+    }
+    
+    console.log("Starting ... AMQP URL: " %2B rabbitUrl());
+    var conn = amqp.createConnection({url: rabbitUrl()});
+    conn.on('ready', setup);
+    
+    // ---- helpers
+    
+    function openHtml(res) {
+      res.write("Node.js / RabbitMQ demo");
+    }
+    
+    function closeHtml(res) {
+      res.end("");
+    }
+    
+    function writeMessages(res) {
+      res.write('Messages');
+      res.write('');
+      for (i in messages) {
+        res.write('' %2B messages[i] %2B '');
+      }
+      res.write('');
+    }
+    
+    function writeForm(res) {
+      res.write('');
+      res.write('');
+      res.write('');
+    }
+    
+    function printEnv(res) {
+      res.statusCode = 200;
+      openHtml(res);
+      for (entry in process.env) {
+        res.write(entry %2B "=" %2B process.env[entry] %2B "");
+      }
+      closeHtml(res);
+    }
+    
+    function unescapeFormData(msg) {
+      return unescape(msg.replace('%2B', ' '));
+    }
+
+Push the app to AppFog. For most prompts you can press `Enter` to accept the default value. At the Application Name prompt, enter a unique app name. Also, be sure to create and bind a rabbitmq service, as shown here:
+
+    $ af push
+    	Would you like to deploy from the current directory? [Yn]:
+    	Application Name: rabbitmq-node
+    	Application Deployed URL [rabbitmq-node.aws.af.cm]:
+    	Detected a Node.js Application, is this correct? [Yn]:
+    	Memory Reservation (64M, 128M, 256M, 512M) [64M]:
+    	Creating Application: OK
+    	Would you like to bind any services to 'rabbitmq-node'? [yN]: y
+    	Would you like to use an existing provisioned service? [yN]: n
+    	The following system services are available
+    	1: mongodb
+    	2: mysql
+    	3: postgresql
+    	4: rabbitmq
+    	5: redis
+    	Please select one you wish to provision: 4
+    	Specify the name of the service [rabbitmq-6c981]:
+    	Creating Service: OK
+    	Binding Service [rabbitmq-6c981]: OK
+    	Uploading Application:
+    	  Checking for available resources: OK
+    	  Processing resources: OK
+    	  Packing application: OK
+    	  Uploading (1K): OK
+    	Push Status: OK
+    	Staging Application: OK
+    	Starting Application: OK
+
+Access the app at the specified URL using your browser. Enter messages in the form and you'll see them echoed in the browser.

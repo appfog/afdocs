@@ -1,5 +1,5 @@
 ---
-title: Test2
+title: "Test2"
 weight: 9
 ---
 

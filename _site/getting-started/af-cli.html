@@ -455,7 +455,7 @@ $ gem install af
   <li>Specify directories by appending a ‘/’ (this will include subdirectories).</li>
 </ul>
 
-<!-- You can also reverse an ignore rule by beginning the line with a `!`. -->
+<p>You can also reverse an ignore rule by beginning the line with a <code>!</code>.</p>
 
 <p>Blank lines and lines beginning with <code>#</code> are ignored.</p>
 
@@ -469,15 +469,13 @@ config.local
 
 # ignore assets directory
 assets/
+
+# don't ignore assets/necessary.css
+!assets/necessary.css
+
+# don't ignore assets/js/ directory
+!assets/js/
 </code></pre>
-
-<!--
-    # don't ignore assets/necessary.css
-    !assets/necessary.css
-
-    # don't ignore assets/js/ directory
-	!assets/js/
--->
 
 <h1 id="manifests">Manifests</h1>
 

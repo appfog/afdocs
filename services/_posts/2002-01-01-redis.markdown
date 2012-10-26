@@ -16,25 +16,21 @@ This variable contains a `JSON` document with a list of all credentials and conn
 
 Here's an example that of the environment variable for an app that has a Redis service bound to it:
 
-{: .prettyprint .linenums}
-    {"postgresql-9.1":[
+    {"redis-2.2":[
         {
-            "name":"postgresql-5633b",
-            "label":"postgresql-9.1",
+            "name":"redis-example",
+            "label":"redis-2.2",
             "plan":"free",
-            "tags":["postgresql","postgresql-9.1","relational"],
+            "tags":["redis","redis-2.2","key-value","nosql"],
             "credentials":{
-                "name":"d19a133d77da6470383d825e0bc56f7a7",
-                "host":"10.0.48.220",
-                "hostname":"10.0.48.220",
-                "port":5432,
-                "user":"ub3df122ceb05491899e0f227634a859f",
-                "username":"ub3df122ceb05491899e0f227634a859f",
-                "password":"p0d09ed1578024aebb700057d398cd24b"
+                "hostname":"10.7.66.164",
+                "host":"10.7.66.164",
+                "port":5004,
+                "password":"191dc43f-69a3-4d31-ac5e-4b66155b2e8e",
+                "name":"9e3f3a9c-82ba-4c2e-bc83-b498e5447251"
             }
         }
     ]}
-
 
 You can use your app's language-specific facility to call the environment variable.
 

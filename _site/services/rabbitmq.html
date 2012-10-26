@@ -211,20 +211,23 @@
 
 <p>Here’s an example that of the environment variable for an app that has a RabbitMQ service bound to it:</p>
 
-<pre class="prettyprint linenums"><code>{"postgresql-9.1":[
+<pre><code>{"rabbitmq-2.4":[
     {
-        "name":"postgresql-5633b",
-        "label":"postgresql-9.1",
+        "name":"rabbitmq-example",
+        "label":"rabbitmq-2.4",
         "plan":"free",
-        "tags":["postgresql","postgresql-9.1","relational"],
+        "tags":["rabbitmq","rabitmq-2.4","message-queue","amqp"],
         "credentials":{
-            "name":"d19a133d77da6470383d825e0bc56f7a7",
-            "host":"10.0.48.220",
-            "hostname":"10.0.48.220",
-            "port":5432,
-            "user":"ub3df122ceb05491899e0f227634a859f",
-            "username":"ub3df122ceb05491899e0f227634a859f",
-            "password":"p0d09ed1578024aebb700057d398cd24b"
+            "name":"f5666391-510e-44ba-96cf-12e2d691854f",
+            "hostname":"10.7.67.64",
+            "host":"10.7.67.64",
+            "port":10004,
+            "vhost":"v32dc3278e8294672be14eb00083c2a44",
+            "username":"u2rOaKWovmj44",
+            "user":"u2rOaKWovmj44",
+            "password":"pMxGDaMxfvQx4",
+            "pass":"pMxGDaMxfvQx4",
+            "url":"amqp://u2rOaKWovmj44:pMxGDaMxfvQx4@10.7.67.64:10004/v32dc3278e8294672be14eb00083c2a44"
         }
     }
 ]}

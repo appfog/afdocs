@@ -94,6 +94,7 @@ At the top of the `app.rb` file, we'll specify the dependencies:
     require 'sinatra'
     require 'redis'
     require 'haml'
+    require 'json'
 
 Next, we'll connect to the Redis service:
 

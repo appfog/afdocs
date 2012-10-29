@@ -84,7 +84,7 @@ Create the file `package.json` with the following contents:
         "name":"node-amqp-demo",
         "version":"0.0.1",
         "dependencies": {
-            "amqp":"&gt;= 0.1.0",
+            "amqp":">= 0.1.0",
             "sanitizer": "*"
         }
     }

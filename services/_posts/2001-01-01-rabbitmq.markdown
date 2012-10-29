@@ -125,7 +125,7 @@ Create `app.js` with the following code:
         function() {
           queue.subscribe(function(msg) {
             messages.push(htmlEscape(msg.body));
-            if (messages.length &gt; 10) {
+            if (messages.length > 10) {
               messages.shift();
             }
           });
@@ -138,17 +138,17 @@ Create `app.js` with the following code:
     function httpServer(exchange) {
       var serv = http.createServer(function(req, res) {
         var url = URL.parse(req.url);
-        if (req.method == 'GET' &amp;&amp; url.pathname == '/env') {
+        if (req.method == 'GET' && url.pathname == '/env') {
           printEnv(res);
         }
-        else if (req.method == 'GET' &amp;&amp; url.pathname == '/') {
+        else if (req.method == 'GET' && url.pathname == '/') {
           res.statusCode = 200;
           openHtml(res);
           writeForm(res);
           writeMessages(res);
           closeHtml(res);
         }
-        else if (req.method == 'POST' &amp;&amp; url.pathname == '/') {
+        else if (req.method == 'POST' && url.pathname == '/') {
           chunks = '';
           req.on('data', function(chunk) { chunks %2B= chunk; });
           req.on('end', function() {

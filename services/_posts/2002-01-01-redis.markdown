@@ -87,6 +87,15 @@ You can find the completed code for the project on [GitHub](https://github.com/l
 
 ### Setting up the Redis connection
 
+First, we'll create a `Gemfile`:
+
+{: .prettyprint .linenums}
+    source 'http://rubygems.org'
+
+    gem 'redis'
+    gem 'haml'
+    gem 'sinatra'
+
 At the top of the `app.rb` file, we'll specify the dependencies:
 
 {: .prettyprint .linenums}

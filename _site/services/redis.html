@@ -281,6 +281,15 @@ end
 
 <h3 id="setting-up-the-redis-connection">Setting up the Redis connection</h3>
 
+<p>First, we’ll create a <code>Gemfile</code>:</p>
+
+<pre class="prettyprint linenums"><code>source 'http://rubygems.org'
+
+gem 'redis'
+gem 'haml'
+gem 'sinatra'
+</code></pre>
+
 <p>At the top of the <code>app.rb</code> file, we’ll specify the dependencies:</p>
 
 <pre class="prettyprint linenums"><code>require 'rubygems'

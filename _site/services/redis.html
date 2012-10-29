@@ -283,7 +283,7 @@ end
 
 <p>At the top of the <code>app.rb</code> file, we’ll specify the dependencies:</p>
 
-<pre><code>require 'rubygems'
+<pre class="prettyprint linenums"><code>require 'rubygems'
 require 'sinatra'
 require 'redis'
 require 'haml'
@@ -291,7 +291,13 @@ require 'haml'
 
 <p>Next, we’ll connect to the Redis service:</p>
 
-<pre><code>redis = Redis.new{:port =&gt; VCAP_SERVICES}
+<pre class="prettyprint linenums"><code>configure do
+    services = JSON.parse(ENV['VCAP_SERVICES'])
+    redis_key = services.keys.select { |svc| svc =~ /redis/i }.first
+    redis = services[redis_key].first['credentials']
+    redis_conf = {:host =&gt; redis['hostname'], :port =&gt; redis['port'], :password =&gt; redis['password']}
+    @@redis = Redis.new redis_conf
+end
 </code></pre>
 
 <p>Interacting with the database involves simply running methods on this object. </p>
@@ -302,14 +308,14 @@ require 'haml'
 
 <pre class="prettyprint linenums"><code>get '/' do
   @title = "Sinatra + Redis + AppFog = WIN"
-  @notes = redis.LRANGE("notes", 0, -1)
+  @notes = @@redis.LRANGE("notes", 0, -1)
   haml :index
 end
 </code></pre>
 
 <p>Here, we’ve specified the page title and created a <code>@notes</code> object that will store the notes we create. In order to do that, we need to query Redis. The <code>LRANGE</code> command in Redis gives back all of the values of the list (the <code>L</code> in <code>LRANGE</code> refers to “list”) if you go from element <code>0</code> (the first element) to element <code>-1</code> (the last element). The list in question, <code>notes</code>, doesn’t exist yet. Querying Redis for it simply returns nothing, and our <code>@notes</code> variable will be empty at first. The <code>haml :index</code> command will specify which view needs to be rendered (index) and which templating engine we’ll be using (Haml).</p>
 
-<p>Now, we’ll start building our actual <code>index.haml</code> page. First, some boilerplate. <a href="http://haml.info/">Here</a> are Haml’s docs, for reference.</p>
+<p>Now, we’ll start building our actual <code>views/index.haml</code> page. First, some boilerplate. <a href="http://haml.info/">Here</a> are Haml’s docs, for reference.</p>
 
 <pre class="prettyprint linenums"><code>!!!
 %html
@@ -352,7 +358,7 @@ end
 <pre class="prettyprint linenums"><code>post '/newNote' do
   if params[:newNote].length &gt;= 1
     @newNote = params[:newNote]
-    redis.LPUSH("notes", @newNote)
+    @@redis.LPUSH("notes", @newNote)
   end
 
   redirect ‘/’
@@ -374,7 +380,7 @@ end
 <p>Now, let’s set up our server to handle this method in the <code>app.rb</code> file:</p>
 
 <pre class="prettyprint linenums"><code>post '/deleteNotes' do
-  redis.FLUSHALL
+  @@redis.FLUSHALL
 
   redirect '/'
 end
@@ -387,7 +393,7 @@ end
 <p>In order to do that, we’ll create a <code>before</code> block in the Sinatra server. This code will be called every time an <code>HTTP</code> request is made, no matter what that request is. We’ll set up two new variables, <code>@length</code> for the length of the notes list, and <code>@time</code> for the current time:</p>
 
 <pre class="prettyprint linenums"><code>before do
-  @length = redis.LLEN("notes")
+  @length = @@redis.LLEN("notes")
   @time = Time.now.to_s
 end
 </code></pre>

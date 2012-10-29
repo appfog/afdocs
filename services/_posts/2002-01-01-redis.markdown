@@ -89,6 +89,7 @@ You can find the completed code for the project on [GitHub](https://github.com/l
 
 At the top of the `app.rb` file, we'll specify the dependencies:
 
+{: .prettyprint .linenums}
     require 'rubygems'
     require 'sinatra'
     require 'redis'
@@ -96,7 +97,14 @@ At the top of the `app.rb` file, we'll specify the dependencies:
 
 Next, we'll connect to the Redis service:
 
-    redis = Redis.new{:port => VCAP_SERVICES}
+{: .prettyprint .linenums}
+    configure do
+        services = JSON.parse(ENV['VCAP_SERVICES'])
+        redis_key = services.keys.select { |svc| svc =~ /redis/i }.first
+        redis = services[redis_key].first['credentials']
+        redis_conf = {:host => redis['hostname'], :port => redis['port'], :password => redis['password']}
+        @@redis = Redis.new redis_conf
+    end
 
 Interacting with the database involves simply running methods on this object. 
 
@@ -107,13 +115,13 @@ Now that we have a database connection established we can start. This will be a 
 {: .prettyprint .linenums}
     get '/' do
       @title = "Sinatra + Redis + AppFog = WIN"
-      @notes = redis.LRANGE("notes", 0, -1)
+      @notes = @@redis.LRANGE("notes", 0, -1)
       haml :index
     end
 
 Here, we've specified the page title and created a `@notes` object that will store the notes we create. In order to do that, we need to query Redis. The `LRANGE` command in Redis gives back all of the values of the list (the `L` in `LRANGE` refers to "list") if you go from element `0` (the first element) to element `-1` (the last element). The list in question, `notes`, doesn’t exist yet. Querying Redis for it simply returns nothing, and our `@notes` variable will be empty at first. The `haml :index` command will specify which view needs to be rendered (index) and which templating engine we’ll be using (Haml).
 
-Now, we'll start building our actual `index.haml` page. First, some boilerplate. [Here](http://haml.info/) are Haml's docs, for reference.
+Now, we'll start building our actual `views/index.haml` page. First, some boilerplate. [Here](http://haml.info/) are Haml's docs, for reference.
 
 {: .prettyprint .linenums}
     !!!
@@ -157,7 +165,7 @@ This form will provide a text field for entering text and a "Submit" button. Upo
     post '/newNote' do
       if params[:newNote].length >= 1
         @newNote = params[:newNote]
-        redis.LPUSH("notes", @newNote)
+        @@redis.LPUSH("notes", @newNote)
       end
 
       redirect ‘/’
@@ -179,7 +187,7 @@ Now, let’s set up our server to handle this method in the `app.rb` file:
 
 {: .prettyprint .linenums}
     post '/deleteNotes' do
-      redis.FLUSHALL
+      @@redis.FLUSHALL
 
       redirect '/'
     end
@@ -192,7 +200,7 @@ In order to do that, we'll create a `before` block in the Sinatra server. This c
 
 {: .prettyprint .linenums}
     before do
-      @length = redis.LLEN("notes")
+      @length = @@redis.LLEN("notes")
       @time = Time.now.to_s
     end
 

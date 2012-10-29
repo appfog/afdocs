@@ -361,49 +361,49 @@ function httpServer(exchange) {
   });
   serv.listen(port);
 }
-</code></pre>
 
-<p>console.log(“Starting … AMQP URL: “ + rabbitUrl());
+console.log("Starting ... AMQP URL: " + rabbitUrl());
 var conn = amqp.createConnection({url: rabbitUrl()});
-conn.on(‘ready’, setup);</p>
+conn.on('ready', setup);
 
-<p>// —- helpers</p>
+// ---- helpers
 
-<p>function openHtml(res) {
-  res.write(“&lt;html&gt;&lt;head&gt;<title>Node.js / RabbitMQ demo</title>&lt;/head&gt;&lt;body&gt;”);
-}</p>
+function openHtml(res) {
+  res.write("&lt;html&gt;&lt;head&gt;&lt;title&gt;Node.js / RabbitMQ demo&lt;/title&gt;&lt;/head&gt;&lt;body&gt;");
+}
 
-<p>function closeHtml(res) {
-  res.end(“&lt;/body&gt;&lt;/html&gt;”);
-}</p>
+function closeHtml(res) {
+  res.end("&lt;/body&gt;&lt;/html&gt;");
+}
 
-<p>function writeMessages(res) {
-  res.write(‘&lt;h2&gt;Messages&lt;/h2&gt;’);
-  res.write(‘&lt;ol&gt;’);
+function writeMessages(res) {
+  res.write('&lt;h2&gt;Messages&lt;/h2&gt;');
+  res.write('&lt;ol&gt;');
   for (i in messages) {
-    res.write(‘&lt;li&gt;’ + messages[i] + ‘&lt;/li&gt;’);
+    res.write('&lt;li&gt;' + messages[i] + '&lt;/li&gt;');
   }
-  res.write(‘&lt;/ol&gt;’);
-}</p>
+  res.write('&lt;/ol&gt;');
+}
 
-<p>function writeForm(res) {
-  res.write(‘&lt;form method="post"&gt;’);
-  res.write(‘<input name="data" /><input type="submit" />’);
-  res.write(‘&lt;/form&gt;’);
-}</p>
+function writeForm(res) {
+  res.write('&lt;form method="post"&gt;');
+  res.write('&lt;input name="data"/&gt;&lt;input type="submit"/&gt;');
+  res.write('&lt;/form&gt;');
+}
 
-<p>function printEnv(res) {
+function printEnv(res) {
   res.statusCode = 200;
   openHtml(res);
   for (entry in process.env) {
-    res.write(entry + “=” + process.env[entry] + “<br />”);
+    res.write(entry + "=" + process.env[entry] + "&lt;br/&gt;");
   }
   closeHtml(res);
-}</p>
+}
 
-<p>function unescapeFormData(msg) {
-  return unescape(msg.replace(‘+’, ‘ ‘));
-}</p>
+function unescapeFormData(msg) {
+  return unescape(msg.replace('+', ' '));
+}
+</code></pre>
 
 <p>Push the app to AppFog. For most prompts you can press <code>Enter</code> to accept the default value. At the Application Name prompt, enter a unique app name. Also, be sure to create and bind a rabbitmq service, as shown here:</p>
 

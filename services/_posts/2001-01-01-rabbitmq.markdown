@@ -23,7 +23,7 @@ Here's an example that of the environment variable for an app that has a RabbitM
             "name":"rabbitmq-example",
             "label":"rabbitmq-2.4",
             "plan":"free",
-            "tags":["rabbitmq","rabitmq-2.4","message-queue","amqp"],
+            "tags":["rabbitmq","rabbitmq-2.4","message-queue","amqp"],
             "credentials":{
                 "name":"f5666391-510e-44ba-96cf-12e2d691854f",
                 "hostname":"10.7.67.64",

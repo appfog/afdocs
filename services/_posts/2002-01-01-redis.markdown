@@ -16,6 +16,7 @@ This variable contains a `JSON` document with a list of all credentials and conn
 
 Here's an example that of the environment variable for an app that has a Redis service bound to it:
 
+{: .prettyprint .linenums}
     {"redis-2.2":[
         {
             "name":"redis-example",
@@ -103,6 +104,7 @@ Interacting with the database involves simply running methods on this object.
 
 Now that we have a database connection established we can start. This will be a single-page app, so we'll keep our routes simple. Let's start with the basic get `'/'` route:
 
+{: .prettyprint .linenums}
     get '/' do
       @title = "Sinatra + Redis + AppFog = WIN"
       @notes = redis.LRANGE("notes", 0, -1)
@@ -113,6 +115,7 @@ Here, we've specified the page title and created a `@notes` object that will sto
 
 Now, we'll start building our actual `index.haml` page. First, some boilerplate. [Here](http://haml.info/) are Haml's docs, for reference.
 
+{: .prettyprint .linenums}
     !!!
     %html
       %head
@@ -123,6 +126,7 @@ Now, we'll start building our actual `index.haml` page. First, some boilerplate.
 
 So now we have a basic stub of a site. With that in place, we'll set up a container for our notes and a generator for producing `DOM` elements for specific notes:
 
+{: .prettyprint .linenums}
     #notes-container
       %h3 Notes:
       %ul
@@ -137,6 +141,7 @@ Under the "Notes" header, we've set up an unordered list (`%ul`) and below that 
 
 Right now, if we go to our main index page, we’ll see a couple headers and no notes. Next, we'll enable users to actually input notes of their own and store them in Redis. In our view, above the `#notes-container`, let's set up a form for inputting data:
 
+{: .prettyprint .linenums}
     #mainForm
       %form{ :id => "newNote", :action => "/newNote", :method => "post" }
         %fieldset
@@ -148,6 +153,7 @@ Right now, if we go to our main index page, we’ll see a couple headers and no 
 
 This form will provide a text field for entering text and a "Submit" button. Upon submission, it will `POST` the `/newNote` action. Let's set up our server to handle this request, below our initial get `'/'` route:
 
+{: .prettyprint .linenums}
     post '/newNote' do
       if params[:newNote].length >= 1
         @newNote = params[:newNote]
@@ -165,11 +171,13 @@ Now comes the exciting part: making our first list push to Redis. We simply run 
 
 Let's go a little further by allowing users to delete all of the notes that they've made thus far. We'll insert a "Delete all" button into our view:
 
+{: .prettyprint .linenums}
     %form{ :id => "deleteNotes", :action => "/", :method => "post" }
       %input{ :type => "submit", :value => "Delete all" }
 
 Now, let’s set up our server to handle this method in the `app.rb` file:
 
+{: .prettyprint .linenums}
     post '/deleteNotes' do
       redis.FLUSHALL
 
@@ -182,6 +190,7 @@ Next, we'll add a timestamp to each note so we can remember when it was posted a
 
 In order to do that, we'll create a `before` block in the Sinatra server. This code will be called every time an `HTTP` request is made, no matter what that request is. We'll set up two new variables, `@length` for the length of the notes list, and `@time` for the current time:
 
+{: .prettyprint .linenums}
     before do
       @length = redis.LLEN("notes")
       @time = Time.now.to_s
@@ -191,5 +200,6 @@ To get the length of our notes list, we'll ping Redis and use the `LLEN` (list l
 
 Now, let's change our `index.haml` file to actually present this information in the view. We'll create a sidebar on the right side of the page that keeps a tally of how many notes are in my list:
 
+{: .prettyprint}
     #right-sidebar
       %h4 Total number of notes: #{@length}

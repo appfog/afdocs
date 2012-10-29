@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>AppFog &mdash; Documentation PostgreSQL</title> 
+		<title>AppFog &mdash; Documentation RabbitMQ</title> 
 
 		<link rel="stylesheet" href="http://appfog.com/css/style.css">
 		<link href="/css/prettify.css" type="text/css" rel="stylesheet" />
@@ -177,7 +177,7 @@
 						<li><a href="/services">Services</a></li>
 						
 						<li class="breadcrumb-separator">&raquo;</li>
-						<li><a href="#">PostgreSQL</a></li>
+						<li><a href="#">RabbitMQ</a></li>
 					</ul>
 					<ul id="secondary_nav">
 						<li><a href="http://docs.phpfog.com">PHP Fog Docs</a></li>
@@ -195,7 +195,7 @@
 	<div class="span8">
 		<div class="row">
 			<div class="span8">
-				<h1>PostgreSQL</h1>
+				<h1>RabbitMQ</h1>
 				<p><a href="http://www.rabbitmq.com/">RabbitMQ</a> is a message broker that provides robust messaging services for your apps.</p>
 
 <ul>
@@ -211,7 +211,7 @@
 
 <p>Here’s an example that of the environment variable for an app that has a RabbitMQ service bound to it:</p>
 
-<pre><code>{"rabbitmq-2.4":[
+<pre class="prettyprint linenums"><code>{"rabbitmq-2.4":[
     {
         "name":"rabbitmq-example",
         "label":"rabbitmq-2.4",
@@ -227,7 +227,7 @@
             "user":"u2rOaKWovmj44",
             "password":"pMxGDaMxfvQx4",
             "pass":"pMxGDaMxfvQx4",
-            "url":"amqp://u2rOaKWovmj44:pMxGDaMxfvQx4@10.7.67.64:10004/v32dc3278e8294672be14eb00083c2a44"
+            "url":"amqp://u2rOaK:pMxGDaM@10.7.67.64:10004/v32dc327"
         }
     }
 ]}
@@ -274,7 +274,7 @@ $ cd rabbitmq-node
 
 <p>Create the file <code>package.json</code> with the following contents:</p>
 
-<pre><code>{
+<pre class="prettyprint linenums"><code>{
     "name":"node-amqp-demo",
     "version":"0.0.1",
     "dependencies": {
@@ -293,7 +293,7 @@ $ cd rabbitmq-node
 
 <p>Create <code>app.js</code> with the following code:</p>
 
-<pre><code>var http = require('http');
+<pre class="prettyprint linenums"><code>var http = require('http');
 var amqp = require('amqp');
 var URL = require('url');
 var htmlEscape = require('sanitizer/sanitizer').escape;
@@ -408,32 +408,32 @@ function unescapeFormData(msg) {
 <p>Push the app to AppFog. For most prompts you can press <code>Enter</code> to accept the default value. At the Application Name prompt, enter a unique app name. Also, be sure to create and bind a rabbitmq service, as shown here:</p>
 
 <pre><code>$ af push
-	Would you like to deploy from the current directory? [Yn]:
-	Application Name: rabbitmq-node
-	Application Deployed URL [rabbitmq-node.aws.af.cm]:
-	Detected a Node.js Application, is this correct? [Yn]:
-	Memory Reservation (64M, 128M, 256M, 512M) [64M]:
-	Creating Application: OK
-	Would you like to bind any services to 'rabbitmq-node'? [yN]: y
-	Would you like to use an existing provisioned service? [yN]: n
-	The following system services are available
-	1: mongodb
-	2: mysql
-	3: postgresql
-	4: rabbitmq
-	5: redis
-	Please select one you wish to provision: 4
-	Specify the name of the service [rabbitmq-6c981]:
-	Creating Service: OK
-	Binding Service [rabbitmq-6c981]: OK
-	Uploading Application:
-	  Checking for available resources: OK
-	  Processing resources: OK
-	  Packing application: OK
-	  Uploading (1K): OK
-	Push Status: OK
-	Staging Application: OK
-	Starting Application: OK
+    Would you like to deploy from the current directory? [Yn]:
+    Application Name: rabbitmq-node
+    Application Deployed URL [rabbitmq-node.aws.af.cm]:
+    Detected a Node.js Application, is this correct? [Yn]:
+    Memory Reservation (64M, 128M, 256M, 512M) [64M]:
+    Creating Application: OK
+    Would you like to bind any services to 'rabbitmq-node'? [yN]: y
+    Would you like to use an existing provisioned service? [yN]: n
+    The following system services are available
+    1: mongodb
+    2: mysql
+    3: postgresql
+    4: rabbitmq
+    5: redis
+    Please select one you wish to provision: 4
+    Specify the name of the service [rabbitmq-6c981]:
+    Creating Service: OK
+    Binding Service [rabbitmq-6c981]: OK
+    Uploading Application:
+      Checking for available resources: OK
+      Processing resources: OK
+      Packing application: OK
+      Uploading (1K): OK
+    Push Status: OK
+    Staging Application: OK
+    Starting Application: OK
 </code></pre>
 
 <p>Access the app at the specified URL using your browser. Enter messages in the form and you’ll see them echoed in the browser.</p>
@@ -522,7 +522,7 @@ function unescapeFormData(msg) {
 							
 							<li><a href="/services/redis" >Redis</a></li>
 							
-							<li><a href="/services/rabbitmq" class="on">PostgreSQL</a></li>
+							<li><a href="/services/rabbitmq" class="on">RabbitMQ</a></li>
 							
 							</div>
 						</ul>

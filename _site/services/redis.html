@@ -210,7 +210,7 @@
 
 <p>Here’s an example that of the environment variable for an app that has a Redis service bound to it:</p>
 
-<pre><code>{"redis-2.2":[
+<pre class="prettyprint linenums"><code>{"redis-2.2":[
     {
         "name":"redis-example",
         "label":"redis-2.2",
@@ -300,7 +300,7 @@ require 'haml'
 
 <p>Now that we have a database connection established we can start. This will be a single-page app, so we’ll keep our routes simple. Let’s start with the basic get <code>'/'</code> route:</p>
 
-<pre><code>get '/' do
+<pre class="prettyprint linenums"><code>get '/' do
   @title = "Sinatra + Redis + AppFog = WIN"
   @notes = redis.LRANGE("notes", 0, -1)
   haml :index
@@ -311,7 +311,7 @@ end
 
 <p>Now, we’ll start building our actual <code>index.haml</code> page. First, some boilerplate. <a href="http://haml.info/">Here</a> are Haml’s docs, for reference.</p>
 
-<pre><code>!!!
+<pre class="prettyprint linenums"><code>!!!
 %html
   %head
     %title= @title
@@ -322,7 +322,7 @@ end
 
 <p>So now we have a basic stub of a site. With that in place, we’ll set up a container for our notes and a generator for producing <code>DOM</code> elements for specific notes:</p>
 
-<pre><code>#notes-container
+<pre class="prettyprint linenums"><code>#notes-container
   %h3 Notes:
   %ul
     - @notes.each do |note|
@@ -337,7 +337,7 @@ end
 
 <p>Right now, if we go to our main index page, we’ll see a couple headers and no notes. Next, we’ll enable users to actually input notes of their own and store them in Redis. In our view, above the <code>#notes-container</code>, let’s set up a form for inputting data:</p>
 
-<pre><code>#mainForm
+<pre class="prettyprint linenums"><code>#mainForm
   %form{ :id =&gt; "newNote", :action =&gt; "/newNote", :method =&gt; "post" }
     %fieldset
       %label{ :for =&gt; "newNote" } Leave me a brief note!
@@ -349,7 +349,7 @@ end
 
 <p>This form will provide a text field for entering text and a “Submit” button. Upon submission, it will <code>POST</code> the <code>/newNote</code> action. Let’s set up our server to handle this request, below our initial get <code>'/'</code> route:</p>
 
-<pre><code>post '/newNote' do
+<pre class="prettyprint linenums"><code>post '/newNote' do
   if params[:newNote].length &gt;= 1
     @newNote = params[:newNote]
     redis.LPUSH("notes", @newNote)
@@ -367,13 +367,13 @@ end
 
 <p>Let’s go a little further by allowing users to delete all of the notes that they’ve made thus far. We’ll insert a “Delete all” button into our view:</p>
 
-<pre><code>%form{ :id =&gt; "deleteNotes", :action =&gt; "/", :method =&gt; "post" }
+<pre class="prettyprint linenums"><code>%form{ :id =&gt; "deleteNotes", :action =&gt; "/", :method =&gt; "post" }
   %input{ :type =&gt; "submit", :value =&gt; "Delete all" }
 </code></pre>
 
 <p>Now, let’s set up our server to handle this method in the <code>app.rb</code> file:</p>
 
-<pre><code>post '/deleteNotes' do
+<pre class="prettyprint linenums"><code>post '/deleteNotes' do
   redis.FLUSHALL
 
   redirect '/'
@@ -386,7 +386,7 @@ end
 
 <p>In order to do that, we’ll create a <code>before</code> block in the Sinatra server. This code will be called every time an <code>HTTP</code> request is made, no matter what that request is. We’ll set up two new variables, <code>@length</code> for the length of the notes list, and <code>@time</code> for the current time:</p>
 
-<pre><code>before do
+<pre class="prettyprint linenums"><code>before do
   @length = redis.LLEN("notes")
   @time = Time.now.to_s
 end
@@ -396,7 +396,7 @@ end
 
 <p>Now, let’s change our <code>index.haml</code> file to actually present this information in the view. We’ll create a sidebar on the right side of the page that keeps a tally of how many notes are in my list:</p>
 
-<pre><code>#right-sidebar
+<pre class="prettyprint"><code>#right-sidebar
   %h4 Total number of notes: #{@length}
 </code></pre>
 
@@ -484,7 +484,7 @@ end
 							
 							<li><a href="/services/redis" class="on">Redis</a></li>
 							
-							<li><a href="/services/rabbitmq" >PostgreSQL</a></li>
+							<li><a href="/services/rabbitmq" >RabbitMQ</a></li>
 							
 							</div>
 						</ul>

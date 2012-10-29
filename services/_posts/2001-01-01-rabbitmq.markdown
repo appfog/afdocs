@@ -1,6 +1,6 @@
 ---
 layout: doc-page
-title: PostgreSQL
+title: RabbitMQ
 weight: 1
 ---
 
@@ -17,6 +17,7 @@ This variable contains a JSON document with a list of all credentials and connec
 
 Here's an example that of the environment variable for an app that has a RabbitMQ service bound to it:
 
+{: .prettyprint .linenums}
     {"rabbitmq-2.4":[
         {
             "name":"rabbitmq-example",
@@ -33,7 +34,7 @@ Here's an example that of the environment variable for an app that has a RabbitM
                 "user":"u2rOaKWovmj44",
                 "password":"pMxGDaMxfvQx4",
                 "pass":"pMxGDaMxfvQx4",
-                "url":"amqp://u2rOaKWovmj44:pMxGDaMxfvQx4@10.7.67.64:10004/v32dc3278e8294672be14eb00083c2a44"
+                "url":"amqp://u2rOaK:pMxGDaM@10.7.67.64:10004/v32dc327"
             }
         }
     ]}
@@ -78,6 +79,7 @@ Create an app directory and change into it:
     
 Create the file `package.json` with the following contents:
 
+{: .prettyprint .linenums}
     {
         "name":"node-amqp-demo",
         "version":"0.0.1",
@@ -95,6 +97,7 @@ Install the dependencies, using `npm`:
 
 Create `app.js` with the following code:
 
+{: .prettyprint .linenums}
     var http = require('http');
     var amqp = require('amqp');
     var URL = require('url');
@@ -209,31 +212,31 @@ Create `app.js` with the following code:
 Push the app to AppFog. For most prompts you can press `Enter` to accept the default value. At the Application Name prompt, enter a unique app name. Also, be sure to create and bind a rabbitmq service, as shown here:
 
     $ af push
-    	Would you like to deploy from the current directory? [Yn]:
-    	Application Name: rabbitmq-node
-    	Application Deployed URL [rabbitmq-node.aws.af.cm]:
-    	Detected a Node.js Application, is this correct? [Yn]:
-    	Memory Reservation (64M, 128M, 256M, 512M) [64M]:
-    	Creating Application: OK
-    	Would you like to bind any services to 'rabbitmq-node'? [yN]: y
-    	Would you like to use an existing provisioned service? [yN]: n
-    	The following system services are available
-    	1: mongodb
-    	2: mysql
-    	3: postgresql
-    	4: rabbitmq
-    	5: redis
-    	Please select one you wish to provision: 4
-    	Specify the name of the service [rabbitmq-6c981]:
-    	Creating Service: OK
-    	Binding Service [rabbitmq-6c981]: OK
-    	Uploading Application:
-    	  Checking for available resources: OK
-    	  Processing resources: OK
-    	  Packing application: OK
-    	  Uploading (1K): OK
-    	Push Status: OK
-    	Staging Application: OK
-    	Starting Application: OK
+        Would you like to deploy from the current directory? [Yn]:
+        Application Name: rabbitmq-node
+        Application Deployed URL [rabbitmq-node.aws.af.cm]:
+        Detected a Node.js Application, is this correct? [Yn]:
+        Memory Reservation (64M, 128M, 256M, 512M) [64M]:
+        Creating Application: OK
+        Would you like to bind any services to 'rabbitmq-node'? [yN]: y
+        Would you like to use an existing provisioned service? [yN]: n
+        The following system services are available
+        1: mongodb
+        2: mysql
+        3: postgresql
+        4: rabbitmq
+        5: redis
+        Please select one you wish to provision: 4
+        Specify the name of the service [rabbitmq-6c981]:
+        Creating Service: OK
+        Binding Service [rabbitmq-6c981]: OK
+        Uploading Application:
+          Checking for available resources: OK
+          Processing resources: OK
+          Packing application: OK
+          Uploading (1K): OK
+        Push Status: OK
+        Staging Application: OK
+        Starting Application: OK
 
 Access the app at the specified URL using your browser. Enter messages in the form and you'll see them echoed in the browser.

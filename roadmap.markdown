@@ -74,9 +74,9 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>MySQL 5.1</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>MongoDB 1.8</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Postgres 9.1</td><td class="x-mark-2">&times;</td><td></td></tr>
-<tr><td>Redis 2.2</td><td></td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Redis 2.2</td><td class="x-mark-2">&times;</td><td></td></tr>
+<tr><td>RabbitMQ 2.4</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>MongoDB 2.0</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>RabbitMQ 2.4</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Couchdb</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Memcached</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Neo4J</td><td></td><td class="x-mark-2">&times;</td></tr>

@@ -4,7 +4,7 @@ title: RabbitMQ
 weight: 1
 ---
 
-[RabbitMQ](http://www.rabbitmq.com/) is a message broker that provides robust messaging services for your apps.
+[RabbitMQ](http://www.rabbitmq.com/) is a message broker that provides robust messaging services for your apps. With AppFog's RabbitMQ service, you get 10 MB of RAM and 6 concurrent connections per instance. 
 
 * [VCAP\_SERVICES Environment Variable](#rabbitmq-vcap)
 * [RabbitMQ with Node Tutorial](#rabbitmq-node-tutorial)

@@ -4,6 +4,8 @@ title: Redis
 weight: 1
 ---
 
+With AppFog's free Redis service, you get 10 MB of RAM and 6 concurrent connections per instance. 
+
 * [The VCAP\_SERVICES Environment Variable](#redis-vcap)
 * [Ruby](#redis-ruby)
 * [Redis with Sinatra Tutorial](#redis-sinatra-tutorial)

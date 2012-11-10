@@ -10,19 +10,19 @@ If you haven’t already, [create an account](http://console.appfog.com/signup).
 
 Take your pick from our App or Framework Jumpstarts.
 
-<img class="screenshot" src="/img/screenshots/apps-frameworks.png" alt="App and Framework Jumpstarts"/>
+<img class="screenshot" src="/img/apps-frameworks.png" alt="App and Framework Jumpstarts"/>
 
 ## 2. Choose an infrastructure.
 
 Host your app on your choice of infrastructure vendor at your choice of locations.
 
-<img class="screenshot" src="/img/screenshots/infrastructure.png" alt="Available Infrastructures"/>
+<img class="screenshot" src="/img/infrastructure.png" alt="Available Infrastructures"/>
 
 ## 3. Choose your sub-domain.
 
 You’ll be able to use a custom domain after you create your app.
 
-<img class="screenshot" src="/img/screenshots/subdomain.png" alt="Subdomain"/>
+<img class="screenshot" src="/img/subdomain.png" alt="Subdomain"/>
 
 ## 4. There is no step 4.
 

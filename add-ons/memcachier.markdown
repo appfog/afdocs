@@ -1,7 +1,7 @@
 ---
 title: MemCachier
 layout: doc-page
-weight: 10
+weight: 17
 ---
 
 [MemCachier](http://www.memcachier.com/) is an implementation of the [Memcache](http://memcached.org/) in-memory key/value store used for caching data. It is a key technology in modern web apps for scaling and reducing server loads. The MemCachier add-on manages and scales clusters of memcache servers so you can focus on your app. Tell us how much memory you need and get started for free instantly. Add capacity later as you need it.
@@ -29,17 +29,14 @@ Your credentials may take up to three (3) minutes to be synced to our servers. Y
 
 Start by adding the [memcachier](https://github.com/memcachier/memcachier-gem) and [dalli](http://github.com/mperham/dalli) gems to your `Gemfile`.
 
-
     gem 'memcachier'
     gem 'dalli'
 
 Then bundle install:
 
-
     $ bundle install
 
 `Dalli` is a Ruby memcache client, and the `memcachier` gem modifies the environment (`ENV`) such that the environment variables set by MemCachier will work with Dalli. Once these gems are installed you can start writing code. The following is a basic example showing get and set.
-
 
     require 'dalli'
     require 'memcachier'
@@ -49,7 +46,6 @@ Then bundle install:
 
 Without the `memcachier` gem, you’ll need to pass the proper credentials to `Dalli`:
 
-
     cache = Dalli::Client.new(ENV["MEMCACHIER_SERVERS"],
                         {:username => ENV["MEMCACHIER_USERNAME"],
                          :password => ENV["MEMCACHIER_PASSWORD"]})
@@ -58,28 +54,23 @@ Without the `memcachier` gem, you’ll need to pass the proper credentials to `D
 
 Start by adding the [memcachier](https://github.com/memcachier/memcachier-gem) and [dalli](http://github.com/mperham/dalli) gems to your `Gemfile`.
 
-
     gem 'memcachier'
     gem 'dalli'
 
 Then bundle install:
 
-
     $ bundle install
 
 `Dalli` is a Ruby memcache client, and the `memcachier` gem modifies the environment (`ENV`) such that the environment variables set by MemCachier will work with `Dalli`. Once these gems are installed you’ll want to configure the Rails `cache_store` appropriately. Modify `config/environments/production.rb` with the following:
-
 
     config.cache_store = :dalli_store
 
 From here you can use the following code examples to use the cache in your Rails app:
 
-
     Rails.cache.write("foo", "bar")
     puts Rails.cache.read("foo")
 
 Without the `memcachier` gem, you’ll need to pass the proper credentials to `Dalli` in `config/environments/production.rb`:
-
 
     config.cache_store = :dalli_store, ENV["MEMCACHIER_SERVERS"],
                         {:username => ENV["MEMCACHIER_USERNAME"],
@@ -88,7 +79,6 @@ Without the `memcachier` gem, you’ll need to pass the proper credentials to `D
 ### Testing
 
 To test locally you can simply use the rails console:
-
 
     rails console
     >> Rails.cache.write('memcachier', 'rocks')
@@ -100,19 +90,16 @@ To test locally you can simply use the rails console:
 
 MemCachier has been tested with the `pylibmc` memcache client, but the default client doesn’t support SASL authentication. Run the following commands on your local machine to install the necessary pips:
 
-
     $ sudo port install libmemcached
     $ LIBMEMCACHED=/opt/local pip install pylibmc
     $ pip install django-pylibmc-sasl
 
 Be sure to update your `requirements.txt` file with these new requirements (note that your versions may differ from what’s below):
 
-
     pylibmc==1.2.2
     django-pylibmc-sasl==0.2.4
 
 Next, configure your `settings.py` file the following way:
-
 
     os.environ['MEMCACHE_SERVERS'] = os.environ.get('MEMCACHIER_SERVERS', '')
     os.environ['MEMCACHE_USERNAME'] = os.environ.get('MEMCACHIER_USERNAME', '')
@@ -129,7 +116,6 @@ Next, configure your `settings.py` file the following way:
 
 From here you can start writing cache code in your Django app:
 
-
     from django.core.cache import cache
     cache.set("foo", "bar")
     print cache.get("foo")
@@ -138,14 +124,16 @@ From here you can start writing cache code in your Django app:
 
 Start by downloading the [PHPMemcacheSASL](https://github.com/ronnywang/PHPMemcacheSASL) library. From here you can start writing cache code in your PHP app:
 
-
     include('MemcacheSASL.php');
+    $server_pieces = explode(':', getenv("MEMCACHIER_SERVERS"))
     $m = new MemcacheSASL;
-    $m->addServer($_ENV["MEMCACHIER_SERVERS"], '11211');
-    $m->setSaslAuthData($_ENV["MEMCACHIER_USERNAME"], $_ENV["MEMCACHIER_PASSWORD"]);
+    $m->addServer($server_pieces[0], $server_pieces[1]);
+    $m->setSaslAuthData(getenv("MEMCACHIER_USERNAME"), getenv("MEMCACHIER_PASSWORD"));
 
     $m->add("foo", "bar");
     echo $m->get("foo");
+
+Or, check out [this fork of PHPMemcacheSASL](https://github.com/ceslami/PHPMemcacheSASL) modified specifically for use with AppFog, by AppFog user [ceslami](https://github.com/ceslami).
 
 The more common PHP memcache clients, [Memcache](http://www.php.net/manual/en/book.memcache.php) and [Memcached](http://www.php.net/manual/en/book.memcached.php), don’t support SASL authentication at this time and can’t be used with MemCachier.
 
@@ -154,7 +142,6 @@ The more common PHP memcache clients, [Memcache](http://www.php.net/manual/en/bo
 For Java we recommend using the [SpyMemcached](https://code.google.com/p/spymemcached/) client. We also recommend using the [Apache Maven](https://maven.apache.org/) build manager for working with Java app. If you aren’t using `maven` and are instead using [Apache Ant](https://ant.apache.org/) or your own build system, then simply add the `spymemcached` jar file as a dependency of your app.
 
 For `maven` however, start by configuring it to have the proper `spymemcached` repository:
-
 
     <repository>
       <id>spy</id>
@@ -168,7 +155,6 @@ For `maven` however, start by configuring it to have the proper `spymemcached` r
 
 Then add the `spymemcached` library to your dependencies:
 
-
     <dependency>
       <groupId>spy</groupId>
       <artifactId>spymemcached</artifactId>
@@ -177,7 +163,6 @@ Then add the `spymemcached` library to your dependencies:
     </dependency>
 
 Once your build system is configured, you can start adding caching to your Java app:
-
 
     import java.io.IOException;
     import net.spy.memcached.AddrUtil;
@@ -243,11 +228,9 @@ To test against your AppFog app locally, you'll need to run a local memcached pr
 
 ### Ubuntu
 
-
     $ sudo apt-get install memcached
 
 ### Mac OS X (with Homebrew)
-
 
     $ brew install memcached
 
@@ -258,7 +241,6 @@ Please refer to [these instructions](http://www.codeforest.net/how-to-install-me
 For further information and resources (such as the memcached source code) please refer to the [Memcache.org homepage](http://memcached.org/).
 
 To run memcached simply execute the following command:
-
 
     $ memcached -v
 

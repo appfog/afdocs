@@ -17,7 +17,6 @@ This variable contains a JSON document with a list of all credentials and connec
 
 Here's an example that of the environment variable for an app that has a PostgreSQL service bound to it:
 
-
     {"postgresql-9.1":[
         {
             "name":"postgresql-5633b",
@@ -36,38 +35,31 @@ Here's an example that of the environment variable for an app that has a Postgre
         }
     ]}
 
-
 You can use your app's language-specific facility to call the environment variable.
 
 In Java:
-
 
     java.lang.System.getenv("VCAP_SERVICES")
 
 In Ruby:
 
-
     ENV['VCAP_SERVICES']
 
 In Javascript:
-
 
     process.env.VCAP_SERVICES
 
 In Python:
 
-
     os.getenv("VCAP_SERVICES")
 
 In PHP:
-
 
     getenv("VCAP_SERVICES")
 
 ## PHP {#php}
 
 Connecting your PHP app to a bound PostgreSQL service is simple:
-
 
     $services_json = json_decode(getenv("VCAP_SERVICES"),true);
     $postgresql_config = $services_json["postgresql-9.1"][0]["credentials"];
@@ -83,7 +75,6 @@ Connecting your PHP app to a bound PostgreSQL service is simple:
 ## Ruby {#ruby}
 
 Connecting your Ruby app to a bound PostgreSQL service is simple:
-
 
     require "pg"
 

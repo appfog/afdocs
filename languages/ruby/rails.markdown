@@ -307,12 +307,6 @@ If all goes well, you should have a log file in your `log/` directory called `pr
 
 Ruby on Rails apps deployed on AppFog support auto-reconfiguration for relational database services. This means you can deploy a Rails app on AppFog without changing a single line of code. 
 
-Note: Auto-reconfiguration is currently disabled by default. To enable, add a `config/cloudfoundry.yml` file containing the following:
-
-
-    ---
-    autoconfig: true
-
 AppFog automatically reconfigures Rails apps by modifying the production settings in your `config/database.yml` file during staging.
 
 While it’s fairly common to put these types of connections in a Rails Initializer File, auto-reconfiguration should work just as well if you create the connection somewhere else within your app.

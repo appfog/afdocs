@@ -19,11 +19,11 @@ For a list of runtimes that AppFog supports run:
     +--------------+-----------------+-----------+
     | java         | Java 7          | 1.7.0     |
 
-# Deploying Java Apps {#deploy}
+## Deploying Java Apps {#deploy}
 
 You can deploy most Java apps by simply generating a `WAR` file, then running `af push` from the target directory.  
 
-# Custom JVM Parameters {#custom-jvm-params}
+## Custom JVM Parameters {#custom-jvm-params}
 
 You can add custom JVM parameters like `-Duser.timezone` by specifiying `JAVA_OPTS` as an environment variable:
 

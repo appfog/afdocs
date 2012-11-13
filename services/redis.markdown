@@ -9,7 +9,7 @@ With AppFog's free Redis service, you get 10 MB of RAM and 6 concurrent connecti
 * [Ruby](#redis-ruby)
 * [Redis with Sinatra Tutorial](#redis-sinatra-tutorial)
 
-# The VCAP\_SERVICES Environment Variable {#redis-vcap}
+## The VCAP\_SERVICES Environment Variable {#redis-vcap}
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. For apps that can't be automatically configured, you can find the information your app needs to connect to the database in this variable.
 
@@ -55,7 +55,7 @@ In PHP:
 
     getenv("VCAP_SERVICES")
 
-# Ruby {#redis-ruby}
+## Ruby {#redis-ruby}
 
 Connecting your Ruby app to a bound Redis service is simple:
 
@@ -73,7 +73,7 @@ The last line creates a class variable `@@redis`, available to all subclasses in
 
 In your application use [Redis commands](http://redis.io/commands) to edit and add key/values to the data store.
 
-# Redis with Sinatra Tutorial {#redis-sinatra-tutorial}
+## Redis with Sinatra Tutorial {#redis-sinatra-tutorial}
 
 In this tutorial, we'll build a simple, `CRUD`-style note-taking app with Sinatra and we'll use Redis as the data store for the project.
 

@@ -25,7 +25,7 @@ Adding SSL to your custom domain is simple. First, make sure you have the follow
 * Your RSA private key
 * Your SSL certificate
 
-# Get an SSL Certificate
+## Get an SSL Certificate
 
 If you already have a certificate, skip down to [the next section on installation](#install).
 
@@ -49,7 +49,7 @@ You can now use the private key you just made to generate a CSR:
 
 You can now send your CSR (the `server.csr` file) to a Certificate Authority, which they'll use to generate your certificate. Once you have that, you're ready to set up SSL for your AppFog app. 
 
-# Install your private key and SSL certificate {#install}
+## Install your private key and SSL certificate {#install}
 
 If your private key is password-protected, you'll have to remove the password first:
 

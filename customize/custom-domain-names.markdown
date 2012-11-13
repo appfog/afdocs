@@ -10,7 +10,7 @@ AppFog offers two ways to add custom domain names to your app: through the app c
 
 Once you've finished adding the domain to your app in one of those two ways, you'll need to [change your DNS settings at your DNS host](#custom-domain-dns).
 
-# App Console {#custom-domain-app-console}
+## App Console {#custom-domain-app-console}
 
 1. Head over to the [app console](https://console.appfog.com) and click on your app. 
 
@@ -20,7 +20,7 @@ Once you've finished adding the domain to your app in one of those two ways, you
 
 That's it!
 
-# AF CLI {#custom-domain-af-cli}
+## AF CLI {#custom-domain-af-cli}
 
 1. If you haven't already, install the [af command line tool](http://docs.appfog.com/getting-started/af-cli) and log in. 
 
@@ -32,7 +32,7 @@ For example:
 
     $ af map exampleapp www.example.com
 
-# DNS {#custom-domain-dns}
+## DNS {#custom-domain-dns}
 
 We recommend using the `www.` subdomain as your canonical domain. Here's how to do that: 
 

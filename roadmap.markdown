@@ -105,7 +105,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 </tbody>
 </table>
 
-# Other Features {#features}
+## Other Features {#features}
 
 ### Top Priorities
 

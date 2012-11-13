@@ -29,7 +29,7 @@ For other languages and frameworks, check out [this page](http://www.statsmix.co
 
 For the StatsMix API, go [here](http://www.statsmix.com/developers).
 
-# Rails {#rails}
+## Rails {#rails}
 
 First, install the StatsMix gem:
 
@@ -52,14 +52,14 @@ Add the following to your Gemfile, then restart the server:
 
     $ gem 'statsmix'
 
-# Your API Key
+## Your API Key
 
 AppFog keeps your StatsMix API key in an environment variable called `STATSMIX_API_KEY`, which you can retrieve using the command `ENV['STATSMIX_API_KEY']`. Populate your API key for the StatsMix gem with this: 
 
 
     $ StatsMix.api_key = ENV['STATSMIX_API_KEY']
 
-# Using StatsMix to Track Events
+## Using StatsMix to Track Events
 
 Any time you want to track an event in your app, simply call:
 
@@ -83,7 +83,7 @@ Count the number of new user accounts in the last 24 hours (i.e. run daily in a 
     # create a stat with the value count for the metric called "Daily New Users"
 	StatsMix.track("Daily New Users", count)
 
-# Adding Metadata
+## Adding Metadata
 
 You can optionally "tag" your data with metadata in the `:meta` option. For example, if you have a file upload utility and want to track what kinds of files you are receiving:
 
@@ -96,7 +96,7 @@ You can include multiple key-value pairs in the same stat:
 
 	StatsMix.track("File Uploads", 1, {:meta => {"file type" => "PDF", "size" => "1 mb", "country of origin" => "Absurdistan"}})
 
-# Adding Your Own Identifier
+## Adding Your Own Identifier
 
 If you need the ability to update a stat after the fact, you can pass in a unique identifier `ref_id` (scoped to that metric).
 
@@ -149,7 +149,7 @@ This routes all `StatsMix.track` calls to "My Test Metric" regardless of the met
 
 Note: If StatsMix.ignore is set, then the test metric will not be used unless StatsMix.ignore is first reset to false.
 
-# PHP {#php}
+## PHP {#php}
 
 You can get 98% of our functionality by copying & pasting the examples below. 
 

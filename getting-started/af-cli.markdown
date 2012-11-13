@@ -26,7 +26,7 @@ description: "Code deployment made easy."
 * [.afignore](#afignore)
 * [Manifests](#manifests)
 
-# Installation {#installation}
+## Installation {#installation}
 
 The `af` command line tool is written in Ruby and installed as a gem: 
 
@@ -77,7 +77,7 @@ Finally from within your source code directory:
 
     $ af update hello-node
 
-# Getting Started {#af-cli-getting-started}
+## Getting Started {#af-cli-getting-started}
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -91,7 +91,7 @@ Finally from within your source code directory:
 </tr>
 </table>
 
-# Apps {#apps}
+## Apps {#apps}
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -223,7 +223,7 @@ Finally from within your source code directory:
 
 </table>
 
-# .afignore {#afignore}
+## .afignore {#afignore}
 
 You can create a `.afignore` file in your app's root directory to tell `af push` and `af update` to skip files and directories, much like `.gitignore` for git. 
 
@@ -254,7 +254,7 @@ Here's a sample `.afignore` file:
     # don't ignore assets/js/ directory
 	!assets/js/
 
-# Manifests {#manifests}
+## Manifests {#manifests}
 
 You can use manifest documents with AppFog to simplify app deployment. These manifest documents describe apps in human-editable format. They can also describe anything from simple "Hello World" apps to complex multi-app hierarchies with inter-app dependencies and service binding information.  
 

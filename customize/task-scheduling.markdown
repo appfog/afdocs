@@ -12,7 +12,7 @@ AppFog supports background processing, which means you can run container-less, "
 * [Ruby](#task-scheduling-ruby)
 * [Python](#task-scheduling-python)
 
-# Ruby {#task-scheduling-ruby}
+## Ruby {#task-scheduling-ruby}
 
 You can use the `whenever` gem with a standalone ruby app, for example, to run cron-like jobs using an incredibly simple syntax. One of the examples given in the GitHub repo demonstrates this:
 
@@ -37,7 +37,7 @@ Some examples of commands you could run include:
  * Perform web-scraping within a set of domains.
  * Email a particular subset of your users. 
 
-# Example Standalone App on AppFog
+## Example Standalone App on AppFog
 
 First, we’ll make a simple Ruby file (`portland.rb`) that simply outputs "Portland: life is just better here" every five seconds:
 
@@ -103,6 +103,6 @@ At this point, you can test whether it's working by checking the app's logs:
     Portland: life is just better here
     Portland: life is just better here
 
-# Python {#task-scheduling-python}
+## Python {#task-scheduling-python}
 
 An alternative in Python is [Advanced Python Scheduler](http://packages.python.org/APScheduler/). 

@@ -8,7 +8,7 @@ weight: 6
 * [VCAP\_SERVICES Environment Variable](#rabbitmq-vcap)
 * [RabbitMQ with Node Tutorial](#rabbitmq-node-tutorial)
 
-# The VCAP\_SERVICES Environment Variable {#rabbitmq-vcap}
+## The VCAP\_SERVICES Environment Variable {#rabbitmq-vcap}
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. For apps that can't be automatically configured, you can find the information your app needs to connect to the database in this variable.
 
@@ -59,7 +59,7 @@ In PHP:
 
     getenv("VCAP_SERVICES")
 
-# RabbitMQ with Node Tutorial {#rabbitmq-node-tutorial}
+## RabbitMQ with Node Tutorial {#rabbitmq-node-tutorial}
 
 Let's quickly run through creating a Node.js app that uses RabbitMQ.
 

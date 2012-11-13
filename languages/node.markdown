@@ -36,11 +36,11 @@ Target a specific runtime when you deploy by using the runtime flag. For example
 
     $ af push --runtime=node06
 
-# Deployment {#node-deployment}
+## Deployment {#node-deployment}
 
 When you deploy a Node.js app to AppFog, the current directory must contain your app in an `app.js` file. 
 
-# Dependency Management {#node-dep-mgmt}
+## Dependency Management {#node-dep-mgmt}
 
 AppFog supports [npm](https://npmjs.org/) (Node Package Manager). 
 
@@ -86,7 +86,7 @@ By default, AppFog uses the `node_modules` directory unless you explicitly tell 
 
 If you deploy your app with those conditions in place, AppFog will install the node modules to the app during the staging process. If the require node module doesn't work with the node engine that the app is running on, however, AppFog will not install the module.
 
-# CoffeeScript {#node-coffee-script}
+## CoffeeScript {#node-coffee-script}
 
 You can deploy a [CoffeeScript]() Node app to AppFog by using a shim file to load the CoffeeScripts.
 
@@ -97,7 +97,7 @@ Assuming you have two files, `app.coffee` and `app.js`, `app.js` can simply look
 
 The `app.coffee` file is what you would normally run with `coffee app.coffee`. Make sure `coffee-script` is also in your `node-modules` directory. Requiring the `coffee-script` module will enhance node's `require` functionality and compile the coffee files at require time.
 
-# "Hello World" Walkthrough {#node-walkthrough}
+## "Hello World" Walkthrough {#node-walkthrough}
 
 The following is a step-by-step guide to writing and deploying a “hello world” Node.js web server app with the [Express](http://expressjs.com/) web module:
 
@@ -160,7 +160,7 @@ Push the app. You can hit `Enter` to accept the defaults at most of the prompts,
 
 Hit the app in your browser, `http://hello-node.aws.af.cm`, in this example.
 
-# Environments in Express {#express}
+## Environments in Express {#express}
 
 Express supports arbitrary environments, like `production` and `development`. You can use the `configure()` method to set different configurations under the different environments. Here, we'll bind a `mongodb` service to the app to demonstrate.
 

@@ -8,7 +8,7 @@ weight: 20
 
 ## Install Redis Cloud
 
-In the "Add-ons" tab on your app console click “Install” for the Redis Cloud add-on. That’s it!
+In the "Add-ons" tab on your app console click "Install" for the Redis Cloud add-on. That’s it!
 
 Once Redis Cloud has been added, you will notice a new enironment variable: `REDISCLOUD_URL` in the `Env variables` tab on your app console, containing the username, password, hostname and port of your first Redis Cloud database.
 
@@ -241,7 +241,7 @@ Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environm
 
 Our dashboard presents all performance and usage metrics of your Redis Cloud service on a single screen, as shown below:
 
-![Dashboard](https://s3.amazonaws.com/redis-cloud-appfog/doc/appfog-dashbord-redis.jpeg)
+<img src="https://s3.amazonaws.com/redis-cloud-appfog/doc/appfog-dashbord-redis.jpeg" class="screenshot" />
 
 To access your Redis Cloud dashboard, simply click the "Manage" button of the RedisCloud add-on in the "Add-ons" tab on your app console.
 

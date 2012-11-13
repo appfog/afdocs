@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Frequently Asked Questions
 weight: 14
 ---

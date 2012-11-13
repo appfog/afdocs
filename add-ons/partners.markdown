@@ -1,12 +1,13 @@
 ---
 title: Add-on Partnership
-weight: 100
+layout: doc-page
+weight: 5
 description: Become an add-on partner. 
 ---
 
 AppFog provides your app with extra functionality by partnering with various third-party services. You can add everything from logs to databases to powerful metrics to your app with a single click . 
 
-## How Add-ons Work
+# How Add-ons Work
 
 Our add-on partners can create provisioning services that are compatible with AppFog. 
 
@@ -17,7 +18,7 @@ Our add-on partners can create provisioning services that are compatible with Ap
 * [Manifest Format](#manifest)
 * [Single Sign-on](#sso)
 
-## Provisioning Workflow {#provision}
+# Provisioning Workflow {#provision}
 
 1. The user installs the add-on from the AppFog app console. This sends a request to the add-on partner to provision the service.
 2. AppFog makes a `POST` request to https://partner.com/appfog/resources. It passes in the `customer_id` (email address), plan, and the `callback_url`. 
@@ -28,7 +29,7 @@ Our add-on partners can create provisioning services that are compatible with Ap
 
 <img class="screenshot" src="/img/screenshots/Slide2.jpeg" alt="Provisioning Workflow"/>
 
-## API Callback Spec {#callback}
+# API Callback Spec {#callback}
 
 This is a method implemented by the AppFog services. It is used to update the configuration values for a given resource as provided by the add-on partner. The configuration parameters can be specified by the partner when the provisioning call is made by AppFog; however, if the call takes a while to process the partner can use this method to update those parameters later.
 
@@ -36,25 +37,22 @@ PUT to path as defined in `callback_url` on provisioning call.
        
 Request Body:
 
-
     {
         "config":{"VAR_XYZ":"http://partner.com/5678ADFD"} 
     }
         
 Response:
 
-
     200 OK
 
 
-## API Spec {#api}
+# API Spec {#api}
 
 ### Example Provisioning Request
 
 Request: `POST /phpfog/resources`
   
 Request Body:
-
 
     {
         "customer_id":"user@email.com",
@@ -64,7 +62,6 @@ Request Body:
     }
        
 Response Body:
-
 
     {
         "id":789,
@@ -93,7 +90,6 @@ Request Body: none
 
 Response: 
 
-
     200 OK
 
 
@@ -105,7 +101,7 @@ This is a DELETE request to the particular `URL` and doesn't contain a body.
 
 Only an HTTP response status is required.
 
-## Authentication {#authentication}
+# Authentication {#authentication}
 
 All calls to both the provisioning API on the partners service as well as the AppFog callback service must be authenticated using `HTTP Basic Auth`.
 
@@ -113,7 +109,7 @@ All requests must be completed over `HTTPS`.
 
 The manifest file specifies the username and password to be used for all of these calls. The "`id`" in the manifest is the username, the "`api_password`" is the password.
 
-## Manifest Format {#manifest}
+# Manifest Format {#manifest}
 
 The manifest file is a `JSON` document that defines the information necessary for AppFog to make provisioning calls to the provider.
 
@@ -123,24 +119,30 @@ Add-on partners should provide the manifest file out-of-band by emailing it to t
 
 `example-manifest.json`
 
-
     {
-        "id":"provider",
-        "name":"Provider Inc",
-        "plans":[
-            {"id":"free"}
-            ],    
+        "id": "company",
+        "name": "Product",
+        "plans": [
+            {
+                "id": "free"
+            }
+        ],
         "api": {
-            "config_vars":["PROVIDER_VAR_XYZ"],
-            "production":"https://provider.com/",
-            "test":"https://provider-qa.com/",
-            "path":"PathToResource",
-            "username":"SomeUsername",
-            "password":"ChangeYourPassword",
-            "sso_salt":"xPedFGIIJIei30D"       
-        } 
+            "config_vars": [
+                "PRODUCT_URI"
+            ],
+            "password": "SDasdf98asdf68ZoRak5Tl",
+            "sso_salt": "DfauasdfDF0s0afsadf0",
+            "production": {
+                "base_url": "https://api.company.com/partners/af/resources",
+                "sso_url": "https://www.company.com/login/partners/af"
+            },
+            "test": {
+                "base_url": "https://localhost:8081/partners/af/resources",
+                "sso_url": "https://localhost:8081/login/partners/af"
+            }
+        }
     }
- 
 
 ### Fields
 
@@ -155,12 +157,11 @@ Add-on partners should provide the manifest file out-of-band by emailing it to t
 * `api/sso_salt` - Shared secret used in single sign-on between AppFog and the provider.
 * `plans/id` - The name of the "free" plan that will be offered to AppFog users and used for testing and integration purposes.
 
-## Single Sign-on {#sso}
+# Single Sign-on {#sso}
 
 Once a resource is fully provisioned, a "Manage" button will appear in the AppFog app console for the given add-on. This button will redirect the user to the management page of the particular resource on the partner's website.
 
 After the user clicks the button, they will be redirected to the following generated `URL`:
-
 
     https://partner.com/appfog/resources/:id?token=:token&timestamp=:timestamp
   
@@ -172,7 +173,6 @@ The token is defined as a combination of the `id`, `salt`, and `timestamp`.
 The salt is the "`sso_salt`" variable as defined in the manifest.
 
 The timestamp is the current UNIX timestamp.
-
 
     token = sha1(id + ':' + salt + ':' + timestamp)
 

@@ -16,17 +16,17 @@ Note: as database provisioning is carried out asynchronously, please wait until 
 
 Next, setup your app to start using the Redis Cloud add-on. In the following sections we have documented the interfaces with several languages and frameworks supported by AppFog.
 
-* [Ruby](#redicsloud-ruby)
-* [Rails](#redicsloud-rails)
-* [Sinatra](#redicsloud-sinatra)
-* [Java](#redicsloud-java)
-* [Python](#redicsloud-python)
-* [Django](#redicsloud-django)
-* [PHP](#redicsloud-php)
-* [Node.js](#redicsloud-node)
+* [Ruby](#rediscloud-ruby)
+* [Rails](#rediscloud-rails)
+* [Sinatra](#rediscloud-sinatra)
+* [Java](#rediscloud-java)
+* [Python](#rediscloud-python)
+* [Django](#rediscloud-django)
+* [PHP](#rediscloud-php)
+* [Node.js](#rediscloud-node)
 
 
-## Using Redis from Ruby {#redicsloud-ruby}
+## Using Redis from Ruby {#rediscloud-ruby}
 
 The [redis-rb](https://github.com/redis/redis-rb) is a very stable and mature redis client and the easiest way to access Redis from Ruby. 
 
@@ -35,7 +35,7 @@ Install redis-rb:
     :::term
     sudo gem install redis
 
-### Configuring Redis from Rails {#redicsloud-rails}
+### Configuring Redis from Rails {#rediscloud-rails}
 
 For Rails 2.3.3 up to Rails 3.0, update the `config/environment.rb` to include the redis gem:
     

@@ -11,8 +11,8 @@ Each content file has [YAML front matter](https://github.com/mojombo/jekyll/wiki
 
     Body content goes here. 
 
-    The title is required, but the weight is optional. 
+The title is required, but the weight is optional. 
 
-    You can use [Markdown](http://daringfireball.net/projects/markdown/) to write content.
+You can use [Markdown](http://daringfireball.net/projects/markdown/) to write content.
 
-    Each directory has an "overview" file (overview.markdown).
+Each directory has an "overview" file (overview.markdown).

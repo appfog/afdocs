@@ -5,7 +5,7 @@ weight: 2
 
 AppFog supports the following runtimes:
 
-    ➜  af runtimes
+    $  af runtimes
 
     +--------------+-----------------+-----------+
     | Name         | Description     | Version   |

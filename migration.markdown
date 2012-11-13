@@ -107,19 +107,20 @@ If your framework is not supported or you're having difficulty moving your app, 
 
 You can migrate your database in a few easy steps.
 
-1. Export your existing database from PHP Fog using phpMyAdmin from your app console. 
+### 1. Export your existing database from PHP Fog using phpMyAdmin from your app console. 
 
-1. Download and install the af gem and caldecott:
+### 2. Download and install the af gem and caldecott:
 
     $ gem install af
     $ gem install caldecott
 
-1. Create a MySQL service to connect to:
+### 3. Create a MySQL service to connect to:
 
     $ af login 
     $ af create-service
 
-1. Connect to your database service:
+### 4. Connect to your database service:
+
     $ af import-service <service> <url>
     
 * `<service>` is the name of the service you want to import to.
@@ -149,8 +150,8 @@ We are not offering migration services at this time.
 
 ## Are there any guides to move my CMS/Framework?
 
-Absolutely! The general documentation page for PHP is located [here](http://docs.appfog.com/languages/php/overview). For specific frameworks Please see the below links:
+Absolutely! The general documentation page for PHP is located [here](/languages/php/overview). For specific frameworks Please see the below links:
 
-* [WordPress](http://docs.appfog.com/languages/php/wordpress)
-* [Drupal](http://docs.appfog.com/languages/php/drupal)
-* [Custom PHP Apps](http://docs.appfog.com/languages/php/overview#custom)
+* [WordPress](/languages/php/wordpress)
+* [Drupal](/languages/php/drupal)
+* [Custom PHP Apps](/languages/php/overview#custom)

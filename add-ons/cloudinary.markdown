@@ -14,4 +14,4 @@ Resources are uploaded, managed, and transformed using Cloudinary's easy-to-use 
 
 In the "Add-ons" tab in your app console click "Install" for the Cloudinary add-on. That’s it!
 
-Check out [Cloudinary's Documentation](http://cloudinary.com/documentation) to get started using Cloudinary with your AppFog app.
+### Check out [Cloudinary's Documentation for AppFog](http://cloudinary.com/documentation/appfog_integration) to get started using Cloudinary with your AppFog app.

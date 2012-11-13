@@ -12,7 +12,7 @@ In the "Add-ons" tab in your app console click "Install" for the HostedGraphite 
 
 ## HTTP POSTing Graphite-formatted data
 
-When you provision the HostedGraphite add-on, AppFog creates an environment variable called "`HOSTEDGRAPHITE_APIKEY`", which stores your API key. 
+When you provision the HostedGraphite add-on, AppFog creates an environment variable called `HOSTEDGRAPHITE_APIKEY`, which stores your API key. 
 
 You can then `HTTP POST` graphite-formatted metric messages to `https://your-api-key@hostedgraphite.com/api/v1/sink`. The expected response is a `HTTP 202 ACCEPTED` with no content.
 

@@ -1,6 +1,5 @@
 ---
 title: Cloudinary
-layout: doc-page
 weight: 18
 ---
 

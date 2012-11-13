@@ -32,29 +32,24 @@ The [redis-rb](https://github.com/redis/redis-rb) is a very stable and mature re
 
 Install redis-rb:
     
-    :::term
-    sudo gem install redis
+    $ gem install redis
 
 ### Configuring Redis from Rails {#rediscloud-rails}
 
 For Rails 2.3.3 up to Rails 3.0, update the `config/environment.rb` to include the redis gem:
     
-    :::ruby
     config.gem 'redis' 
 
 For Rails 3.0 and above, update the `Gemfile`:
     
-    :::ruby
     gem 'redis'  
     
 And then install the gem via Bundler:
 
-    :::term
-    bundle install
+    $ bundle install
 
 Lastly, create a new `redis.rb` initializer in `config/initializers/` and add the following code snippet: 
     
-    :::ruby
     uri = URI.parse(ENV["REDISCLOUD_URL"])
     $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 
@@ -62,7 +57,6 @@ Lastly, create a new `redis.rb` initializer in `config/initializers/` and add th
 
 Add this code snippet to your configure block:
 
-    :::ruby
     configure do
         . . .
         require 'redis'
@@ -77,7 +71,6 @@ No special setup is required when using Redis Cloud with a Unicorn server. Users
 
 ### Testing (Ruby)
     
-    :::ruby
     redis.set("foo", "bar")
     # => "OK"
     redis.get("foo")
@@ -87,7 +80,6 @@ No special setup is required when using Redis Cloud with a Unicorn server. Users
 
 [Jedis](https://github.com/xetorthio/jedis) is a blazingly small, sane and easy to use Redis java client. You can download the latest build from [github](http://github.com/xetorthio/jedis/downloads) or use it as a maven dependency:
 
-    :::java
     <dependency>
         <groupId>redis.clients</groupId>
         <artifactId>jedis</artifactId>
@@ -98,7 +90,6 @@ No special setup is required when using Redis Cloud with a Unicorn server. Users
 
 Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environment variable and the following code snippet:
 
-    :::java
     try { 
             URI redisUri = new URI(System.getenv("REDISCLOUD_URL"));
             JedisPool pool = new JedisPool(new JedisPoolConfig(),
@@ -112,7 +103,6 @@ Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environm
     
 ### Testing (Java)
 
-    :::java
     Jedis jedis = pool.getResource();
     jedis.set("foo", "bar");
     String value = jedis.get("foo");
@@ -127,12 +117,10 @@ Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environm
  
 Use pip to install it:
  
-    :::term
-    sudo pip install redis
+    $ pip install redis
 
 Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environment variable and the following code snippet:
     
-    :::python
     import os
     import urlparse
     import redis
@@ -142,7 +130,6 @@ Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environm
     
 ### Testing (Python):
     
-    :::python
     >>> r.set('foo', 'bar')
     True
     >>> r.get('foo')
@@ -154,12 +141,10 @@ Redis can be used as the back-end cache for Django.
 
 To do so, install django-redis-cache:
  
-    :::term
-    pip install django-redis-cache
+    $ pip install django-redis-cache
 
 Next, configure your `CACHES` in the `settings.py` file:
 
-    :::python
     import os
     import urlparse
     redis_url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
@@ -176,7 +161,6 @@ Next, configure your `CACHES` in the `settings.py` file:
 
 ### Testing (Django)
 
-    :::python
     from django.core.cache import cache
     cache.set("foo", "bar")
     print cache.get("foo")
@@ -189,7 +173,6 @@ Instructions for installing the [Predis](https://github.com/nrk/predis) library 
 
 Loading the library to your project should be straightforward:
 
-    :::javascript
     <?php
     // prepend a base path if Predis is not present in your "include_path".
     require 'Predis/Autoloader.php';
@@ -197,7 +180,6 @@ Loading the library to your project should be straightforward:
     
 Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environment variable and the following code snippet:
     
-    :::javascript
     $redis = new Predis\Client(array(
         'host' => parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_HOST), 
         'port' => parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_PORT),
@@ -206,7 +188,6 @@ Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environm
     
 ### Testing (PHP)
 
-    :::javascript
     $redis->set('foo', 'bar');
     $value = $redis->get('foo');
     
@@ -216,12 +197,10 @@ Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environm
 
 You can install it with:
 
-    :::term
-    npm install redis
+    $ npm install redis
 
 Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environment variable and the following code snippet:
 
-    :::javascript
     var redis = require('redis');
     var url = require('url');
     var redisURL = url.parse(process.env.REDISCLOUD_URL);
@@ -231,7 +210,6 @@ Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environm
     
 ###Testing (Node.js)
 
-    :::javascript
     client.set('foo', 'bar');
     client.get('foo', function (err, reply) {
         console.log(reply.toString()); // Will print `bar`

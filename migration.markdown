@@ -44,7 +44,7 @@ There are a number of ways to recover your apps' data. If you're having trouble 
 
 All Free apps hosted on PHP Fog will be discontinued on December 21, 2012.
 
-All Paid apps hosted on PHP Fog will be discontinued on January 25, 201.
+All Paid apps hosted on PHP Fog will be discontinued on January 25, 2013.
 
 ## Are there changes I will need to make in my code to migrate my app?
 

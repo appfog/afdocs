@@ -26,7 +26,7 @@ Our add-on partners can create provisioning services that are compatible with Ap
 5. Once the resource is provisioned, the partner makes a call to the callback URL, as specified in the initial provisioning call, and passes the new config parameters to be set.
 6. Once the config parameters are set, they are set as environment variables in the user's app and instructions are displayed to the user on how to perform the integration.
 
-<img class="screenshot" src="/img/screenshots/Slide2.jpeg" alt="Provisioning Workflow"/>
+<img class="screenshot" src="/img/Slide2.jpeg" alt="Provisioning Workflow"/>
 
 ## API Callback Spec {#callback}
 

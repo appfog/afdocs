@@ -138,68 +138,55 @@ The basic steps to update your Spring app to use any of the AppFog services are 
 
 * Update your app build process to include the Spring Framework Milestone repository. The following `pom.xml` snippet shows how to do this in Maven:
 
-<pre><code>
-<repositories>
-    <repository>
-          <id>org.springframework.maven.milestone</id>
-           <name>Spring Maven Milestone Repository</name>
-           <url>http://maven.springframework.org/milestone</url>
-           <snapshots>
-                   <enabled>false</enabled>
-           </snapshots>
-    </repository>
-
-    <!-- additional repository declarations -->
-</repositories>
-</code></pre>
+        <repositories>
+            <repository>
+                  <id>org.springframework.maven.milestone</id>
+                   <name>Spring Maven Milestone Repository</name>
+                   <url>http://maven.springframework.org/milestone</url>
+                   <snapshots>
+                           <enabled>false</enabled>
+                   </snapshots>
+            </repository>
+            <!-- additional repository declarations -->
+        </repositories>
 
 * In your Spring app, update all app context files that will include the AppFog service declarations, such as a data source, by adding the `<cloud:>` namespace declaration and the location of the AppFog services Schema, as shown in the following snippet:
 
-<pre><code>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:cloud="http://schema.cloudfoundry.org/spring"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.1.xsd
-        http://schema.cloudfoundry.org/spring
-        http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
-        >
-
-    <!-- bean declarations -->
-
-</beans>
-</code></pre>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:context="http://www.springframework.org/schema/context"
+            xmlns:cloud="http://schema.cloudfoundry.org/spring"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                http://schema.cloudfoundry.org/spring
+                http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
+                >
+            <!-- bean declarations -->
+        </beans>
 
 * You can now specify the AppFog services in the Spring app context file by using the `<cloud:>` namespace along with the name of specific elements, such as `data-source`. AppFog provides elements for each of the supported services: database (MySQL and Postgres), Redis, MongoDB, and RabbitMQ.
 
     The following example shows a simple data source configuration that will be injected into a JdbcTemplate using the `<cloud:data-source>` element.
 
-<pre><code>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:cloud="http://schema.cloudfoundry.org/spring"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-        http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.1.xsd
-        http://schema.cloudfoundry.org/spring
-        http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
-        >
-
-    <cloud:data-source id="dataSource" />
-
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-      <property name="dataSource" ref="dataSource" />
-    </bean>
-
-        <!-- additional beans in your app -->
-
-</beans>
-</code></pre>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:context="http://www.springframework.org/schema/context"
+            xmlns:cloud="http://schema.cloudfoundry.org/spring"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                http://schema.cloudfoundry.org/spring
+                http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
+                >
+            <cloud:data-source id="dataSource" />
+            <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+              <property name="dataSource" ref="dataSource" />
+            </bean>
+                <!-- additional beans in your app -->
+        </beans>
 
 When you later deploy the app using `af` or STS, you bind a specific data service (such as MySQL or Postgres) to it and AppFog creates an instance of the service. Note that in the example above, you did not specify typical data source properties such as `driverClassName` or `url` or `username` - this is because AppFog automatically takes care of those properties for you.
 
@@ -220,11 +207,11 @@ The `<cloud:data-source>` element provides an easy way for you to configure a JD
 
 The following example shows a simple way to configure a JDBC data source that will be injected into a org.springframework.jdbc.core.JdbcTemplate bean:
 
-`<cloud:data-source id="dataSource" />`
+    <cloud:data-source id="dataSource" />
 
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-      <property name="dataSource" ref="dataSource" />
-    </bean>
+        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+          <property name="dataSource" ref="dataSource" />
+        </bean>
 
 In the preceding example, note that no specific information about the datasource is supplied, such as the JDBC driver classname, the specific URL to access the database, and the database users. Instead, AppFog will take care of all of that at runtime, using appropriate information from the specific type of database service instance you bind to your app.
 
@@ -252,7 +239,6 @@ The section above showed how to configure a very simple JDBC data source; AppFog
 The `<cloud:connection>` child element takes a single String attribute (properties) that you use to specify connection properties you want to send to the JDBC driver when establishing new database connections. The format of the string must be semi-colon separated name/value pairs (`[propertyName=property;]`).
 
 The `<cloud:pool>` child element takes the following two attributes:
-
 
 <table class="table table-bordered table-striped attributes">
 <thead>
@@ -597,13 +583,11 @@ Then update your app controller/logic as follows:
         @Controller
         public class HomeController {
            @Autowired AmqpTemplate amqpTemplate;
-    
            @RequestMapping(value = "/")
            public String home(Model model) {
                model.addAttribute(new Message());
                return "WEB-INF/views/home.jsp";
            }
-    
            @RequestMapping(value = "/publish", method=RequestMethod.POST)
            public String publish(Model model, Message message) {
                // Send a message to the "messages" queue
@@ -611,7 +595,6 @@ Then update your app controller/logic as follows:
                model.addAttribute("published", true);
                return home(model);
            }
-    
            @RequestMapping(value = "/get", method=RequestMethod.POST)
            public String get(Model model) {
                // Receive a message from the "messages" queue
@@ -620,7 +603,6 @@ Then update your app controller/logic as follows:
                    model.addAttribute("got", message);
                else
                    model.addAttribute("got_queue_empty", true);
-    
                return home(model);
         }
 

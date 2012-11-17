@@ -156,47 +156,47 @@ The basic steps to update your Spring app to use any of the AppFog services are 
 
 * In your Spring app, update all app context files that will include the AppFog service declarations, such as a data source, by adding the `<cloud:>` namespace declaration and the location of the AppFog services Schema, as shown in the following snippet:
 
-    <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xmlns:cloud="http://schema.cloudfoundry.org/spring"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-            http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context-3.1.xsd
-            http://schema.cloudfoundry.org/spring
-            http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
-            >
-
-        <!-- bean declarations -->
-
-    </beans>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:context="http://www.springframework.org/schema/context"
+            xmlns:cloud="http://schema.cloudfoundry.org/spring"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                http://schema.cloudfoundry.org/spring
+                http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
+                >
+    
+            <!-- bean declarations -->
+    
+        </beans>
 
 * You can now specify the AppFog services in the Spring app context file by using the `<cloud:>` namespace along with the name of specific elements, such as `data-source`. AppFog provides elements for each of the supported services: database (MySQL and Postgres), Redis, MongoDB, and RabbitMQ.
 
     The following example shows a simple data source configuration that will be injected into a JdbcTemplate using the `<cloud:data-source>` element.
 
-    <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xmlns:cloud="http://schema.cloudfoundry.org/spring"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-            http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context-3.1.xsd
-            http://schema.cloudfoundry.org/spring
-            http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
-            >
-
-        <cloud:data-source id="dataSource" />
-
-        <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-          <property name="dataSource" ref="dataSource" />
-        </bean>
-
-            <!-- additional beans in your app -->
-
-    </beans>
+        <beans xmlns="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:context="http://www.springframework.org/schema/context"
+            xmlns:cloud="http://schema.cloudfoundry.org/spring"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.1.xsd
+                http://schema.cloudfoundry.org/spring
+                http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
+                >
+    
+            <cloud:data-source id="dataSource" />
+    
+            <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+              <property name="dataSource" ref="dataSource" />
+            </bean>
+    
+                <!-- additional beans in your app -->
+    
+        </beans>
 
 When you later deploy the app using `af` or STS, you bind a specific data service (such as MySQL or Postgres) to it and AppFog creates an instance of the service. Note that in the example above, you did not specify typical data source properties such as `driverClassName` or `url` or `username` - this is because AppFog automatically takes care of those properties for you.
 
@@ -206,10 +206,8 @@ For complete information about all the `<cloud:>` elements you can use in your S
 * [`<cloud:mongo-db-factory>`: Configure a MongoDB Connection Factory](#cloudmongo-db-factory)
 * [`<cloud:service-scan>` Injecting Services Into @Autowired Beans](#cloudservice-scan)
 * [`<cloud:properties>` Get AppFog Service Information](#cloudproperties)
-
-<!---
 * [`<cloud:redis-connection-factory>`: Configure a Redis Connection Factory](#cloudredis-connection-factory)
-* [`<cloud:rabbit-connection-factory>`: Configure a RabbitMQ Connection Factory](#cloudrabbit-connection-factory) --->
+* [`<cloud:rabbit-connection-factory>`: Configure a RabbitMQ Connection Factory](#cloudrabbit-connection-factory)
 
 After you have finished specifying all the AppFog services you are going to use in your app, you use the standard AppFog client commands (`af`, SpringSource Tool Suite, or the Eclipse plugin) to create instances of these services, bind them to your apps, then deploy your apps to AppFog. See [Deploying Apps](#deploy) for details on how to use these tools.
 
@@ -343,7 +341,6 @@ The following example shows how to use the advanced MongoDB options:
 
 In the preceding example, the maximum number of connections is set to 12 and the maximum amount of time that a thread waits for a connection is 1 second. The WriteConcern is also specified to be the safest possible (`FSYNC_SAFE`).
 
-<!---
 ### `<cloud:redis-connection-factory>` {#cloudredis-connection-factory}
 
 The `<cloud:redis-connection-factory>` provides a simple way for you to configure a Redis connection factory for your Spring app.
@@ -487,7 +484,6 @@ The following example shows how to use these advanced RabbitMQ configuration opt
     </cloud:rabbit-connection-factory>
 
 In the preceding example, the channel cache size of the RabbitMQ connection factory is set to 10.
---->
 
 ### `<cloud:service-scan>` {#cloudservice-scan}
 
@@ -545,7 +541,6 @@ In the preceding example, `cloud.services.mysql.connection.username` is one of t
 
 For a complete list of properties exposed by AppFog, as well as a more detailed example, see [Accessing AppFog Properties](#spring-accessing-properties).
 
-<!---
 ### RabbitMQ And Spring: Additional Programming Information {#rabbit-and-spring}
 
 This section provides additional information about using RabbitMQ in your Spring apps that you deploy to AppFog. This section is not intended to be a complete tutorial on RabbitMQ and Spring; for that, see the following resources:
@@ -591,41 +586,40 @@ Then update your app controller/logic as follows:
 
 * Include the messaging libraries:
 
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.amqp.core.AmqpTemplate;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.amqp.core.AmqpTemplate;
 
 * Read and write messages as shown in the following Java code snippets:
 
-    @Controller
-    public class HomeController {
-       @Autowired AmqpTemplate amqpTemplate;
-
-       @RequestMapping(value = "/")
-       public String home(Model model) {
-           model.addAttribute(new Message());
-           return "WEB-INF/views/home.jsp";
-       }
-
-       @RequestMapping(value = "/publish", method=RequestMethod.POST)
-       public String publish(Model model, Message message) {
-           // Send a message to the "messages" queue
-           amqpTemplate.convertAndSend("messages", message.getValue());
-           model.addAttribute("published", true);
-           return home(model);
-       }
-
-       @RequestMapping(value = "/get", method=RequestMethod.POST)
-       public String get(Model model) {
-           // Receive a message from the "messages" queue
-           String message = (String)amqpTemplate.receiveAndConvert("messages");
-           if (message != null)
-               model.addAttribute("got", message);
-           else
-               model.addAttribute("got_queue_empty", true);
-
-           return home(model);
-    }
---->
+        @Controller
+        public class HomeController {
+           @Autowired AmqpTemplate amqpTemplate;
+    
+           @RequestMapping(value = "/")
+           public String home(Model model) {
+               model.addAttribute(new Message());
+               return "WEB-INF/views/home.jsp";
+           }
+    
+           @RequestMapping(value = "/publish", method=RequestMethod.POST)
+           public String publish(Model model, Message message) {
+               // Send a message to the "messages" queue
+               amqpTemplate.convertAndSend("messages", message.getValue());
+               model.addAttribute("published", true);
+               return home(model);
+           }
+    
+           @RequestMapping(value = "/get", method=RequestMethod.POST)
+           public String get(Model model) {
+               // Receive a message from the "messages" queue
+               String message = (String)amqpTemplate.receiveAndConvert("messages");
+               if (message != null)
+                   model.addAttribute("got", message);
+               else
+                   model.addAttribute("got_queue_empty", true);
+    
+               return home(model);
+        }
 
 ### Using Spring Profiles to Conditionalize AppFog Configuration {#spring-conditionalize}
 
@@ -902,7 +896,6 @@ The following table lists all the app and service properties that AppFog exposes
    <td>Postgres</td>
    <td>Name and version of the Postgres server.</td>
  </tr>
-<!---
 <tr>
 <td>cloud.services.{<i>service-name</i>}.connection.url</td>
    <td>RabbitMQ</td>
@@ -952,7 +945,7 @@ The following table lists all the app and service properties that AppFog exposes
 <td>cloud.services.{<i>service-name</i>}.type</td>
    <td>Redis</td>
    <td>Name and version of the Redis server.</td>
- </tr>---></tt>
+ </tr></tt>
 </td>
 </tr></tt>
 </td>

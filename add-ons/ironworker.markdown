@@ -12,8 +12,10 @@ In the "Add-ons" tab in your app console click "Install" for the IronWorker add-
 Just copy [IronWorker.class.php](https://github.com/iron-io/iron_worker_php/blob/master/IronWorker.class.php) and include it in your script:
 
 
-<pre class="linenums"><code><?php
-require_once "IronWorker.class.php</code></pre>
+<pre class="linenums"><code>
+<?php
+require_once "IronWorker.class.php"
+</code></pre>
 
 ## Create a Worker
 
@@ -23,7 +25,8 @@ When you install IronWorker, the installer creates two environment variables set
 $worker = new IronWorker(array(
 'token' => getenv('IRON_WORKER_TOKEN'),
 'project_id' => getenv('IRON_WORKER_PROJECT_ID')
-));<code></pre>
+));
+</code></pre>
 
 Here's an example worker:
 

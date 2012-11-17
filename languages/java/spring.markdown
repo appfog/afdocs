@@ -73,7 +73,6 @@ Auto-reconfiguration occurs if AppFog detects a `org.springframework.data.docume
 
 AppFog will create a `SimpleMOngoDbFactory` with its own values for the following properties: `host`, `port`, `username`, `password`, `dbname`.
 
-<!---
 ### Redis
 
 You must be using [Spring Data Redis](http://www.springsource.org/spring-data/redis) 1.0 M4 or later for auto-reconfiguration to work.
@@ -101,7 +100,6 @@ Auto-reconfiguration occurs if AppFog detects a `org.springframework.amqp.rabbit
         virtual-host="virthost" />
 
 AppFog will create a `org.springframework.amqp.rabbit.connection.CachingConnectionFactory` with its own values for the following properties: `host`, `virtual-host`, `port`, `username,` `password`.
---->
 
 ### Limitations of Auto-Reconfiguration {#spring-limits-auto-reconfig}
 
@@ -129,74 +127,82 @@ The basic steps to update your Spring app to use any of the AppFog services are 
 
 * Update your app build process to include a dependency on the `org.cloudfoundry.cloudfoundry-runtime` artifact. For example, if you use Maven to build your app, the following `pom.xml` snippet shows how to add this dependency:
 
-    <dependencies>
-        <dependency>
-            <groupId>org.cloudfoundry</groupId>
-            <artifactId>cloudfoundry-runtime</artifactId>
-            <version>0.8.1</version>
-        </dependency>
+<pre><code>
+<dependencies>
+    <dependency>
+        <groupId>org.cloudfoundry</groupId>
+        <artifactId>cloudfoundry-runtime</artifactId>
+        <version>0.8.1</version>
+    </dependency>
 
-        <!-- additional dependency declarations -->
-    </dependencies>
+    <!-- additional dependency declarations -->
+</dependencies>
+</code></pre>
 
 * Update your app build process to include the Spring Framework Milestone repository. The following `pom.xml` snippet shows how to do this in Maven:
 
-    <repositories>
-        <repository>
-              <id>org.springframework.maven.milestone</id>
-               <name>Spring Maven Milestone Repository</name>
-               <url>http://maven.springframework.org/milestone</url>
-               <snapshots>
-                       <enabled>false</enabled>
-               </snapshots>
-        </repository>
+<pre><code>
+<repositories>
+    <repository>
+          <id>org.springframework.maven.milestone</id>
+           <name>Spring Maven Milestone Repository</name>
+           <url>http://maven.springframework.org/milestone</url>
+           <snapshots>
+                   <enabled>false</enabled>
+           </snapshots>
+    </repository>
 
-        <!-- additional repository declarations -->
-    </repositories>
+    <!-- additional repository declarations -->
+</repositories>
+</code></pre>
 
 * In your Spring app, update all app context files that will include the AppFog service declarations, such as a data source, by adding the `<cloud:>` namespace declaration and the location of the AppFog services Schema, as shown in the following snippet:
 
-        <beans xmlns="http://www.springframework.org/schema/beans"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns:context="http://www.springframework.org/schema/context"
-            xmlns:cloud="http://schema.cloudfoundry.org/spring"
-            xsi:schemaLocation="http://www.springframework.org/schema/beans
-                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-                http://www.springframework.org/schema/context
-                http://www.springframework.org/schema/context/spring-context-3.1.xsd
-                http://schema.cloudfoundry.org/spring
-                http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
-                >
-    
-            <!-- bean declarations -->
-    
-        </beans>
+<pre><code>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:cloud="http://schema.cloudfoundry.org/spring"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://schema.cloudfoundry.org/spring
+        http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
+        >
+
+    <!-- bean declarations -->
+
+</beans>
+</code></pre>
 
 * You can now specify the AppFog services in the Spring app context file by using the `<cloud:>` namespace along with the name of specific elements, such as `data-source`. AppFog provides elements for each of the supported services: database (MySQL and Postgres), Redis, MongoDB, and RabbitMQ.
 
     The following example shows a simple data source configuration that will be injected into a JdbcTemplate using the `<cloud:data-source>` element.
 
-        <beans xmlns="http://www.springframework.org/schema/beans"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xmlns:context="http://www.springframework.org/schema/context"
-            xmlns:cloud="http://schema.cloudfoundry.org/spring"
-            xsi:schemaLocation="http://www.springframework.org/schema/beans
-                http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-                http://www.springframework.org/schema/context
-                http://www.springframework.org/schema/context/spring-context-3.1.xsd
-                http://schema.cloudfoundry.org/spring
-                http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
-                >
-    
-            <cloud:data-source id="dataSource" />
-    
-            <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-              <property name="dataSource" ref="dataSource" />
-            </bean>
-    
-                <!-- additional beans in your app -->
-    
-        </beans>
+<pre><code>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:cloud="http://schema.cloudfoundry.org/spring"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://schema.cloudfoundry.org/spring
+        http://schema.cloudfoundry.org/spring/cloudfoundry-spring.xsd
+        >
+
+    <cloud:data-source id="dataSource" />
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+      <property name="dataSource" ref="dataSource" />
+    </bean>
+
+        <!-- additional beans in your app -->
+
+</beans>
+</code></pre>
 
 When you later deploy the app using `af` or STS, you bind a specific data service (such as MySQL or Postgres) to it and AppFog creates an instance of the service. Note that in the example above, you did not specify typical data source properties such as `driverClassName` or `url` or `username` - this is because AppFog automatically takes care of those properties for you.
 

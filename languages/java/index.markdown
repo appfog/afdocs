@@ -11,7 +11,6 @@ weight: 4
 
 For a list of runtimes that AppFog supports run:
 
-{: .prettyprint}
     $ af runtimes
 
     +--------------+-----------------+-----------+

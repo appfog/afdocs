@@ -16,7 +16,6 @@ AppFog supports background processing, which means you can run container-less, "
 
 You can use the `whenever` gem with a standalone ruby app, for example, to run cron-like jobs using an incredibly simple syntax. One of the examples given in the GitHub repo demonstrates this:
 
-{: .prettyprint .linenums }
     every 3.hours do
         runner “MyModel.someProcess”
         rake “my:rake:task”
@@ -25,7 +24,6 @@ You can use the `whenever` gem with a standalone ruby app, for example, to run c
 
 Or you can designate specific times to run tasks:
 
-{: .prettyprint .linenums }
     every 1.day, :at => '4:30 am' do
         runner "MyModel.my_incredibly_robust_and_sophisticated_task"
     end
@@ -41,7 +39,6 @@ Some examples of commands you could run include:
 
 First, we’ll make a simple Ruby file (`portland.rb`) that simply outputs "Portland: life is just better here" every five seconds:
 
-{: .prettyprint .linenums }
     loop {
         puts "Portland: life is just better here"
         sleep 5

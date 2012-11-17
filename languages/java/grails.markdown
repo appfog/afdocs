@@ -19,7 +19,6 @@ AppFog provides a rich set of services, all of which can be used by Grails apps:
 
 Currently, you can either use MySQL or Postgres on AppFog if you want a relational database for your app. All you need to access them is the [Hibernate plug-in](http://grails.org/plugin/hibernate), which is included by default in all new Grails apps. You also need to make sure that the relevant driver is available to your app, for example by declaring it in `BuildConfig.groovy`:
 
-{: .prettyprint }
     grails.project.dependency.resolution = {
         ...
         dependencies {
@@ -30,7 +29,6 @@ Currently, you can either use MySQL or Postgres on AppFog if you want a relation
 
 and that the JDBC driver class is set in `DataSource.groovy`:
 
-{: .prettyprint }
     environments {
         production {
             dataSource {

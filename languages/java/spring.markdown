@@ -46,7 +46,6 @@ The following sections describe, for each supported service, the type of bean th
 
 Auto-reconfiguration occurs if AppFog detects a `javax.sql.DataSource` bean. The following snippet of a Spring app context file shows an example of defining this type of bean which AppFog will in turn detect and potentially auto-reconfigure:
 
-{: .prettyprint .linenums}
     <bean class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" id="dataSource">
         <property name="driverClassName" value="org.h2.Driver" />
         <property name="url" value="jdbc:h2:mem:" />
@@ -64,7 +63,6 @@ You must be using Spring Data MongoDB 1.0 M4 or later for auto-reconfiguration t
 
 Auto-reconfiguration occurs if AppFog detects a `org.springframework.data.document.mongodb.MongoDbFactory` bean. The following snippet of a Spring app context file shows an example of defining this type of bean which AppFog will in turn detect and potentially auto-reconfigure:
 
-{: .prettyprint .linenums}
     <mongo:db-factory
         id="mongoDbFactory"
         dbname="pwdtest"
@@ -82,7 +80,6 @@ You must be using [Spring Data Redis](http://www.springsource.org/spring-data/re
 
 Auto-reconfiguration occurs if AppFog detects a `org.springframework.data.redis.connection.RedisConnectionFactory` bean. The following snippet of a Spring app context file shows an example of defining this type of bean which AppFog will in turn detect and potentially auto-reconfigure:
 
-{: .prettyprint .linenums}
     <bean id="redis"
           class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
           p:hostName="localhost" p:port="6379"  />
@@ -95,7 +92,6 @@ You must be using [Spring AMQP](http://www.springsource.org/spring-amqp) 1.0 or 
 
 Auto-reconfiguration occurs if AppFog detects a `org.springframework.amqp.rabbit.connection.ConnectionFactory` bean. The following snippet of a Spring app context file shows an example of defining this type of bean which AppFog will in turn detect and potentially auto-reconfigure:
 
-{: .prettyprint .linenums}
     <rabbit:connection-factory
         id="rabbitConnectionFactory"
         host="localhost"
@@ -133,7 +129,6 @@ The basic steps to update your Spring app to use any of the AppFog services are 
 
 * Update your app build process to include a dependency on the `org.cloudfoundry.cloudfoundry-runtime` artifact. For example, if you use Maven to build your app, the following `pom.xml` snippet shows how to add this dependency:
 
-{: .prettyprint .linenums}
     <dependencies>
         <dependency>
             <groupId>org.cloudfoundry</groupId>
@@ -146,7 +141,6 @@ The basic steps to update your Spring app to use any of the AppFog services are 
 
 * Update your app build process to include the Spring Framework Milestone repository. The following `pom.xml` snippet shows how to do this in Maven:
 
-{: .prettyprint .linenums}
     <repositories>
         <repository>
               <id>org.springframework.maven.milestone</id>
@@ -162,7 +156,6 @@ The basic steps to update your Spring app to use any of the AppFog services are 
 
 * In your Spring app, update all app context files that will include the AppFog service declarations, such as a data source, by adding the `<cloud:>` namespace declaration and the location of the AppFog services Schema, as shown in the following snippet:
 
-{: .prettyprint .linenums}
     <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:context="http://www.springframework.org/schema/context"
@@ -183,7 +176,6 @@ The basic steps to update your Spring app to use any of the AppFog services are 
 
     The following example shows a simple data source configuration that will be injected into a JdbcTemplate using the `<cloud:data-source>` element.
 
-{: .prettyprint .linenums}
     <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:context="http://www.springframework.org/schema/context"
@@ -229,7 +221,6 @@ The following example shows a simple way to configure a JDBC data source that wi
 
 `<cloud:data-source id="dataSource" />`
 
-{: .prettyprint .linenums}
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
       <property name="dataSource" ref="dataSource" />
     </bean>
@@ -278,7 +269,6 @@ The `<cloud:pool>` child element takes the following two attributes:
 
 The following example shows how to use these advanced data source configuration options:
 
-{: .prettyprint .linenums}
     <cloud:data-source id="mydatasource">
         <cloud:connection properties="charset=utf-8" />
         <cloud:pool pool-size="5-10" max-wait-time="2000" />
@@ -292,7 +282,6 @@ The `<cloud:mongo-db-factory>` provides a simple way for you to configure a Mong
 
 The following example shows a MongoDbFactory configuration that will be injected into a `org.springframework.data.mongodb.core.MongoTemplate` object:
 
-{: .prettyprint .linenums}
     <cloud:mongo-db-factory id="mongoDbFactory" />
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
@@ -348,7 +337,6 @@ The `<cloud:mongo-options>` child element takes the following two attributes:
 
 The following example shows how to use the advanced MongoDB options:
 
-{: .prettyprint .linenums}
     <cloud:mongo-db-factory id="mongoDbFactory" write-concern="FSYNC_SAFE">
         <cloud:mongo-options connections-per-host="12" max-wait-time="2000" />
     </cloud:mongo-db-factory>
@@ -362,7 +350,6 @@ The `<cloud:redis-connection-factory>` provides a simple way for you to configur
 
 The following example shows a `RedisConnectionFactory` configuration that will be injected into a `org.springframework.data.redis.core.StringRedisTemplate object`:
 
-{: .prettyprint .linenums}
     <cloud:redis-connection-factory id="redisConnectionFactory" />
 
     <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
@@ -420,7 +407,6 @@ The `<cloud:pool>` child element takes the following two attributes:
 
 The following example shows how to use these advanced Redis configuration options:
 
-{: .prettyprint .linenums}
     <cloud:redis-connection-factory id="myRedisConnectionFactory">
         <cloud:pool pool-size="5-10" max-wait-time="2000" />
     </cloud:redis-connection-factory>
@@ -433,7 +419,6 @@ The `<cloud:rabbit-connection-factory>` provides a simple way for you to configu
 
 The following complete example of a Spring app contenxt file shows a `RabbitConnectionFactory` configuration that will be injected into a `rabbitTemplate` object. The example also uses the `<rabbit:>` namespace to perform RabbitMQ-specific configurations, as explained after the example:
 
-{: .prettyprint .linenums}
     <beans xmlns="http://www.springframework.org/schema/beans"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -497,7 +482,6 @@ The `<cloud:rabbit-options>` child element defines one attribute called `channel
 
 The following example shows how to use these advanced RabbitMQ configuration options:
 
-{: .prettyprint .linenums}
     <cloud:rabbit-connection-factory id="rabbitConnectionFactory" >
         <cloud:rabbit-options channel-cache-size="10" />
     </cloud:rabbit-connection-factory>
@@ -513,12 +497,10 @@ The `<cloud:service-scan>` is especially useful during the initial phases of app
 
 The `<cloud:service-scan>` element has no attributes or child elements; for example:
 
-{: .prettyprint}
      <cloud:service-scan />
         
 In your Java code, you must annotate each dependency with `@Autowired` so that a bean of the corresponding service is automatically created. For example:
 
-{: .prettyprint}
     package cf.examples;
 
     import org.springframework.beans.factory.annotation.Autowired;
@@ -536,7 +518,6 @@ Use of only the `@Autowired` annotation is adequate if you have bound only one s
 
 For example, assume you bound two MySQL services (named `inventory-db` and `pricing-db`) to your app; use the `@Qualifier` annotation as shown in the following example to specify which service instance applies to which Spring bean:
 
-{: .prettyprint}
     @Autowired @Qualifier("inventory-db") DataSource inventoryDataSource;
     @Autowired @Qualifier("pricing-db") DataSource pricingDataSource;
 
@@ -550,7 +531,6 @@ Note that if you are using Spring Framework 3.1 (or later), these properties are
 
 The following example shows how to use this element in your Spring app context file:
 
-{: .prettyprint}
     <cloud:properties id="cloudProperties" />
 
     <context:property-placeholder properties-ref="cloudProperties" />
@@ -578,7 +558,6 @@ The RabbitMQ service is accessed through the [AMQP protocol](http://www.amqp.org
 
 The following sample `pom.xml` file shows RabbitMQ dependencies and repositories in addition to the `cloudfoundry-runtime` dependency described above:
 
-{: .prettyprint .linenums}
     <repositories>
         <repository>
               <id>org.springframework.maven.milestone</id>
@@ -612,13 +591,11 @@ Then update your app controller/logic as follows:
 
 * Include the messaging libraries:
 
-{: .prettyprint}
     import org.springframework.beans.factory.annotation.Autowired;
     import org.springframework.amqp.core.AmqpTemplate;
 
 * Read and write messages as shown in the following Java code snippets:
 
-{: .prettyprint .linenums}
     @Controller
     public class HomeController {
        @Autowired AmqpTemplate amqpTemplate;
@@ -660,7 +637,6 @@ When you deploy a Spring app to AppFog, AppFog automatically enables the `cloud`
 
 Here is an example of a Spring `MongoTemplate` being populated from two alternately configured connection factories. When running on AppFog (`cloud` profile), the connection factory is automatically configured. When not running on AppFog (`default` profile), the connection factory is manually configured with the connection settings to a running MongoDB instance.
 
-{: .prettyprint .linenums}
     <?xml version="1.0" encoding="UTF-8"?>
     <beans  xmlns="http://www.springframework.org/schema/beans"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -705,7 +681,6 @@ Service providers, such as [SendGrid](http://sendgrid.com/), can send email on y
 
 The following snippet of a Spring app context shows how to specify that your app should use SendGrid to send email when the app is running in AppFog; note the use of the `cloud` profile:
 
-{: .prettyprint .linenums}
     <?xml version="1.0" encoding="UTF-8"?>
     <beans  xmlns="http://www.springframework.org/schema/beans"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -734,7 +709,6 @@ AppFog exposes a number of app and service properties directly into its deployed
 
 Service properties generally take one of the following forms:
 
-{: .prettyprint}
     cloud.services.{service-name}.connection.{property}
     cloud.services.{service-name}.{property}
 
@@ -742,7 +716,6 @@ where `{service-name}` refers to the name you gave the service when you bound it
 
 For example, assume that in `af` you created a Postgres service called `my-postgres` and then bound it to your app; AppFog exposes the following properties about this service that your app in turn can consume:
 
-{: .prettyprint .linenums}
     cloud.services.my-postgres.connection.host
     cloud.services.my-postgres.connection.hostname
     cloud.services.my-postgres.connection.name
@@ -765,7 +738,6 @@ If you want to use these AppFog properties in your app, use a Spring property pl
 
 For example, assume that you have bound a MySQL service called `spring-mysql` to your app, but your app requires a c3p0 connection pool instead of the connection pool provided by AppFog. But you still want to use the same connection properties defined by AppFog for the MySQL service, in particular the username and password and JDBC URL. The following Spring app context snippet shows how you might implement this:
 
-{: .prettyprint .linenums}
     <beans profile="cloud">
        <bean id="c3p0DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
           <property name="driverClass" value="com.mysql.jdbc.Driver" />

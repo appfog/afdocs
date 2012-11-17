@@ -127,17 +127,14 @@ The basic steps to update your Spring app to use any of the AppFog services are 
 
 * Update your app build process to include a dependency on the `org.cloudfoundry.cloudfoundry-runtime` artifact. For example, if you use Maven to build your app, the following `pom.xml` snippet shows how to add this dependency:
 
-<pre><code>
-<dependencies>
-    <dependency>
-        <groupId>org.cloudfoundry</groupId>
-        <artifactId>cloudfoundry-runtime</artifactId>
-        <version>0.8.1</version>
-    </dependency>
-
-    <!-- additional dependency declarations -->
-</dependencies>
-</code></pre>
+        <dependencies>
+            <dependency>
+                <groupId>org.cloudfoundry</groupId>
+                <artifactId>cloudfoundry-runtime</artifactId>
+                <version>0.8.1</version>
+            </dependency>
+            <!-- additional dependency declarations -->
+        </dependencies>
 
 * Update your app build process to include the Spring Framework Milestone repository. The following `pom.xml` snippet shows how to do this in Maven:
 

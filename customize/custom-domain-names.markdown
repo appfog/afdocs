@@ -92,6 +92,6 @@ HP Openstack AZ 2 (BETA -- SUBJECT TO CHANGE):
 
 Rackspace DFW:
 
-	50.56.172.102
+	66.216.67.35
 
 That's it! DNS propagation can take anywhere from a few minutes to 48 hours depending on your location, but once that's finished your app should resolve at your new custom domain. 

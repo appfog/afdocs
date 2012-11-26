@@ -38,8 +38,25 @@ Target a specific runtime when you deploy by using the runtime flag. For example
 
 ## Deployment {#node-deployment}
 
-When you deploy a Node.js app to AppFog, the current directory must contain your app in an `app.js` file. 
+When you deploy a Node.js app to AppFog, the stager runs the first of the following files it finds:
 
+* server.js 
+* app.js 
+* index.js 
+* main.js 
+* application.js
+
+Alternatively, you can specify the startup file in your `package.json` file, by specifying the `start` command under the `scripts` key:
+
+    {
+        "name": "test-app",
+        "version": "0.0.1",
+        "scripts": {
+            "start": "node server.js"
+        }
+        ....
+    }
+ 
 ## Dependency Management {#node-dep-mgmt}
 
 AppFog supports [npm](https://npmjs.org/) (Node Package Manager). 

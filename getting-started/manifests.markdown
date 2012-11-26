@@ -1,6 +1,6 @@
 ---
 title: Manifests
-weight: 3
+weight: 4
 ---
 
 You can use manifest documents with AppFog to simplify app deployment. These manifest documents describe apps in human-editable format. They can also describe anything from simple "Hello World" apps to complex multi-app hierarchies with inter-app dependencies and service binding information.  

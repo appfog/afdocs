@@ -15,6 +15,7 @@ Our add-on partners can create provisioning services that are compatible with Ap
 * [API Spec](#api)
 * [Authentication](#authentication)
 * [Manifest Format](#manifest)
+* [Regions](#regions)
 * [Single Sign-on](#sso)
 
 ## Provisioning Workflow {#provision}
@@ -155,6 +156,32 @@ Add-on partners should provide the manifest file out-of-band by emailing it to t
 * `api/password` - The password used by AppFog to authenticate itself with the partner service via `HTTP Basic Auth`.
 * `api/sso_salt` - Shared secret used in single sign-on between AppFog and the provider.
 * `plans/id` - The name of the "free" plan that will be offered to AppFog users and used for testing and integration purposes.
+
+## Regions {#regions}
+
+AppFog supports running apps in regions other than AWS US-East.
+
+To let you know where the app provisioning an add-on is located, we've extended the provisioning API to provide a `region` parameter in the provision request.
+
+It's up to you, the add-on provider, to take advantage of region information in the provision request. You can do one of three things with the parameter:
+
+1. Ignore the parameter and provision your add-on normally.
+2. Read the parameter, accept the request and provision your add-on normally.
+3. Read the parameter and reject the request, returning a `422` error with a message explaining the reason for the rejection.
+
+If your add-on isn't latency-sensitive (e.g. email, etc.), it's probably safe to ignore it. If your add-on is latency sensitive and you're currently running your service in, for example, AWS EU-West, you should provision services only for apps specifying that region.
+
+If you're not running infrastructure in the same infrastructure as the app and you don't think your add-on is usable across data centers (or maybe you don't want to incur ingress/outgress bandwidth charges), you can respond with `HTTP 422` and a message in the response body, something like this: 
+
+    { "message": "eu-west not supported, sorry" }
+
+Here's a list of the current possible parameter values:
+
+* `'amazon-web-services::us-east-1'`
+* `'amazon-web-services::ap-southeast-1'`
+* `'amazon-web-services::eu-west-1'`
+* `'hp-openstack::us-az1'`
+* `'rackspace::us-az1'`
 
 ## Single Sign-on {#sso}
 

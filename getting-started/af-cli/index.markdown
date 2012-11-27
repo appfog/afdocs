@@ -1,5 +1,5 @@
 ---
-title: AF Command Line Tool
+title: AF CLI Tool
 weight: 2
 description: "Code deployment made easy."
 ---

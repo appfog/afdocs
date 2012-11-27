@@ -1,5 +1,6 @@
 ---
 title: phpMyAdmin
+weight: 1
 ---
 
 [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) is a free and popular software tool written in PHP that provides a web interface for administration of MySQL databases. 

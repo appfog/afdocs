@@ -5,6 +5,7 @@ weight: 20
 
 [Redis Cloud](http://redis-cloud.com) is a fully-managed service for running your Redis dataset. You can quickly and easily get your apps up and running with Redis Cloud on AppFog. You can then add as many Redis databases as you need (each running in a dedicated process, in a non-blocking manner) and increase or decrease the memory size of your plan without affecting your existing data. You can easily import an existing dataset to any of your Redis Cloud databases, from your AWS S3 account or from any other Redis server. Daily backups are performed automatically and in addition, you can backup your dataset manually at any given time.
 
+Note: Redis Cloud is currently only available on our AWS US-East infrastructure.
 
 ## Install Redis Cloud
 

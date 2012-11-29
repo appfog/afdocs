@@ -5,7 +5,7 @@ weight: 1
 
 ## Persistent Data Storage
 
-AppFog does not yet have a persistent data storage system, though we're working on it. This means that the file system is volatile and any data that needs to be persistent should be included in the code base (by making all changes in a local development environment) or offloaded to a database or an external storage system like Amazon's S3.  
+AppFog does not yet have a persistent data storage system, though we're working on it. This means that the file system is volatile and any data that needs to be persistent should be included in the code base (by making all changes in a local development environment) or offloaded to a database or an external storage system like Amazon's S3. You can find a tutorial on just how to do that [here](http://blog.appfog.com/how-to-use-amazon-s3-for-persistent-file-storage-on-appfog/).
 
 ## Services
 

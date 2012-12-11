@@ -95,12 +95,6 @@ To make use of this feature, simply run:
 
 This command looks at your `node_modules` directory and generates an `npm-shrinkwrap.json` file, which reflects the whole tree of dependencies with fixed versions. This functions as a snapshot of your app's dependencies in much the same way that `Gemfile.lock` does for Ruby apps. This file guarantees that AppFog provides the exact node module versions to avoid compatibility issues.
 
-By default, AppFog uses the `node_modules` directory unless you explicitly tell it to overwrite those modules. I.e. if your app has a `node_modules` directory in the app's base directory, AppFog will use the modules in that directory. To overwrite those modules, you must to provide a configuration file called `cloudfoundry.json` with the "`ignoreNodeModules`" option set to true.
-
-`cloudfoundry.json`:
-
-    { "ignoreNodeModules" : true }
-
 If you deploy your app with those conditions in place, AppFog will install the node modules to the app during the staging process. If the require node module doesn't work with the node engine that the app is running on, however, AppFog will not install the module.
 
 ## CoffeeScript {#node-coffee-script}

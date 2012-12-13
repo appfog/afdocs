@@ -48,7 +48,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>Ruby 1.9.3 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Node 0.4.12 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Node 0.6.17 </td><td class="x-mark-2">&times;</td><td></td></tr>
-<tr><td>Node 0.8 </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Node 0.8.14 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>PHP 5.3 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>PHP 5.4 </td><td> </td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Erlang R14B02 </td><td> </td><td class="x-mark-2">&times;</td></tr>

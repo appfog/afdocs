@@ -7,7 +7,7 @@ AppFog currently only offers one app server for Sinatra apps: Thin. If you're us
 
 To use AppFog services with Sinatra, you have to access the `VCAP_SERVICES` environment variable. You can read more about this on the [Services Overview page](/services/overview).
 
-AppFog autodetects your Sintra app by searching for `require 'sinatra'` in the `*.rb` files. It then chooses that file as the main Sinatra app file. 
+AppFog autodetects your Sinatra app by searching for `require 'sinatra'` in the `*.rb` files. It then chooses that file as the main Sinatra app file. 
 
 If you use Bundler to load Sinatra, AppFog may not recognize your app. In this case, you can simply manually tell AppFog that it's a Sinatra app when you push your code: 
 

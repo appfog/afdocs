@@ -29,7 +29,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 	<tr><td>AWS Brazil </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
 	<tr><td>Azure (Dallas, TX) </td><td> </td><td> </td><td class="x-mark-2">&times;</td><td></td></tr>
 	<tr><td>Azure Europe </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
-	<tr><td>HP OpenStack (Las Vegas) </td><td> </td><td> </td><td class="x-mark-2">&times;</td><td></td></tr>
+	<tr><td>HP OpenStack (Las Vegas) </td><td> </td><td class="x-mark-2">&times; </td><td> </td><td></td></tr>
 	<tr><td>Rackspace (Dallas) </td><td> </td><td class="x-mark-2">&times;</td><td> </td><td></td></tr>
 	<tr><td>Rackspace (Chicago) </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
 	<tr><td>Rackspace (London) </td><td> </td><td> </td><td> </td><td class="x-mark-2">&times;</td></tr>
@@ -77,7 +77,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>Redis 2.2</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>RabbitMQ 2.4</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>MongoDB 2.0</td><td></td><td class="x-mark-2">&times;</td></tr>
-<tr><td>Couchdb</td><td></td><td class="x-mark-2">&times;</td></tr>
+<tr><td>CouchDB</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Memcached</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Neo4J</td><td></td><td class="x-mark-2">&times;</td></tr>
 </tbody>
@@ -101,7 +101,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>Xeround (MySQL DBaaS)</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>New Relic (analytics)</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Searchify</td><td class="x-mark-2">&times;</td><td></td></tr>
-<tr><td>LogEntries</td><td></td><td class="x-mark-2">&times;</td></tr>
+<tr><td>LogEntries</td><td class="x-mark-2">&times;</td><td></td></tr>
 </tbody>
 </table>
 
@@ -109,7 +109,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 
 ### Top Priorities
 
-* Persistent Distributed Filesystems
+* Persistent Distributed Filesystem
 * <s><a href="/customize/custom-domain-names">Root Domains</a></s>
 * <s><a href="/customize/ssl">Custom SSL</a></s>
 * Group/Team Support
@@ -121,4 +121,4 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * Wildcard Domains
 * <s><a href="/customize/task-scheduling">Scheduled Jobs (cron)</a></s>
 * Github Hooks
-* Websockets
+* WebSockets

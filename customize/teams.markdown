@@ -5,7 +5,7 @@ weight: 4
 
 *Note: the Teams feature is currently in beta and only available to users on paid plans.*
 
-AppFog's Teams feature gives you the ability to invite other AppFog users to collaborate on app management. To add a user to an account, you simply email her an invitation. Once she accepts, she'll have the ability to sign into the account and manage the same set of apps and services, from the console as well as from the command line.
+AppFog's Teams feature gives you the ability to invite other AppFog users to collaborate on app management. To add a user to an account, you simply email her an invitation. Once she accepts, she'll have the ability to sign into the account and manage the same set of apps and services from the '`af`' command line tool.
 
 ### Invite a user
 
@@ -17,7 +17,7 @@ Under the Teams tab, you can see a list of team members, pending invitations, ex
 
 ### Team Membership
 
-Once you've accepted membership to a Team, you can interact with the apps on the Team account from the command line tool. Simply use the "`-u`" flag:
+Once you've accepted an invitation to a Team, you can interact with the apps on the Team account from the command line tool. Simply use the "`-u`" flag:
 
     $ af -u team@appfog.com update example-app
 

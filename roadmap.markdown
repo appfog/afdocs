@@ -112,7 +112,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * Persistent Distributed Filesystem
 * <s><a href="/customize/custom-domain-names">Root Domains</a></s>
 * <s><a href="/customize/ssl">Custom SSL</a></s>
-* Group/Team Support
+* <s><a href="/customize/teams">Group/Team Support</a></s>
 
 ### Coming Soon
 

@@ -130,20 +130,6 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
 
 ### Gemfile
 
-## Ruby 1.8
-
-    # If you use a different database in development, hide it from AppFog.
-    group :development do
-    gem 'sqlite3'
-    end
-    
-    # Rails 3.1 can use the latest mysql2 gem.
-    group :production do
-    gem 'mysql2'
-    end
-
-## Ruby 1.9
-
     # If you use a different database in development, hide it from AppFog.
     group :development do
     gem 'sqlite3'

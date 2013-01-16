@@ -132,7 +132,6 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
 
 ## Ruby 1.8
 
-
     # If you use a different database in development, hide it from AppFog.
     group :development do
     gem 'sqlite3'
@@ -145,7 +144,6 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
 
 ## Ruby 1.9
 
-
     # If you use a different database in development, hide it from AppFog.
     group :development do
     gem 'sqlite3'
@@ -156,16 +154,7 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
     gem 'mysql2'
     end
     
-    # For Ruby 1.9 AppFog requires a tweak to the jquery-rails gem.
-    # gem 'jquery-rails'
-    gem 'cloudfoundry-jquery-rails'
-    
-    # For Ruby 1.9 AppFog requires a tweak to devise.
-    # Uncomment next line if you plan to use devise.
-    # gem 'cloudfoundry-devise', :require => 'devise'
-
 ### Bundle your app:
-
 
     $ bundle package
     $ bundle install

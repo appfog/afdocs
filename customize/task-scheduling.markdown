@@ -14,18 +14,28 @@ AppFog supports background processing, which means you can run container-less, "
 
 ## Ruby {#task-scheduling-ruby}
 
-You can use the `whenever` gem with a standalone ruby app, for example, to run cron-like jobs using an incredibly simple syntax. One of the examples given in the GitHub repo demonstrates this:
+You can use the `rufus-scheduler` [gem](https://github.com/jmettraux/rufus-scheduler) with a standalone ruby app, for example, to run cron-like jobs using an incredibly simple syntax. The examples in the GitHub repo demonstrates this:
 
-    every 3.hours do
-        runner “MyModel.someProcess”
-        rake “my:rake:task”
-        command “/usr/bin/my_great_command”
+    require 'rubygems'
+    require 'rufus/scheduler'
+
+    scheduler = Rufus::Scheduler.start_new
+
+    scheduler.in '20m' do
+      puts "order ristretto"
     end
 
-Or you can designate specific times to run tasks:
+    scheduler.at 'Thu Mar 26 07:31:43 +0900 2009' do
+      puts 'order pizza'
+    end
 
-    every 1.day, :at => '4:30 am' do
-        runner "MyModel.my_incredibly_robust_and_sophisticated_task"
+    scheduler.cron '0 22 * * 1-5' do
+      # every day of the week at 22:00 (10pm)
+      puts 'activate security system'
+    end
+
+    scheduler.every '5m' do
+      puts 'check blood pressure'
     end
 
 Some examples of commands you could run include: 

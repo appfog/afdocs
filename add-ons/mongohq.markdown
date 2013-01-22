@@ -17,7 +17,7 @@ Using MongoDB from a PHP app is very easy. The required extensions are already i
 
     <?php
         // connect
-        $m = new Mongo(getenv("MONGOLAB_URI"));
+        $m = new Mongo(getenv("MONGOHQ_URL"));
         
         // select a database
         $db = $m->comedy;

@@ -120,5 +120,5 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * FTP Access
 * Wildcard Domains
 * <s><a href="/customize/task-scheduling">Scheduled Jobs (cron)</a></s>
-* Github Hooks
+* GitHub Hooks
 * WebSockets

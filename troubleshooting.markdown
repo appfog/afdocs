@@ -41,7 +41,7 @@ You can also add the following to your `.afignore` file:
 
     node_modules/.bin/
 
-## App stop by itself. {app-stops}
+## App stop by itself. {#app-stops}
 
 An app stopping by itself generally indicates that it has crashed. When your app crashes, AppFog automatically attempts to re-spawn it, but only a limited number of times. If it continues to crash repeatedly, it will remain stopped. You can check your crashes with `af crashes`:
     

@@ -137,6 +137,7 @@ Finally from within your source code directory:
 <tr><td><code>map &lt;appname> &lt;url>                          </code></td><td>Register the application to the url</td></tr>
 <tr><td><code>unmap &lt;appname> &lt;url>                        </code></td><td>Unregister the application from the url</td></tr>
 <tr><td><code>instances &lt;appname> &lt;num|delta>              </code></td><td>Scale the application instances up or down</td></tr>
+<tr><td><code>rename &lt;curname> &lt;newname>                   </code></td><td>Change the application's name</td></tr>
 
 </table>
 

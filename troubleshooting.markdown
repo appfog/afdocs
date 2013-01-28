@@ -10,6 +10,7 @@ Don't see your issue here? Try our [mailing list](https://groups.google.com/foru
 * [af cli login issues](#af-cli-login)
 * [Error (JSON 502) on `af update`](#502-on-update)
 * [Error 402: App packaging failed: 'Failed synchronizing resource pool' on `af update`](#402-on-update)
+* [App stops by itself.](#app-stops)
 
 ## af cli login issues {#af-cli-login}
 
@@ -39,3 +40,15 @@ If it's a node app, it's likely you have a `node_modules/.bin` directory, and th
 You can also add the following to your `.afignore` file:
 
     node_modules/.bin/
+
+## App stop by itself. {#app-stops}
+
+An app stopping by itself generally indicates that it has crashed. When your app crashes, AppFog automatically attempts to re-spawn it, but only a limited number of times. If it continues to crash repeatedly, it will remain stopped. You can check your crashes with `af crashes`:
+    
+    $ af crashes <appname>
+
+And you can check the crash logs:
+    
+    $ af crashlogs <appname>
+
+The most common reason for an app to crash is running out of memory.

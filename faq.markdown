@@ -6,7 +6,6 @@ weight: 14
 * [What's the difference between PHP Fog and AppFog?](#difference-af-pf)
 * [How does billing work?](#billing)
 * [How can I update my app without downtime?](#downtime)
-* [What are the security group settings for connecting my app to Amazon RDS?](#security-group)
 * [How much does bandwidth cost beyond the included limits for the account?](#bandwidth)
 * [Does AppFog have a persistent file system?](#persistentfs)
 
@@ -60,10 +59,6 @@ If you run into any issues with example2, rollback is trivial. Simply map the or
  Now you can develop against example (instead of example2) and when you're ready to deploy to production, you can reproduce the same steps as above.
 
     $ af update example
-
-### What are the security group settings for connecting my app to Amazon RDS? {#security-group}
-
-This information is coming soon. For now, you'll have to connect using credential-based authorization.
 
 ### How much does bandwidth cost beyond the included limits for the account? {#bandwidth}
 

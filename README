@@ -15,4 +15,4 @@ The title is required, but the weight is optional.
 
 You can use [Markdown](http://daringfireball.net/projects/markdown/) to write content.
 
-Each directory has an "overview" file (overview.markdown).
+Each directory has an "overview" file (index.markdown).

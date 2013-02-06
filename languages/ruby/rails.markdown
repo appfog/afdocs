@@ -3,7 +3,6 @@ title: Rails
 weight: 1
 ---
 
-* [Rails 2.3](#rails23)
 * [Rails 3.0](#rails30)
 * [Rails 3.1](#rails31)
 * [Rails Console](#rails-console)
@@ -12,96 +11,11 @@ weight: 1
 
 AppFog currently only offers one app server for Rails apps: Thin. If you're using Bundler, and nothing in your app's bundle requires Thin, VCAP cannot safely start your app using it. For Rails in such cases, it will fall back to running your app using '`rails server`', which uses WEBrick. For best performance and results, use Thin.
 
-## Rails 2.3 {#rails23}
-
-Rails’ '`config.gem`' mechanism, which allows the user to specify a list of gems that the app needs to operate, is limited in that it cannot protect you from multi-deep dependencies (deeply layered gems using other gems). As mitigation, many Rails 2.3 apps have subsequently adopted Gem Bundler.
-
-VCAP currently doesn't detect Rails 2.3 apps. If you need to run a Ruby 2.3 app, disguise it as a Rails 3 app by creating a `config/application.rb` file and a 'config.ru'.
-
-### Bundler
-
-Rails 2.3 has its own gem handling system, but we can override that and use Bundler instead.
-
-Insert the following code in `config/boot.rb`, right above `Rails.boot!`:
-
-
-    class Rails::Boot
-        def run
-            load_initializer
-
-            Rails::Initializer.class_eval do
-                def load_gems
-                    @bundler_loaded ||= Bundler.require :default, Rails.env
-                end
-            end
-
-            Rails::Initializer.run(:set_load_path)
-        end
-    end
-
-Then create a new file called `config/preinitializer.rb` with the following:
-
-
-    begin
-        require "rubygems"
-        require "bundler"
-    rescue LoadError
-        raise "Could not load the bundler gem. Install it with `gem install bundler`."
-    end
-
-    if Gem::Version.new(Bundler::VERSION) <= Gem::Version.new("0.9.24")
-        raise RuntimeError, "Your bundler version is too old for Rails 2.3." +
-            "Run `gem install bundler` to upgrade."
-    end
-
-    begin
-        # Set up load paths for all bundled gems
-        ENV["BUNDLE_GEMFILE"] = File.expand_path("../../Gemfile", __FILE__)
-        Bundler.setup
-    rescue Bundler::GemNotFound
-        raise RuntimeError, "Bundler couldn't find some gems." +
-            "Did you run `bundle install`?"
-    end
-
-Get all `config.gem` declarations from your app and put them into the `Gemfile`. If you have declarations in `development.rb`, for example, place them in the named group. Make sure to include Rails itself and at least one source.
-
-
-    source 'http://rubygems.org'
-    gem "rails", "~> 2.3.5"
-    
-    # bundler requires these gems in all environments
-    # gem "nokogiri", "1.4.2"
-    # gem "geokit"
-    
-    group :development do
-		# bundler requires these gems in development
-		# gem "rails-footnotes"
-    end
-    
-    group :test do
-		# bundler requires these gems while running tests
-		# gem "rspec"
-		# gem "faker"
-    end
-
-For more details on Bundler support for Rails 2.3, check out [this guide](http://gembundler.com/rails23.html).
-
-Watch out for complicated and confusing bundle settings. While VCAP does its best to handle your configuration, it's possible to write Gemfiles that cannot be satisfied, for example by requesting an old version of Rails and a new version of Rack. These combinations will fail immediately; you won't need to wait to push your app to the cloud to see it break. By the same token, Gemfiles and Gems that are too vague about versions can cause problems as well.
-
-In Bundler groups, mixing multiple techniques for specifying which groups to load where (dev/test/prod) can sometimes cause problems.
-
-When in doubt, be more specific when calling '`Bundler.setup`'. VCAP attempts to be as consistent as possible, but it's possible to confuse the Bundler with badly behaved application bootstrap code.
-
-The `bundle package` command will create a cache directory in your app and store local copies of the required gems, allowing you to run `bundle install` with the `--local` flag for faster load time. This will not work in our case as Bundler currently cannot package gems that need to be fetched from a git repository, and it doesn't attempt to package gems that you have manually specified a path to using the `:path` Gemfile option. The best way to avoid this confusion is to stick to published gems.
-
-Along with published gems, Gemfiles can refer to git repos by url, branch name, etc. and Bundler will build them using a specialized mechanism. VCAP currently has no support for these at all, and apps that need them will fail.
-
 ## Rails 3.0 {#rails30}
 
 Ruby on Rails app deployments on AppFog automatically recognize MySQL. For other services, you'll need to access the `VCAP_SERVICES` environment variable. More on that in our [Services doc](/services).
 
 Make sure to use the correct version of the MySQL2 gem in your Gemfile:
-
 
     # If you use a different database in development, hide it from AppFog
     group :development do
@@ -115,12 +29,10 @@ Make sure to use the correct version of the MySQL2 gem in your Gemfile:
 
 ### Bundle your app:
 
-
     $ bundle package
     $ bundle install
 
 Deploy:
-
 
     $ af push
 
@@ -159,7 +71,6 @@ to
 
 Pre-compile your asset pipeline:
 
-
     $ bundle exec rake assets:precompile
 
 ### Version Control System
@@ -167,7 +78,6 @@ Pre-compile your asset pipeline:
 Commit the current configuration to your version control system. Consider including: + `Gemfile.lock` + gems packaged into `vendor/cache` + assets compiled into `public/assets`.
 
 ### Deploy
-
 
     $ af push
 
@@ -178,7 +88,6 @@ AppFog automatically creates and binds a new MySQL service with the Ruby on Rail
 ## Rails Console {#rails-console}
 
 To use the Rails console with your database service, [tunnel into the service](/services/tunneling), and choose 'none' when it asks you which client to start:
-
 
 	$ af tunnel ror-example-mysql
 	Binding Service [ror-example-mysql]: OK
@@ -204,7 +113,6 @@ To use the Rails console with your database service, [tunnel into the service](/
 
 Next, create another database section in your `config/database.yml` file with the service connection info in the `af tunnel` output:
 
-
 	proxied-appfog: 
 	adapter: mysql2 
 	database : d77261f24bbae4c889d0a231b3e70a763
@@ -214,7 +122,6 @@ Next, create another database section in your `config/database.yml` file with th
 	host: 127.0.0.1
 
 Finally, in a another terminal, run `rails console`, passing in the database environment you created:
-
 
     $ RAILS_ENV=proxied-appfog rails console
 
@@ -227,7 +134,6 @@ This assumes that you have your Rails app set up, and you have a MySQL service b
 ### Tunnel to your bound MySQL service
 
 Use the [af tunnel](/services/tunneling) command to connect to the MySQL service that's bound to your Rails app. When prompted, enter '1' for no client.
-
 
     $ af tunnel 
     1: rails-mysql-example 
@@ -252,7 +158,6 @@ You now have a secure tunnel set up to your MySQL service through which you can 
 
 ### Create a new section in your `config/database.yml` file
 
-
     proxied-appfog: 
     adapter: mysql2 
     database: <db-name> 
@@ -267,11 +172,9 @@ Start with a simple `seeds.rb` file that just creates one record in your databas
 
 Then, leaving open the terminal window with the tunnel running in it, open a new terminal window and run:
 
-
     $ RAILS_ENV=proxied-appfog rake db:seed
 
 If all goes well, you should have a log file in your `log/` directory called `proxied-appfog.log` that shows the SQL commands running from your `seeds.rb` file. 
-
 
     $ af files ror-example logs/
     startup.log                               8.2K

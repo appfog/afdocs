@@ -11,6 +11,7 @@ Don't see your issue here? Try our [mailing list](https://groups.google.com/foru
 * [Error (JSON 502) on `af update`](#502-on-update)
 * [Error 402: App packaging failed: 'Failed synchronizing resource pool' on `af update`](#402-on-update)
 * [App stops by itself.](#app-stops)
+* [MySQL server has gone away](#mysql-gone)
 
 ## af cli login issues {#af-cli-login}
 
@@ -52,3 +53,9 @@ And you can check the crash logs:
     $ af crashlogs <appname>
 
 The most common reason for an app to crash is running out of memory.
+
+## MySQL Server has gone away {#mysql-gone}
+
+    Mysql::Error: MySQL server has gone away
+
+This occurs when an app attempts to use persistent MySQL connections without closing them. AppFog apps should always close database connections and should not use persistent MySQL connections.

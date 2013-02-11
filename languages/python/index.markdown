@@ -22,7 +22,6 @@ AppFog currently supports Python 2.7.3. You can check the available runtimes by 
     | python2      | Python 2.7.3    | 2.7.3     |
     | node04       | Node.js 0.4.12  | 0.4.12    |
     | node06       | Node.js 0.6.17  | 0.6.17    |
-    | erlangR14B02 | Erlang R14B02   | R14B02    |
     +--------------+-----------------+-----------+
 
 AppFog supports Python by serving apps through the [WSGI](http://wsgi.readthedocs.org/en/latest/index.html) protocol using [Gunicorn](http://gunicorn.org/). 

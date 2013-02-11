@@ -24,7 +24,6 @@ For the most reliable experience, make sure you have the same version of PHP ins
     | python2      | Python 2.7.3    | 2.7.3     |
     | node04       | Node.js 0.4.12  | 0.4.12    |
     | node06       | Node.js 0.6.17  | 0.6.17    |
-    | erlangR14B02 | Erlang R14B02   | R14B02    |
     +--------------+-----------------+-----------+
 
 AppFog supports PHP with `Apache 2.2.22` and `mod_php`. You can take a closer look at the PHP and Apache configurations [here](http://phpinfo.aws.af.cm/info.php).

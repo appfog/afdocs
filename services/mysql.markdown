@@ -12,6 +12,8 @@ AppFog provides a MySQL service that's accessible to apps that are running on an
 
 The AppFog app deployment process can automatically configure your app to use the bound MySQL service. Check the doc page for your app's framework to learn more about auto-reconfiguration. 
 
+Note: AppFog apps should always close database connections and should not use persistent MySQL connections.
+
 ## The VCAP\_SERVICES Environment Variable {#vcap}
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. For apps that can't be automatically configured, you can find the information your app needs to connect to the database in this variable.

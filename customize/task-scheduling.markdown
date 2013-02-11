@@ -61,16 +61,15 @@ In this case, the start command is `ruby portland.rb`.
     $ af push portlandrules
     Would you like to deploy from the current directory? [Yn]:
     Detected a Standalone Application, is this correct? [Yn]:
-    1: erlangR14B02
-    2: java
-    3: node04
-    4: node06
-    5: php
-    6: python2
-    7: ruby18
-    8: ruby192
-    9: ruby193
-    Select Runtime [ruby18]: 7
+    1: java
+    2: node04
+    3: node06
+    4: php
+    5: python2
+    6: ruby18
+    7: ruby192
+    8: ruby193
+    Select Runtime [ruby18]: 6
     Selected ruby18
     Start Command: ruby portland.rb
     1: AWS US East - Virginia

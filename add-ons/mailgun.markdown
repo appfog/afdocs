@@ -11,7 +11,7 @@ In the "Add-ons" tab in your app console click "Install" for the Mailgun add-on.
 
 With the Mailgun add-on for PHP Fog, you get a free plan that includes: 
 
-* 300 messages per day
+* 200 messages per day
 * Real time reports and stats
 * Fully featured account
 * Temporary mailbox storage
@@ -21,6 +21,6 @@ If you need more than that, you can upgrade through Mailgun. Check out their pri
 
 ## Using MailGun
 
-To use Mailgun with your app check out the [Quick Start Guide](http://documentation.mailgun.net/quickstart.html) under the PHP tab.
+To use Mailgun with your app check out the [Quick Start Guide](http://documentation.mailgun.net/quickstart.html).
 
 For more extensive documentation, see the [User Manual](http://documentation.mailgun.net/user_manual.html).

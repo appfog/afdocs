@@ -21,7 +21,6 @@ description: "Code deployment made easy."
     * [Services](#services)
     * [Administration](#admin)
     * [System](#system)
-    * [Micro Cloud Foundry](#micro-cloud-foundry)
     * [Misc](#misc)
     * [Help](#help)
 
@@ -209,20 +208,6 @@ Finally from within your source code directory:
 <tr><td><code>runtimes                                                </code></td><td>Display the supported runtimes of the target system</td></tr>
 <tr><td><code>frameworks                                              </code></td><td>Display the recognized frameworks of the target system</td></tr>
 <tr><td><code>infras                                                  </code></td><td>Display the available infrastructures</td></tr>
-
-</table>
-
-### Micro Cloud Foundry {#micro-cloud-foundry}
-
-<table class="table table-bordered table-striped">
-
-<tr><td><code>micro status                                             </code></td><td>Display Micro Cloud Foundry VM status</td></tr>
-<tr><td><code>micro offline                                            </code></td><td>Configure Micro Cloud Foundry VM for offline mode</td></tr>
-<tr><td><code>micro online                                             </code></td><td>Configure Micro Cloud Foundry VM for online mode</td></tr>
-<tr><td><code>&nbsp;&nbsp;[--vmx file]                                 </code></td><td>Path to micro.vmx</td></tr>
-<tr><td><code>&nbsp;&nbsp;[--vmrun executable]                         </code></td><td>Path to vmrun executable</td></tr>
-<tr><td><code>&nbsp;&nbsp;[--password cleartext]                       </code></td><td>Cleartext password for guest VM vcap user</td></tr>
-<tr><td><code>&nbsp;&nbsp;[--save]                                     </code></td><td>Save cleartext password in ~/.af_micro</td></tr>
 
 </table>
 

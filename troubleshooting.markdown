@@ -12,6 +12,7 @@ Don't see your issue here? Try our [mailing list](https://groups.google.com/foru
 * [Error 402: App packaging failed: 'Failed synchronizing resource pool' on `af update`](#402-on-update)
 * [App stops by itself.](#app-stops)
 * [MySQL server has gone away](#mysql-gone)
+* [WordPress issues](#wordpress-issues)
 
 ## af cli login issues {#af-cli-login}
 
@@ -59,3 +60,13 @@ The most common reason for an app to crash is running out of memory.
     Mysql::Error: MySQL server has gone away
 
 This occurs when an app attempts to use persistent MySQL connections without closing them. AppFog apps should always close database connections and should not use persistent MySQL connections.
+
+## WordPress Issues {#wordpress-issues}
+
+Most common WordPress issues on AppFog stem from the fact that AppFog does not yet have a persistent file system. This means that any changes you make to the file system through a web interface, including any admin changes and content uploads, will be lost on the app's next start, stop, restart, deploy, or resource change. Because of this, you should make any changes to the file system on a local development environment and keep media assets and content uploads on an external storage system like Amazon's S3.
+
+Here are some of the issues this can cause:
+
+* White screen
+* Reversion back to default WordPress
+* Theme/plugin errors

@@ -63,4 +63,6 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
 
 ### Why does my app return a 510 error? {#spindown}
 
-In an effort to provide the best service possible, AppFog implements a feature that we refer to as "spindown". If your free app does not receive any traffic for one week, it will automatically be stopped. This lets us conserve memory so we can continue to offer great service to the apps that need it. You can restart your app using the [af command line tool](https://docs.appfog.com/getting-started/af-cli#app-ops) or the [AppFog web console](https://console.appfog.com/). Alternatively, apps on a [paid account](https://www.appfog.com/pricing/) will not be spun down.
+In an effort to provide the best service possible, AppFog implements a feature that we refer to as "spindown". If your free app does not receive any traffic for one week, it will automatically be stopped. This lets us conserve memory so we can continue to offer great service to the apps that need it. Once your app gets a request, our system will return a 510 error and restart your app in the background. While your app is spinning back up, we will return 510 errors, but this should take no more than a few seconds.
+
+Alternatively, apps on a [paid account](https://www.appfog.com/pricing/) will not be spun down.

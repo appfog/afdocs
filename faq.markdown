@@ -85,6 +85,6 @@ Alternatively, apps on a [paid account](https://www.appfog.com/pricing/) will no
 
 ### Why is my Wordpress site blank? {#wordpress}
 
-Because AppFog does not currently offer a persistent filesystem, problems can occur when files are uploaded through an application's admin console. In this case, it's likely that a theme or plugin was uploaded and enabled via the Wordpress admin console. When the app is restarted, any files not uploaded via that `af update` command will be gone, thus putting the application in an inconsistent state.
+Because AppFog does not currently offer a persistent filesystem, problems can occur when files are uploaded through an application's admin console. In this case, it's likely that a theme or plugin was uploaded and enabled via the Wordpress admin console. When the app is restarted, any files not uploaded via the `af update` command will be gone, thus putting the application in an inconsistent state.
 
 The recommended course of action here is to copy the desired theme or plugin files into the app directory on your local machine, update the app using the af command line tool, and then enable the theme/plugin via the admin console.

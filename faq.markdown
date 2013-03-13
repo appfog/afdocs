@@ -10,7 +10,6 @@ weight: 14
 * [Why does my app return a 429 Calm Down error?](#throttling)
 * [Why does my app return a 509 Bandwidth Exceeded error?](#bandwidth)
 * [Why does my app return a 510 In Progress error?](#spindown)
-* [Why is my Wordpress site blank?](#wordpress)
 
 ### How does billing work? {#billing}
 
@@ -82,9 +81,3 @@ This occurs when a free app exceeds its monthly bandwidth allowance. Please [upg
 In an effort to provide the best service possible, AppFog implements a feature that we refer to as "spindown". Inactive free applications may be suspended as determined by our administrator. This lets us conserve memory so we can continue to offer great service to the apps that need it. Your app will be started back up in the background when it receives a new request, and will return a 510 error until it's fully started.
 
 Alternatively, apps on a [paid account](https://www.appfog.com/pricing/) will not be spun down.
-
-### Why is my Wordpress site blank? {#wordpress}
-
-Because AppFog does not currently offer a persistent filesystem, problems can occur when files are uploaded through an application's admin console. In this case, it's likely that a theme or plugin was uploaded and enabled via the Wordpress admin console. When the app is restarted, any files not uploaded via the `af update` command will be gone, thus putting the application in an inconsistent state.
-
-The recommended course of action here is to copy the desired theme or plugin files into the app directory on your local machine, update the app using the af command line tool, and then enable the theme/plugin via the admin console.

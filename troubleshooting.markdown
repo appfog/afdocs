@@ -7,12 +7,27 @@ Here are some of the most common issues and how to deal with them.
 
 Don't see your issue here? Try our [mailing list](https://groups.google.com/forum/#!forum/appfog-users) or [email our support desk](mailto:support@appfog.com).
 
+* [Crashing app (502/503/404)](#crashing)
 * [af cli login issues](#af-cli-login)
 * [Error (JSON 502) on `af update`](#502-on-update)
 * [Error 402: App packaging failed: 'Failed synchronizing resource pool' on `af update`](#402-on-update)
 * [App stops by itself.](#app-stops)
 * [MySQL server has gone away](#mysql-gone)
 * [WordPress issues](#wordpress-issues)
+
+## Crashing app (502/503/404)] {#crashing}
+
+If your app is at less than 100% "Running" status or you're seeing the AppFog error page, it means one or more instances of your app have crashed. You can check this status with the following command:
+
+    $ af crashes <appname>
+
+You can get your app's crashlogs with the following:
+
+    $ af crashlogs <appname>
+
+(Or if your app has multiple instances:)
+
+    $ af crashlogs --all <appname>
 
 ## af cli login issues {#af-cli-login}
 
@@ -52,6 +67,10 @@ An app stopping by itself generally indicates that it has crashed. When your app
 And you can check the crash logs:
     
     $ af crashlogs <appname>
+
+If your app has more than once instance:
+
+    $ af crashlogs <appname> --all
 
 The most common reason for an app to crash is running out of memory.
 

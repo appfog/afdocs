@@ -91,7 +91,7 @@ Enter the following at the top of your `app.js` file:
 
 	var logentries = require('node-logentries');
 	var log = logentries.logger({
-		token:'process.env.LOGENTRIES_TOKEN'
+		token:process.env.LOGENTRIES_TOKEN
 	});
 
 Lastly, write some log events:

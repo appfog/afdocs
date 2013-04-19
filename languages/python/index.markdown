@@ -37,7 +37,11 @@ By convention, the entry point for non-django applications should be in a file n
 
 # Dependencies {#dependencies}
 
-AppFog uses `pip` (1.1) and `virtualenv` to deploy apps. You can define the package prequisites of your Python app in a top-level [requirements.txt](http://www.pip-installer.org/en/latest/requirements.html#the-requirements-file-format) file, which `pip` uses to install dependencies. Dependencies will be downloaded and re-cached into your package whenever you update your app. In cases where your requirements take an exceptionally long time to download or compile, you have as an option the ability to bundle your requirements along with your application code. For more details, see the [pip docs](http://www.pip-installer.org/en/1.1/usage.html#bundles). 
+AppFog uses `pip` (1.1) and `virtualenv` to deploy apps. You can define the package prequisites of your Python app in a top-level [requirements.txt](http://www.pip-installer.org/en/latest/requirements.html#the-requirements-file-format) file, which `pip` uses to install dependencies. Dependencies will be downloaded and re-cached into your package whenever you update your app. In cases where your requirements take an exceptionally long time to download or compile, you have as an option the ability to bundle your requirements along with your application code, which will speed up the staging process for your app.
+
+    $ pip bundle -r requirements.txt app.pybundle
+
+For more details, see the [pip docs](http://www.pip-installer.org/en/1.1/usage.html#bundles). 
     
 ## Limitations
 

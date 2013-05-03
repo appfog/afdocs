@@ -125,7 +125,7 @@ Then, if you don't already have it, download log4j from <a href="https://logging
 
 Configuration
 -------------
-The last file you need is the log4j config which you can download <a href="https://github.com/logentries/le_java/raw/master/log4j.xml">here</a>. Be sure to place this on your classpath. A simple way to do this is to put it in your src folder.
+The last file you need is the log4j config which you can download <a href="https://github.com/logentries/le_java/raw/master/configFiles/log4j.xml">here</a>. Be sure to place this on your classpath. A simple way to do this is to put it in your src folder.
 
 Lastly, write some log events, below is a sample Java class configured to use log4j.
 

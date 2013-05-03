@@ -100,11 +100,32 @@ Lastly, write some log events:
     
 ## Using Logentries from Java {#logentries-java}
 
-The Logentries Java plugin is an appender for log4j. Download the plugin .jar file <a href="https://github.com/logentries/le_java/raw/master/lib/LogentriesAppender-1.1.7.jar">here</a> and place it in your `WEB-INF/lib` folder.
+Maven Users
+------------
+Place this in your pom.xml:
+
+	<dependencies>
+  		<dependency>
+    		<groupId>log4j</groupId>
+    		<artifactId>log4j</artifactId>
+    		<version>1.2.17</version>
+  		</dependency>
+  		<dependency>
+    		<groupId>com.logentries</groupId>
+    		<artifactId>logentries-appender</artifactId>
+    		<version>1.1.13</version>
+  		</dependency>
+	</dependencies>
+
+Manual Install
+--------------
+Download the plugin .jar file <a href="http://search.maven.org/remotecontent?filepath=com/logentries/logentries-appender/1.1.13/logentries-appender-1.1.13.jar">here</a> and place it in your `WEB-INF/lib` folder.
 
 Then, if you don't already have it, download log4j from <a href="https://logging.apache.org/log4j/1.2/download.html">here</a> and place it in your `WEB-INF/lib` folder.
 
-The last file you need is the log4j config which you can download <a href="https://github.com/logentries/le_java/raw/master/log4j.xml">here</a>. Be sure to place this on your classpath. A simple way to do this is to put it in your src folder.
+Configuration
+-------------
+The last file you need is the log4j config which you can download <a href="https://github.com/logentries/le_java/raw/master/configFiles/log4j.xml">here</a>. Be sure to place this on your classpath. A simple way to do this is to put it in your src folder.
 
 Lastly, write some log events, below is a sample Java class configured to use log4j.
 

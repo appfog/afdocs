@@ -113,13 +113,13 @@ Place this in your pom.xml:
   		<dependency>
     		<groupId>com.logentries</groupId>
     		<artifactId>logentries-appender</artifactId>
-    		<version>1.1.15</version>
+    		<version>RELEASE</version>
   		</dependency>
 	</dependencies>
 
 Manual Install
 --------------
-Download the plugin .jar file <a href="http://search.maven.org/remotecontent?filepath=com/logentries/logentries-appender/1.1.15/logentries-appender-1.1.15.jar">here</a> and place it in your `WEB-INF/lib` folder.
+Download the plugin .jar file <a href="search.maven.org/#search|gav|1|g%3A%22com.logentries%22%20AND%20a%3A%22logentries-appender%22">here</a> and place it in your `WEB-INF/lib` folder.
 
 Then, if you don't already have it, download log4j from <a href="https://logging.apache.org/log4j/1.2/download.html">here</a> and place it in your `WEB-INF/lib` folder.
 

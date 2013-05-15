@@ -16,7 +16,7 @@ Don't see your issue here? Try our [mailing list](https://groups.google.com/foru
 * [MySQL server has gone away](#mysql-gone)
 * [WordPress issues](#wordpress-issues)
 
-## Crashing app (502/503/404)] {#crashing}
+## Crashing app (502/503/404) {#crashing}
 
 If your app is at less than 100% "Running" status or you're seeing the AppFog error page, it means one or more instances of your app have crashed. You can check this status with the following command:
 

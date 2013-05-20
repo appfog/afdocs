@@ -108,7 +108,6 @@ Finally from within your source code directory:
 <tr><td><code>push [appname] --instances &lt;N>                       </code></td><td>Set the expected number <code>&lt;N></code> of instances</td></tr>
 <tr><td><code>push [appname] --mem M                                  </code></td><td>Set the memory reservation for the application</td></tr>
 <tr><td><code>push [appname] --runtime RUNTIME                        </code></td><td>Set the runtime to use for the application</td></tr>
-<tr><td><code>push [appname] --debug [MODE]                           </code></td><td>Push application and start in a debug mode</td></tr>
 <tr><td><code>push [appname] --no-start                               </code></td><td>Do not auto-start the application</td></tr>
 
 </table>
@@ -117,9 +116,9 @@ Finally from within your source code directory:
 
 <table class="table table-bordered table-striped">
 
-<tr><td><code>start &lt;appname> [--debug [MODE]]                     </code></td><td>Start the application</td></tr>
+<tr><td><code>start &lt;appname>                                      </code></td><td>Start the application</td></tr>
 <tr><td><code>stop  &lt;appname>                                      </code></td><td>Stop the application</td></tr>
-<tr><td><code>restart &lt;appname> [--debug [MODE]]                   </code></td><td>Restart the application</td></tr>
+<tr><td><code>restart &lt;appname>                                    </code></td><td>Restart the application</td></tr>
 <tr><td><code>delete &lt;appname>                                     </code></td><td>Delete the application</td></tr>
 <tr><td><code>clone &lt;src-app> &lt;dest-app> [infra]                </code></td><td>Clone the application and services</td></tr>
 
@@ -129,7 +128,7 @@ Finally from within your source code directory:
 
 <table class="table table-bordered table-striped">
 
-<tr><td><code>update &lt;appname> [--path,--debug [MODE]]             </code></td><td>Update the application bits</td></tr>
+<tr><td><code>update &lt;appname> [--path]                            </code></td><td>Update the application bits</td></tr>
 <tr><td><code>mem &lt;appname> [memsize]                              </code></td><td>Update the memory reservation for an application</td></tr>
 <tr><td><code>map &lt;appname> &lt;url>                               </code></td><td>Register the application to the url</td></tr>
 <tr><td><code>unmap &lt;appname> &lt;url>                             </code></td><td>Unregister the application from the url</td></tr>

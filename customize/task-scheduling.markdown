@@ -75,8 +75,7 @@ In this case, the start command is `ruby portland.rb`.
     1: AWS US East - Virginia
     2: AWS EU West - Ireland
     3: AWS Asia SE - Singapore
-    4: Rackspace AZ 1 - Dallas
-    5: HP AZ 2 - Las Vegas
+    4: HP AZ 2 - Las Vegas
     Select Infrastructure: 1
     Application Deployed URL [None]:
     Memory reservation (128M, 256M, 512M, 1G, 2G) [128M]:
@@ -93,7 +92,7 @@ In this case, the start command is `ruby portland.rb`.
     Staging Application 'portlandrules': OK
     Starting Application 'portlandrules': OK
 
-At this point, you can test whether it's working by checking the app's logs: 
+At this point, you can test whether it's working by checking the app's logs:
 
     $ af logs portlandrules
     ====> /logs/staging.log <====
@@ -111,4 +110,4 @@ At this point, you can test whether it's working by checking the app's logs:
 
 ## Python {#task-scheduling-python}
 
-An alternative in Python is [Advanced Python Scheduler](http://packages.python.org/APScheduler/). 
+An alternative in Python is [Advanced Python Scheduler](http://packages.python.org/APScheduler/).

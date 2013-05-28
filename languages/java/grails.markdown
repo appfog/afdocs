@@ -52,7 +52,7 @@ The MongoDB plug-in for Grails allows you to map GORM entities to MongoDB Collec
 
 ### Deployment {#deployment}
 
-Deploying your Grails app to AppFog is simple. Just generate your `.war` file, then push: 
+Deploying your Grails app to AppFog is simple. Just generate your `.war` file, then push:
 
     $ grails prod war
     | Done creating WAR target/af-java-grails-example-0.1.war
@@ -64,7 +64,6 @@ Deploying your Grails app to AppFog is simple. Just generate your `.war` file, t
     1: AWS US East - Virginia
     2: AWS EU West - Ireland
     3: AWS Asia SE - Singapore
-    4: Rackspace AZ 1 - Dallas
     Select Infrastructure: 1
     Application Deployed URL [grails-example.aws.af.cm]:
     Memory reservation (128M, 256M, 512M, 1G, 2G) [512M]:

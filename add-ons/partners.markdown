@@ -1,14 +1,14 @@
 ---
 title: Add-on Partnership
 weight: 100
-description: Become an add-on partner. 
+description: Become an add-on partner.
 ---
 
-AppFog provides your app with extra functionality by partnering with various third-party services. You can add everything from logs to databases to powerful metrics to your app with a single click . 
+AppFog provides your app with extra functionality by partnering with various third-party services. You can add everything from logs to databases to powerful metrics to your app with a single click .
 
 ## How Add-ons Work
 
-Our add-on partners can create provisioning services that are compatible with AppFog. 
+Our add-on partners can create provisioning services that are compatible with AppFog.
 
 * [Provisioning Workflow](#provision)
 * [API Callback Spec](#callback)
@@ -21,7 +21,7 @@ Our add-on partners can create provisioning services that are compatible with Ap
 ## Provisioning Workflow {#provision}
 
 1. The user installs the add-on from the AppFog app console. This sends a request to the add-on partner to provision the service.
-2. AppFog makes a `POST` request to https://partner.com/appfog/resources. It passes in the `customer_id` (email address), plan, and the `callback_url`. 
+2. AppFog makes a `POST` request to https://partner.com/appfog/resources. It passes in the `customer_id` (email address), plan, and the `callback_url`.
 3. The partner returns the local ID of the newly created resource. If it's able to provision the resource synchronously, the config parameter can be set. It may not be possible to provision the resource synchronously, so the config can be empty.
 4. If the config is empty, the user sees a message stating that the resource is waiting to be provisioned.
 5. Once the resource is provisioned, the partner makes a call to the callback URL, as specified in the initial provisioning call, and passes the new config parameters to be set.
@@ -34,13 +34,13 @@ Our add-on partners can create provisioning services that are compatible with Ap
 This is a method implemented by the AppFog services. It is used to update the configuration values for a given resource as provided by the add-on partner. The configuration parameters can be specified by the partner when the provisioning call is made by AppFog; however, if the call takes a while to process the partner can use this method to update those parameters later.
 
 PUT to path as defined in `callback_url` on provisioning call.
-       
+
 Request Body:
 
     {
-        "config":{"VAR_XYZ":"http://partner.com/5678ADFD"} 
+        "config":{"VAR_XYZ":"http://partner.com/5678ADFD"}
     }
-        
+
 Response:
 
     200 OK
@@ -51,44 +51,44 @@ Response:
 ### Example Provisioning Request
 
 Request: `POST /phpfog/resources`
-  
+
 Request Body:
 
     {
         "customer_id":"user@email.com",
         "plan":"free",
         "callback_url":"https://path_to_resource",
-        "options":{} 
+        "options":{}
     }
-       
+
 Response Body:
 
     {
         "id":789,
         "config":{"ADDONNAME_VAR1":"some configuration value"},
-        "message":"" 
+        "message":""
     }
-    
+
 ### Request Fields
 
 * `customer_id` - The identification of the user in the AppFog system (i.e. email address).
 * `plan` - The plan being provisioned. This will be "free" for the moment; however, in the future this can be higher-tier plans once they're supported.
 * `callback_url` - This is the address of the resource in AppFog's system. The provider can use this to update the configuration for this resource (e.g. during provisioning).
 * `options` - This contains additional options for the specific service. It's a placeholder for now and AppFog will not send these requests yet.
- 
+
 ### Response Fields
 
-* `id` - This is the ID of the resource in the provider's system. 
+* `id` - This is the ID of the resource in the provider's system.
 * `config` - The required key/value pairs of parameters required to provision the service. The manifest specifies what keys are allowed. Configuration paramters are required, but the particular configuration parameters up to the provider. They can also be updated later using the `callback_url` to update the config.
 * `message` - This is a message to the system. It's ignored for now.
 
 ### Example Deprovisioning Request
 
 Request: `DELETE /phpfog/resources/:id`
-      
+
 Request Body: none
 
-Response: 
+Response:
 
     200 OK
 
@@ -105,7 +105,7 @@ Only an HTTP response status is required.
 
 All calls to both the provisioning API on the partners service as well as the AppFog callback service must be authenticated using `HTTP Basic Auth`.
 
-All requests must be completed over `HTTPS`. 
+All requests must be completed over `HTTPS`.
 
 The manifest file specifies the username and password to be used for all of these calls. The "`id`" in the manifest is the username, the "`api_password`" is the password.
 
@@ -171,7 +171,7 @@ It's up to you, the add-on provider, to take advantage of region information in 
 
 If your add-on isn't latency-sensitive (e.g. email, etc.), it's probably safe to ignore it. If your add-on is latency sensitive and you're currently running your service in, for example, AWS EU-West, you should provision services only for apps specifying that region.
 
-If you're not running infrastructure in the same infrastructure as the app and you don't think your add-on is usable across data centers (or maybe you don't want to incur ingress/outgress bandwidth charges), you can respond with `HTTP 422` and a message in the response body, something like this: 
+If you're not running infrastructure in the same infrastructure as the app and you don't think your add-on is usable across data centers (or maybe you don't want to incur ingress/outgress bandwidth charges), you can respond with `HTTP 422` and a message in the response body, something like this:
 
     { "message": "eu-west not supported, sorry" }
 
@@ -181,7 +181,6 @@ Here's a list of the current possible parameter values:
 * `'amazon-web-services::ap-southeast-1'`
 * `'amazon-web-services::eu-west-1'`
 * `'hp-openstack::us-az1'`
-* `'rackspace::us-az1'`
 
 ## Single Sign-on {#sso}
 
@@ -190,11 +189,11 @@ Once a resource is fully provisioned, a "Manage" button will appear in the AppFo
 After the user clicks the button, they will be redirected to the following generated `URL`:
 
     https://partner.com/appfog/resources/:id?token=:token&timestamp=:timestamp
-  
+
 
 The `:id` is the `id` of the resource which was defined in the response to the provisioning call for creating this resource.
 
-The token is defined as a combination of the `id`, `salt`, and `timestamp`. 
+The token is defined as a combination of the `id`, `salt`, and `timestamp`.
 
 The salt is the "`sso_salt`" variable as defined in the manifest.
 

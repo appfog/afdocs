@@ -85,7 +85,7 @@ AWS Asia Southeast:
 
 HP Openstack AZ 2 (BETA -- SUBJECT TO CHANGE):
 
-	15.185.162.179
-	15.185.166.58
+    15.185.166.79
+    15.185.162.168
 
 That's it! DNS propagation can take anywhere from a few minutes to 48 hours depending on your location, but once that's finished your app should resolve at your new custom domain.

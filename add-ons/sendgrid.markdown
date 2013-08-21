@@ -7,7 +7,7 @@ weight: 20
 
 ## Install SendGrid
 
-In the "Add-ons" tab on your app console click "Install" for the SendGrid add-on. Thatâ€™s it!
+In the "Add-ons" tab on your app console click "Install" for the SendGrid add-on. That's it!
 
 Once SendGrid has been added, you will notice new enironment variables: in the `Env variables` tab on your app console: `SENDGRID_USERNAME`, `SENDGRID_PASSWORD`, `SENDGRID_SMTP_HOST`.
 
@@ -24,179 +24,164 @@ Next, setup your app to start using the SendGrid add-on. In the following sectio
 You can quickly get started with SendGrid using Ruby on Rails ActionMailer.
 You will need to edit the ActionMailer settings in config/environment.rb to use SendGrid credentials from environment variables:
 
-`
-ActionMailer::Base.smtp_settings = {
-  :address => ENV["SENDGRID_SMTP_HOST"],
-  :port => '587',
-  :authentication => :plain,
-  :user_name => ENV["SENDGRID_USERNAME"],
-  :password => ENV["SENDGRID_PASSWORD"],
-  :domain => 'yourdomain.com',
-  :enable_starttls_auto => true
-}
-`
+    ActionMailer::Base.smtp_settings = {
+      :address => ENV["SENDGRID_SMTP_HOST"],
+      :port => '587',
+      :authentication => :plain,
+      :user_name => ENV["SENDGRID_USERNAME"],
+      :password => ENV["SENDGRID_PASSWORD"],
+      :domain => 'yourdomain.com',
+      :enable_starttls_auto => true
+    }
 
 ## Java {#sendgrid-java}
 
 This Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail](https://java.net/projects/javamail/pages/Home).
 
-`
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.mail.Authenticator;
-import javax.mail.PasswordAuthentication;
-import java.util.Properties;
 
-public class SimpleMail {
-
-    private static final String SMTP_HOST_NAME = System.getenv("SENDGRID_SMTP_HOST");
-    private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
-    private static final String SMTP_AUTH_PWD  = System.getenv("SENDGRID_PASSWORD");
-
-    public static void main(String[] args) throws Exception{
-       new SimpleMail().test();
-    }
-
-    public void test() throws Exception{
-        Properties props = new Properties();
-        props.put(“mail.transport.protocol”, “smtp”);
-        props.put(“mail.smtp.host”, SMTP_HOST_NAME);
-        props.put(“mail.smtp.port”, 587);
-        props.put(“mail.smtp.auth”, “true”);
-
-        Authenticator auth = new SMTPAuthenticator();
-        Session mailSession = Session.getDefaultInstance(props, auth);
-        // uncomment for debugging infos to stdout
-        // mailSession.setDebug(true);
-        Transport transport = mailSession.getTransport();
-
-        MimeMessage message = new MimeMessage(mailSession);
-
-        Multipart multipart = new MimeMultipart(“alternative”);
-
-        BodyPart part1 = new MimeBodyPart();
-        part1.setText(“This is multipart mail and u read part1……”);
-
-        BodyPart part2 = new MimeBodyPart();
-        part2.setContent(”<b>This is multipart mail and u read part2……</b>”, “text/html”);
-
-        multipart.addBodyPart(part1);
-        multipart.addBodyPart(part2);
-
-        message.setContent(multipart);
-        message.setFrom(new InternetAddress(“me@myhost.com”));
-        message.setSubject(“This is the subject”);
-        message.addRecipient(Message.RecipientType.TO,
-             new InternetAddress(“someone@somewhere.com”));
-
-        transport.connect();
-        transport.sendMessage(message,
-            message.getRecipients(Message.RecipientType.TO));
-        transport.close();
-    }
-
-    private class SMTPAuthenticator extends javax.mail.Authenticator {
-        public PasswordAuthentication getPasswordAuthentication() {
-           String username = SMTP_AUTH_USER;
-           String password = SMTP_AUTH_PWD;
-           return new PasswordAuthentication(username, password);
+    import javax.mail.*;
+    import javax.mail.internet.*;
+    import javax.mail.Authenticator;
+    import javax.mail.PasswordAuthentication;
+    import java.util.Properties;
+    
+    public class SimpleMail {
+    
+        private static final String SMTP_HOST_NAME = System.getenv("SENDGRID_SMTP_HOST");
+        private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
+        private static final String SMTP_AUTH_PWD  = System.getenv("SENDGRID_PASSWORD");
+    
+        public static void main(String[] args) throws Exception{
+           new SimpleMail().test();
+        }
+    
+        public void test() throws Exception{
+            Properties props = new Properties();
+            props.put('mail.transport.protocol' 'smtp';
+            props.put('mail.smtp.host', SMTP_HOST_NAME);
+            props.put('mail.smtp.port', 587);
+            props.put(ï¿½mail.smtp.authï¿½, ï¿½trueï¿½);
+    
+            Authenticator auth = new SMTPAuthenticator();
+            Session mailSession = Session.getDefaultInstance(props, auth);
+            // uncomment for debugging infos to stdout
+            // mailSession.setDebug(true);
+            Transport transport = mailSession.getTransport();
+    
+            MimeMessage message = new MimeMessage(mailSession);
+    
+            Multipart multipart = new MimeMultipart(ï¿½alternativeï¿½);
+    
+            BodyPart part1 = new MimeBodyPart();
+            part1.setText(ï¿½This is multipart mail and u read part1ï¿½ï¿½ï¿½);
+    
+            BodyPart part2 = new MimeBodyPart();
+            part2.setContent(ï¿½<b>This is multipart mail and u read part2ï¿½ï¿½</b>ï¿½, ï¿½text/htmlï¿½);
+    
+            multipart.addBodyPart(part1);
+            multipart.addBodyPart(part2);
+    
+            message.setContent(multipart);
+            message.setFrom(new InternetAddress(ï¿½me@myhost.comï¿½));
+            message.setSubject(ï¿½This is the subjectï¿½);
+            message.addRecipient(Message.RecipientType.TO,
+                 new InternetAddress(ï¿½someone@somewhere.comï¿½));
+    
+            transport.connect();
+            transport.sendMessage(message,
+                message.getRecipients(Message.RecipientType.TO));
+            transport.close();
+        }
+    
+        private class SMTPAuthenticator extends javax.mail.Authenticator {
+            public PasswordAuthentication getPasswordAuthentication() {
+               String username = SMTP_AUTH_USER;
+               String password = SMTP_AUTH_PWD;
+               return new PasswordAuthentication(username, password);
+            }
         }
     }
-}
-`
+
 
 ## PHP {#sendgrid-php}
 
 You can use [this](https://github.com/sendgrid/sendgrid-php) library to send emails through SendGrid using PHP.
 More information about the library can be found [here](http://sendgrid.com/docs/Code_Examples/php.html).
 
-`
-include 'path/to/sendgrid-php/SendGrid_loader.php';
-$sendgrid = new SendGrid($_ENV['SENDGRID_USERNAME'], $_ENV['SENDGRID_PASSWORD']);
-$mail = new SendGrid\Mail();
-$mail->
-  addTo('foo@bar.com')->
-  setFrom('me@bar.com')->
-  setSubject('Subject goes here')->
-  setText('Hello World!')->
-  setHtml('<strong>Hello World!</strong>');
-`
+    include 'path/to/sendgrid-php/SendGrid_loader.php';
+    $sendgrid = new SendGrid($_ENV['SENDGRID_USERNAME'], $_ENV['SENDGRID_PASSWORD']);
+    $mail = new SendGrid\Mail();
+    $mail->
+      addTo('foo@bar.com')->
+      setFrom('me@bar.com')->
+      setSubject('Subject goes here')->
+      setText('Hello World!')->
+      setHtml('<strong>Hello World!</strong>');
+
 
 For sending emails using SMTP:
 
-`
-$sendgrid->
-smtp->
-  send($mail);
-`
+    $sendgrid->
+    smtp->
+      send($mail);
+
 
 For sending emails using the Web API:
 
-`
-$sendgrid->
-web->
-  send($mail);
-`
+    $sendgrid->
+    web->
+      send($mail);
+
 
 ## Node.js {#sendgrid-node}
 
 SendGrid has a Node.js package that is written and maintained by two core engineers. The code is open source and available on [Github](https://github.com/sendgrid/sendgrid-nodejs).
 
 package.json
-`
-{
-  "name": "node-sendgrid-example",
-  "version": "0.0.1",
-  "dependencies": {
-    "express": "2.2.0",
-    "sendgrid": "0.2.1",
-  }
-}
-`
+
+    {
+      "name": "node-sendgrid-example",
+      "version": "0.0.1",
+      "dependencies": {
+        "express": "2.2.0",
+        "sendgrid": "0.2.1",
+      }
+    }
 
 program.js
-`
-var SendGrid = require('sendgrid').SendGrid;
-var sendgrid = new SendGrid(
-  process.env.SENDGRID_USERNAME,
-  process.env.SENDGRID_PASSWORD
-  )
-sendgrid.send({
-  to: 'recipient@example.com',
-  from: 'sender@example.com',
-  subject: 'Hello World',
-  text: 'Sending email with NodeJS through SendGrid!'
-});
-`
-Full documentation of all the features of SendGrid’s Node.js package can be found on [Github](https://github.com/sendgrid/sendgrid-nodejs).
+
+    var SendGrid = require('sendgrid').SendGrid;
+    var sendgrid = new SendGrid(
+      process.env.SENDGRID_USERNAME,
+      process.env.SENDGRID_PASSWORD
+      )
+    sendgrid.send({
+      to: 'recipient@example.com',
+      from: 'sender@example.com',
+      subject: 'Hello World',
+      text: 'Sending email with NodeJS through SendGrid!'
+    });
+
+Full documentation of all the features of SendGridï¿½s Node.js package can be found on [Github](https://github.com/sendgrid/sendgrid-nodejs).
 
 ## Python {#sendgrid-python}
 
 You can use [SendGrid Python Library](https://github.com/sendgrid/sendgrid-python):
 This library allows you to quickly and easily send emails through SendGrid using Python.
 
-`
-import os
-import sendgrid
+    import os
+    import sendgrid
+    s = sendgrid.Sendgrid(os.environ.get('SENDGRID_USERNAME'), os.environ.get('SENDGRID_PASSWORD'), secure=True)
+    message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext message body", "HTML message body")
+    message.add_to("someone@example.com", "John Doe")
+    
+use the Web API to send your message
 
-# make a secure connection to SendGrid
-s = sendgrid.Sendgrid(os.environ.get('SENDGRID_USERNAME'), os.environ.get('SENDGRID_PASSWORD'), secure=True)
+    s.web.send(message)
 
-# make a message object
-message = sendgrid.Message("from@mydomain.com", "message subject", "plaintext message body",
-    "HTML message body")
-# add a recipient
-message.add_to("someone@example.com", "John Doe")
+or use the SMTP API to send your message
 
-# use the Web API to send your message
-s.web.send(message)
-`
-
-# or use the SMTP API to send your message
-
-`
-s.smtp.send(message)
-`
+    s.smtp.send(message)
 
 ## Dashboard
 

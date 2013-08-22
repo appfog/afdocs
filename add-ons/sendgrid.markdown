@@ -9,7 +9,7 @@ weight: 20
 
 In the "Add-ons" tab on your app console click "Install" for the SendGrid add-on. That's it!
 
-Once SendGrid has been added, you will notice new enironment variables: in the `Env variables` tab on your app console: `SENDGRID_USERNAME`, `SENDGRID_PASSWORD`, `SENDGRID_SMTP_HOST`.
+Once SendGrid has been added, you will notice new environment variables: in the `Env variables` tab on your app console: `SENDGRID_USERNAME`, `SENDGRID_PASSWORD`, `SENDGRID_SMTP_HOST`.
 
 Next, setup your app to start using the SendGrid add-on. In the following sections we have documented the interfaces with several languages and frameworks supported by AppFog.
 
@@ -22,7 +22,7 @@ Next, setup your app to start using the SendGrid add-on. In the following sectio
 ## Ruby on Rails {#sendgrid-rails}
 
 You can quickly get started with SendGrid using Ruby on Rails ActionMailer.
-You will need to edit the ActionMailer settings in config/environment.rb to use SendGrid credentials from environment variables:
+You will need to edit the ActionMailer settings in `config/environment.rb` to use SendGrid credentials from environment variables:
 
     ActionMailer::Base.smtp_settings = {
       :address => ENV["SENDGRID_SMTP_HOST"],
@@ -46,7 +46,7 @@ This Java program will build a multi-part MIME email and send it through SendGri
         
         public class SimpleMail {
         
-            private static final String SMTP_HOST_NAME = "smtp.sendgrid.net";
+            private static final String SMTP_HOST_NAME = System.getenv("SENDGRID_SMTP_HOST");
             private static final String SMTP_AUTH_USER = System.getenv("SENDGRID_USERNAME");
             private static final String SMTP_AUTH_PWD  = System.getenv("SENDGRID_PASSWORD");
         
@@ -153,7 +153,7 @@ program.js
     var sendgrid = new SendGrid(
       process.env.SENDGRID_USERNAME,
       process.env.SENDGRID_PASSWORD
-      )
+    )
     sendgrid.send({
       to: 'recipient@example.com',
       from: 'sender@example.com',

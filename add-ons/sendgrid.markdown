@@ -1,6 +1,6 @@
 ---
 title: SendGrid
-weight: 20
+weight: 18 
 ---
 
 [SendGrid's](https://sendgrid.com) cloud-based email infrastructure relieves businesses of the cost and complexity of maintaining custom email systems. SendGrid provides reliable delivery, scalability and real-time analytics along with flexible APIs that make custom integration a breeze.

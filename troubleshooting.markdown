@@ -5,7 +5,7 @@ weight: 9
 
 Here are some of the most common issues and how to deal with them. 
 
-Don't see your issue here? Try our [mailing list](https://groups.google.com/forum/#!forum/appfog-users) or [email our support desk](mailto:support@appfog.com).
+Don't see your issue here? Try our [mailing list](https://groups.google.com/forum/#!forum/appfog-users) or contact support at [support.appfog.com](https://support.appfog.com).
 
 * [Crashing app (502/503/404)](#crashing)
 * [af cli login issues](#af-cli-login)

@@ -178,7 +178,7 @@ Full documentation of all the features of SendGrid's Node.js package can be foun
 Before start writing the code you need to copy the [SendGrid Python library](https://github.com/sendgrid/sendgrid-python/tree/master/sendgrid) into your project by placing the files in a sendgrid sub-directory. When you import this library into your app you'll be able to create SendGrid instances and send mail with simple commands.
 This library allows you to quickly and easily send emails through SendGrid using Python.
 
-At the top of your app's .py file, import the Sendgrid library:
+At the top of your app's .py file, import the sendgrid library:
 
     import sendgrid
 
@@ -187,7 +187,10 @@ Now, from within your app, you can send email with the following few lines:
     # make a secure connection to SendGrid
     s = sendgrid.Sendgrid(os.environ.get('SENDGRID_USERNAME'), os.environ.get('SENDGRID_PASSWORD'), secure=True)
     # make a message object
-    message = sendgrid.Message("from@mydomain.com", "message subject1111", "plaintext message body","<strong>HTML message body</strong>")
+    message = sendgrid.Message("from@mydomain.com",
+                               "message subject1111",
+                               "plaintext message body",
+                               "<strong>HTML message body</strong>")
     # add a recipient
     message.add_to("laurentiu.craciun@sendgrid.com", "John Doe")
 

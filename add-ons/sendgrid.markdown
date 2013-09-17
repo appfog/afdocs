@@ -136,29 +136,39 @@ For sending emails using the Web API:
 
 SendGrid has a Node.js package that is written and maintained by two core engineers. The code is open source and available on [Github](https://github.com/sendgrid/sendgrid-nodejs).
 
-package.json
+Add the following settings in package.json file
 
     {
       "name": "node-sendgrid-example",
       "version": "0.0.1",
       "dependencies": {
-        "express": "2.2.0",
-        "sendgrid": "0.2.1",
+        "express": "3.1.x",
+        "sendgrid": "0.3.0-rc.1.7"
+      },
+      "engines": {
+        "node": ">= 0.4.7"
       }
     }
 
-program.js
+Install SendGrid locally with the following command: `npm install`
 
-    var SendGrid = require('sendgrid').SendGrid;
-    var sendgrid = new SendGrid(
+To begin using this library, initialize the sendgrid object with your SendGrid credentials:
+
+    var sendgrid  = require('sendgrid')(
       process.env.SENDGRID_USERNAME,
       process.env.SENDGRID_PASSWORD
-    )
+    );
+
+Send the email.
+
     sendgrid.send({
-      to: 'recipient@example.com',
+      to: 'example@example.com',
       from: 'sender@example.com',
       subject: 'Hello World',
       text: 'Sending email with NodeJS through SendGrid!'
+    }, function(err, json) {
+      if (err) { return console.error(err); }
+      console.log(json);
     });
 
 Full documentation of all the features of SendGrid's Node.js package can be found on [Github](https://github.com/sendgrid/sendgrid-nodejs).

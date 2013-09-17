@@ -192,7 +192,7 @@ Now, from within your app, you can send email with the following few lines:
                                "plaintext message body",
                                "<strong>HTML message body</strong>")
     # add a recipient
-    message.add_to("laurentiu.craciun@sendgrid.com", "John Doe")
+    message.add_to("someone@example.com", "John Doe")
 
 use the Web API to send your message
 

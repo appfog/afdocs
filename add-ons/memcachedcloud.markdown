@@ -195,7 +195,7 @@ Include the class in your project and configure a connection to your Memcached C
 ## Memcached Cloud Dashboard
 Our dashboard displays all of the performance and usage metrics for your Memcached Cloud service on a single screen, as shown in the following screenshot:
 
-![Dashboard](https://s3.amazonaws.com/memcached-cloud-docs/appfog+Memcached+Logo.JPG)
+<img src="https://s3.amazonaws.com/memcached-cloud-docs/appfog+Memcached+Logo.JPG" style="width:750px;">
 
 To access your Memcached Cloud dashboard, simply click the "Manage" button of your Memcached Cloud add-on in the "Add-ons" tab on your app console.
 

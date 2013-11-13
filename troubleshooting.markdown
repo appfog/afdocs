@@ -9,7 +9,8 @@ Don't see your issue here? Try our [mailing list](https://groups.google.com/foru
 
 * [Crashing app (502/503/404)](#crashing)
 * [af cli login issues](#af-cli-login)
-* [Error (JSON 502) on `af update`](#502-on-update)
+* [af cli installation issues](#af-cli-install-issues)
+* [Error (JSON 502) on  `af update`](#502-on-update)
 * [Error 402: App packaging failed: 'Failed synchronizing resource pool' on `af update`](#402-on-update)
 * [App stops by itself.](#app-stops)
 * [Missing logs](#af-logs-restart)
@@ -36,6 +37,36 @@ If you can log into the web console, but you're running into issues with the `af
 
     $ rm ~/.af_token
     $ af login
+
+## af cli installation issues {#af-cli-install-issues}
+
+Some users have been receiving an SSL certificate error when attempting to install the AF CLI tool. Please note that this error has nothing to do with us, but, rather, has to do with an SSL certificate issue at www.rubygems.org which they are aware of and are working to resolve.
+
+Here are a few suggestions for how to work around it: 
+
+Try this first:
+
+    $ gem install af --source: http://rubygems.org
+
+If the first suggestion does not work, try this:
+
+1. Download the Ruby installer from http://rubyinstaller.org/downloads/ (it is recommended you use Ruby 1.9.3).
+2. Then download the version that matches the installer.
+3. Once you have unzipped both of those files locally then run the below commands:
+
+    $ gem update --system
+    $ gem install af
+
+If the first two suggestions do not work, try this:
+   
+   $ gem source -r https://rubygems.org
+   $ gem source -a http://rubygems.org
+   $ gem install af
+
+   (NOTE: first line will remove the SSL version of ruby gems)
+
+   (NOTE: second line of code will install the non-secure version of ruby gems and will give you a warning about it being insecure, so please consider how it may affect the rest of your system prior to implementing this)
+
 
 ## Error (JSON 502) {#502-on-update}
 

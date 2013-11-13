@@ -11,10 +11,10 @@ SSL is automatically enabled on all apps with default domain names, i.e. domain 
 * \*.rs.af.cm
 * \*.hp.af.cm
 
-SSL for custom domain names is currently restricted in the following ways: 
+**SSL for custom domain names is currently restricted in the following ways:**
 
 * Apps on Amazon AWS infrastructures 
-* Only for paid accounts:
+* **ONLY for paid accounts:**
 
 	* $50/month: 1 SSL Endpoint
 	* $100/month: 2 SSL Endpoints

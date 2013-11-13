@@ -109,15 +109,15 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 ### Top Priorities
 
 * Persistent Distributed Filesystem
-* <s><a href="/customize/custom-domain-names">Root Domains</a></s>
-* <s><a href="/customize/ssl">Custom SSL</a></s>
-* <s><a href="/customize/teams">Group/Team Support</a></s>
+* <s><a href="/customize/custom-domain-names">Root Domains</a></s> -- DONE!
+* <s><a href="/customize/ssl">Custom SSL</a></s> -- DONE!
+* <s><a href="/customize/teams">Group/Team Support</a></s> -- DONE!
 
 ### Coming Soon
 
 * Dedicated Databases (MySQL, PostgreSQL, MongoDB)
 * FTP Access
 * Wildcard Domains
-* <s><a href="/customize/task-scheduling">Scheduled Jobs (cron)</a></s>
+* <s><a href="/customize/task-scheduling">Scheduled Jobs (cron)</a></s> -- DONE!
 * GitHub Hooks
 * WebSockets

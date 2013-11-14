@@ -181,10 +181,10 @@ Finally from within your source code directory:
 <tr><td><code>bind-service &lt;servicename> &lt;appname>              </code></td><td>Bind a service to an application</td></tr>
 <tr><td><code>unbind-service &lt;servicename> &lt;appname>            </code></td><td>Unbind service from the application</td></tr>
 <tr><td><code>clone-services &lt;src-app> &lt;dest-app>               </code></td><td>Clone service bindings from &lt;src-app> application to &lt;dest-app></td></tr>
-<tr><td><code>export-service &lt;service>                             </code></td><td>Unbind service from the application</td></tr>
-<tr><td><code>import-service &lt;service> &lt;url>                    </code></td><td>Clone service bindings from &lt;src-app> application to &lt;dest-app></td></tr>
-<tr><td><code>tunnel &lt;servicename> [--port]                        </code></td><td>Unbind service from the application</td></tr>
-<tr><td><code>tunnel &lt;servicename> &lt;clientcmd>                  </code></td><td>Clone service bindings from &lt;src-app> application to &lt;dest-app></td></tr>
+<tr><td><code>export-service &lt;service>                             </code></td><td>Export data from a specified service</td></tr>
+<tr><td><code>import-service &lt;service> &lt;url>                    </code></td><td>Import data to a specified service</td></tr>
+<tr><td><code>tunnel &lt;servicename> [--port]                        </code></td><td>Create a local tunnel to a remote service</td></tr>
+<tr><td><code>tunnel &lt;servicename> &lt;clientcmd>                  </code></td><td>Create a local tunnel to a remote service and start a local client</td></tr>
 
 </table>
 

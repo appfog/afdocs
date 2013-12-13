@@ -81,7 +81,7 @@ When `af` asks if you want to bind any services, enter `y` and choose `mongodb` 
 
 Before you begin, make sure you have [Node.js](http://nodejs.org/) and [MongoDB](http://www.mongodb.org/) installed on your development computer.
 
-Check out our [doc on deploying Node.js apps](/frameworks/node).
+Check out our [doc on deploying Node.js apps](/languages/node).
 
 #### Setup
 

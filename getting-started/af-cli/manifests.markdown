@@ -3,6 +3,8 @@ title: Manifests
 weight: 4
 ---
 
+## Manifests
+
 You can use manifest documents with AppFog to simplify app deployment. These manifest documents describe apps in human-editable format. They can also describe anything from simple "Hello World" apps to complex multi-app hierarchies with inter-app dependencies and service binding information.  
 
 The manifests feature uses a YAML document, aptly named `manifest.yml`. You'll typically place this manifest document in your app’s root directory, though you can specify a different location by telling the `af` tool which to use with the `-m` flag. 

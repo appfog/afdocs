@@ -3,14 +3,16 @@ title: Billing
 weight: 8
 ---
 
+## Billing
+
 * [Billing Cycle](#cycle)
 * [Upgrades and Downgrades](#upgrades)
 
-## Billing Cycle {#cycle}
+### Billing Cycle {#cycle}
 
 Your billing cycle begins when you start your subscription. If you start your subscription on the fifth of the month, then your account will automatically renew on the fifth of each subsequent month.
 
-## Upgrades and Downgrades {#upgrades}
+### Upgrades and Downgrades {#upgrades}
 
 You can upgrade or downgrade your account by sending us an email at [support@appfog.com](mailto:support@appfog.com).
 

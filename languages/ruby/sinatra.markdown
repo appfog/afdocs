@@ -3,6 +3,8 @@ title: Sinatra
 weight: 2
 ---
 
+## Sinatra
+
 AppFog currently only offers one app server for Sinatra apps: Thin. If you're using Bundler, and nothing in your app's bundle requires Thin, VCAP cannot safely start your app using it.
 
 To use AppFog services with Sinatra, you have to access the `VCAP_SERVICES` environment variable. You can read more about this on the [Services Overview page](/services/overview).
@@ -44,9 +46,9 @@ If you use Bundler to load Sinatra, AppFog may not recognize your app. In this c
     ...
 ---> 
 
-## Sample Sinatra App Using DataMapper and Bundler
+### Sample Sinatra App Using DataMapper and Bundler
 
-### Gemfile
+#### Gemfile
 
 
     source 'http://rubygems.org'
@@ -62,7 +64,7 @@ If you use Bundler to load Sinatra, AppFog may not recognize your app. In this c
         gem 'dm-mysql-adapter'
     end
 
-### `sinatra_dm.rb`
+#### `sinatra_dm.rb`
 
 The name of this sinatra app will be `sinatra_dm.rb`.
 
@@ -124,9 +126,9 @@ The name of this sinatra app will be `sinatra_dm.rb`.
         end
     end
 
-## Views
+### Views
 
-### Index
+#### Index
 
 
     <!-- views/index.erb -->
@@ -140,7 +142,7 @@ The name of this sinatra app will be `sinatra_dm.rb`.
     <br />
     <a href="/post/new">Create new post</a>
 
-### New
+#### New
 
 
     <!-- views/new.erb -->
@@ -152,7 +154,7 @@ The name of this sinatra app will be `sinatra_dm.rb`.
         <input type="submit" name="Publish" />
     </form>
 
-### Post
+#### Post
 
 
     <!-- views/post.erb -->
@@ -161,14 +163,14 @@ The name of this sinatra app will be `sinatra_dm.rb`.
     <p><%= @post.body %></p>
     <a href="/">All Posts</a>
 
-### Test Locally
+#### Test Locally
 
 
     $ ruby sinatra_dm.rb
     
 Then visit <http://localhost:4567/> in your browser.
 
-### Bundle and Push
+#### Bundle and Push
 
 
     $ bundle install; bundle package

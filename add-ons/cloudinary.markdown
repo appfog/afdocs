@@ -3,6 +3,8 @@ title: Cloudinary
 weight: 18
 ---
 
+## Cloudinary
+
 [Cloudinary](http://cloudinary.com/) streamlines your web app's image manipulation needs. Cloudinary's cloud-based servers automate image uploading, resizing, cropping, optimizing, sprite generation and more.
 
 Cloudinary is built using modern web development frameworks and leverages Amazon Web Services' (AWS) cloud-solutions. The resources are delivered from high-performance servers through Content Delivery Networks.

@@ -3,6 +3,8 @@ title: MongoDB
 weight: 3
 ---
 
+## MongoDB
+
 AppFog provides a MongoDB service that's accessible to apps that are running on any of the supported runtimes and frameworks. 
 
 * [Ruby](#ruby)
@@ -10,11 +12,11 @@ AppFog provides a MongoDB service that's accessible to apps that are running on 
 * [Node.js with MongoDB Walkthrough](#walkthrough)
 * [PHP](#php)
 
-## Ruby {#ruby}
+### Ruby {#ruby}
 
 You can use the [MongoMapper ORM](http://mongomapper.com/) to adapt your Ruby app to access the AppFog MongoDB service.
 
-## Gemfile
+### Gemfile
 
 First, add the MongoMapper gem, as well as BSON for serialization of JSON-like documents, which is necessary for interfacing with the MongoDB Ruby driver:
 
@@ -27,7 +29,7 @@ And install the gems:
 
     $ gem install "bson_ext"
 
-## Rails
+### Rails
 
 For a Rails app, modify the production section of your app's `config/mongo.yml` to set credentials, host, and port by parsing the JSON-formatted `VCAP_SERVICES` environment variable:
 
@@ -40,12 +42,12 @@ For a Rails app, modify the production section of your app's `config/mongo.yml` 
 
 For other Ruby apps, use the `JSON.parse()` code to extract the information you need to construct a [MongoDB connection string](http://www.mongodb.org/display/DOCS/Connections) from the `VCAP_SERVICES` environment variable.
 
-### Bundle
+#### Bundle
 
     $ bundle package
     $ bundle install
 
-### Deploy
+#### Deploy
 
 When `af` asks if you want to bind any services, enter `y` and choose `mongodb` from the menu. Provide a name for the service or accept the default:
 
@@ -75,19 +77,19 @@ When `af` asks if you want to bind any services, enter `y` and choose `mongodb` 
         Staging Application: OK
         Starting Application: OK
 
-## Node.js {#node}
+### Node.js {#node}
 
 Before you begin, make sure you have [Node.js](http://nodejs.org/) and [MongoDB](http://www.mongodb.org/) installed on your development computer.
 
 Check out our [doc on deploying Node.js apps](/frameworks/node).
 
-### Setup
+#### Setup
 
 Start `mongod` in your local environment:
 
     $ mongod
 
-### Push
+#### Push
 
 Push your Node.js app to AppFog and bind a new MongoDB service to it:
 
@@ -115,7 +117,7 @@ Push your Node.js app to AppFog and bind a new MongoDB service to it:
         Staging Application: OK
         Starting Application: OK
 
-### Configure MongoDB
+#### Configure MongoDB
 
 Next, update your app to use the MongoDB connection information and credentials, both locally and on AppFog, by adding the following code to the beginning of `app.js`:
 
@@ -164,7 +166,7 @@ Before you start, make sure:
 * [Node.js](http://nodejs.org/) is installed on your development computer.
 * [MongoDB](http://www.mongodb.org/) is installed on your development computer.
 
-### Setup
+#### Setup
 
 Start `mongod` in your local environment with the following command:
 
@@ -185,7 +187,7 @@ Log in to AppFog:
 
     $ af login
 
-### Write a Basic Node.js App
+#### Write a Basic Node.js App
 
 We'll write a basic Node.js app called `mongo-node-example`.
 
@@ -220,7 +222,7 @@ Alternatively, browse to `http://localhost:3000` to see the response from the we
 
 Hit `Control-C` in the first terminal window to stop the web server.
 
-### Deploy
+#### Deploy
 
 Next, push the application to AppFog. Hit `Enter` to accept the defaults, but enter a unique name for the app and set up a `mongodb` service:
 
@@ -250,12 +252,12 @@ Next, push the application to AppFog. Hit `Enter` to accept the defaults, but en
     Staging Application: OK
     Starting Application: OK
 
-### Test
+#### Test
 
     $ curl mongo-node-example.aws.af.cm
     Hello World
 
-### Add MongoDB Configuration
+#### Add MongoDB Configuration
 
 Your app is now deployed and has a new `mongodb` service bound to it, but it's not using the service yet. Next, we'll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.
 
@@ -293,7 +295,7 @@ Add the following code to the beginning of `app.js`:
 
 The if statement provides two different sets of information, depending on whether the app is running locally or on AppFog. `generate_mongo_url` creates appropriate connection information for MongoDB, which is then assigned to `mongourl`.
 
-### Test your app locally
+#### Test your app locally
 
     $ node app.js
 
@@ -303,7 +305,7 @@ In another terminal:
 
 The app should return the string “Hello World”.
 
-### Deploy your update
+#### Deploy your update
 
     $ af update mongo-node-example
     Uploading Application:
@@ -315,12 +317,12 @@ The app should return the string “Hello World”.
     Staging Application: OK
     Starting Application: OK
 
-### Test your app on AppFog
+#### Test your app on AppFog
 
     $ curl mongo-node-example.aws.af.cm
     Hello World
 
-### Add MongoDB Functionality
+#### Add MongoDB Functionality
 
 Next, install the MongoDB native drivers locally and update the app to use MongoDB.
 
@@ -358,7 +360,7 @@ Update the `http.createServer` method so that it calls the `record_visit` functi
         record_visit(req, res);
     }).listen(port, host);
 
-### Test your app locally
+#### Test your app locally
 
     $ node app.js
 
@@ -369,7 +371,7 @@ and from another terminal:
 
 Hit `Control-C` in the first terminal to stop the web server.
 
-### Test your app on AppFog
+#### Test your app on AppFog
 
     $ af update mongo-node-example
     $ curl mongo-node-example.aws.af.cm
@@ -408,7 +410,7 @@ Update the `createServer` method to call the new `print_visits` function:
 
 Web server requests will either add the current visit to MongoDB (the default) or, if url includes “/history”, output the last ten visits.
 
-### Test your app locally
+#### Test your app locally
 
     $ curl localhost:3000
     {"ip":"127.0.0.1","ts":"2011-12-29T23:44:30.254Z","_id":"4efcfb5e2f9d30481f000003"}
@@ -431,13 +433,13 @@ Stop the application locally and update it on AppFog.
     Staging Application: OK
     Starting Application: OK
 
-### Test your app on AppFog
+#### Test your app on AppFog
 
     $ curl mongo-node-example.aws.af.cm/history
     {"ip":"127.0.0.1","ts":"2011-12-29T23:49:46.738Z","_id":"4efcfc9acbfffadc0b000001"}
     {"ip":"127.0.0.1","ts":"2011-12-29T23:24:25.199Z","_id":"4efcf6a927996b5f79000001"}
 
-## PHP {#php}
+### PHP {#php}
 
 Connecting your PHP app to a bound MongoDB service is simple:
 
@@ -455,7 +457,7 @@ Connecting your PHP app to a bound MongoDB service is simple:
     $m = new Mongo($connect);
     $db = $m->selectDB($db); 
 
-## Links
+### Links
 
 For another complete sample app for a Node.js app with MongoDB, check out [our GitHub repo](https://github.com/appfog/af-node-sample-mongodb).
 

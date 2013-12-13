@@ -3,11 +3,13 @@ title: Redis Cloud
 weight: 20
 ---
 
+## Redis Cloud
+
 [Redis Cloud](http://redis-cloud.com) is a fully-managed service for running your Redis dataset. You can quickly and easily get your apps up and running with Redis Cloud on AppFog. You can then add as many Redis databases as you need (each running in a dedicated process, in a non-blocking manner) and increase or decrease the memory size of your plan without affecting your existing data. You can easily import an existing dataset to any of your Redis Cloud databases, from your AWS S3 account or from any other Redis server. Daily backups are performed automatically and in addition, you can backup your dataset manually at any given time.
 
 Note: Redis Cloud is currently only available on our AWS US-East infrastructure.
 
-## Install Redis Cloud
+### Install Redis Cloud
 
 In the "Add-ons" tab on your app console click "Install" for the Redis Cloud add-on. That’s it!
 
@@ -27,7 +29,7 @@ Next, setup your app to start using the Redis Cloud add-on. In the following sec
 * [Node.js](#rediscloud-node)
 
 
-## Using Redis from Ruby {#rediscloud-ruby}
+### Using Redis from Ruby {#rediscloud-ruby}
 
 The [redis-rb](https://github.com/redis/redis-rb) is a very stable and mature redis client and the easiest way to access Redis from Ruby. 
 
@@ -35,7 +37,7 @@ Install redis-rb:
     
     $ gem install redis
 
-### Configuring Redis from Rails {#rediscloud-rails}
+#### Configuring Redis from Rails {#rediscloud-rails}
 
 For Rails 2.3.3 up to Rails 3.0, update the `config/environment.rb` to include the redis gem:
     
@@ -54,7 +56,7 @@ Lastly, create a new `redis.rb` initializer in `config/initializers/` and add th
     uri = URI.parse(ENV["REDISCLOUD_URL"])
     $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
 
-### Configuring Redis on Sinatra {#rediscloud-sinatra}
+#### Configuring Redis on Sinatra {#rediscloud-sinatra}
 
 Add this code snippet to your configure block:
 
@@ -66,18 +68,18 @@ Add this code snippet to your configure block:
         . . .
     end
 
-### Using Redis on Unicorn
+#### Using Redis on Unicorn
 
 No special setup is required when using Redis Cloud with a Unicorn server. Users running Rails apps on Unicorn should follow the instructions in the [Configuring Redis from Rails](#rediscloud-rails) section and users running Sinatra apps on Unicorn should follow the instructions in the [Configuring Redis on Sinatra](#rediscloud-sinatra) section.
 
-### Testing (Ruby)
+#### Testing (Ruby)
     
     redis.set("foo", "bar")
     # => "OK"
     redis.get("foo")
     # => "bar"
     
-## Using Redis from Java {#rediscloud-java}
+### Using Redis from Java {#rediscloud-java}
 
 [Jedis](https://github.com/xetorthio/jedis) is a blazingly small, sane and easy to use Redis java client. You can download the latest build from [github](http://github.com/xetorthio/jedis/downloads) or use it as a maven dependency:
 
@@ -102,7 +104,7 @@ Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environm
                // URI couldn't be parsed.           
     } 
     
-### Testing (Java)
+#### Testing (Java)
 
     Jedis jedis = pool.getResource();
     jedis.set("foo", "bar");
@@ -112,7 +114,7 @@ Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environm
 
 (example taken from Jedis docs).
 
-## Using Redis from Python {#rediscloud-python}
+### Using Redis from Python {#rediscloud-python}
 
 [redis-py](https://github.com/andymccurdy/redis-py) is the most common client to access Redis from Python.
  
@@ -129,14 +131,14 @@ Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environm
     r = redis.Redis(host=url.hostname, port=url.port, password=url.password)
     
     
-### Testing (Python):
+#### Testing (Python):
     
     >>> r.set('foo', 'bar')
     True
     >>> r.get('foo')
     'bar'
 
-### [Django-redis-cache](https://github.com/sebleier/django-redis-cache) {#rediscloud-django}
+#### [Django-redis-cache](https://github.com/sebleier/django-redis-cache) {#rediscloud-django}
 
 Redis can be used as the back-end cache for Django.
 
@@ -160,13 +162,13 @@ Next, configure your `CACHES` in the `settings.py` file:
       }
     }
 
-### Testing (Django)
+#### Testing (Django)
 
     from django.core.cache import cache
     cache.set("foo", "bar")
     print cache.get("foo")
     
-## Using Redis from PHP {#rediscloud-php}
+### Using Redis from PHP {#rediscloud-php}
 
 [Predis](https://github.com/nrk/predis) is a flexible and feature-complete PHP client library for Redis.
 
@@ -187,12 +189,12 @@ Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environm
         'password' => parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_PASS), 
     ));
     
-### Testing (PHP)
+#### Testing (PHP)
 
     $redis->set('foo', 'bar');
     $value = $redis->get('foo');
     
-## Using Redis from Node.js {#rediscloud-node}
+### Using Redis from Node.js {#rediscloud-node}
 
 [node_redis](https://github.com/mranney/node_redis) is a complete Redis client for node.js. 
 
@@ -209,14 +211,14 @@ Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environm
     client.auth(redisURL.auth.split(":")[1]);
 
     
-###Testing (Node.js)
+####Testing (Node.js)
 
     client.set('foo', 'bar');
     client.get('foo', function (err, reply) {
         console.log(reply.toString()); // Will print `bar`
     });
     
-## Dashboard
+### Dashboard
 
 Our dashboard presents all performance and usage metrics of your Redis Cloud service on a single screen, as shown below:
 
@@ -226,7 +228,7 @@ To access your Redis Cloud dashboard, simply click the "Manage" button of the Re
 
 You can then find your dashboard under the `MY DATABASES` menu.
 
-## Adding Redis databases to your app  
+### Adding Redis databases to your app  
 
 Redis Cloud allows you to add multiple Redis databases, each running in a dedicated process, in a non-blocking manner (i.e. without interfering with your other databases). You can create as many databases as you need.
 
@@ -236,15 +238,15 @@ To add more databases, simply access your Redis Cloud add-on by clicking the "Ma
 
 Warning: The Redis Cloud console will provide you a new URL for connecting to your new Redis database.
 
-## Pricing
+### Pricing
 
 The Redis Cloud AppFog add-on is in beta phase and is currently offered for free.
 
-## Support
+### Support
 
 All Redis Cloud support and runtime issues should be submitted to [AppFog Support](mailto:support@appfog.com). Any non-support related issues or product feedback is welcome via email at [support@garantiadata.com](mailto:support@garantiadata.com).
 
-## Additional resources
+### Additional resources
 
 * [Developers Resources](http://redis-cloud.com/redis/developers)
 * [Redis Documentation](http://redis.io/documentation)

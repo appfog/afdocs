@@ -5,4 +5,4 @@ weight: 1
 
 ## WSGI "Hello World" {#wsgi}
 
-You can take a look at a bare-bones Python WSGI app [on GitHub](https://github.com/appfog/af-python-wsgi).
+We've got a great bare-bones Python WSGI app example. Take a look at it here:  [on GitHub](https://github.com/appfog/af-python-wsgi).

@@ -4,9 +4,11 @@ weight: 100
 description: Become an add-on partner.
 ---
 
+## Become an Add-on Partner
+
 AppFog provides your app with extra functionality by partnering with various third-party services. You can add everything from logs to databases to powerful metrics to your app with a single click .
 
-## How Add-ons Work
+### How Add-ons Work
 
 Our add-on partners can create provisioning services that are compatible with AppFog.
 
@@ -18,7 +20,7 @@ Our add-on partners can create provisioning services that are compatible with Ap
 * [Regions](#regions)
 * [Single Sign-on](#sso)
 
-## Provisioning Workflow {#provision}
+### Provisioning Workflow {#provision}
 
 1. The user installs the add-on from the AppFog app console. This sends a request to the add-on partner to provision the service.
 2. AppFog makes a `POST` request to https://partner.com/appfog/resources. It passes in the `customer_id` (email address), plan, and the `callback_url`.
@@ -29,7 +31,7 @@ Our add-on partners can create provisioning services that are compatible with Ap
 
 <img class="screenshot" src="/img/Slide2.jpeg" alt="Provisioning Workflow"/>
 
-## API Callback Spec {#callback}
+### API Callback Spec {#callback}
 
 This is a method implemented by the AppFog services. It is used to update the configuration values for a given resource as provided by the add-on partner. The configuration parameters can be specified by the partner when the provisioning call is made by AppFog; however, if the call takes a while to process the partner can use this method to update those parameters later.
 
@@ -46,9 +48,9 @@ Response:
     200 OK
 
 
-## API Spec {#api}
+### API Spec {#api}
 
-### Example Provisioning Request
+#### Example Provisioning Request
 
 Request: `POST /phpfog/resources`
 
@@ -69,20 +71,20 @@ Response Body:
         "message":""
     }
 
-### Request Fields
+#### Request Fields
 
 * `customer_id` - The identification of the user in the AppFog system (i.e. email address).
 * `plan` - The plan being provisioned. This will be "free" for the moment; however, in the future this can be higher-tier plans once they're supported.
 * `callback_url` - This is the address of the resource in AppFog's system. The provider can use this to update the configuration for this resource (e.g. during provisioning).
 * `options` - This contains additional options for the specific service. It's a placeholder for now and AppFog will not send these requests yet.
 
-### Response Fields
+#### Response Fields
 
 * `id` - This is the ID of the resource in the provider's system.
 * `config` - The required key/value pairs of parameters required to provision the service. The manifest specifies what keys are allowed. Configuration paramters are required, but the particular configuration parameters up to the provider. They can also be updated later using the `callback_url` to update the config.
 * `message` - This is a message to the system. It's ignored for now.
 
-### Example Deprovisioning Request
+#### Example Deprovisioning Request
 
 Request: `DELETE /phpfog/resources/:id`
 
@@ -93,15 +95,15 @@ Response:
     200 OK
 
 
-### Request Fields
+#### Request Fields
 
 This is a DELETE request to the particular `URL` and doesn't contain a body.
 
-### Response Fields
+#### Response Fields
 
 Only an HTTP response status is required.
 
-## Authentication {#authentication}
+### Authentication {#authentication}
 
 All calls to both the provisioning API on the partners service as well as the AppFog callback service must be authenticated using `HTTP Basic Auth`.
 
@@ -109,13 +111,13 @@ All requests must be completed over `HTTPS`.
 
 The manifest file specifies the username and password to be used for all of these calls. The "`id`" in the manifest is the username, the "`api_password`" is the password.
 
-## Manifest Format {#manifest}
+### Manifest Format {#manifest}
 
 The manifest file is a `JSON` document that defines the information necessary for AppFog to make provisioning calls to the provider.
 
 Add-on partners should provide the manifest file out-of-band by emailing it to the AppFog team to incorporate into the system.
 
-### Example Manifest
+#### Example Manifest
 
 `example-manifest.json`
 
@@ -144,7 +146,7 @@ Add-on partners should provide the manifest file out-of-band by emailing it to t
         }
     }
 
-### Fields
+#### Fields
 
 * `id` - The add-on id. All lowercase, no spaces or punctuation. This is used in conjunction with the password to authenticate provisioning calls.
 * `name` - The friendly name to appear in the add-on tab of the app console in AppFog.
@@ -157,7 +159,7 @@ Add-on partners should provide the manifest file out-of-band by emailing it to t
 * `api/sso_salt` - Shared secret used in single sign-on between AppFog and the provider.
 * `plans/id` - The name of the "free" plan that will be offered to AppFog users and used for testing and integration purposes.
 
-## Regions {#regions}
+### Regions {#regions}
 
 AppFog supports running apps in regions other than AWS US-East.
 
@@ -182,7 +184,7 @@ Here's a list of the current possible parameter values:
 * `'amazon-web-services::eu-west-1'`
 * `'hp-openstack::us-az1'`
 
-## Single Sign-on {#sso}
+### Single Sign-on {#sso}
 
 Once a resource is fully provisioned, a "Manage" button will appear in the AppFog app console for the given add-on. This button will redirect the user to the management page of the particular resource on the partner's website.
 

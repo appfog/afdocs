@@ -3,6 +3,8 @@ title: Services
 weight: 3
 ---
 
+## Services
+
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. 
 
 This variable contains a JSON document with a list of all credentials and connection information for the bound services.

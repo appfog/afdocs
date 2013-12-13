@@ -3,14 +3,16 @@ title: HostedGraphite
 weight: 19
 ---
 
+## HostedGraphite
+
 HostedGraphite provides [Graphite](http://graphite.wikidot.com/) as a service. You get a simple place for all your application and performance metrics. Add, query, and delete metric data and see it on a dashboard.
 
-## Install HostedGraphite
+### Install HostedGraphite
 
 In the "Add-ons" tab in your app console click "Install" for the HostedGraphite add-on. That’s it!
 
 
-## HTTP POSTing Graphite-formatted data
+### HTTP POSTing Graphite-formatted data
 
 When you provision the HostedGraphite add-on, AppFog creates an environment variable called `HOSTEDGRAPHITE_APIKEY`, which stores your API key. 
 
@@ -18,11 +20,11 @@ You can then `HTTP POST` graphite-formatted metric messages to `https://your-api
 
 Authentication is simple HTTP Basic auth. Use your API key as the username, and the password field is optional/ignored.
 
-## curl
+### curl
 
     curl https://your-api-key@hostedgraphite.com/api/v1/sink --data-binary "foo 1.2"
 
-## Python
+### Python
 
     import urllib2, base64
 
@@ -33,7 +35,7 @@ Authentication is simple HTTP Basic auth. Use your API key as the username, and 
     request.add_header("Authorization", "Basic %s" % base64.encodestring(api_key).strip())
     result = urllib2.urlopen(request)
 
-## Ruby
+### Ruby
 
     require 'net/https'
 
@@ -49,7 +51,7 @@ Authentication is simple HTTP Basic auth. Use your API key as the username, and 
 
     response = http.request(req)
 
-## Graphite line format
+### Graphite line format
 
 A graphite message looks like:
 

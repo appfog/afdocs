@@ -3,6 +3,8 @@ title: Spring
 weight: 1
 ---
 
+## Java Spring Apps
+
 * [Using AppFog Services In Spring Apps](#services-spring)
 * [Determining Whether Your App Can Be Auto-Configured](#spring-determining-auto-configure)
 * [Relational Database (MySQL and Postgres)](#spring-relational)

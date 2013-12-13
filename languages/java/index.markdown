@@ -3,6 +3,8 @@ title: Java
 weight: 4
 ---
 
+## Java
+
 * [Supported Java Versions](#javaversions)
 * [Deploying Java Apps](#deploy)
 * [Custom JVM Parameters](#custom-jvm-params)
@@ -17,6 +19,7 @@ For a list of runtimes that AppFog supports run:
     | Name         | Description     | Version   |
     +--------------+-----------------+-----------+
     | java         | Java 7          | 1.7.0     |
+    +--------------+-----------------+-----------+
 
 ## Deploying Java Apps {#deploy}
 

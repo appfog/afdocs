@@ -4,6 +4,8 @@ weight: 2
 description: "Code deployment made easy."
 ---
 
+## AF CLI Tool
+
 `af` is based on CloudFoundry's `vmc` but includes features specific to AppFog and has the default target set to AppFog's service. Check out [the GitHub repo](https://github.com/appfog/af).
 
 * [Installation](#installation)
@@ -42,19 +44,22 @@ If you're on Mac OS X 10.7 Lion and you're having trouble, you may have to do th
 
 3. Install `libksba` with homebrew.
 
-    $ brew install libksba
+    `$ brew install libksba`
+
 
 4. [Install RVM](https://rvm.io/rvm/install/).
 
 5. Install Ruby 1.9.3:
 
-    $ rvm install ruby-1.9.3
-    $ rvm use 1.9.3
+    `$ rvm install ruby-1.9.3`
+    `$ rvm use 1.9.3`
+
 
 5. Install `af`
 
-    $ gem install af
-    $ af login
+    `$ gem install af`
+    `$ af login`
+    
 
 ### Windows {#af-cli-install-windows}
 

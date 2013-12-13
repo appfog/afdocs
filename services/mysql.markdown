@@ -3,6 +3,8 @@ title: MySQL
 weight: 2
 ---
 
+## MySQL
+
 * [VCAP_SERVICES](#vcap)
 * [PHP](#php)
 * [Migration](#migration)
@@ -14,7 +16,7 @@ The AppFog app deployment process can automatically configure your app to use th
 
 Note: AppFog apps should always close database connections and should not use persistent MySQL connections.
 
-## The VCAP\_SERVICES Environment Variable {#vcap}
+### The VCAP\_SERVICES Environment Variable {#vcap}
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. For apps that can't be automatically configured, you can find the information your app needs to connect to the database in this variable.
 
@@ -87,7 +89,7 @@ The `credentials` object contains all of the data you need to connect to MySQL t
 * `password` is the MySQL password.
 * `name` is the name of the MySQL database.
 
-## PHP {#php}
+### PHP {#php}
 
 Here's a bit more on how to use the `VCAP_SERVICES` variable to access your MySQL service: 
 
@@ -103,17 +105,17 @@ Here's a bit more on how to use the `VCAP_SERVICES` variable to access your MySQ
     $link = mysql_connect("$hostname:$port", $username, $password);
     $db_selected = mysql_select_db($db, $link);
 
-## Migration {#migration}
+### Migration {#migration}
 
 Here's a quick guide on migrating an existing database to an AppFog app. 
 
-### Prepare your data
+#### Prepare your data
 
 First, export your MySQL data into a `.sql` file. If you're using phpMyAdmin, you can just use the export tool. If you're using command line tools like `mysqldump`, use the following:
 
     $ mysqldump -h <hostname> -u <username> -p<Password> <database> > /tmp/mydata.sql
 
-### Log in and establish your tunnel
+#### Log in and establish your tunnel
 
     $ af login
     Attempting login to [https://api.appfog.com]
@@ -139,7 +141,7 @@ First, export your MySQL data into a `.sql` file. If you're using phpMyAdmin, yo
 
 Check out our [doc on tunneling](/services/tunneling) for more info.
 
-### Import
+#### Import
 
 At this point, you can access your AppFog MySQL server as if it's a local MySQL instance.
 
@@ -149,11 +151,11 @@ Import the data by running this command:
 
     mysql --protocol=TCP --host=localhost --port=10000 --user=uaLDy9EhhvMLq --password=p5Odjf6E5O7uW dc1aaa897343f4eb1aed047ec7c86f19f < /tmp/mydata.sql
 
-## phpMyAdmin {#phpmyadmin}
+### phpMyAdmin {#phpmyadmin}
 
 You can easily create a [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) instance to interface with your MySQL services. 
 
-### Create the App on AppFog
+#### Create the App on AppFog
 
 Head over to the [AppFog Console](http://console.appfog.com) and create a new PHP app on the same infrastructure as your MySQL service. 
 
@@ -161,7 +163,7 @@ Then bind the service you want to access to this new PHP app.
 
     $ af bind-service mysql-example myadmin-example
 
-### Download phpMyAdmin
+#### Download phpMyAdmin
 
 Then grab the phpMyAdmin source from our GitHub repo: 
 

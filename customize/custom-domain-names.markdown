@@ -3,16 +3,18 @@ title: Custom Domain Names
 weight: 1
 ---
 
-AppFog offers two ways to add custom domain names to your app: through the app console and with the `af` command line tool.
+## Custom Domain Names
 
-**Note: Custom domain names are ONLY available on paid plans.**
+### **Note: Custom domain names are ONLY available on paid plans.**
+
+AppFog offers two ways to add custom domain names to your app: through the app console and with the `af` command line tool.
 
 * [App Console](#custom-domain-app-console)
 * [AF CLI](#custom-domain-af-cli)
 
 Once you've finished adding the domain to your app in one of those two ways, you'll need to [change your DNS settings at your DNS host](#custom-domain-dns).
 
-## App Console {#custom-domain-app-console}
+### App Console {#custom-domain-app-console}
 
 1. Head over to the [app console](https://console.appfog.com) and click on your app.
 
@@ -22,7 +24,7 @@ Once you've finished adding the domain to your app in one of those two ways, you
 
 That's it!
 
-## AF CLI {#custom-domain-af-cli}
+### AF CLI {#custom-domain-af-cli}
 
 1. If you haven't already, install the [af command line tool](http://docs.appfog.com/getting-started/af-cli) and log in.
 
@@ -34,17 +36,17 @@ For example:
 
     $ af map exampleapp www.example.com
 
-## DNS {#custom-domain-dns}
+### DNS {#custom-domain-dns}
 
 We recommend using the `www.` subdomain as your canonical domain. Here's how to do that:
 
-### Redirect Your Root Domain
+#### Redirect Your Root Domain
 
 At your DNS host, set up a redirect (302) from your root domain (`yourdomain.com`) to `www.yourdomain.com`.
 
 This is a fairly standard tool that DNS services provide. If you don’t see an option for it at your domain host, contact their support services and they should be able to do that for you.
 
-### Create a CNAME Alias
+#### Create a CNAME Alias
 
 Depending on which infrastructure your app is running on, create a CNAME alias record for `www.yourdomain.com` to:
 
@@ -64,7 +66,7 @@ HP Openstack AZ 2:
 
     cname01.hp.af.cm
 
-### Root Domain
+#### Root Domain
 
 If you need to set your root domain (`yourdomain.com`) instead of the `www` subdomain, then create `A` records for your root domain to the following IP addresses (depending on the infratructure your app is running on):
 

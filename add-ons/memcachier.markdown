@@ -4,11 +4,13 @@ layout: doc-page
 weight: 17
 ---
 
+## MemCachier
+
 [MemCachier](http://www.memcachier.com/) is an implementation of the [Memcache](http://memcached.org/) in-memory key/value store used for caching data. It is a key technology in modern web apps for scaling and reducing server loads. The MemCachier add-on manages and scales clusters of memcache servers so you can focus on your app. Tell us how much memory you need and get started for free instantly. Add capacity later as you need it.
 
 The information below will quickly get you up and running with the MemCachier add-on for AppFog. For information on the benefits of MemCachier and how it works, please refer to the more extensive [User Guide](http://www.memcachier.com/documentation/memcache-user-guide/).
 
-### Install MemCachier
+#### Install MemCachier
 
 In the “Add-ons” tab in your app console click “Install” for the MemCachier add-on. That’s it!
 
@@ -25,7 +27,7 @@ Next, set up your app to start using the cache. We have documentation for the fo
 
 Your credentials may take up to three (3) minutes to be synced to our servers. You may see authentication errors if you start using the cache immediately.
 
-## Ruby {#ruby}
+### Ruby {#ruby}
 
 Start by adding the [memcachier](https://github.com/memcachier/memcachier-gem) and [dalli](http://github.com/mperham/dalli) gems to your `Gemfile`.
 
@@ -50,7 +52,7 @@ Without the `memcachier` gem, you’ll need to pass the proper credentials to `D
                         {:username => ENV["MEMCACHIER_USERNAME"],
                          :password => ENV["MEMCACHIER_PASSWORD"]})
 
-## Rails {#rails}
+### Rails {#rails}
 
 Start by adding the [memcachier](https://github.com/memcachier/memcachier-gem) and [dalli](http://github.com/mperham/dalli) gems to your `Gemfile`.
 
@@ -76,7 +78,7 @@ Without the `memcachier` gem, you’ll need to pass the proper credentials to `D
                         {:username => ENV["MEMCACHIER_USERNAME"],
                          :password => ENV["MEMCACHIER_PASSWORD"]}
 
-### Testing
+#### Testing
 
 To test locally you can simply use the rails console:
 
@@ -86,7 +88,7 @@ To test locally you can simply use the rails console:
     >> Rails.cache.read('memcachier')
     => "rocks"
 
-## Django {#django}
+### Django {#django}
 
 MemCachier has been tested with the `pylibmc` memcache client, but the default client doesn’t support SASL authentication. Run the following commands on your local machine to install the necessary pips:
 
@@ -120,7 +122,7 @@ From here you can start writing cache code in your Django app:
     cache.set("foo", "bar")
     print cache.get("foo")
 
-## PHP {#php}
+### PHP {#php}
 
 Start by downloading the [PHPMemcacheSASL](https://github.com/ronnywang/PHPMemcacheSASL) library. From here you can start writing cache code in your PHP app:
 
@@ -137,7 +139,7 @@ Or, check out [this fork of PHPMemcacheSASL](https://github.com/ceslami/PHPMemca
 
 The more common PHP memcache clients, [Memcache](http://www.php.net/manual/en/book.memcache.php) and [Memcached](http://www.php.net/manual/en/book.memcached.php), don’t support SASL authentication at this time and can’t be used with MemCachier.
 
-## Java {#java}
+### Java {#java}
 
 For Java we recommend using the [SpyMemcached](https://code.google.com/p/spymemcached/) client. We also recommend using the [Apache Maven](https://maven.apache.org/) build manager for working with Java app. If you aren’t using `maven` and are instead using [Apache Ant](https://ant.apache.org/) or your own build system, then simply add the `spymemcached` jar file as a dependency of your app.
 
@@ -193,7 +195,7 @@ Once your build system is configured, you can start adding caching to your Java 
 
 You may wish to look the `spymemcached` [JavaDocs](http://dustin.github.com/java-memcached-client/apidocs/) or some more [example code](https://code.google.com/p/spymemcached/wiki/Examples) to help in using MemCachier effectively.
 
-## Library Support {#libsupport}
+### Library Support {#libsupport}
 
 MemCachier will work with any memcached binding that supports [SASL authentication](https://en.wikipedia.org/wiki/Simple_Authentication_and_Security_Layer) and the [binary protocol](https://code.google.com/p/memcached/wiki/MemcacheBinaryProtocol). We have tested MemCachier with the following language bindings, although the chances are good that other SASL binary protocol packages will also work.
 
@@ -222,19 +224,19 @@ MemCachier will work with any memcached binding that supports [SASL authenticati
 </tbody>
 </table>
 
-## Local Setup {#local}
+### Local Setup {#local}
 
 To test against your AppFog app locally, you'll need to run a local memcached process. MemCachier can only run in AppFog. But because MemCachier and memcached speak the same protocol, you shouldn’t have any issues testing locally. Installation depends on your platform.
 
-### Ubuntu
+#### Ubuntu
 
     $ sudo apt-get install memcached
 
-### Mac OS X (with Homebrew)
+#### Mac OS X (with Homebrew)
 
     $ brew install memcached
 
-### Windows
+#### Windows
 
 Please refer to [these instructions](http://www.codeforest.net/how-to-install-memcached-on-windows-machine).
 
@@ -244,11 +246,11 @@ To run memcached simply execute the following command:
 
     $ memcached -v
 
-## Upgrading and Downgrading {#upgrade}
+### Upgrading and Downgrading {#upgrade}
 
 Changing your plan, either by upgrading or downgrading, requires no code changes. Your cache won’t be lost, either. Upgrading and downgrading Just Works&trade;.
 
-## Support {#support}
+### Support {#support}
 
 You can submit all Memcachier support and runtime issues to [support@appfog.com](mailto:support@appfog.com) and any non-support related issues or product feedback to [support@memcachier.com](mailto:support@memcachier.com).
 

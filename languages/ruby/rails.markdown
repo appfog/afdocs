@@ -3,6 +3,8 @@ title: Rails
 weight: 1
 ---
 
+## Ruby on Rails
+
 * [Rails 3.0](#rails30)
 * [Rails 3.1](#rails31)
 * [Rails Console](#rails-console)
@@ -11,7 +13,7 @@ weight: 1
 
 AppFog currently only offers one app server for Rails apps: Thin. If you're using Bundler, and nothing in your app's bundle requires Thin, VCAP cannot safely start your app using it. For Rails in such cases, it will fall back to running your app using '`rails server`', which uses WEBrick. For best performance and results, use Thin.
 
-## Rails 3.0 {#rails30}
+### Rails 3.0 {#rails30}
 
 Ruby on Rails app deployments on AppFog automatically recognize MySQL. For other services, you'll need to access the `VCAP_SERVICES` environment variable. More on that in our [Services doc](/services).
 
@@ -36,11 +38,11 @@ Deploy:
 
     $ af push
 
-## Rails 3.1 {#rails31}
+### Rails 3.1 {#rails31}
 
 Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on AppFog, precompile your assets in your development environment. This compiles them into `public/assets`, at which point you can tweak the production environment configuration before excuting a normal `af push`.
 
-### Gemfile
+#### Gemfile
 
     # If you use a different database in development, hide it from AppFog.
     group :development do
@@ -52,12 +54,12 @@ Rails 3.1 introduces the asset pipeline. To get the asset pipeline working on Ap
     gem 'mysql2'
     end
     
-### Bundle your app:
+#### Bundle your app:
 
     $ bundle package
     $ bundle install
 
-### Configs
+#### Configs
 
 In `config/environments/production.rb`, change
 
@@ -67,25 +69,25 @@ to
 
     config.server_static_assets = true
 
-### Assets
+#### Assets
 
 Pre-compile your asset pipeline:
 
     $ bundle exec rake assets:precompile
 
-### Version Control System
+#### Version Control System
 
 Commit the current configuration to your version control system. Consider including: + `Gemfile.lock` + gems packaged into `vendor/cache` + assets compiled into `public/assets`.
 
-### Deploy
+#### Deploy
 
     $ af push
 
-## Services
+### Services
 
 AppFog automatically creates and binds a new MySQL service with the Ruby on Rails jumpstart, and the app is [automatically reconfigured](#autoreconfig) to connect to the service. For more information on services and how to connect to them manually, check out our docs on [Services](/services/overview).
 
-## Rails Console {#rails-console}
+### Rails Console {#rails-console}
 
 To use the Rails console with your database service, [tunnel into the service](/services/tunneling), and choose 'none' when it asks you which client to start:
 
@@ -131,7 +133,7 @@ That's it, you now have a Rails console proxied to your AppFog database service!
 
 This assumes that you have your Rails app set up, and you have a MySQL service bound to it.
 
-### Tunnel to your bound MySQL service
+#### Tunnel to your bound MySQL service
 
 Use the [af tunnel](/services/tunneling) command to connect to the MySQL service that's bound to your Rails app. When prompted, enter '1' for no client.
 
@@ -156,7 +158,7 @@ Use the [af tunnel](/services/tunneling) command to connect to the MySQL service
 
 You now have a secure tunnel set up to your MySQL service through which you can run `rake db:seed`.
 
-### Create a new section in your `config/database.yml` file
+#### Create a new section in your `config/database.yml` file
 
     proxied-appfog: 
     adapter: mysql2 
@@ -166,7 +168,7 @@ You now have a secure tunnel set up to your MySQL service through which you can 
     port: 10000 
     host: 127.0.0.1
 
-### Run `rake db:seed`
+#### Run `rake db:seed`
 
 Start with a simple `seeds.rb` file that just creates one record in your database to test that it works. 
 
@@ -181,7 +183,7 @@ If all goes well, you should have a log file in your `log/` directory called `pr
     stdout.log                                  0B
     proxied-appfog.log                          0B
 
-## Auto-reconfiguration {#autoreconfig}
+### Auto-reconfiguration {#autoreconfig}
 
 Ruby on Rails apps deployed on AppFog support auto-reconfiguration for relational database services. This means you can deploy a Rails app on AppFog without changing a single line of code. 
 
@@ -194,7 +196,7 @@ When your Rails app is staged for deployment, AppFog makes two modifications:
 * Adds an additional `cf-autoconfig` gem to your Bundle.
 * Adds an Initializer file to `config/initializers` that ensures that all dynamic class modification is done prior to loading other Initializers (and thus before your app executes).
 
-### Limitations
+#### Limitations
 
 Auto-reconfiguration only works if there's exactly one service of a given service type bound to your app. For example, you can only bind only one relational database service (e.g. MySQL or Postgres) to an app. 
 
@@ -202,13 +204,13 @@ If your app doesn’t follow these limitations, AppFog won't auto-reconfigure yo
 
 The auto-reconfiguration mechanism also expects typical Ruby apps. If your app configuration is complex, it may not work. In those cases, you can opt out of auto-reconfiguration:
 
-### Opting out of auto-reconfiguration
+#### Opting out of auto-reconfiguration
 
 AppFog offers a few ways to opt out of the auto-reconfiguration mechanism.
 
 * Create a file in your Rails app called `config/cloudfoundry.yml`. Add the entry `autoconfig: false`.
 * Include the `cf-runtime` gem in your app's `Gemfile`.
 
-## Further Reading
+### Further Reading
 
 For more technical details about how auto-reconfiguration works on AppFog, check out [this blog post](http://blog.cloudfoundry.com/2012/03/12/using-cloud-foundry-services-with-ruby-part-1-auto-reconfiguration/).

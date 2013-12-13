@@ -3,6 +3,8 @@ title: phpMyAdmin
 weight: 1
 ---
 
+## Getting started with phpMyAdmin
+
 [phpMyAdmin](http://www.phpmyadmin.net/home_page/index.php) is a free and popular software tool written in PHP that provides a web interface for administration of MySQL databases. 
 
 AppFog's phpMyAdmin jumpstart is slightly modified to work better in AppFog's environment. Check out the GitHub repository [here](https://github.com/appfog/af-php-myadmin). 

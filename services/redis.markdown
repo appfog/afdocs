@@ -3,13 +3,15 @@ title: Redis
 weight: 5
 ---
 
+## Redis
+
 With AppFog's free Redis service, you get 10 MB of RAM and 6 concurrent connections per instance. 
 
 * [The VCAP\_SERVICES Environment Variable](#redis-vcap)
 * [Ruby](#redis-ruby)
 * [Redis with Sinatra Tutorial](#redis-sinatra-tutorial)
 
-## The VCAP\_SERVICES Environment Variable {#redis-vcap}
+### The VCAP\_SERVICES Environment Variable {#redis-vcap}
 
 When you provision and bind a service to your app, AppFog creates an environment variable called `VCAP_SERVICES`. For apps that can't be automatically configured, you can find the information your app needs to connect to the database in this variable.
 
@@ -55,7 +57,7 @@ In PHP:
 
     getenv("VCAP_SERVICES")
 
-## Ruby {#redis-ruby}
+### Ruby {#redis-ruby}
 
 Connecting your Ruby app to a bound Redis service is simple:
 
@@ -73,13 +75,13 @@ The last line creates a class variable `@@redis`, available to all subclasses in
 
 In your application use [Redis commands](http://redis.io/commands) to edit and add key/values to the data store.
 
-## Redis with Sinatra Tutorial {#redis-sinatra-tutorial}
+### Redis with Sinatra Tutorial {#redis-sinatra-tutorial}
 
 In this tutorial, we'll build a simple, `CRUD`-style note-taking app with Sinatra and we'll use Redis as the data store for the project.
 
 You can find the completed code for the project on [GitHub](https://github.com/lucperkins/af-redis-example), and a functioning instance of the app is currently deployed [on AppFog](http://redis-example.hp.af.cm/).
 
-### Setting up the Redis connection
+#### Setting up the Redis connection
 
 First, we'll create a `Gemfile`:
 
@@ -109,7 +111,7 @@ Next, we'll connect to the Redis service:
 
 Interacting with the database involves simply running methods on this object. 
 
-### Getting started with routes and templates
+#### Getting started with routes and templates
 
 Now that we have a database connection established we can start. This will be a single-page app, so we'll keep our routes simple. Let's start with the basic get `'/'` route:
 
@@ -143,7 +145,7 @@ So now we have a basic stub of a site. With that in place, we'll set up a contai
 
 Under the "Notes" header, we've set up an unordered list (`%ul`) and below that we embed actual Ruby code into the view (with the hyphen). Remember that the `@notes` list is what houses the notes that we’ve entered into our Redis database. Here, I've created a simple Ruby block, whereby I take each member of the `@notes` list and create a list item (`%li`). Within each list item, there will be a `%span` that houses each specific note, followed by a line break (`%br`).
 
-### The `@notes` list is sad and empty. Let's fix that.
+#### The `@notes` list is sad and empty. Let's fix that.
 
 Right now, if we go to our main index page, we’ll see a couple headers and no notes. Next, we'll enable users to actually input notes of their own and store them in Redis. In our view, above the `#notes-container`, let's set up a form for inputting data:
 
@@ -171,7 +173,7 @@ First, note that the `params[:newNote]` variable stores the text that has been s
 
 Now comes the exciting part: making our first list push to Redis. We simply run the `LPUSH` command on the redis variable we created at the top, and push our `@newNote` to the notes list. Once that has been done, the server will reload the page, except that this time it will do so with a `@notes` list that has actual content.
 
-### Spicing it up with list lengths, deletion, and timestamps
+#### Spicing it up with list lengths, deletion, and timestamps
 
 Let's go a little further by allowing users to delete all of the notes that they've made thus far. We'll insert a "Delete all" button into our view:
 

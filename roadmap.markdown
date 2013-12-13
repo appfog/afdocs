@@ -4,6 +4,8 @@ layout: doc-page
 weight: 17
 ---
 
+## Feature Roadmap
+
 Have a feature request that isn't listed here? Want to add your vote to one of those listed? Just send an email to [support@appfog.com](mailto:support@appfog.com) or let us know [here](http://appfog.uservoice.com/forums/171983-general)!
 
 * [Infrastructures](#infras)
@@ -47,7 +49,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>Node 0.4.12 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Node 0.6.17 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Node 0.8.14 </td><td class="x-mark-2">&times;</td><td></td></tr>
-<tr><td>Node 0.10 </td><td> </td><td class="x-mark-2">&times;</td></tr>
+<tr><td>Node 0.10 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>PHP 5.3 </td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>PHP 5.4 </td><td> </td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Erlang R14B02 </td><td> </td><td class="x-mark-2">&times;</td></tr>
@@ -72,7 +74,7 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tbody>
 <tr><td>MySQL 5.1</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>MongoDB 1.8</td><td class="x-mark-2">&times;</td><td></td></tr>
-<tr><td>MongoDB 2.x</td><td></td><td class="x-mark-2">&times;</td></tr>
+<tr><td>MongoDB 2.4.3</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Postgres 9.1</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Redis 2.2</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>RabbitMQ 2.4</td><td class="x-mark-2">&times;</td><td></td></tr>

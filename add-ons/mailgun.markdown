@@ -3,11 +3,13 @@ title: Mailgun
 weight: 4
 ---
 
-## Install Mailgun
+## Mailgun
+
+### Install Mailgun
 
 In the "Add-ons" tab in your app console click "Install" for the Mailgun add-on. That's it!
 
-## Pricing {#pricing-mailgun}
+### Pricing {#pricing-mailgun}
 
 With the Mailgun add-on for PHP Fog, you get a free plan that includes: 
 
@@ -19,7 +21,7 @@ With the Mailgun add-on for PHP Fog, you get a free plan that includes:
 
 If you need more than that, you can upgrade through Mailgun. Check out their pricing [here](http://mailgun.net/pricing).
 
-## Using MailGun
+### Using MailGun
 
 To use Mailgun with your app check out the [Quick Start Guide](http://documentation.mailgun.net/quickstart.html).
 

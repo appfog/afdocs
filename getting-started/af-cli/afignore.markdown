@@ -3,6 +3,8 @@ title: .afignore
 weight: 3
 ---
 
+## Ignoring or Skipping Specific Files
+
 You can create a `.afignore` file in your app's root directory to tell `af push` and `af update` to skip files and directories, much like `.gitignore` for git. 
 
 You can set rules in the following ways:

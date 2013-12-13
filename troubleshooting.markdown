@@ -3,6 +3,8 @@ title: Troubleshooting
 weight: 9
 ---
 
+## Troubleshooting
+
 Here are some of the most common issues and how to deal with them. 
 
 Don't see your issue here? Try our [mailing list](https://groups.google.com/forum/#!forum/appfog-users) or contact support at [support.appfog.com](https://support.appfog.com).
@@ -17,7 +19,7 @@ Don't see your issue here? Try our [mailing list](https://groups.google.com/foru
 * [MySQL server has gone away](#mysql-gone)
 * [WordPress issues](#wordpress-issues)
 
-## Crashing app (502/503/404) {#crashing}
+### Crashing app (502/503/404) {#crashing}
 
 If your app is at less than 100% "Running" status or you're seeing the AppFog error page, it means one or more instances of your app have crashed. You can check this status with the following command:
 
@@ -38,7 +40,7 @@ If you can log into the web console, but you're running into issues with the `af
     $ rm ~/.af_token
     $ af login
 
-## af cli installation issues {#af-cli-install-issues}
+### af cli installation issues {#af-cli-install-issues}
 
 Some users have been receiving an SSL certificate error when attempting to install the AF CLI tool. Please note that this error has nothing to do with us, but, rather, has to do with an SSL certificate issue at www.rubygems.org which they are aware of and are working to resolve.
 
@@ -68,7 +70,7 @@ If the first two suggestions do not work, try this:
    (NOTE: second line of code will install the non-secure version of ruby gems and will give you a warning about it being insecure, so please consider how it may affect the rest of your system prior to implementing this)
 
 
-## Error (JSON 502) {#502-on-update}
+### Error (JSON 502) {#502-on-update}
 
 The most common reason for this is your app running out of available RAM. When that happens, AppFog kills the app and attempts to re-spawn it. While it's down, you see 404. To fix this, simply add more RAM to your app: 
 
@@ -90,7 +92,7 @@ You can also add the following to your `.afignore` file:
 
     node_modules/.bin/
 
-## App stops by itself. {#app-stops}
+### App stops by itself. {#app-stops}
 
 An app stopping by itself generally indicates that it has crashed. When your app crashes, AppFog automatically attempts to re-spawn it, but only a limited number of times. If it continues to crash repeatedly, it will remain stopped. You can check your crashes with `af crashes`:
     
@@ -112,7 +114,7 @@ The most common reason for an app to crash is running out of memory. You should 
     FATAL -- : Actual usage was 300M, process terminated.
 
 
-## Missing logs {#af-logs-restart}
+### Missing logs {#af-logs-restart}
 
 Apps that have crashed or failed to deploy are wiped (with their logs) after an hour. In the event that `af logs` returns no data, you should check `af crashes` and `af crashlogs`. Failing that, restart and check logs again. 
 
@@ -123,7 +125,7 @@ Apps that have crashed or failed to deploy are wiped (with their logs) after an 
 
 This occurs when an app attempts to use persistent MySQL connections without closing them. AppFog apps should always close database connections and should not use persistent MySQL connections.
 
-## WordPress Issues {#wordpress-issues}
+### WordPress Issues {#wordpress-issues}
 
 Most common WordPress issues on AppFog stem from the fact that AppFog does not yet have a persistent file system. This means that any changes you make to the file system through a web interface, including any admin changes and content uploads, will be lost on the app's next start, stop, restart, deploy, or resource change. Because of this, you should make any changes to the file system on a local development environment and keep media assets and content uploads on an external storage system like Amazon's S3.
 

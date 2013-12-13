@@ -3,6 +3,8 @@ title: PHP
 weight: 2
 ---
 
+## PHP
+
 * [Custom PHP App](#custom)
 * [php.ini](#php_ini)
 * [Document Root](#docroot)

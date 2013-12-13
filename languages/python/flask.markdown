@@ -3,9 +3,11 @@ title: Flask
 weight: 2
 ---
 
+## Python Flask
+
 The following is a step-by-step guide to writing and deploying a "hello world" Python Flask app:
 
-## Create the App
+### Create the App
 
 Create a directory for the app and change into it: 
 
@@ -13,9 +15,9 @@ Create a directory for the app and change into it:
     $ mkdir flask-example
     $ cd flask-example
 
-## Prepare Your Environment
+### Prepare Your Environment
 
-<!---Create a `virtualenv` environment:
+<!--- Create a `virtualenv` environment:
 
 
     $ virtualenv venv
@@ -73,7 +75,7 @@ Create a file called `wsgi.py` with the following code:
     if __name__ == '__main__':
         app.run()
 
-## Test Your App Locally
+### Test Your App Locally
 
 
     (flask-example-venv) $ python wsgi.py
@@ -85,14 +87,14 @@ In another terminal:
     $ curl 127.0.0.1:5000
     Hello World!% 
 
-## Prepare Your App for Deployment on AppFog
+### Prepare Your App for Deployment on AppFog
 
 Create a `requirements.txt` file with the following:
 
 
     flask==0.8
 
-## Deploy to Appfog
+### Deploy to Appfog
 
 
     af push flask-example
@@ -116,17 +118,17 @@ Create a `requirements.txt` file with the following:
     Staging Application 'flask-example': OK
     Starting Application 'flask-example': OK
 
-## Test Your App on AppFog:
+### Test Your App on AppFog:
 
 
     $ curl flask-example.aws.af.cm
     Hello World!% 
 
-## Connect Your App to Services
+### Connect Your App to Services
 
 Now we'll connect Flask to a MongoDB service provided by AppFog.
 
-## Bind Service
+### Bind Service
 
 Use the `af create-service <service> <name> <app>` command to create the `mongodb` service and bind it in one step:
 
@@ -138,7 +140,7 @@ Use the `af create-service <service> <name> <app>` command to create the `mongod
     Staging Application 'flask-example': OK
     Starting Application 'flask-example': OK
 
-## Add MongoDB Configuration
+### Add MongoDB Configuration
 
 Your app now has a new `mongodb` service bound to it, but it's not using the service yet. Next, we’ll configure the app to use the MongoDB connection information and credentials, both locally and on AppFog.
 
@@ -198,7 +200,7 @@ We also need to install `pymongo` for our local test:
     Successfully installed pymongo
     Cleaning up...
 
-## Test Your App Locally
+### Test Your App Locally
 
 
     (flask-example-venv) $ python wsgi.py
@@ -210,7 +212,7 @@ In another terminal:
     $ curl 127.0.0.1:5000/mongo
     1342592886% 
 
-## Deploy to AppFog
+### Deploy to AppFog
 
 
     $ af update flask-example
@@ -224,7 +226,7 @@ In another terminal:
     Staging Application 'flask-example': OK
     Starting Application 'flask-example': OK
 
-## Test Your App on AppFog
+### Test Your App on AppFog
 
 
     $ curl flask-example.aws.af.cm/mongo

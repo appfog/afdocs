@@ -3,6 +3,8 @@ title: Grails
 weight: 3
 ---
 
+## Java Grails Apps
+
 [Grails](http://grails.org/) is a framework for rapidly developing web apps that can be deployed to any Java servlet container, such as Tomcat. Based on the dynamic language [Groovy](http://groovy.codehaus.org/) and the [Spring](http://www.springframework.org/) framework, it brings the paradigm of Convention over Configuration to the Java platform with the expressiveness of a Java-like dynamic language.
 
 This guide assumes that you already have Java and [Grails](http://grails.org/Installation) installed and know how to build a simple Grails app. That’s all you need to start working with AppFog.

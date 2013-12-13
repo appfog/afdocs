@@ -3,9 +3,11 @@ title: SendGrid
 weight: 18 
 ---
 
+## SendGrid
+
 [SendGrid's](https://sendgrid.com) cloud-based email infrastructure relieves businesses of the cost and complexity of maintaining custom email systems. SendGrid provides reliable delivery, scalability and real-time analytics along with flexible APIs that make custom integration a breeze.
 
-## Install SendGrid
+### Install SendGrid
 
 In the "Add-ons" tab on your app console click "Install" for the SendGrid add-on. That's it!
 
@@ -19,7 +21,7 @@ Next, setup your app to start using the SendGrid add-on. In the following sectio
 * [Node.js](#sendgrid-node)
 * [Python](#sendgrid-python)
 
-## Ruby on Rails {#sendgrid-rails}
+### Ruby on Rails {#sendgrid-rails}
 
 You can quickly get started with SendGrid using Ruby on Rails ActionMailer.
 You will need to edit the ActionMailer settings in `config/environment.rb` to use SendGrid credentials from environment variables:
@@ -34,7 +36,7 @@ You will need to edit the ActionMailer settings in `config/environment.rb` to us
       :enable_starttls_auto => true
     }
 
-## Java {#sendgrid-java}
+### Java {#sendgrid-java}
 
 This Java program will build a multi-part MIME email and send it through SendGrid. Java already has built in libraries to send and receive emails. This example uses [javamail](https://java.net/projects/javamail/pages/Home).
 
@@ -102,7 +104,7 @@ This Java program will build a multi-part MIME email and send it through SendGri
         }
 
 
-## PHP {#sendgrid-php}
+### PHP {#sendgrid-php}
 
 You can use [this](https://github.com/sendgrid/sendgrid-php) library to send emails through SendGrid using PHP.
 More information about the library can be found [here](http://sendgrid.com/docs/Code_Examples/php.html).
@@ -132,7 +134,7 @@ For sending emails using the Web API:
       send($mail);
 
 
-## Node.js {#sendgrid-node}
+### Node.js {#sendgrid-node}
 
 SendGrid has a Node.js package that is written and maintained by two core engineers. The code is open source and available on [Github](https://github.com/sendgrid/sendgrid-nodejs).
 
@@ -163,7 +165,7 @@ program.js
 
 Full documentation of all the features of SendGrid's Node.js package can be found on [Github](https://github.com/sendgrid/sendgrid-nodejs).
 
-## Python {#sendgrid-python}
+### Python {#sendgrid-python}
 
 You can use [SendGrid Python Library](https://github.com/sendgrid/sendgrid-python):
 This library allows you to quickly and easily send emails through SendGrid using Python.
@@ -182,7 +184,7 @@ or use the SMTP API to send your message
 
     s.smtp.send(message)
 
-## Dashboard
+### Dashboard
 
 SendGrid offers statistics for a number of different metrics to report on what is happening with your messages.
 
@@ -190,7 +192,7 @@ SendGrid offers statistics for a number of different metrics to report on what i
 
 To access your SendGrid dashboard, simply click the "Manage" button of the SendGrid add-on in the "Add-ons" tab on your app console.
 
-## Support
+### Support
 
 One of SendGrid's best features is its responsive customer service. You can contact SendGrid 24/7 by phone, web, and live chat:
 
@@ -199,7 +201,7 @@ One of SendGrid's best features is its responsive customer service. You can cont
 * [support@sendgrid.com](mailto:support@sendgrid.com)
 
 
-## Additional resources
+### Additional resources
 
 Additional resources are available at:
 

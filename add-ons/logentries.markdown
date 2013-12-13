@@ -3,9 +3,11 @@ title: Logentries
 weight: 18
 ---
 
+## Logentries
+
 [Logentries](https://logentries.com/) provides Log Management and System Intelligence as a Service. Logentries is a simple and powerful solution for log management. It provides an easy to use interface so that you can quickly understand what is happening in your log data and ultimately your applications. Setup one of the client libraries below in a matter of minutes and start sending logs to Logentries from your AppFog application.
 
-## Install Logentries
+### Install Logentries
 
 In the "Add-ons" tab on your app console click "Install" for the Logentries add-on. Then add the appropriate library below and you're done!
 
@@ -22,11 +24,11 @@ Next, setup your app to start using the Logentries add-on. In the following sect
 * [Python](#logentries-python)
 
 
-## Using Logentries from Ruby {#logentries-ruby}
+### Using Logentries from Ruby {#logentries-ruby}
 
 There are two Logentries rubygems, for Rails and Sinatra.
 
-### Configuring Logentries from Rails {#logentries-rails}
+#### Configuring Logentries from Rails {#logentries-rails}
 
 For Rails, update the `gemfile` to include the logentries gem:
     
@@ -44,7 +46,7 @@ Lastly, write some log events:
 
 	Rails.logger.info("Hello Logentries. I'm an info message")
 
-### Configuring Logentries on Sinatra {#logentries-sinatra}
+#### Configuring Logentries on Sinatra {#logentries-sinatra}
 
 For Sinatra, update the `gemfile` to include the logentries gem:
 
@@ -66,7 +68,7 @@ Lastly, write some log events:
 
 	logger.info("Hello Logentries, I'm an info message.")
     
-## Using Logentries from PHP {#logentries-php}
+### Using Logentries from PHP {#logentries-php}
 
 Get the <a href="https://github.com/logentries/le_php/archive/master.zip">PHP library</a> from our Github repository.
 
@@ -81,7 +83,7 @@ Lastly, write some log events:
 	$log->Info("Hello Logentries, I'm an info message");
 	$log->Warn("Hey Logentries, I'm a warning");
 
-## Using Logentries from NodeJS {#logentries-nodejs}
+### Using Logentries from NodeJS {#logentries-nodejs}
 
 For NodeJS, install the Logentries library with npm in your apps directory:
 
@@ -98,7 +100,7 @@ Lastly, write some log events:
 
 	log.info("Hey Logentries, I'm an info message")
     
-## Using Logentries from Java {#logentries-java}
+### Using Logentries from Java {#logentries-java}
 
 Maven Users
 ------------
@@ -141,7 +143,7 @@ Lastly, write some log events, below is a sample Java class configured to use lo
 		}
 	}
 
-## Using Logentries from Python {#logentries-python}
+### Using Logentries from Python {#logentries-python}
 
 For Python, place the following in your `requirements.txt` file, so it can be installed using pip:
 
@@ -160,10 +162,10 @@ Lastly, write some log events
 	log.info("Hello Logentries, I'm an info message")
 	log.warning("Im quite important")
 
-## Support
+### Support
 
 All Logentries support issues should be submitted to [Logentries Support](mailto:support@logentries.com) or via the Logentries in-app Support widget in the left sidebar. 
 
-## Additional resources
+### Additional resources
 
 * [Logentries AppFog Documentation](http://logentries.com/doc/appfog)

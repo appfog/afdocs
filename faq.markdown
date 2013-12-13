@@ -3,6 +3,8 @@ title: Frequently Asked Questions
 weight: 14
 ---
 
+## FAQ
+
 * [How can I update my app without downtime?](#downtime)
 * [How much does bandwidth cost beyond the included limits for the account?](#bandwidth)
 * [Does AppFog have a persistent file system?](#persistentfs)

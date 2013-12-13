@@ -4,6 +4,8 @@ weight: 2
 description: "Code deployment made easy."
 ---
 
+## AF CLI Tool
+
 `af` is based on CloudFoundry's `vmc` but includes features specific to AppFog and has the default target set to AppFog's service. Check out [the GitHub repo](https://github.com/appfog/af).
 
 * [Installation](#installation)
@@ -42,19 +44,22 @@ If you're on Mac OS X 10.7 Lion and you're having trouble, you may have to do th
 
 3. Install `libksba` with homebrew.
 
-    $ brew install libksba
+    `$ brew install libksba`
+
 
 4. [Install RVM](https://rvm.io/rvm/install/).
 
 5. Install Ruby 1.9.3:
 
-    $ rvm install ruby-1.9.3
-    $ rvm use 1.9.3
+    `$ rvm install ruby-1.9.3`
+    `$ rvm use 1.9.3`
+
 
 5. Install `af`
 
-    $ gem install af
-    $ af login
+    `$ gem install af`
+    `$ af login`
+    
 
 ### Windows {#af-cli-install-windows}
 
@@ -181,10 +186,10 @@ Finally from within your source code directory:
 <tr><td><code>bind-service &lt;servicename> &lt;appname>              </code></td><td>Bind a service to an application</td></tr>
 <tr><td><code>unbind-service &lt;servicename> &lt;appname>            </code></td><td>Unbind service from the application</td></tr>
 <tr><td><code>clone-services &lt;src-app> &lt;dest-app>               </code></td><td>Clone service bindings from &lt;src-app> application to &lt;dest-app></td></tr>
-<tr><td><code>export-service &lt;service>                             </code></td><td>Unbind service from the application</td></tr>
-<tr><td><code>import-service &lt;service> &lt;url>                    </code></td><td>Clone service bindings from &lt;src-app> application to &lt;dest-app></td></tr>
-<tr><td><code>tunnel &lt;servicename> [--port]                        </code></td><td>Unbind service from the application</td></tr>
-<tr><td><code>tunnel &lt;servicename> &lt;clientcmd>                  </code></td><td>Clone service bindings from &lt;src-app> application to &lt;dest-app></td></tr>
+<tr><td><code>export-service &lt;service>                             </code></td><td>Export data from a specified service</td></tr>
+<tr><td><code>import-service &lt;service> &lt;url>                    </code></td><td>Import data to a specified service</td></tr>
+<tr><td><code>tunnel &lt;servicename> [--port]                        </code></td><td>Create a local tunnel to a remote service</td></tr>
+<tr><td><code>tunnel &lt;servicename> &lt;clientcmd>                  </code></td><td>Create a local tunnel to a remote service and start a local client</td></tr>
 
 </table>
 

@@ -205,7 +205,7 @@ To access your Memcached Cloud dashboard, simply click the "Manage" button of yo
 You can then find your dashboard under the `MY BUCKETS` menu.
 
 ### Pricing
-The Memcached Cloud AppFog add-on is in beta phase and is currently offered for free.
+A paid Memcached Cloud account is required to use the add-on. [Visit](http://garantiadata.com/Pricing?memcached) the Garantia Data website for pricing information.
 
 ### Adding Memcached Buckets to Your Plan  
 Memcached Cloud allows you to add multiple Memcached buckets to your plan, each running in a dedicated process and in a non-blocking manner (i.e. without interfering with your other buckets). You can create as many buckets as you need.

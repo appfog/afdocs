@@ -2,7 +2,6 @@
 title: Frequently Asked Questions
 weight: 14
 ---
-
 ## FAQ
 
 * [How can I update my app without downtime?](#downtime)
@@ -28,7 +27,11 @@ For example, here are the apps "example" and "example2".
 
 Develop on the second app, example2, deploying new code until you're ready to push to example.com. This way you can live test the app without fear of affecting real users. 
 
-    $ af update example2
+    $ af update example2 --path {full path to app}
+
+For example:
+
+    $ af update example2 --path /home/example2
 
 When you're ready to push to production, first map example2 to example.com and www.example.com. Then map example to example.aws.af.cm.
 

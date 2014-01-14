@@ -29,6 +29,6 @@ You can deploy most Java apps by simply generating a `WAR` file, then running `a
 
 You can add custom JVM parameters like `-Duser.timezone` by specifiying `JAVA_OPTS` as an environment variable:
 
-    $ af env-add <app-name> JAVAOPTS=<value>
+    $ af env-add <app-name> JAVA_OPTS=<value>
 
 You can also include the `$HOME` variable to point to the Tomcat's `lib` directory.

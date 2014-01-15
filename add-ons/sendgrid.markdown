@@ -110,7 +110,7 @@ You can use [this](https://github.com/sendgrid/sendgrid-php) library to send ema
 More information about the library can be found [here](http://sendgrid.com/docs/Code_Examples/php.html).
 
     include 'path/to/sendgrid-php/SendGrid_loader.php';
-    $sendgrid = new SendGrid($_ENV['SENDGRID_USERNAME'], $_ENV['SENDGRID_PASSWORD']);
+    $sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
     $mail = new SendGrid\Mail();
     $mail->
       addTo('foo@bar.com')->

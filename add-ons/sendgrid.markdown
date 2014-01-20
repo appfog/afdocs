@@ -144,13 +144,14 @@ Add the following settings in package.json file
       "name": "node-sendgrid-example",
       "version": "0.0.1",
       "dependencies": {
-        "express": "3.1.x",
-        "sendgrid": "0.3.0-rc.1.7"
+        "sendgrid": "1.0.0-rc.1.0"
       },
       "engines": {
-        "node": ">= 0.4.7"
+        "node": ">= 0.10.x",
+        "npm": "1.2.x"
       }
     }
+
 
 Install SendGrid locally with the following command: `npm install`
 
@@ -183,6 +184,7 @@ This library allows you to quickly and easily send emails through SendGrid using
 At the top of your app's .py file, import the sendgrid library:
 
     import sendgrid
+    import os
 
 Now, from within your app, you can send email with the following few lines:
 

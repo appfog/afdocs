@@ -192,7 +192,7 @@ Now, from within your app, you can send email with the following few lines:
     s = sendgrid.Sendgrid(os.environ.get('SENDGRID_USERNAME'), os.environ.get('SENDGRID_PASSWORD'), secure=True)
     # make a message object
     message = sendgrid.Message("from@mydomain.com",
-                               "message subject1111",
+                               "message subject",
                                "plaintext message body",
                                "<strong>HTML message body</strong>")
     # add a recipient

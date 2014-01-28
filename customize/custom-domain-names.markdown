@@ -72,13 +72,13 @@ If you need to set your root domain (`yourdomain.com`) instead of the `www` subd
 
 AWS US East:
 
-	107.21.3.47
-	107.23.45.102
+	54.84.29.246
+	54.84.26.168
 
 AWS Europe West:
 
-	176.34.144.39
-	176.34.141.96
+	54.194.187.114
+	54.194.233.170
 
 AWS Asia Southeast:
 

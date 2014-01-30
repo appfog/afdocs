@@ -5,7 +5,7 @@ weight: 9
 
 ## Memcached Cloud
 
-[Memcached Cloud](http://garantiadata.com/memcached) is a fully-managed service that operates your Memcached in a reliable and fail-safe manner. Your dataset is constantly replicated, so if a node fails, an automatic failover mechanism guarantees that your data is served without interruption. Memcached Cloud provides various data persistence options as well as remote backups for disaster recovery purposes. You can quickly and easily get your apps up and running with Memcached Cloud through its add-on for AppFog, just tell us how much memory you need and start using your Memcached bucket instantly.
+[Memcached Cloud](http://redislabs.com/memcached-cloud) is a fully-managed service that operates your Memcached in a reliable and fail-safe manner. Your dataset is constantly replicated, so if a node fails, an automatic failover mechanism guarantees that your data is served without interruption. Memcached Cloud provides various data persistence options as well as remote backups for disaster recovery purposes. You can quickly and easily get your apps up and running with Memcached Cloud through its add-on for AppFog, just tell us how much memory you need and start using your Memcached bucket instantly.
  
 A Memcached bucket is created in seconds and from that moment on, all operations are fully automated. The service completely frees developers from dealing with nodes, clusters, server lists, scaling and failure recovery, while guaranteeing absolutely no data loss.
 
@@ -205,9 +205,9 @@ To access your Memcached Cloud dashboard, simply click the "Manage" button of yo
 You can then find your dashboard under the `MY BUCKETS` menu.
 
 ### Pricing
-Memcached Cloud offers both a free 25MB cache and paid plans for larger cache sets. [Visit](http://garantiadata.com/Pricing?memcached) the Garantia Data website for pricing information.
+Memcached Cloud offers both a free 25MB cache and paid plans for larger cache sets. [Visit](http://redislabs.com/pricing) the Redis Labs website for pricing information.
 
-### Adding Memcached Buckets to Your Plan  
+### Adding Memcached Buckets to Your Plan
 Memcached Cloud allows you to add multiple Memcached buckets to your plan, each running in a dedicated process and in a non-blocking manner (i.e. without interfering with your other buckets). You can create as many buckets as you need.
 
 Your first Memcached bucket is provisioned automatically upon launching the Memcached Cloud add-on. Its servers and credentials are maintained with the `MEMCACHEDCLOUD` env. vars. To add more buckets, simply access your Memcached Cloud console and click the `Add Bucket` button in the `MY BUCKETS > Manage` page. 
@@ -216,9 +216,9 @@ Your new Memcached bucket's server and credentials will be displayed in the Memc
 
 ### Support
 All Memcached Cloud support and runtime issues should be submitted to [support@appfog.com](support@appfog.com). 
-Any non-support related issues or product feedback is welcome via email at [support@garantiadata.com](support@garantiadata.com).
+Any non-support related issues or product feedback is welcome via email at [support@redislabs.com](support@redislabs.com).
 
 ### Additional Resources
 
-* [Developers Resources](http://garantiadata.com/memcached/developers)
+* [Developers Resources](http://redislabs.com/developers)
 * [Memcached Wiki](https://code.google.com/p/memcached/wiki/NewStart)

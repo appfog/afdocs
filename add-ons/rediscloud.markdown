@@ -244,7 +244,7 @@ The Redis Cloud AppFog add-on is in beta phase and is currently offered for free
 
 ### Support
 
-All Redis Cloud support and runtime issues should be submitted to [AppFog Support](mailto:support@appfog.com). Any non-support related issues or product feedback is welcome via email at [support@garantiadata.com](mailto:support@garantiadata.com).
+All Redis Cloud support and runtime issues should be submitted to [AppFog Support](mailto:support@appfog.com). Any non-support related issues or product feedback is welcome via email at [support@redislabs.com](mailto:support@redislabs.com).
 
 ### Additional resources
 

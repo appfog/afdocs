@@ -1,6 +1,6 @@
 ---
 title: Services
-weight: 3
+weight: 30
 ---
 
 ## Services

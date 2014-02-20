@@ -1,6 +1,6 @@
 ---
 title: Billing
-weight: 8
+weight: 70
 ---
 
 ## Billing

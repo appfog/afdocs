@@ -1,6 +1,6 @@
 ---
 title: Ruby
-weight: 4
+weight: 6
 ---
 
 ## Ruby

@@ -16,9 +16,9 @@ SSL is automatically enabled on all apps with default domain names, i.e. domain 
 #### **SSL for custom domain names is currently restricted in the following ways:**
 
 * Apps on Amazon AWS infrastructures 
-* **ONLY for paid accounts:**
+* **ONLY for paid accounts ($50/mo or more):**
 
-	* $50/month: 1 SSL Endpoint
+	* $ 50/month: 1 SSL Endpoint
 	* $100/month: 2 SSL Endpoints
 	* $380/month: 4 SSL Endpoints
 	* $720/month: 6 SSL Endpoints

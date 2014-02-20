@@ -1,7 +1,7 @@
 ---
 layout: doc-page
 title: Node
-weight: 1
+weight: 2
 ---
 
 ## Node.js

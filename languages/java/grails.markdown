@@ -1,6 +1,6 @@
 ---
 title: Grails
-weight: 3
+weight: 2
 ---
 
 ## Java Grails Apps

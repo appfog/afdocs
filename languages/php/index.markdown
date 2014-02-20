@@ -1,6 +1,6 @@
 ---
 title: PHP
-weight: 2
+weight: 3
 ---
 
 ## PHP

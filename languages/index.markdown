@@ -1,6 +1,6 @@
 ---
 title: Languages
-weight: 2
+weight: 20
 ---
 
 ## Supported Languages

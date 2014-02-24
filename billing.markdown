@@ -14,8 +14,8 @@ Your billing cycle begins when you start your subscription. If you start your su
 
 ### Upgrades and Downgrades {#upgrades}
 
-You can upgrade or downgrade your account by sending us an email at [support@appfog.com](mailto:support@appfog.com).
+When you upgrade your service, your billing cycle remains the same, and you'll automatically be charged for the difference in plans for the rest of the billing cycle (to the nearest second). For example, if you're on the $100/month (Silver plan) and upgrade to the $380/month (Gold plan) halfway through your billing cycle, you'll be charged $140 for the rest of the billing cycle, and then you'll be charged $380 at the beginning of the next billing cycle.
 
-When you upgrade your service, your billing cycle remains the same, and you'll automatically be charged for the difference in plans for the rest of the billing cycle (to the nearest second). For example, if you're on the $100/month plan and upgrade halfway through your billing cycle, you'll be charged $140 for the rest of the billing cycle, and then you'll be charged $380 at the beginning of the next billing cycle.
+When you downgrade your account will be given a pro-rated credit for the remaining unused portion of the previous level plan. Your new plan will be charged immediately, using up the remaining credit and charging your credit card if there is not enough left on that pro-rated credit. Any credits are used up with each billing and, once they are depleted, your credit card will be charged accordingly.
 
-Similarly, when you downgrade, your billing cycle remains the same and you'll automatically be refunded the difference in plans for the rest of the billing cycle. 
+If you have questions about this process, please send us an email at [support@appfog.com](mailto:support@appfog.com).

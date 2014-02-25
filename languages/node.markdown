@@ -102,7 +102,7 @@ If you deploy your app with those conditions in place, AppFog will install the n
 
 ## CoffeeScript {#node-coffee-script}
 
-You can deploy a [CoffeeScript]() Node app to AppFog by using a shim file to load the CoffeeScripts.
+You can deploy a [CoffeeScript](http://coffeescript.org/) Node app to AppFog by using a shim file to load the CoffeeScripts.
 
 Assuming you have two files, `app.coffee` and `app.js`, `app.js` can simply look like this: 
 

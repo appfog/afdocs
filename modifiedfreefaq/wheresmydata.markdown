@@ -1,6 +1,6 @@
 ---
 title: Modified Free Accounts FAQ
-weight: 1
+weight: 2
 ---
 
 ## Where's My Data?

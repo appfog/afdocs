@@ -11,7 +11,7 @@ AppFog changed the resource thresholds for free plans on February 19th: [Please 
 
 In order to recover data from a service binding, you'll need to use the `af` command line tool to create a tunnel. Keep in mind, though, each tunnel you create consumes one of your two available service bindings and one of your two application slots. This means you can only access two services at any one time, whether through a tunnel or one of your running applications.
 
-Our recommendation is to export you data prior to restarting any of your applications via af tunnel. For more details on tunneling, [please see our documentation](https://docs.appfog.com/services/tunneling).
+Our recommendation is to export you data prior to restarting any of your applications via af tunnel. For more details on tunneling, [please see our tunneling documentation](https://docs.appfog.com/services/tunneling).
 
 ### Questions:
 

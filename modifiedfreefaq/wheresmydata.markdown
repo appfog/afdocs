@@ -47,7 +47,7 @@ You can access all of the data you had prior to the maintenance.
 
 ### Can I run more than two applications at a time? Does Caldecott count as an application?{#morethantwoapps}
 
-You cannot run more than two applications at the same time. You can run up to two applications at any given time as long as you don't exceed the ram limit of 512MB. 
+You CANNOT run more than two applications at the same time. You CAN run up to two applications at any given time as long as you don't exceed the ram limit of 512MB. 
 
 You can create as many applications as you want, as long as you either stop all running applications or set the number of running applications to one. In order to create additional applications, first stop all apps (you may leave one of your applications running if you want). You should then be able to create an additional application.
 

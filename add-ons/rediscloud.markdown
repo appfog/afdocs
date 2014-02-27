@@ -11,7 +11,7 @@ You can then add as many Redis databases as you need (each running in a dedicate
 
 ## Install Redis Cloud
 
-In the Add-ons tab on your app console click â€œInstallâ€ for the Redis Cloud add-on. Thatâ€™s it!
+In the Add-ons tab on your app console click Install for the Redis Cloud add-on. Thatâ€™s it!
 
 Once Redis Cloud has been added, you will notice a new enironment variable: `REDISCLOUD_URL` in the `Env variables` tab on your app console, containing the username, password, hostname and port of your first Redis Cloud database.
 

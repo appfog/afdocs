@@ -1,224 +1,252 @@
 ---
-title: Memcached Cloud
-weight: 9
+title: Redis Cloud
+weight: 20
 ---
 
-## Memcached Cloud
+## Redis Cloud
 
-[Memcached Cloud](http://redislabs.com/memcached-cloud) is a fully-managed service that operates your Memcached in a reliable and fail-safe manner. Your dataset is constantly replicated, so if a node fails, an automatic failover mechanism guarantees that your data is served without interruption. Memcached Cloud provides various data persistence options as well as remote backups for disaster recovery purposes. You can quickly and easily get your apps up and running with Memcached Cloud through its add-on for AppFog, just tell us how much memory you need and start using your Memcached bucket instantly.
- 
-A Memcached bucket is created in seconds and from that moment on, all operations are fully automated. The service completely frees developers from dealing with nodes, clusters, server lists, scaling and failure recovery, while guaranteeing absolutely no data loss.
+[Redis Cloud](http://redis-cloud.com) is a fully-managed service for running your Redis dataset. You can quickly and easily get your apps up and running with Redis Cloud on AppFog. You can then add as many Redis databases as you need (each running in a dedicated process, in a non-blocking manner) and increase or decrease the memory size of your plan without affecting your existing data. You can easily import an existing dataset to any of your Redis Cloud databases, from your AWS S3 account or from any other Redis server. Daily backups are performed automatically and in addition, you can backup your dataset manually at any given time.
 
-### Getting Started
-In the "Add-ons" tab on your app console click "Install" for the `Memcached Cloud` add-on. That’s it!
+Note: Redis Cloud is currently only available on our AWS US-East infrastructure.
 
-Once `Memcached Cloud` has been added, you will notice three new enironment variables: 
-`MEMCACHEDCLOUD_SERVERS`, `MEMCACHEDCLOUD_USERNAME`, `MEMCACHEDCLOUD_PASSWORD` 
-in the `Env variables` tab on your app console, containing the servers and credentials of your first `Memcached Cloud` bucket.
+### Install Redis Cloud
+
+In the "Add-ons" tab on your app console click "Install" for the Redis Cloud add-on. That’s it!
+
+Once Redis Cloud has been added, you will notice a new enironment variable: `REDISCLOUD_URL` in the `Env variables` tab on your app console, containing the username, password, hostname and port of your first Redis Cloud database.
+
+Note: as database provisioning is carried out asynchronously, please wait until the creation and initialization of the database is complete. This process shouldn't take more than 60 seconds. You're ready to go when the "hostname" value in the `REDISCLOUD_URL` environment variable is different than your "localhost".
+
+Next, setup your app to start using the Redis Cloud add-on. In the following sections we have documented the interfaces with several languages and frameworks supported by AppFog.
+
+* [Ruby](#rediscloud-ruby)
+* [Rails](#rediscloud-rails)
+* [Sinatra](#rediscloud-sinatra)
+* [Java](#rediscloud-java)
+* [Python](#rediscloud-python)
+* [Django](#rediscloud-django)
+* [PHP](#rediscloud-php)
+* [Node.js](#rediscloud-node)
+
+
+### Using Redis from Ruby {#rediscloud-ruby}
+
+The [redis-rb](https://github.com/redis/redis-rb) is a very stable and mature redis client and the easiest way to access Redis from Ruby. 
+
+Install redis-rb:
     
-Next, setup your app to start using the Memcached Cloud add-on. In the following sections we have documented the interfaces with several languages and frameworks supported by AppFog.
+    $ gem install redis
 
-* [Ruby](#ruby)
-* [Rails](#rails)
-* [Sinatra](#sinatra)
-* [Unicorn](#unicorn)
-* [Java](#java)
-* [Python](#python)
-* [Django](#django)
-* [PHP](#php)
+#### Configuring Redis from Rails {#rediscloud-rails}
 
-### <a id="ruby"></a>Using Memcached with Ruby
-[Dalli](https://github.com/mperham/dalli) is a high performance, pure Ruby client for accessing Memcached servers that uses  binary protocol.
-
-#### <a id="rails"></a>Configuring Memcached on Rails
-To use Dalli with Rails 3.x, update your gems with:
+For Rails 2.3.3 up to Rails 3.0, update the `config/environment.rb` to include the redis gem:
     
-  	:::ruby
-	gem 'dalli'  
-	
+    config.gem 'redis' 
+
+For Rails 3.0 and above, update the `Gemfile`:
+    
+    gem 'redis'  
+    
 And then install the gem via Bundler:
-	
-	:::ruby
-	bundle install
 
-Lastly, add the following line in your `config/environments/production.rb`:
-	
-		:::ruby	
-    	config.cache_store = :dalli_store, ENV[MEMCACHEDCLOUD_SERVERS].split(','), { :username => ENV[MEMCACHEDCLOUD_USERNAME], :password => ENV[MEMCACHEDCLOUD_PASSWORD] }
+    $ bundle install
 
-#### <a id="sinatra"></a>Configuring Memcached on Sinatra
+Lastly, create a new `redis.rb` initializer in `config/initializers/` and add the following code snippet: 
+    
+    uri = URI.parse(ENV["REDISCLOUD_URL"])
+    $redis = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
+
+#### Configuring Redis on Sinatra {#rediscloud-sinatra}
+
 Add this code snippet to your configure block:
-	
-	:::ruby
-	configure do
+
+    configure do
         . . .
-		require 'dalli'
-		
-    	$cache = Dalli::Client.new(ENV[MEMCACHEDCLOUD_SERVERS].split(','), :username => ENV[MEMCACHEDCLOUD_USERNAME], :password => ENV[MEMCACHEDCLOUD_PASSWORD])
+        require 'redis'
+        uri = URI.parse(ENV["REDISCLOUD_URL"])
+        REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
         . . .
-	end
+    end
 
-#### <a id="unicorn"></a>Using Memcached on Unicorn
-No special setup is required when using Memcached Cloud with a Unicorn server.
-Users running Rails apps on Unicorn should follow the instructions in the [Configuring Memcached from Rails](#rails) section and users running Sinatra apps on Unicorn should follow the instructions in the [Configuring Memcached on Sinatra](#sinatra) section.
+#### Using Redis on Unicorn
 
-#### Testing from Ruby
+No special setup is required when using Redis Cloud with a Unicorn server. Users running Rails apps on Unicorn should follow the instructions in the [Configuring Redis from Rails](#rediscloud-rails) section and users running Sinatra apps on Unicorn should follow the instructions in the [Configuring Redis on Sinatra](#rediscloud-sinatra) section.
 
-	:::ruby
-	$cache.set("foo", "bar")
-	# => true
-	$cache.get("foo")
-	# => "bar"
-	
-### Using Memcached with Java
-[spymemcached](https://code.google.com/p/spymemcached/) is a simple, asynchronous, single-threaded Memcached client written in Java. You can download the latest build from: https://code.google.com/p/spymemcached/downloads/list.
-If you are using `Maven`, start by adding the following repository:
-	
-	:::java
-	<repositories>
-	    <repository>
-	      <id>spy</id>
-	      <name>Spy Repository</name>
-	      <layout>default</layout>
-	      <url>http://files.couchbase.com/maven2/</url>
-	      <snapshots>
-	        <enabled>false</enabled>
-	      </snapshots>
-	    </repository>
-	</repositories>
+#### Testing (Ruby)
+    
+    redis.set("foo", "bar")
+    # => "OK"
+    redis.get("foo")
+    # => "bar"
+    
+### Using Redis from Java {#rediscloud-java}
 
-Next, specify the actual artifact as follows: 
-	
-	:::java
-	<dependency>
-	  <groupId>spy</groupId>
-	  <artifactId>spymemcached</artifactId>
-	  <version>2.8.9</version>
-	  <scope>provided</scope>
-	</dependency>
+[Jedis](https://github.com/xetorthio/jedis) is a blazingly small, sane and easy to use Redis java client. You can download the latest build from [github](http://github.com/xetorthio/jedis/downloads) or use it as a maven dependency:
 
-Configure the connection to your Memcached Cloud service by using the `MEMCACHEDCLOUD` `Env variables` as shown in the following code snippet:
-	
-	:::java
-	try {			
-		AuthDescriptor ad = new AuthDescriptor(new String[] { "PLAIN" },
-			new PlainCallbackHandler(System.getenv("MEMCACHEDCLOUD_USERNAME"), System.getenv("MEMCACHEDCLOUD_PASSWORD")));
-						
-		MemcachedClient mc = new MemcachedClient(
-		          new ConnectionFactoryBuilder()
-			          .setProtocol(ConnectionFactoryBuilder.Protocol.BINARY)
-			          .setAuthDescriptor(ad).build(),
-			  AddrUtil.getAddresses(System.getenv("MEMCACHEDCLOUD_SERVERS")));
-			
-	} catch (IOException ex) {
-		// the Memcached client could not be initialized. 
-	} 
-	
-#### Testing from Java
-	
-	:::java
-	mc.set("foo", 0, "bar");
-	Object value = mc.get("foo");
+    <dependency>
+        <groupId>redis.clients</groupId>
+        <artifactId>jedis</artifactId>
+        <version>2.0.0</version>
+        <type>jar</type>
+        <scope>compile</scope>
+    </dependency>
 
-### <a id="python"></a>Using Memcached with Python
-[bmemcached](https://github.com/jaysonsantos/python-binary-memcached) is a pure, thread safe, python module to access memcached via binary protocol.
+Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environment variable and the following code snippet:
+
+    try { 
+            URI redisUri = new URI(System.getenv("REDISCLOUD_URL"));
+            JedisPool pool = new JedisPool(new JedisPoolConfig(),
+                    redisUri.getHost(),
+                    redisUri.getPort(),
+                    Protocol.DEFAULT_TIMEOUT,
+                    redisUri.getUserInfo().split(":",2)[1]);
+    } catch (URISyntaxException e) {
+               // URI couldn't be parsed.           
+    } 
+    
+#### Testing (Java)
+
+    Jedis jedis = pool.getResource();
+    jedis.set("foo", "bar");
+    String value = jedis.get("foo");
+    // return the instance to the pool when you're done
+    pool.returnResource(jedis);
+
+(example taken from Jedis docs).
+
+### Using Redis from Python {#rediscloud-python}
+
+[redis-py](https://github.com/andymccurdy/redis-py) is the most common client to access Redis from Python.
  
-Use `pip` to install it:
- 	
- 	:::term
-	pip install python-binary-memcached
+Use pip to install it:
+ 
+    $ pip install redis
 
-Configure the connection to your Memcached Cloud service using the `MEMCACHEDCLOUD``Env variables` and the following code snippet:
-	
-	:::python
-	import os
-	import urlparse
-	import bmemcached
-	import json
-	
-	mc = bmemcached.Client(os.environ.get('MEMCACHEDCLOUD_URL').split(','), os.environ.get('MEMCACHEDCLOUD_USERNAME'), os.environ.get('MEMCACHEDCLOUD_PASSWORD'))
-	
-#### Testing from Python
-	
-	:::python
-	mc.set('foo', 'bar')
-	print client.get('foo')
+Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environment variable and the following code snippet:
+    
+    import os
+    import urlparse
+    import redis
+    url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
+    r = redis.Redis(host=url.hostname, port=url.port, password=url.password)
+    
+    
+#### Testing (Python):
+    
+    >>> r.set('foo', 'bar')
+    True
+    >>> r.get('foo')
+    'bar'
 
-#### <a id="django"></a>Using Memcached with Django
-Memcached Cloud can be used as a Django cache backend with [django-bmemcached](https://github.com/jaysonsantos/django-bmemcached). 
+#### [Django-redis-cache](https://github.com/sebleier/django-redis-cache) {#rediscloud-django}
 
-To do so, install django-bmemcached:
- 	
- 	:::term
-	pip install django-bmemcached
+Redis can be used as the back-end cache for Django.
+
+To do so, install django-redis-cache:
+ 
+    $ pip install django-redis-cache
 
 Next, configure your `CACHES` in the `settings.py` file:
-	
-	:::python
-	import os
-	import urlparse
-	import json
-	
-	CACHES = {
-		'default': {
-			'BACKEND': 'django_bmemcached.memcached.BMemcached',
-			'LOCATION': os.environ.get('MEMCACHEDCLOUD_URL').split(','),
-			'OPTIONS': {
-            			'username': os.environ.get('MEMCACHEDCLOUD_USERNAME'),
-            			'password': os.environ.get('MEMCACHEDCLOUD_PASSWORD')
-		        }
-	  	}
-	}
 
-#### Testing from Django
-	
-	:::python
-	from django.core.cache import cache
-	cache.set("foo", "bar")
-	print cache.get("foo")
-	
-### <a id="php"></a>Using Memcached with PHP
-[PHPMemcacheSASL](https://github.com/ronnywang/PHPMemcacheSASL) is a simple PHP class with SASL support.
+    import os
+    import urlparse
+    redis_url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
+    CACHES = {
+        'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'LOCATION': '%s:%s' % (redis_url.hostname, redis_url.port),
+        'OPTIONS': {
+            'PASSWORD': redis_url.password,
+            'DB': 0,
+        }
+      }
+    }
 
-Include the class in your project and configure a connection to your Memcached Cloud service using the `MEMCACHEDCLOUD``Env variables` and the following code snippet:
-	
-	<?php
-	include('MemcacheSASL.php');
-	
-	$mc = new MemcacheSASL;
-	list($host, $port) = explode(':', $_ENV['MEMCACHEDCLOUD_SERVERS']);
-	$mc->addServer($host, $port);
-	$mc->setSaslAuthData($_ENV['MEMCACHEDCLOUD_USERNAME'], $_ENV['MEMCACHEDCLOUD_PASSWORD']);
-	
-#### Testing from PHP
+#### Testing (Django)
 
-	$mc->add("foo", "bar");
-	echo $mc->get("foo");
+    from django.core.cache import cache
+    cache.set("foo", "bar")
+    print cache.get("foo")
+    
+### Using Redis from PHP {#rediscloud-php}
 
-### Memcached Cloud Dashboard
-Our dashboard displays all of the performance and usage metrics for your Memcached Cloud service on a single screen, as shown in the following screenshot:
+[Predis](https://github.com/nrk/predis) is a flexible and feature-complete PHP client library for Redis.
 
-<img src="https://s3.amazonaws.com/memcached-cloud-docs/appfog+Memcached+Logo.JPG" style="width:750px;">
+Instructions for installing the [Predis](https://github.com/nrk/predis) library can be found [here](https://github.com/nrk/predis#how-to-use-predis).
 
-To access your Memcached Cloud dashboard, simply click the "Manage" button of your Memcached Cloud add-on in the "Add-ons" tab on your app console.
+Loading the library to your project should be straightforward:
 
-You can then find your dashboard under the `MY BUCKETS` menu.
+    <?php
+    // prepend a base path if Predis is not present in your "include_path".
+    require 'Predis/Autoloader.php';
+    Predis\Autoloader::register();
+    
+Configure connection to your Redis Cloud service using `REDISCLOUD_URL` environment variable and the following code snippet:
+    
+    $redis = new Predis\Client(array(
+        'host' => parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_HOST), 
+        'port' => parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_PORT),
+        'password' => parse_url($_ENV['REDISCLOUD_URL'], PHP_URL_PASS), 
+    ));
+    
+#### Testing (PHP)
+
+    $redis->set('foo', 'bar');
+    $value = $redis->get('foo');
+    
+### Using Redis from Node.js {#rediscloud-node}
+
+[node_redis](https://github.com/mranney/node_redis) is a complete Redis client for node.js. 
+
+You can install it with:
+
+    $ npm install redis
+
+Configure connection to your Redis-Cloud service using `REDISCLOUD_URL` environment variable and the following code snippet:
+
+    var redis = require('redis');
+    var url = require('url');
+    var redisURL = url.parse(process.env.REDISCLOUD_URL);
+    var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+    client.auth(redisURL.auth.split(":")[1]);
+
+    
+####Testing (Node.js)
+
+    client.set('foo', 'bar');
+    client.get('foo', function (err, reply) {
+        console.log(reply.toString()); // Will print `bar`
+    });
+    
+### Dashboard
+
+Our dashboard presents all performance and usage metrics of your Redis Cloud service on a single screen, as shown below:
+
+<img src="https://s3.amazonaws.com/redis-cloud-appfog/doc/appfog-dashbord-redis.jpeg" class="screenshot" />
+
+To access your Redis Cloud dashboard, simply click the "Manage" button of the RedisCloud add-on in the "Add-ons" tab on your app console.
+
+You can then find your dashboard under the `MY DATABASES` menu.
+
+### Adding Redis databases to your app  
+
+Redis Cloud allows you to add multiple Redis databases, each running in a dedicated process, in a non-blocking manner (i.e. without interfering with your other databases). You can create as many databases as you need.
+
+Your first Redis database is created automatically upon launching the Redis Cloud add-on and its URL and credentials are maintained in `REDISCLOUD_URL` environment variable. 
+
+To add more databases, simply access your Redis Cloud add-on by clicking the "Manage" button and then click the `New DB` button in the `MY DATABASES > Manage` page. 
+
+Warning: The Redis Cloud console will provide you a new URL for connecting to your new Redis database.
 
 ### Pricing
-Memcached Cloud offers both a free 25MB cache and paid plans for larger cache sets. [Visit](http://redislabs.com/pricing) the Redis Labs website for pricing information.
 
-### Adding Memcached Buckets to Your Plan
-Memcached Cloud allows you to add multiple Memcached buckets to your plan, each running in a dedicated process and in a non-blocking manner (i.e. without interfering with your other buckets). You can create as many buckets as you need.
-
-Your first Memcached bucket is provisioned automatically upon launching the Memcached Cloud add-on. Its servers and credentials are maintained with the `MEMCACHEDCLOUD` env. vars. To add more buckets, simply access your Memcached Cloud console and click the `Add Bucket` button in the `MY BUCKETS > Manage` page. 
-
-Your new Memcached bucket's server and credentials will be displayed in the Memcached Cloud console.
+The Redis Cloud AppFog add-on is in beta phase and is currently offered for free.
 
 ### Support
-All Memcached Cloud support and runtime issues should be submitted to [support@appfog.com](support@appfog.com). 
-Any non-support related issues or product feedback is welcome via email at [support@redislabs.com](support@redislabs.com).
 
-### Additional Resources
+All Redis Cloud support and runtime issues should be submitted to [AppFog Support](mailto:support@appfog.com). Any non-support related issues or product feedback is welcome via email at [support@redislabs.com](mailto:support@redislabs.com).
 
-* [Developers Resources](http://redislabs.com/developers)
-* [Memcached Wiki](https://code.google.com/p/memcached/wiki/NewStart)
+### Additional resources
+
+* [Developers Resources](http://redis-cloud.com/redis/developers)
+* [Redis Documentation](http://redis.io/documentation)

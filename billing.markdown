@@ -7,10 +7,13 @@ weight: 70
 
 * [Billing Cycle](#cycle)
 * [Upgrades and Downgrades](#upgrades)
+* [Updating Your Billing Information](#update)
+* [Questions About Billing](#questions)
 
 ### Billing Cycle {#cycle}
 
 Your billing cycle begins when you start your subscription. If you start your subscription on the fifth of the month, then your account will automatically renew on the fifth of each subsequent month.
+
 
 ### Upgrades and Downgrades {#upgrades}
 
@@ -18,4 +21,10 @@ When you upgrade your service, your billing cycle remains the same, and you'll a
 
 Similarly, when you downgrade your billing cycle remains the same. When you downgrade, your account will be given a pro-rated credit for the remaining unused portion of the previous level plan and then charged a pro-rated amount for the new, lower plan for the remaining days on your current billing cycle. Any credits are used up with each billing and, once they are depleted, your credit card is charged accordingly.
 
-If you have questions about this process, please send us an email at [support@appfog.com](mailto:support@appfog.com).
+### Updating Your Billing Information {#update}
+
+If you need to update your credit card or billing information, please visit our [billing system](https://appfog.recurly.com/) and log in using your account login credentials.
+
+### Questions? {#questions}
+
+If you have questions about our billing process or need assistance logging in to your billing account, please send us an email at [support@appfog.com](mailto:support@appfog.com).

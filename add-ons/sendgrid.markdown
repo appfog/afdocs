@@ -13,6 +13,20 @@ In the "Add-ons" tab on your app console click "Install" for the SendGrid add-on
 
 Once SendGrid has been added, you will notice new environment variables: in the `Env variables` tab on your app console: `SENDGRID_USERNAME`, `SENDGRID_PASSWORD`, `SENDGRID_SMTP_HOST`.
 
+How to upgrade your SendGrid account:
+
+* Find the SendGrid add-on and click on "Manage" button:
+
+<img src="http://static.sendgrid.com.s3.amazonaws.com/images/appfog/appfog_sso.png" class="screenshot" />
+
+* On the SendGrid site click on "Change Package" button:
+
+<img src="http://static.sendgrid.com.s3.amazonaws.com/images/appfog/appfog_upgrade.png" class="screenshot" />
+
+* Select a new plan:
+
+<img src="http://static.sendgrid.com.s3.amazonaws.com/images/appfog/appfog_select_plan.png" class="screenshot" />
+
 Next, setup your app to start using the SendGrid add-on. In the following sections we have documented the interfaces with several languages and frameworks supported by AppFog.
 
 * [Ruby/Rails](#sendgrid-rails)

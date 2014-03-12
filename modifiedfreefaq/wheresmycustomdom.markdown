@@ -27,6 +27,6 @@ If you find you do need to update your application and want to keep your custom 
 1. Upgrade to a [paid plan](https://www.appfog.com/pricing/).
 2. Follow these instructions to [add your custom domains](/customize/custom-domain-names).
 
-### What If I Need Additional Help?]{#getsupport}
+### What If I Need Additional Help?{#getsupport}
 
 If you have any questions, need assistance with the upgrade process, or need help getting your custom domains working again (after [upgrading](https://www.appfog.com/pricing/)), and you've exhausted our documentation, please check out our [support options](https://support.appfog.com/home).

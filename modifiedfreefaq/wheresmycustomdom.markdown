@@ -3,6 +3,8 @@ title: What Happened to My Custom Domain?
 weight: 3
 ---
 
+## Custom Domains On Modified Free Accounts?
+
 * [What Happened to My Custom Domain?](#whathappened)
 * [Why Do Some Free Accounts Still Have Custom Domains and Some Do Not?](#whystill)
 * [How Can I Add Custom Domains Back to My Application](#addcustom)

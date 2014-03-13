@@ -7,7 +7,7 @@ description: "The easiest way to spin up a web app. Quick and dead simple."
 ## Getting Started: Overview
 
 * [How to Get Started Using the Web Console](#startonweb)
-* [How to Get Started Using the AF CLI tool](#startonafcli)
+* [How to Get Started Using the AppFog Command Line Tool (AF CLI tool)](#startonafcli)
 
 ### How to Get Started Using the Web Console{#startonweb}
 
@@ -38,7 +38,7 @@ You’ll be able to use a custom domain after you create your app.
 You’re done! Give us a couple of minutes to deploy your new app. Once you’re in the app console, hit the “Visit Live Site” button.
 
 
-### How to Get Started Using the AF CLI{#startonafcli}
+### How to Get Started Using the AppFog Command Line Tool (AF CLI tool){#startonafcli}
 
 If you haven’t already, [create an account](http://console.appfog.com/signup).
 And then [install our command line tool](/getting-started/af-cli).

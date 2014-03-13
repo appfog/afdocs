@@ -47,19 +47,17 @@ Below are instructions for quickly setting up your application using our AF CLI 
 
 #### 1. login 
 `$ af login`
-
+ 
 #### 2. Clone the repo of your choice using the proper command:  
 `git clone <GIT URL>` 
 
-Example: 
-
-`git clone https://github.com/appfog/af-java-base.git`
+Example: `git clone https://github.com/appfog/af-java-base.git`
 
 #### 3. Move to the directory of your newly cloned application
-
+ 
 #### 4. Push your application: 
 `$ af push`
-
+ 
 #### 5. List of Git Repo Sample Source Code:
 
 * [Java 1.6](https://github.com/appfog/af-java-base.git) (https://github.com/appfog/af-java-base.git)

@@ -12,7 +12,7 @@ weight: 3
 
 ### What Happened to My Custom Domain?{#whathappened}
 
-In the Summer of 2013, free plans were no longer allowed no longer allowed custom domains. But some applications on these free accounts still have functioning custom domains. As some of you are discovering, however, that is not always a permanent thing. Depending on what you do to your applications, this ability can and does go away, causing your custom domains to cease functioning.
+In the Summer of 2013, free plans were no longer allowed custom domains. But some applications on these free accounts still have functioning custom domains. As some of you are discovering, however, that is not always a permanent thing. Depending on what you do to your applications, this ability can and does go away, causing your custom domains to cease functioning.
 
 ### Why Do Some Free Accounts Still Have Custom Domains and Some Do Not?{#whystill}
 

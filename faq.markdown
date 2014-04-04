@@ -6,7 +6,7 @@ weight: 95
 
 * [How can I update my app without downtime?](#downtime)
 * [How much does bandwidth cost beyond the included limits for the account?](#bandwidth)
-* [Does AppFog have a persistent file system?](#persistentfs)a
+* [Does AppFog have a persistent file system?](#persistentfs)
 * [Why does my app return a 410 Removed error?](#blacklist)
 * [Why does my app return a 429 Calm Down error?](#throttling)
 * [Why does my app return a 509 Bandwidth Exceeded error?](#bandwidth)

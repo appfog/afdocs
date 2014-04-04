@@ -7,6 +7,7 @@ weight: 95
 * [How can I update my app without downtime?](#downtime)
 * [How much does bandwidth cost beyond the included limits for the account?](#bandwidth)
 * [Does AppFog have a persistent file system?](#persistentfs)
+* [How Can I Move My Apps and/or Data Between Accounts?](#appdatamove)
 * [Why does my app return a 410 Removed error?](#blacklist)
 * [Why does my app return a 429 Calm Down error?](#throttling)
 * [Why does my app return a 509 Bandwidth Exceeded error?](#bandwidth)
@@ -64,6 +65,59 @@ If you run into any issues with example2, rollback is trivial. Simply map the or
 ### How much does bandwidth cost beyond the included limits for the account? {#bandwidth}
 
 Additional data transfer costs $0.15 per gigabyte.
+
+### How does billing work? {#billing}
+
+To move your apps and/or data between accounts, please do the following:
+
+1. Send us the email address you want to associate with the “Destination” account.  We will create a New account on the same plan type as your “Original” account.
+
+2. You will need to complete the account verification steps on the new account.
+
+3. Via the AppFog command-line tool (AF CLI), login to the “Original” account and download all of your applications. The command to do this is:
+
+`$ af pull <app_name>`
+
+    *(Note: This will download a copy of each app's source code to your current system folder).*
+    
+    *You may also pull the code by downloading logging in to the web console, going to that app and pulling the source code from there. *
+
+4. Next, get a database dump of each database using the export services command:
+
+`$ af export-service <service_name>`
+
+5. Finally, list the env vars for each app using the command:
+
+`$ af env <app_name>`
+
+6. Logout of the “Original” account and login to the “Destination” account via the CLI.
+
+7. In the “Destination” account, upload and deploy your applications using the upload/push syntax:
+
+`$ af push <app_name>`
+
+8. Add each apps env vars using the command:
+
+`$ af env-add <app_name> <variable [=] value>`
+
+9. Create and import your data using the "import services" command for importing data into the new service:
+
+`$ af import-service <service> <url>`
+    
+10. Test the newly created applications in the “Destination” account and confirm they are functioning as expected.
+
+ 11. Remove your applications on your "Original" account: **IMPORTANT DISCLAIMER:  Please ONLY do this if you are certain your applications and services are functioning as they should on the new account.**
+    a.  Log out of your "Destination" account and then log back in to your "Original" account
+    b.  Remove all applications and services from your "Original" account:
+        i. Applications and Services can be removed with the cli:
+
+        `$ af delete <app_name>`
+        `$ af delete-service <service-name>`
+         
+        ii. Or via the web console:
+            a) login to your account here: [https://console.appfog.com/login](https://console.appfog.com/login)
+            b) For Apps: select apps > app_name > settings > delete app
+            c) For Services: select services > select service to delete
 
 ### Does AppFog have a persistent file system? {#persistentfs}
 

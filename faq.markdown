@@ -120,7 +120,9 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
 
 11. Remove your applications on your "Original" account. <span style="color: #990000;">**IMPORTANT DISCLAIMER:  Please ONLY do this step if you are certain your applications and services are functioning as they should on the new accounts.**</span> Log out of your "Destination" account and then log back in to your "Original" account. Remove all applications and services from your "Original" account via one of two methods: 
     1. Applications and Services can be removed with the AF CLI using these commands:
-    `$ af delete <app_name>` and `$ af delete-service <service-name>`
+        `$ af delete <app_name>`
+        and
+        `$ af delete-service <service-name>`
     2. Or from the web console by logging in and doing the following:
     * Go to "Apps": select apps > app_name > settings > delete app
     * Go to "Services": select services > select service to delete

@@ -83,7 +83,7 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
         * Open up your command line and log in to the “Original” account.
         * Download all of your applications using this command (which will download a copy of the source code to your current system folder):
 
-        `$ af pull <app_name>` 
+        $ af pull <app_name>`
 
     2. Via the App in the Web Console:
         * Go to the [login page](https://console.appfog.com/login) and log in.
@@ -91,29 +91,29 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
 
 4. Next, get a database dump of each database using the export services command: 
 
-        `$ af export-service <service_name>`
+        $ af export-service <service_name>
 
 
 5. Finally, list the env vars for each app using the command:
 
-        `$ af env <app_name>`
+        $ af env <app_name>
 
 
 6. Log out of the “Original” account and login to the “Destination” account via the CLI.
 
 7. In the “Destination” account, upload and deploy your applications using the upload/push syntax:
 
-        `$ af push <app_name>`
+        $ af push <app_name>
 
 
 8. Add each apps env vars using the command:
 
-        `$ af env-add <app_name> <variable [=] value>`
+        $ af env-add <app_name> <variable [=] value>
 
 
 9. Create and import your data using the "import services" command for importing data into the new service:
 
-        `$ af import-service <service> <url>`
+        $ af import-service <service> <url>
 
     
 10. Test the newly created applications in the “Destination” account and confirm they are functioning as expected.
@@ -123,8 +123,8 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
     * Remove all applications and services from your "Original" account
         1. Applications and Services can be removed with the AF CLI:
 
-        `$ af delete <app_name>`
-        `$ af delete-service <service-name>`
+        $ af delete <app_name>
+        $ af delete-service <service-name>
 
 
         2. Or from the web console by logging in and doing the following:

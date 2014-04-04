@@ -125,6 +125,8 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
         and
         `$ af delete-service <service-name>`
 
+         
+
     2. Or from the web console by logging in and doing the following:
 
     * Go to "Apps": select apps > app_name > settings > delete app

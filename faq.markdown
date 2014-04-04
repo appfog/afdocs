@@ -123,8 +123,8 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
     * Remove all applications and services from your "Original" account
         1. Applications and Services can be removed with the AF CLI:
 
-            `$ af delete <app_name>`
-            `$ af delete-service <service-name>`
+        `$ af delete <app_name>`
+        `$ af delete-service <service-name>`
 
 
         2. Or from the web console by logging in and doing the following:

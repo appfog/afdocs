@@ -74,13 +74,10 @@ To move your apps and/or data between accounts, please do the following:
 
 2. You will need to complete the account verification steps on the new account.
 
-3. Via the AppFog command-line tool (AF CLI), login to the “Original” account and download all of your applications. The command to do this is:
-
-`$ af pull <app_name>`
-
-    *(Note: This will download a copy of each app's source code to your current system folder).*
-    
-    *You may also pull the code by downloading logging in to the web console, going to that app and pulling the source code from there. *
+3. Via the AppFog command-line tool (AF CLI), login to the “Original” account and download all of your applications. The command to do this is: :
+> `$ af pull <app_name>`
+> *(Note: This will download a copy of each app's source code to your current system folder).*
+> *You may also pull the code by downloading logging in to the web console, going to that app and pulling the source code from there. *
 
 4. Next, get a database dump of each database using the export services command:
 

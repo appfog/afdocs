@@ -121,12 +121,12 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
 11. Remove your applications on your "Original" account. <span style="color: #990000;">**IMPORTANT DISCLAIMER:  Please ONLY do this step if you are certain your applications and services are functioning as they should on the new accounts.**</span>
     1.  Log out of your "Destination" account and then log back in to your "Original" account
     2.  Remove all applications and services from your "Original" account
-        i. Applications and Services can be removed with the AF CLI:
-        * `$ af delete <app_name>`
-        * `$ af delete-service <service-name>`
-        ii. Or from the web console by logging in and doing the following:
-        * Go to "Apps": select apps > app_name > settings > delete app
-        * Go to "Services": select services > select service to delete
+        * Applications and Services can be removed with the AF CLI:
+        `$ af delete <app_name>`
+        `$ af delete-service <service-name>`
+        * Or from the web console by logging in and doing the following:
+            1. Go to "Apps": select apps > app_name > settings > delete app
+            2. Go to "Services": select services > select service to delete
 
 
 ### Why does my app return a 410 Removed error? {#blacklist}

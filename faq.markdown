@@ -66,7 +66,7 @@ If you run into any issues with example2, rollback is trivial. Simply map the or
 
 Additional data transfer costs $0.15 per gigabyte.
 
-### How does billing work? {#billing}
+### How Can I Move My Apps and/or Data Between Accounts? {#appdatamove}
 
 To move your apps and/or data between accounts, please do the following:
 

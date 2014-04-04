@@ -81,22 +81,33 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
 3. There are two ways to download your code:
     1. Via the AppFog command-line tool (AF CLI):
         * Open up your command line and log in to the “Original” account.
-        * Download all of your applications using this command:  `$ af pull <app_name>` This command will download a copy of your apps source code to your current system folder. 
+        * Download all of your applications using this command (which will download a copy of the source code to your current system folder):
+        `$ af pull <app_name>` 
     2. Via the App in the Web Console:
         * Go to the [login page](https://console.appfog.com/login) and log in.
         * Go to your App (you should be on the "Mission Control" tab) and click the "Download Source Code" button to download your application code.
 
-4. Next, get a database dump of each database using the export services command: `$ af export-service <service_name>`
+4. Next, get a database dump of each database using the export services command: 
 
-5. Finally, list the env vars for each app using the command: `$ af env <app_name>`
+    `$ af export-service <service_name>`
+
+5. Finally, list the env vars for each app using the command:
+
+    `$ af env <app_name>`
 
 6. Log out of the “Original” account and login to the “Destination” account via the CLI.
 
-7. In the “Destination” account, upload and deploy your applications using the upload/push syntax: `$ af push <app_name>`
+7. In the “Destination” account, upload and deploy your applications using the upload/push syntax:
 
-8. Add each apps env vars using the command: `$ af env-add <app_name> <variable [=] value>`
+    `$ af push <app_name>`
 
-9. Create and import your data using the "import services" command for importing data into the new service: `$ af import-service <service> <url>`
+8. Add each apps env vars using the command:
+
+    `$ af env-add <app_name> <variable [=] value>`
+
+9. Create and import your data using the "import services" command for importing data into the new service:
+
+    `$ af import-service <service> <url>`
     
 10. Test the newly created applications in the “Destination” account and confirm they are functioning as expected.
 

@@ -23,7 +23,7 @@ That's it!
 
 ### AF CLI {#custom-domain-af-cli}
 
-1. If you haven't already, install the [af command line tool](http://docs.appfog.com/getting-started/af-cli) and log in. 
+1. If you haven't already, install the [af command line tool](http://docs.appfog.com/getting-started/af-cli) and log in with your AppFog credentials. 
 
 2. Map the domain.
 

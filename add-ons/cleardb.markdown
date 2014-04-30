@@ -35,7 +35,5 @@ To access your CloudDB dashboard, simply click the "Manage" button under CloudDB
 
 #### Additional Resources
 [ClearDB Documentation](http://www.cleardb.com/developers)
-
 [MySQL AppFog Documentation](https://docs.appfog.com/services/mysql)
-
 [MySQL Documentation](http://dev.mysql.com/doc/)

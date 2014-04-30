@@ -12,7 +12,7 @@ If you need robust messaging with little setup for your app, RabbitMQ/CloudAMQP 
 
 ### Install CloudAMQP
 
-In the AppFog console and select the app you wish to add CloudAMQP to.
+In the [AppFog console](https://console.appfog.com/) and select the app you wish to add CloudAMQP to.
 Navigate to the “Add-ons” tab and click “Install”for the CloudAMQP add-on.
 
 Additionally if you may need to install RabbitMQ for local development see the link in Additional Resources for instructions.
@@ -23,7 +23,7 @@ Installing the CloudAMQP add-on automatically sets an environment variable for y
 
 ### CloudAMQP Console
 
-To access your CloudAMQP dashboard, simply click the "Manage" button under CloudAMQP from the "Add-ons" tab on your app console. This will also direct you to the RabbitMQ management console.
+To access your CloudAMQP dashboard, simply click the "Manage" button under CloudAMQP from the "Add-ons" tab on your app [console](https://console.appfog.com/). This will also direct you to the RabbitMQ management console.
 
 ### Additional Resources
 * [CloudAMPQ Documentation](http://www.cloudamqp.com/docs/index.html)

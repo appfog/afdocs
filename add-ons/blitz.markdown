@@ -12,12 +12,12 @@ Blitz can help to calculate the resources you will need for your application. Th
 
 ### Install Blitz
 
-In the AppFog console, select the application you wish to test.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to test.
 Navigate to the “Add-ons” tab and click “Install” for the Blitz add-on.
 
 ### Use Blitz
 
-Click the "Manage" button in your app console under the "Add-ons" tab.
+Click the "Manage" button in your app [console](https://console.appfog.com/) under the "Add-ons" tab.
 
 Load testing with blitz is very easy. Here's what it takes to get going:
 

@@ -34,6 +34,6 @@ The following code demonstrates how to parse the environment variable:
 To access your CloudDB dashboard, simply click the "Manage" button under CloudDB from the "Add-ons" tab on your app console.
 
 ### Additional Resources
-*[ClearDB Documentation](http://www.cleardb.com/developers)
-*[MySQL AppFog Documentation](https://docs.appfog.com/services/mysql)
-*[MySQL Documentation](http://dev.mysql.com/doc/)
+* [ClearDB Documentation](http://www.cleardb.com/developers)
+* [MySQL AppFog Documentation](https://docs.appfog.com/services/mysql)
+* [MySQL Documentation](http://dev.mysql.com/doc/)

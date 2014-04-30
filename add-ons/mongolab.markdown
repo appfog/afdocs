@@ -12,7 +12,7 @@ If you require an efficient, scalable MongoDB service in the cloud for your app 
 
 ### Install MongoLab
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the MongoLab add-on.
 
 ### Use MongoLab
@@ -28,7 +28,7 @@ With MongoLab you are allotted a 512MB sandbox database to play with while evalu
 
 ### MongoLab Admin Panel
 
-In the "Add-ons" tab in your app console, click on the "Manage" button for the MongoLab add-on. This will take you to your MongoLab account where you can make configuration changes and upgrade your MongoLab account.
+In the "Add-ons" tab in your app [console](https://console.appfog.com/), click on the "Manage" button for the MongoLab add-on. This will take you to your MongoLab account where you can make configuration changes and upgrade your MongoLab account.
 
 ### Additional Resources
 

@@ -1,25 +1,29 @@
 ---
-title: Cedexis
-weight: 9
+Cedexis
 ---
 
-## Cedexis
+### Intro
 
-### Introduction to Cedexis
+[Cedexis](http://www.codexis.com/) [Openmix](http://www.cedexis.com/openmix/) uses data-driven global load balancing to improve performance. The Openmix service allows highly flexible load-balancing decisions to be made dynamically, based on a wide variety of real-time data-feeds (this could be data you provide). Configuration scripts can support such obvious methodologies as sending the user to the fastest provider, or as subtle and sophisticated as factoring in any thing you can collect or think of (Time of day, cost, contractual commitments, weighting servers, capacity, BTU power usage, Electricity cost etc.)
+Any variation of Load balancing between cloud regions (EC2-VA and EC2-OR), different cloud vendors (EC2 and Rackspace) and CDNs are all fully supported
 
-Improve application availability and performance using Cedexis Openmix data-driven global load balancing.  For enterprises that join the Cedexis Radar community, the free Radar data feed (real time measurement of cloud availability and latency, as seen by 100s of millions of real end users each day) can be a primary source of cloud performance metrics. 
- 
-The Openmix service allows highly flexible load-balancing decisions to be made dynamically, based on a wide variety of real-time data-feeds (this could be data you provide).  Configuration scripts can support such obvious methodologies as sending the user to the fastest provider, or as subtle and sophisticated as factoring in any thing you can collect or think of (Time of day, cost, contractual commitments, weighting servers, capacity, BTU power usage, Electricity cost etc.)
- 
-Any variation of Load balancing between cloud regions (EC2-VA and EC2-OR), different cloud vendors (EC2 and Rackspace) and CDNs are all fully supported. 
- 
-Openmix Load Balancing App Implementation – Please see our GitHub repository https://github.com/cedexis/openmixapplib/wiki
-Example Openmix Application Library - http://developers.cedexis.com/
+### Why use Cedexis?
+
+If your app needs specific load balancing requirements or you just want be sure that your application will be ready for heavy load in a global market.
 
 ### Install Cedexis
 
-Install the Cedexis add-on for each app that you want to load balance.  
+In the AppFog console, select the application you wish to setup.
+Navigate to the “Add-ons” tab and click “Install” for the Codexis add-on.
 
-### Billing
+### Use Cedexis
 
-Cedexis is currently offering up to 250,000 monthly load balancing queries to Appfog service users free of charge.  If calendar monthly usage exceeds 250,000 load balancing queries, Cedexis will contact you at the email provided with your account, to review Cedexis pricing and to establish monthly billing on your account if appropriate. 
+Take a look at the developer exchange on Cedexis' site.
+
+[http://developers.cedexis.com/](http://developers.cedexis.com/)
+
+Codexis currently offers 250,000 monthly load balancing queries to AppFog add-on users free of charge. Exceeding queries will be reviewed by Codexis and and email will be sent to the provided address to establish monthly billing for your account.
+
+### Additional Resources
+* [Openmix load balancing app implementation](https://github.com/cedexis/openmixapplib/wiki)
+* [Example Openmix application library](http://developers.cedexis.com/)

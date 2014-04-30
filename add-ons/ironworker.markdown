@@ -12,7 +12,7 @@ Whether you are limited by a specific api from performing a task or just want to
 
 ### Install IronWorker
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the IronMQ add-on.
 
 ### Use IronWorker
@@ -62,7 +62,7 @@ Check worker status ( getTaskDetails() method ):
 
 ### IronWorker Console
 
-You can take a look at your IronWorker management console by going to your app in the AppFog console Add-ons tab, and click “Manage”.
+You can take a look at your IronWorker management console by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
 ### Additional Resources
 

@@ -12,7 +12,7 @@ ElephantSQL can make sure you a have as large of a database as your application 
 
 ### Install ElephantSQL
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the ElephantSQL add-on.
 
 If you need to install PostgreSQL for local development see Additional Resources below.
@@ -23,7 +23,7 @@ Installing the ElephantSQL add-on automatically sets an environment variable for
 
 ### ElephantSQL management interface
 
-You can take a look at your ElephantSQL management console by going to your app in the AppFog console Add-ons tab, and click “Manage”.
+You can take a look at your ElephantSQL management console by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
 ### Additional Resources
 

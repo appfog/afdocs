@@ -1,24 +1,26 @@
 ---
-title: CloudMailin
-weight: 8
+CloudMailin
 ---
 
-## CloudMailin
+### Intro
+
+[CloudMailin](http://www.cloudmailin.com/) adds incoming mail functionality to your AppFog application. You are provided with an email address that will forward an incoming request as an HTTP POST. Also provided are, a dashboard to track the delivery status of messages and bounce messages, and custom domain settings.
+
+### Why use CloudMailin?
+
+If you need incoming mail to your app, but don't want to deal with redirection or scheduled jobs, and track mails statuses.
 
 ### Install CloudMailin
 
-In the "Add-ons" tab in your app console click "Install" for the CloudMailin add-on. That's it!
+In the AppFog console, select the application you wish to setup.
+Navigate to the “Add-ons” tab and click “Install” for the CloudMailin add-on.
 
-### Receive Email
+### Use CloudMailin
 
-Cloudmailin can receive email and forward them to your app by performing a POST to a specific page.
+Installing CloudMailin automatically creates an environment variable for your app called ‘CLOUDMAILIN_FORWARD_ADDRESS’ .
 
-Log in to the Cloudmailin console by clicking "Manage" on the add-on in your PHP Fog app console.
-
-Go to "Edit Target" and specify the address in your application that will receive the emails via an HTTP POST (e.g. /mail.php).
-
-Here's the code that goes into that page:
-
+In the CloudMailin console you can click “Edit Target” to specify the address in your application that will receive the emails via an HTTP POST (e.g. /mail.php)
+The following example code shows how to forward an email into your app via an HTTP POST using PHP.
 
     <?php
         $from = $_POST['from'];
@@ -38,6 +40,13 @@ Here's the code that goes into that page:
         exit;
     ?>
 
-That's it! Now any email sent to your CloudMailin email address will forward to your app. You can always check to see what your CloudMailin email address is by going to the "Env. Variables" tab in your PHP Fog app console and looking for the "`CLOUDMAILIN_FORWARD_ADDRESS`", or by logging in to CloudMailin directly. 
+### CloudMailin Console
 
-You can set up your custom domain emails to forward, too. You can find information on that [here](http://docs.cloudmailin.com/receiving_email/forwarding_and_custom_domains/).
+You can take a look at your CloudMailin account from your app console Add-ons page, and click “Manage”.
+
+### Additional Resources
+
+* [CloudMailin Documentation](http://docs.cloudmailin.com/)
+
+
+

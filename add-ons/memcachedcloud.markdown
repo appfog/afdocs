@@ -13,7 +13,7 @@ If you need to more speed to your application and reduce the calls to your datab
 
 ### Install Memcached Cloud?
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the Memcached Cloud add-on.
 
 To test your AppFog app locally, you will need to install memcached.
@@ -41,7 +41,7 @@ Next, setup your app to start using the Memcached Cloud add-on. In the following
 
 
 ### Memcached Cloud Dashboard
-You can take a look at your Memcached Cloud Dashboard by going to your app in the AppFog console Add-ons tab, and click “Manage”.
+You can take a look at your Memcached Cloud Dashboard by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
 
 ### Additional Resources

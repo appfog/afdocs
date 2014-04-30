@@ -139,6 +139,22 @@ Not yet. We're working on this feature, but in the meantime, the file system is 
     * Go to "Apps": select apps > app_name > settings > delete app
     * Go to "Services": select services > select service to delete
 
+###Why does my app return a 400 bad request when it connects to Facebook?
+
+This occurs when an app is within an infrastructure that is currently blacklisted by
+Facebook.
+
+**Why did Facebook block certain IP’s?
+
+	This was done in resolve the adverse impact of abusive apps uploaded by free account owners to our EU-AWS and AP-AWS infra’s.
+
+**How do we get them to unblock our IP’s?
+
+    AppFog is currently working to resolve this error with the assistance of Facebook. In order to get these IP’s unblocked by Facebook, they will need to deem the IP’s as safe and non-malicious in order to put them onto their whitelist.
+
+**To workaround this issue, please clone your app to our HP or AWS-East infrastructures.
+
+    $ clone <src-app-name> <dest-app-name> <infra>
 
 ### Why does my app return a 410 Removed error? {#blacklist}
 

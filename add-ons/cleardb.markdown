@@ -1,12 +1,5 @@
 ---
-title: ClearDB
-weight: 9
----
-
----
-title: ClearDB
-layout: doc-page
-weight: 16
+ClearDB
 ---
 
 #### Intro

@@ -10,7 +10,7 @@ ClearDB can make sure you have enough room for growth with your application. If 
 
 ### Install ClearDB
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the ClearDB add-on.
 
 ### Using ClearDB
@@ -31,7 +31,7 @@ The following code demonstrates how to parse the environment variable:
 	?>
 
 ### ClearDB DashBoard
-To access your CloudDB dashboard, simply click the "Manage" button under CloudDB from the "Add-ons" tab on your app console.
+To access your CloudDB dashboard, simply click the "Manage" button under CloudDB from the "Add-ons" tab on your app [console](https://console.appfog.com/).
 
 ### Additional Resources
 * [ClearDB Documentation](http://www.cleardb.com/developers)

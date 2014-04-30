@@ -12,7 +12,7 @@ If you require incoming parsing and outgoing email services within your app that
 
 ### Install Mailgun
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the Mailgun add-on.
 
 ### Use Mailgun

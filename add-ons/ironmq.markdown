@@ -12,7 +12,7 @@ If you need high availability messaging and queuing with little setup for your a
 
 ### Install IronMQ
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the IronMQ add-on.
 
 ### Use IronMQ
@@ -46,7 +46,7 @@ Client libraries are avalible for a variety of languanges. Here are examples in 
 
 ### IronMQ Console
 
-You can take a look at your IronMQ management console by going to your app in the AppFog console Add-ons tab, and click “Manage”.
+You can take a look at your IronMQ management console by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
 ### Additional Resources
 

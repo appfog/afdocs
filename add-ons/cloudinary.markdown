@@ -1,18 +1,28 @@
 ---
-title: Cloudinary
-weight: 18
+Cloudinary
 ---
 
-## Cloudinary
+### Intro
 
-[Cloudinary](http://cloudinary.com/) streamlines your web app's image manipulation needs. Cloudinary's cloud-based servers automate image uploading, resizing, cropping, optimizing, sprite generation and more.
+[Cloudinary](http://cloudinary.com/) adds image manipulation functionality to your application, automating image uploading, resizing cropping, optimizing sprite generation and more. You can easily use Cloudinary’s APIs to upload, manage and transform images. Resources are then delivered from Cloudinary’s Content Delivery Networks automatically scaling to meet demand. 
 
-Cloudinary is built using modern web development frameworks and leverages Amazon Web Services' (AWS) cloud-solutions. The resources are delivered from high-performance servers through Content Delivery Networks.
+### Why use Cloudinary
 
-Resources are uploaded, managed, and transformed using Cloudinary's easy-to-use APIs. Image upload, processing, and delivery are done on Cloudinary's servers and automatically scale for handling high load and bursts of traffic.
+If you are used to using ImageMagick or other locally based image manipulation tools, but you require the same functionality and more in the cloud with AppFog.
 
-### Install Cloudinary
+### Install
 
-In the "Add-ons" tab in your app console click "Install" for the Cloudinary add-on. That’s it!
+In the AppFog console, select the application you wish to setup.
+Navigate to the “Add-ons” tab and click “Install” for the Cloudinary add-on.
 
-### Check out [Cloudinary's Documentation](http://cloudinary.com/documentation/appfog_integration) to get started using Cloudinary with your AppFog app.
+### Use
+
+Installing Cloudinary automatically sets up an environment variable for your app named ‘CLOUDINARY_URL’ . This includes all Cloudinary login information and URI. 
+
+### Cloudinary Management Console
+
+From your app console in the Add-ons tab, click “Manage” under Cloudinary, this will direct you to the Cloudinary management console.
+
+### Additional Resources
+* [Cloudinary AppFog Documentation](http://cloudinary.com/documentation/appfog_integration)
+* [Cloudinary Documentation](http://cloudinary.com/documentation/)

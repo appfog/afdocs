@@ -16,7 +16,7 @@ It is a key technology in modern web apps for scaling and reducing server loads.
 
 ### Install MemCachier
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the Memcachier add-on.
 
 To test your AppFog app locally, you will need to install memcached.
@@ -37,7 +37,7 @@ To set up your app to start using the cache, check the documentation for the fol
 
 ### MemCachier Console
 
-From the Add-ons page, under MemCachier, click “Manage”, this will direct you to the MemCachier management console.
+From the Add-ons page in the [AppFog console](https://console.appfog.com/), under MemCachier, click “Manage”, this will direct you to the MemCachier management console.
 
 ### Additional Resources
 

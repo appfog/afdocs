@@ -1,14 +1,12 @@
 ---
-title: Nexmo
-layout: doc-page
-weight: 17
+Nexmo
 ---
 
-## Nexmo
+### Intro
 
 [Nexmo](http://nexmo.com/) is a cloud-based SMS API that lets you send and receive high volume of messages at wholesale rates.
 
-With Nexmo you can:
+## Why use Nexmo?
 
 * Benefit from Nexmo's direct to carrier model that improves deliverability.
 * Get connected in less than 15 minutes through Nexmo's simple RESTful API.
@@ -17,6 +15,18 @@ With Nexmo you can:
 
 ### Install Nexmo
 
-In the "Add-ons" tab in your app console click "Install" for the Nexmo add-on. That’s it!
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
+Navigate to the “Add-ons” tab and click “Install” for the Nexmo add-on.
 
-Check out [Nexmo's Documentation](http://nexmo.com/documentation/index.html) to start using Nexmo with your AppFog app, and don't miss Nexmo's [client libraries](http://nexmo.com/documentation/libs/index.html).
+### Use Nexmo
+
+Installing Nexmo automatically adds environment variables to your app called `NEXMO_API_KEY` and `NEXMO_API_SECRECT` . 
+
+### Nexmo Dashboard
+
+From the Add-ons page in the [AppFog console](https://console.appfog.com/), under Nexmo, click “Manage”, this will direct you to the Nexmo dashboard.
+
+### Additional Resources
+
+* [Nexmo Documentation](http://nexmo.com/documentation/index.html) 
+* [Nexmo client libraries](http://nexmo.com/documentation/libs/index.html)

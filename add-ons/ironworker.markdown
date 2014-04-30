@@ -1,82 +1,73 @@
 ---
-title: IronWorker
-weight: 6
+IronWorker
 ---
 
-## IronWorker
+### Intro
+
+[IronWorker](https://www.iron.io/worker) is a scalable task queue, allowing you to offload front-end tasks and run processes and jobs for your applications needs.
+
+### Why use IronWorker?
+
+Whether you are limited by a specific api from performing a task or just want to manage your applications activity, IronWorker can help scheduling these to ensure your app runs smoothly and efficiently.
 
 ### Install IronWorker
 
-In the "Add-ons" tab in your app console click "Install" for the IronWorker add-on. That's it!
+In the AppFog console, select the application you wish to setup.
+Navigate to the “Add-ons” tab and click “Install” for the IronMQ add-on.
 
-### Integrate IronWorker
+### Use IronWorker
 
-Just copy [IronWorker.class.php](https://github.com/iron-io/iron_worker_php/blob/master/IronWorker.class.php) and include it in your script:
+Installing the IronWorker add-on automatically sets environment variables for your app called `IRON_WORKER_TOKEN` and `IRON_WORKER_PROJECT_ID` you can use these in your application to tell IronWorker which project to attach queues to.
 
+Here is a quick getting started with the PHP client library:
 
-    <?php
-    require_once "IronWorker.class.php"
+Create a worker and pass the token and project id:
 
-### Create a Worker
+    $worker = new IronWorker(array(
+    'token' => getenv('IRON_WORKER_TOKEN'),
+    'project_id' => getenv('IRON_WORKER_PROJECT_ID')
+    ));
 
-When you install IronWorker, the installer creates two environment variables set with the necessary credentials. Create a worker and pass in those credentials like this:
-
-<pre class="prettyprint linenums:3 linenums"><code>$worker = new IronWorker(array(
-'token' => getenv('IRON_WORKER_TOKEN'),
-'project_id' => getenv('IRON_WORKER_PROJECT_ID')
-));
-
-</code></pre>
-
-Here's an example worker:
+Hello World worker:
 
     <?php
-    echo "Hello PHP World!\n";
-
-We'll call this worker "HelloWorld.php".
-
-### Upload Your Worker
-
-Here's how to take the example above, zip it up, and upload it to IronWorker.
+      echo “Hello World worker!\n”;
+    
+Upload worker:
 
     <?php
     # Zip single file:
     IronWorker::createZip(dirname(__FILE__), array('HelloWorld.php'), 'worker.zip', true);
     $res = $iw->postCode('HelloWorld.php', 'worker.zip', 'HelloWorld');
 
-###  Queue Your Worker
+Queue worker:
 
     <?php
     $task_id = $iw->postTask('HelloWorld');
 
-Your worker should start in a few seconds.
-
-### Schedule Your Worker
-
-If you want to run your code more than once or run it in regular intervals, you can schedule it:
+Schedule worker:
 
     <?php
     # 3 minutes from now
     $start_at = time() + 3*60;
-
     # Run task every 2 minutes, repeat 10 times
     $iw->postScheduleAdvanced('HelloWorld', array(), $start_at, 2*60, null, 10);
 
-### Check the Status of Your Worker
-
-Use the `getTaskDetails()` method.
+Check worker status ( getTaskDetails() method ):
 
     <?php
     $task_id = $iw->postTask('HelloWorld');
     $details = $iw->getTaskDetails($task_id);
-
     echo $details->status; # prints 'queued', 'complete', 'error' etc.
 
-### And More...
+### IronWorker Console
 
-You can also pass payloads to your tasks, set progress status, logs, etc. For more information, check out some of these resources:
+You can take a look at your IronWorker management console by going to your app in the AppFog console Add-ons tab, and click “Manage”.
 
-* [IronWorker on GitHub](https://github.com/iron-io/iron_worker_php)
-* [IronWorker PHP Reference Documentation](http://iron-io.github.com/iron_worker_php/)
-* [IronWorker PHP Wiki](https://github.com/iron-io/iron_worker_php/wiki)
-* [Full Documentation on Iron.io](http://docs.iron.io/)
+### Additional Resources
+
+* [IronWorker Doumentation](http://dev.iron.io/worker/)
+* [IronWorker Client Libraries](http://dev.iron.io/worker/libraries/)
+
+
+

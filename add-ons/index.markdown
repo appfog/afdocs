@@ -1,9 +1,10 @@
 ---
-layout: default
 title: Add-ons
+weight: 50
 ---
 
-{% for current in site.categories.add-ons %}
-<h3><a href="{{ current.url }}">{{ forloop.index }}. {{ current.title }}</a></h3>
-<p>{{ current.description }}</p>
-{% endfor %}
+## Add-ons
+
+AppFog's add-on partners allow you to add powerful features to your app easily and seamlessly. You can add anything from search, to database services, to message queuing with a single click. 
+
+Interested in becoming an add-on partner? Check out [this link](/add-ons/partners).

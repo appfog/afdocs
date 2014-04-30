@@ -36,6 +36,5 @@ Load testing with blitz is very easy. Here's what it takes to get going:
     Once you get past these steps, you can learn more about how to use variables and our API clients to integrate load testing into a continuous deployment process. To learn more, take the interactive tutorial to familiarize yourself with Blitz.
 
 ### Additional Resources
->>
-[Blitz](https://www.blitz.io/)
+*[Blitz](https://www.blitz.io/)
 

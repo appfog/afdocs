@@ -19,7 +19,6 @@ Installing the ClearDB add-on automatically sets an environment variable for you
 
 The following code demonstrates how to parse the environment variable:
 
-{: .prettyprint .linenums}
 	<?php
 		$url=parse_url(getenv("CLEARDB_DATABASE_URL"));
 

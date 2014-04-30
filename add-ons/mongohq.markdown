@@ -12,7 +12,7 @@ If you require a fully managed MongoDB service with great dashboard a monitoring
 
 ### Install MongoHQ
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the MongoHQ add-on.
 
 ## Using MongoHQ
@@ -26,7 +26,7 @@ You can find more information on using MongoDB with your AppFog app [here](https
 
 ### MongoHQ Admin Panel
 
-In the "Add-ons" tab in your app console, click on the "Manage" button for the MongoHQ add-on. This will take you to your MongoHQ account where you can make configuration changes and upgrade your MongoHQ account.
+In the "Add-ons" tab in your app [console](https://console.appfog.com/), click on the "Manage" button for the MongoHQ add-on. This will take you to your MongoHQ account where you can make configuration changes and upgrade your MongoHQ account.
 
 ### Additional Resources
 

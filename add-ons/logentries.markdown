@@ -12,7 +12,7 @@ If you need additional reporting for your application along with the af tool log
 
 ### Install Logentries
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the Logentries add-on.
 
 You will also need to install the library specific to your language.
@@ -27,7 +27,7 @@ Logentries provides a 30 day trial for AppFog users limited to 1 GB of data sent
 
 ### Logentries Console
 
-You can take a look at your Logentries management console by going to your app in the AppFog console Add-ons tab, and click “Manage”.
+You can take a look at your Logentries management console by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
 ### Additional resources
 

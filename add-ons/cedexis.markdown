@@ -13,7 +13,7 @@ If your app needs specific load balancing requirements or you just want be sure 
 
 ### Install Cedexis
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the Codexis add-on.
 
 ### Use Cedexis

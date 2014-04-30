@@ -10,12 +10,12 @@ Cloudinary
 
 If you are used to using ImageMagick or other locally based image manipulation tools, but you require the same functionality and more in the cloud with AppFog.
 
-### Install
+### Install Cloudinary
 
 In the AppFog console, select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the Cloudinary add-on.
 
-### Use
+### Use Cloudinary
 
 Installing Cloudinary automatically sets up an environment variable for your app named ‘CLOUDINARY_URL’ . This includes all Cloudinary login information and URI. 
 

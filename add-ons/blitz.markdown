@@ -1,17 +1,17 @@
----
-title: Blitz
-weight: 5
----
-
 ## Blitz
+
+### Intro
+
+[Blitz](https://www.blitz.io/) is a cloud-based load testing service that offers rapid, iterative testing, continuous monitoring and remediation throughout the application development lifecycle.
 
 ### Why Use Blitz?
 
-There's no surefire forumla for calculating the resources you'll need for a given application. The best, most reliable way to determine what level of service you'll need is to simulate load on your app. It can also be difficult to determine how much your app's performance will be affected by rapid growth. Blitz lets you test app load quickly and easily. 
+Blitz can help to calculate the resources you will need for your application. The best, most reliable way to determine what level of service you'll need is to simulate load on your app. It can also be difficult to determine how much your app's performance will be affected by rapid growth. Blitz lets you test app load quickly and easily to solve these issues.much your app's performance will be affected by rapid growth. Blitz lets you test app load quickly and easily. 
 
 ### Install Blitz
 
-In the "Add-ons" tab in your app console click "Install" for the Blitz add-on. That's it!
+In the AppFog console, select the application you wish to test.
+Navigate to the “Add-ons” tab and click “Install” for the Blitz add-on.
 
 ### Use Blitz
 
@@ -33,5 +33,6 @@ Load testing with blitz is very easy. Here's what it takes to get going:
 
     Once you get past these steps, you can learn more about how to use variables and our API clients to integrate load testing into a continuous deployment process. To learn more, take the interactive tutorial to familiarize yourself with Blitz.
 
-Get more information about Blitz here:  [Blitz](https://www.blitz.io/)
+### Additional Resources
+[Blitz](https://www.blitz.io/)
 

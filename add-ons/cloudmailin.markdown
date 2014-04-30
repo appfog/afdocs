@@ -12,7 +12,7 @@ If you need incoming mail to your app, but don't want to deal with redirection o
 
 ### Install CloudMailin
 
-In the AppFog console, select the application you wish to setup.
+In the [AppFog console](https://console.appfog.com/), select the application you wish to setup.
 Navigate to the “Add-ons” tab and click “Install” for the CloudMailin add-on.
 
 ### Use CloudMailin
@@ -42,7 +42,7 @@ The following example code shows how to forward an email into your app via an HT
 
 ### CloudMailin Console
 
-You can take a look at your CloudMailin account from your app console Add-ons page, and click “Manage”.
+You can take a look at your CloudMailin account from your app [console](https://console.appfog.com/) Add-ons page, and click “Manage”.
 
 ### Additional Resources
 

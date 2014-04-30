@@ -21,17 +21,17 @@ Click the "Manage" button in your app console under the "Add-ons" tab.
 
 Load testing with blitz is very easy. Here's what it takes to get going:
 
-1. <h4>Sprinting</h4>
+1. <h2>Sprinting</h2>
 
     Simply enter the URL (with optional query parameters) of your app in the blitz bar and we'll run a simple check from one of the many regions from around the world. You can also explicitly specify a region to run using the --region option.
 
 
-2. <h4>Rushing</h4>
+2. <h2>Rushing</h3>
 
     To go from a Sprint to a Rush, use the --pattern option before the URL. For example, if you enter --pattern 1-250:60 we'll generate a load test against your app that goes from 1 to 250 users in 60 seconds. You'll be able to see your app's performance, response times, hit rates and other metrics.
 
 
-3. <h4>That's it!</h4>
+3. <h2>That's it!</h2>
 
     Once you get past these steps, you can learn more about how to use variables and our API clients to integrate load testing into a continuous deployment process. To learn more, take the interactive tutorial to familiarize yourself with Blitz.
 

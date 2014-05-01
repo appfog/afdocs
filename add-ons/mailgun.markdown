@@ -1,6 +1,9 @@
 ---
-Mailgun
+title: Mailgun
+weight: 12
 ---
+
+## Mailgun
 
 ### Intro
 

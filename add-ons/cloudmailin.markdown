@@ -1,6 +1,9 @@
 ---
-CloudMailin
+title: CloudMailin
+weight: 7
 ---
+
+## CloudMailin
 
 ### Intro
 

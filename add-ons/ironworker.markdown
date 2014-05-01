@@ -1,6 +1,9 @@
 ---
-IronWorker
+title IronWorker
+weight: 10
 ---
+
+## IronWorker
 
 ### Intro
 

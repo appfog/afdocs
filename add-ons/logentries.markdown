@@ -1,6 +1,9 @@
 ---
-Logentries
+title: Logentries
+weight: 11
 ---
+
+## Logentries
 
 ### Intro
 

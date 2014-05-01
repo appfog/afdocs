@@ -1,6 +1,9 @@
 ---
-Searchify
+title: Searchify
+weight: 19
 ---
+
+## Searchify
 
 ### Intro
 

@@ -1,6 +1,9 @@
 ---
-Cloudinary
+title: Cloudinary
+weight: 6
 ---
+
+## Cloudinary
 
 ### Intro
 

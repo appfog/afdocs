@@ -1,6 +1,6 @@
 ---
 title: SendGrid
-weight: 21
+weight: 20
 ---
 
 ## SendGrid

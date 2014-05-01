@@ -1,6 +1,9 @@
 ---
-Blitz
+title: Blitz
+weight: 2
 ---
+
+## Blitz
 
 ### Intro
 

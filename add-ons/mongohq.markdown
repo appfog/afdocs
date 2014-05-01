@@ -1,6 +1,9 @@
 ---
-MongoHQ
+title: MongoHQ
+weight: 15
 ---
+
+## MongoHQ
 
 ### Intro
 

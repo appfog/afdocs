@@ -1,6 +1,9 @@
 ---
-Cedexis
+title: Cedexis
+weight: 3
 ---
+
+## Cedexis
 
 ### Intro
 

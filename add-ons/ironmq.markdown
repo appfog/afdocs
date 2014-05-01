@@ -1,6 +1,9 @@
 ---
-IronMQ
+title: IronMQ
+weight: 9
 ---
+
+## IronMQ
 
 ### Intro
 

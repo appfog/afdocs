@@ -1,6 +1,9 @@
 ---
-CloudAMQP
+title: CloudAMQP
+weight: 5
 ---
+
+## CloudAMQP
 
 ### Intro
 

@@ -1,6 +1,9 @@
 ---
-Memcached Cloud
+title: Memcached Cloud
+weight: 13
 ---
+
+## Memcached Cloud
 
 ### Intro
 

@@ -1,6 +1,9 @@
 ---
-ClearDB
+title: ClearDB
+weight: 4
 ---
+
+## ClearDB
 
 ### Intro
 [ClearDB](https://www.cleardb.com) is a hosted [MySQL](http://www.mysql.com/) service that allows you to create as large of a database as necessary for your application while having peace of mind that your data is safe, and fault tolerant.

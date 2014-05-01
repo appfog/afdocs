@@ -1,6 +1,9 @@
 ---
-Redis Cloud
+title: Redis Cloud
+weight: 18
 ---
+
+## Redis Cloud
 
 ### Intro
 

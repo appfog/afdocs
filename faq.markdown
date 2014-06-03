@@ -4,11 +4,8 @@ weight: 95
 ---
 ## FAQ
 
-<<<<<<< HEAD
 * [What's the difference between PHP Fog and AppFog?](#difference-af-pf)
 * [How does billing work?](#billing)
-=======
->>>>>>> 0be2e0224a4be97820649fa151f300f2a9498aa2
 * [How can I update my app without downtime?](#downtime)
 * [How much does bandwidth cost beyond the included limits for the account?](#bandwidth)
 * [Does AppFog have a persistent file system?](#persistentfs)

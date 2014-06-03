@@ -2,6 +2,7 @@
 title: Frequently Asked Questions
 weight: 95
 ---
+
 ## FAQ
 
 * [What's the difference between PHP Fog and AppFog?](#difference-af-pf)

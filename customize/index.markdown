@@ -1,14 +1,4 @@
 ---
-<<<<<<< HEAD
-layout: default
-title: Customize
----
-
-{% for current in site.categories.customize %}
-<h3><a href="{{ current.url }}">{{ forloop.index }}. {{ current.title }}</a></h3>
-<p>{{ current.description }}</p>
-{% endfor %}
-=======
 title: Customize
 weight: 40
 ---

@@ -1,5 +1,4 @@
 ---
-layout: doc-page
 title: Custom Domain Names
 weight: 1
 ---

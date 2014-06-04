@@ -4,6 +4,8 @@ title: Custom Domain Names
 weight: 1
 ---
 
+## Custom Domain Names
+
 AppFog offers two ways to add custom domain names to your app: through the app console and with the `af` command line tool. 
 
 * [App Console](#custom-domain-app-console)

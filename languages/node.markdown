@@ -4,18 +4,17 @@ title: Node
 weight: 2
 ---
 
-<<<<<<< HEAD:frameworks/_posts/2002-01-01-node.markdown
 =======
 ## Node.js
 
->>>>>>> 0be2e0224a4be97820649fa151f300f2a9498aa2:languages/node.markdown
+
 * [Supported Versions](#node-supported-versions)
 * [Deployment](#node-deployment)
 * [Dependency Management](#node-dep-mgmt)
 * [CoffeeScript](#node-coffee-script)
 * ["Hello World" Walkthrough](#node-walkthrough)
 
-### Supported Versions {#node-supported-versions}
+### Supported Versions 
 
 For the most reliable development experience, make sure you have the same version of Node.js installed on your local development environment as your target AppFog instance. You can check the available runtimes by running:
 
@@ -42,13 +41,12 @@ Target a specific runtime when you deploy by using the runtime flag. For example
 
     $ af push --runtime=node06
 
-<<<<<<< HEAD:frameworks/_posts/2002-01-01-node.markdown
-# Deployment {#node-deployment}
+
+# Deployment 
 =======
-## Deployment {#node-deployment}
+## Deployment
 
 When you deploy a Node.js app to AppFog, the stager runs the first of the following files it finds:
->>>>>>> 0be2e0224a4be97820649fa151f300f2a9498aa2:languages/node.markdown
 
 * server.js 
 * app.js 
@@ -56,8 +54,7 @@ When you deploy a Node.js app to AppFog, the stager runs the first of the follow
 * main.js 
 * application.js
 
-<<<<<<< HEAD:frameworks/_posts/2002-01-01-node.markdown
-# Dependency Management {#node-dep-mgmt}
+# Dependency Management 
 =======
 Alternatively, you can specify the startup file in your `package.json` file, by specifying the `start` command under the `scripts` key:
 
@@ -70,8 +67,8 @@ Alternatively, you can specify the startup file in your `package.json` file, by 
         ....
     }
  
-## Dependency Management {#node-dep-mgmt}
->>>>>>> 0be2e0224a4be97820649fa151f300f2a9498aa2:languages/node.markdown
+## Dependency Management
+
 
 AppFog supports [npm](https://npmjs.org/) (Node Package Manager). 
 
@@ -111,7 +108,7 @@ This command looks at your `node_modules` directory and generates an `npm-shrink
 
 If you deploy your app with those conditions in place, AppFog will install the node modules to the app during the staging process. If the require node module doesn't work with the node engine that the app is running on, however, AppFog will not install the module.
 
-## CoffeeScript {#node-coffee-script}
+## CoffeeScript
 
 You can deploy a [CoffeeScript](http://coffeescript.org/) Node app to AppFog by using a shim file to load the CoffeeScripts.
 
@@ -122,23 +119,9 @@ Assuming you have two files, `app.coffee` and `app.js`, `app.js` can simply look
 
 The `app.coffee` file is what you would normally run with `coffee app.coffee`. Make sure `coffee-script` is also in your `node-modules` directory. Requiring the `coffee-script` module will enhance node's `require` functionality and compile the coffee files at require time.
 
-<<<<<<< HEAD:frameworks/_posts/2002-01-01-node.markdown
-# CoffeeScript {#node-coffee-script}
-
-You can deploy a [CoffeeScript]() Node app to AppFog by using a shim file to load the CoffeeScripts.
-
-Assuming you have two files, `app.coffee` and `app.js`, `app.js` can simply look like this: 
-
-{: .prettyprint }
-    require('coffee-script');
-    require('./app')
-
-The `app.coffee` file is what you would normally run with `coffee app.coffee`. Make sure `coffee-script` is also in your `node-modules` directory. Requiring the `coffee-script` module will enhance node's `require` functionality and compile the coffee files at require time.
-
 # "Hello World" Walkthrough {#node-walkthrough}
 =======
-## "Hello World" Walkthrough {#node-walkthrough}
->>>>>>> 0be2e0224a4be97820649fa151f300f2a9498aa2:languages/node.markdown
+
 
 The following is a step-by-step guide to writing and deploying a “hello world” Node.js web server app with the [Express](http://expressjs.com/) web module:
 

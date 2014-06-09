@@ -78,12 +78,10 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 <tr><td>Postgres 9.1</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>Redis 2.2</td><td class="x-mark-2">&times;</td><td></td></tr>
 <tr><td>RabbitMQ 2.4</td><td class="x-mark-2">&times;</td><td></td></tr>
-<<<<<<< HEAD
 <tr><td>MongoDB 2.0</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Couchdb</td><td></td><td class="x-mark-2">&times;</td></tr>
 =======
 <tr><td>CouchDB</td><td></td><td class="x-mark-2">&times;</td></tr>
->>>>>>> 0be2e0224a4be97820649fa151f300f2a9498aa2
 <tr><td>Memcached</td><td></td><td class="x-mark-2">&times;</td></tr>
 <tr><td>Neo4J</td><td></td><td class="x-mark-2">&times;</td></tr>
 </tbody>
@@ -115,7 +113,6 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 
 ### Top Priorities
 
-<<<<<<< HEAD
 * Persistent Distributed Filesystems
 * <s><a href="/customize/custom-domain-names">Root Domains</a></s>
 * <s><a href="/customize/ssl">Custom SSL</a></s>
@@ -132,7 +129,6 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * Dedicated Databases (MySQL, PostgreSQL, MongoDB)
 * FTP Access
 * Wildcard Domains
-<<<<<<< HEAD
 * <s><a href="/customize/task-scheduling">Scheduled Jobs (cron)</a></s>
 * Github Hooks
 * Websockets
@@ -140,4 +136,4 @@ Have a feature request that isn't listed here? Want to add your vote to one of t
 * <s><a href="/customize/task-scheduling">Scheduled Jobs (cron)</a></s> -- DONE!
 * GitHub Hooks
 * WebSockets
->>>>>>> 0be2e0224a4be97820649fa151f300f2a9498aa2
+

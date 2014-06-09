@@ -3,7 +3,6 @@ title: Manifests
 weight: 4
 ---
 
-<<<<<<< HEAD:getting-started/_posts/2003-01-01-af-cli.markdown
 `af` is based on CloudFoundry's `vmc` but includes features specific to AppFog and has the default target set to AppFog's service. Check out [the GitHub repo](https://github.com/appfog/af).
 
 * [Installation](#installation)
@@ -26,7 +25,7 @@ weight: 4
 * [.afignore](#afignore)
 * [Manifests](#manifests)
 
-# Installation {#installation}
+# Installation 
 
 The `af` command line tool is written in Ruby and installed as a gem: 
 
@@ -62,7 +61,7 @@ If you're on Mac OS X 10.7 Lion and you're having trouble, you may have to do th
     $ gem install af
     $ af login
 
-### Windows {#af-cli-install-windows}
+### Windows 
 
 Download and install [Ruby Installer for Windows](http://rubyinstaller.org/). The installer already includes RubyGems.
 
@@ -84,7 +83,7 @@ Finally from within your source code directory:
 {: .prettyprint}
     $ af update hello-node
 
-# Getting Started {#getting-started}
+# Getting Started 
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -98,7 +97,7 @@ Finally from within your source code directory:
 </tr>
 </table>
 
-# Apps {#apps}
+# Apps 
 
 <table class="table table-bordered table-striped">
 <tr>
@@ -106,7 +105,7 @@ Finally from within your source code directory:
 </tr>
 </table>
 
-### App Creation {#app-creation}
+### App Creation 
 
 <table class="table table-bordered table-striped">
 
@@ -120,13 +119,13 @@ Finally from within your source code directory:
 
 </table>
 
-### App Download {#app-download}
+### App Download 
 
 <table class="table table-bordered table-striped">
 <tr><td><code>pull &lt;appname> [path]                   </code></td><td>Download last pushed source of &lt;appname> to [path]</td></tr>
 </table>
 
-### App Operations {#app-ops}
+### App Operations 
 
 <table class="table table-bordered table-striped">
 
@@ -137,7 +136,7 @@ Finally from within your source code directory:
 
 </table>
 
-### App Updates {#app-updates}
+### App Updates 
 
 <table class="table table-bordered table-striped">
 
@@ -149,7 +148,7 @@ Finally from within your source code directory:
 
 </table>
 
-### App Information {#app-info}
+### App Information 
 
 <table class="table table-bordered table-striped">
 
@@ -162,7 +161,7 @@ Finally from within your source code directory:
 
 </table>
 
-### App Environment {#app-env}
+### App Environment 
 
 <table class="table table-bordered table-striped">
 
@@ -172,7 +171,7 @@ Finally from within your source code directory:
 
 </table>
 
-### Services {#services}
+### Services 
 
 <table class="table table-bordered table-striped">
 
@@ -188,7 +187,7 @@ Finally from within your source code directory:
 
 </table>
 
-### Administration {#admin}
+### Administration 
 
 <table class="table table-bordered table-striped">
 
@@ -200,7 +199,7 @@ Finally from within your source code directory:
 
 </table>
 
-### System {#system}
+### System 
 
 <table class="table table-bordered table-striped">
 
@@ -210,7 +209,7 @@ Finally from within your source code directory:
 
 </table>
 
-### Misc {#misc}
+### Misc 
 
 <table class="table table-bordered table-striped">
 
@@ -221,7 +220,7 @@ Finally from within your source code directory:
 
 </table>
 
-### Help {#help}
+### Help 
 
 <table class="table table-bordered table-striped">
 
@@ -230,7 +229,7 @@ Finally from within your source code directory:
 
 </table>
 
-# .afignore {#afignore}
+# .afignore 
 
 You can create a `.afignore` file in your app's root directory to tell `af push` and `af update` to skip files and directories, much like `.gitignore` for git. 
 
@@ -263,10 +262,9 @@ Here's a sample `.afignore` file:
     # don't ignore assets/js/ directory
 	!assets/js/
 
-# Manifests {#manifests}
+# Manifests 
 =======
 ## Manifests
->>>>>>> 0be2e0224a4be97820649fa151f300f2a9498aa2:getting-started/af-cli/manifests.markdown
 
 You can use manifest documents with AppFog to simplify app deployment. These manifest documents describe apps in human-editable format. They can also describe anything from simple "Hello World" apps to complex multi-app hierarchies with inter-app dependencies and service binding information.  
 

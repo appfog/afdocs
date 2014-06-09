@@ -42,7 +42,7 @@ Target a specific runtime when you deploy by using the runtime flag. For example
     $ af push --runtime=node06
 
 
-# Deployment 
+
 =======
 ## Deployment
 
@@ -54,7 +54,7 @@ When you deploy a Node.js app to AppFog, the stager runs the first of the follow
 * main.js 
 * application.js
 
-# Dependency Management 
+## Dependency Management 
 =======
 Alternatively, you can specify the startup file in your `package.json` file, by specifying the `start` command under the `scripts` key:
 
@@ -119,7 +119,7 @@ Assuming you have two files, `app.coffee` and `app.js`, `app.js` can simply look
 
 The `app.coffee` file is what you would normally run with `coffee app.coffee`. Make sure `coffee-script` is also in your `node-modules` directory. Requiring the `coffee-script` module will enhance node's `require` functionality and compile the coffee files at require time.
 
-# "Hello World" Walkthrough {#node-walkthrough}
+# "Hello World" Walkthrough
 =======
 
 
@@ -184,7 +184,7 @@ Push the app. You can hit `Enter` to accept the defaults at most of the prompts,
 
 Hit the app in your browser, `http://hello-node.aws.af.cm`, in this example.
 
-## Environments in Express {#express}
+## Environments in Express
 
 Express supports arbitrary environments, like `production` and `development`. You can use the `configure()` method to set different configurations under the different environments. Here, we'll bind a `mongodb` service to the app to demonstrate.
 

@@ -35,16 +35,18 @@ This variable includes the private API URL used to access the newly provisioned 
 
 Searchify offers plans based on the number of documents stored. If you outgrow the limits of your current Searchify plan, you can change to a larger plan. A list of all plans available can be found [here](http://www.searchify.com/plans).
 
-Plan
--2 indexes
--5000 documents
--Unlimited daily queries
-
 For more information on the features available from Searchify, including faceting, geolocation, snippets, autocomplete, and custom scoring functions, please see [the documentation](http://www.searchify.com/documentation).
 
 ### Searchify Dashboard
 
 The Searchify dashboard allows you to manage indices, allowing you to create, delete, and search indices.  Custom scoring functions can also be configured. To access your Searchify dashboard, simply click the "Manage" button of the Searchify add-on in the "Add-ons" tab on your app [console](https://console.appfog.com/).
+
+### Included Allotment
+
+Plan
+-2 indexes
+-5000 documents
+-Unlimited daily queries
 
 ### Additional Resources
 

@@ -51,6 +51,11 @@ Client libraries are avalible for a variety of languanges. Here are examples in 
 
 You can take a look at your IronMQ management console by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
+### Included Allotment
+
+1M API Requests / Month (~24 per minute)
+64 Kb Message size limit
+
 ### Additional Resources
 
 * [IronMQ Documentation](http://dev.iron.io/mq/)

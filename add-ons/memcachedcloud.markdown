@@ -44,8 +44,14 @@ Next, setup your app to start using the Memcached Cloud add-on. In the following
 
 
 ### Memcached Cloud Dashboard
+
 You can take a look at your Memcached Cloud Dashboard by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
+### Included Allotment
+
+25 MB cache size
+1 dedicated database
+10 concurrent connections
 
 ### Additional Resources
 

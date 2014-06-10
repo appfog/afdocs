@@ -33,6 +33,11 @@ With MongoLab you are allotted a 512MB sandbox database to play with while evalu
 
 In the "Add-ons" tab in your app [console](https://console.appfog.com/), click on the "Manage" button for the MongoLab add-on. This will take you to your MongoLab account where you can make configuration changes and upgrade your MongoLab account.
 
+### Included Allotment
+
+RAM cache: Variable
+Storage: 0.5 GB
+
 ### Additional Resources
 
 * [MongoDB Documentation](http://docs.mongodb.org/)

@@ -47,6 +47,11 @@ The following example code shows how to forward an email into your app via an HT
 
 You can take a look at your CloudMailin account from your app [console](https://console.appfog.com/) Add-ons page, and click “Manage”.
 
+### Included Allotment
+
+200 Emails per month
+100 Kb max message size
+
 ### Additional Resources
 
 * [CloudMailin Documentation](http://docs.cloudmailin.com/)

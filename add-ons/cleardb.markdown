@@ -34,7 +34,13 @@ The following code demonstrates how to parse the environment variable:
 	?>
 
 ### ClearDB DashBoard
+
 To access your CloudDB dashboard, simply click the "Manage" button under CloudDB from the "Add-ons" tab on your app [console](https://console.appfog.com/).
+
+### Included Allotment
+
+5 MB max database size
+10 concurrent connections
 
 ### Additional Resources
 * [ClearDB Documentation](http://www.cleardb.com/developers)

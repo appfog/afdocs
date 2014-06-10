@@ -57,6 +57,10 @@ See below to upgrade your account from the SendGrid dashboard.
 
 <img src="http://static.sendgrid.com.s3.amazonaws.com/images/appfog/appfog_select_plan.png" class="screenshot" />
 
+### Included Allotment
+
+200 email credits per day
+
 ### Additional resources
 
 * [Integrate With SendGrid](http://sendgrid.com/docs/Integrate/index.html)

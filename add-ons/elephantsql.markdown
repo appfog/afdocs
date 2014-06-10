@@ -28,6 +28,11 @@ Installing the ElephantSQL add-on automatically sets an environment variable for
 
 You can take a look at your ElephantSQL management console by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
+### Included Allotment
+
+20 MB max database size
+4 concurrent connections
+
 ### Additional Resources
 
 * [PostgreSQL Download](http://www.postgresql.org/download/)

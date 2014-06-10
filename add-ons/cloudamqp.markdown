@@ -28,6 +28,10 @@ Installing the CloudAMQP add-on automatically sets an environment variable for y
 
 To access your CloudAMQP dashboard, simply click the "Manage" button under CloudAMQP from the "Add-ons" tab on your app [console](https://console.appfog.com/). This will also direct you to the RabbitMQ management console.
 
+### Included Allotment
+
+Max 3 concurrent connections
+
 ### Additional Resources
 * [CloudAMPQ Documentation](http://www.cloudamqp.com/docs/index.html)
 * [RabbitMQ Installation](http://www.rabbitmq.com/download.html)

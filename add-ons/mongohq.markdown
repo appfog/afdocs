@@ -31,6 +31,10 @@ You can find more information on using MongoDB with your AppFog app [here](https
 
 In the "Add-ons" tab in your app [console](https://console.appfog.com/), click on the "Manage" button for the MongoHQ add-on. This will take you to your MongoHQ account where you can make configuration changes and upgrade your MongoHQ account.
 
+### Included Allotment
+
+512 MB max database size
+
 ### Additional Resources
 
 * [MongoDB Documentation](http://docs.mongodb.org/)

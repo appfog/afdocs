@@ -26,6 +26,13 @@ Installing Cloudinary automatically sets up an environment variable for your app
 
 From your app [console](https://console.appfog.com/) in the Add-ons tab, click “Manage” under Cloudinary, this will direct you to the Cloudinary management console.
 
+### Included Allotment
+
+50,000 total images
+5,000 monthly images
+500 MB of storage
+1 GB monthly image viewing bandwidth
+
 ### Additional Resources
 * [Cloudinary AppFog Documentation](http://cloudinary.com/documentation/appfog_integration)
 * [Cloudinary Documentation](http://cloudinary.com/documentation/)

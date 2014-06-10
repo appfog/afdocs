@@ -67,6 +67,11 @@ Check worker status ( getTaskDetails() method ):
 
 You can take a look at your IronWorker management console by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
+### Included Allotment
+
+5 Concurrent Workers
+10 Compute Hours
+
 ### Additional Resources
 
 * [IronWorker Doumentation](http://dev.iron.io/worker/)

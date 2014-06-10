@@ -7,7 +7,7 @@ weight: 17
 
 ### Intro
 
-[Nexmo](http://nexmo.com/) is a cloud-based SMS API that lets you send and receive high volume of messages at wholesale rates.
+[Nexmo](http://nexmo.com/) is a cloud-based SMS / Voice API that lets you send and receive high volume of messages at wholesale rates.
 
 ## Why use Nexmo?
 

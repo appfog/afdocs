@@ -32,6 +32,11 @@ Logentries provides a 30 day trial for AppFog users limited to 1 GB of data sent
 
 You can take a look at your Logentries management console by going to your app in the [AppFog console](https://console.appfog.com/) Add-ons tab, and click “Manage”.
 
+### Included Allotmment
+
+1 GB per month
+7 day retention
+
 ### Additional resources
 
 * [Logentries Documentation](https://logentries.com/doc/)

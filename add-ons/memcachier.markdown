@@ -42,6 +42,11 @@ To set up your app to start using the cache, check the documentation for the fol
 
 From the Add-ons page in the [AppFog console](https://console.appfog.com/), under MemCachier, click “Manage”, this will direct you to the MemCachier management console.
 
+### Included Allotment
+
+25 MB cache space
+1 Proxy Server
+
 ### Additional Resources
 
 * [Memcached Documentation](http://code.google.com/p/memcached/wiki/NewStart)

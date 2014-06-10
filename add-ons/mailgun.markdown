@@ -23,15 +23,10 @@ Navigate to the “Add-ons” tab and click “Install” for the Mailgun add-on
 Installing the Mailgun Add-on automatically sets environment variables called:
 `MAILGUN_SMTP_LOGIN` , MAILGUN_SMTP_SERVER` , `MAILGUN_SMTP_PORT` , `MAILGUN_SMTP_PASSWORD` , and  `MAILGUN_API_KEY` .
 
-With the Mailgun add-on for AppFog, you get a free plan that includes: 
+### Included Allotment
 
 * 200 messages per day
-* Real time reports and stats
-* Fully featured account
 * Temporary mailbox storage
-* Premium support
-
-If you need more than that, you can upgrade through Mailgun. Check out their pricing [here](http://mailgun.net/pricing).
 
 ### Additional Resources
 

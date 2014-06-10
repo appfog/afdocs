@@ -44,10 +44,15 @@ You can then find your dashboard under the `MY DATABASES` menu.
 
 #### Adding Redis databases to your app  
 
-
 To add more databases, simply access your Redis Cloud add-on by clicking the "Manage" button and then click the `New DB` button in the `MY DATABASES > Manage` page. 
 
 Warning: The Redis Cloud console will provide you a new URL for connecting to your new Redis database.
+
+### Included Allotment
+
+1 database
+25 MB database storage
+10 conncetions
 
 ### Additional resources
 

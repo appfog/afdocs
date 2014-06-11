@@ -121,7 +121,7 @@ When you exit the client, `af` disconnects the tunnel.
 ### Using Third-party Tools {#3rd-party-tools}
 
 For the last step, if you choose the `1: none` or if Caldecott doesn't have a default client for the service, you can simply leave the terminal window open. You can then start your preferred client in another window by using the provided "Service connection info".
-=======
+
 
     Service connection info:
       username : uz2Nrj2p20TXA

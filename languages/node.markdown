@@ -4,8 +4,7 @@ title: Node
 weight: 2
 ---
 
-=======
-## Node.js
+# Node.js
 
 
 * [Supported Versions](#node-supported-versions)
@@ -43,8 +42,7 @@ Target a specific runtime when you deploy by using the runtime flag. For example
 
 
 
-=======
-## Deployment
+# Deployment
 
 When you deploy a Node.js app to AppFog, the stager runs the first of the following files it finds:
 
@@ -55,7 +53,7 @@ When you deploy a Node.js app to AppFog, the stager runs the first of the follow
 * application.js
 
 ## Dependency Management 
-=======
+
 Alternatively, you can specify the startup file in your `package.json` file, by specifying the `start` command under the `scripts` key:
 
     {
@@ -67,8 +65,6 @@ Alternatively, you can specify the startup file in your `package.json` file, by 
         ....
     }
  
-## Dependency Management
-
 
 AppFog supports [npm](https://npmjs.org/) (Node Package Manager). 
 
@@ -120,8 +116,6 @@ Assuming you have two files, `app.coffee` and `app.js`, `app.js` can simply look
 The `app.coffee` file is what you would normally run with `coffee app.coffee`. Make sure `coffee-script` is also in your `node-modules` directory. Requiring the `coffee-script` module will enhance node's `require` functionality and compile the coffee files at require time.
 
 # "Hello World" Walkthrough
-=======
-
 
 The following is a step-by-step guide to writing and deploying a “hello world” Node.js web server app with the [Express](http://expressjs.com/) web module:
 

@@ -30,4 +30,4 @@ If you need to update your credit card or billing information, please [log in to
 
 ### Questions? {#questions}
 
-If you have questions about our billing process or need assistance, please send us an email at [support@appfog.com](mailto:support@appfog.com).
+If you have questions about our billing process or need assistance, please send us an email at [billing@appfog.com](mailto:billing@appfog.com).

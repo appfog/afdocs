@@ -31,8 +31,7 @@ The `af` command line tool is written in Ruby and installed as a gem:
 
 ### Mac OS X and Linux {#max-os-x-linux}
 
-{: .prettyprint}
-    $ gem install af
+`$ gem install af`
 
 Note: `af` requires Ruby 1.8.7 or newer.
 
@@ -44,22 +43,23 @@ If you're on Mac OS X 10.7 Lion and you're having trouble, you may have to do th
 
 3. Install `libksba` with homebrew.
 
-{: .prettyprint}
-    $ brew install libksba
+`$ brew install libksba`
 
 4. [Install RVM](https://rvm.io/rvm/install/).
 
 5. Install Ruby 1.9.3:
 
-{: .prettyprint}
-    $ rvm install ruby-1.9.3
-    $ rvm use 1.9.3
+```
+$ rvm install ruby-1.9.3
+$ rvm use 1.9.3
+```
 
 5. Install `af`
 
-{: .prettyprint}
-    $ gem install af
-    $ af login
+```
+$ gem install af
+$ af login
+```
 
 ### Windows 
 
@@ -69,19 +69,18 @@ Be sure you use the Ruby-enabled command prompt window when you later install an
 
 Finally, update RubyGems from the Ruby Command Prompt:
 
-{: .prettyprint}
-    $ gem update --system
-    $ gem install af
+```
+$ gem update --system
+$ gem install af
+```
 
 Login with:
 
-{: .prettyprint}
-    $ af login
+`$ af login`
 
 Finally from within your source code directory:
 
-{: .prettyprint}
-    $ af update hello-node
+`$ af update hello-node`
 
 # Getting Started 
 
@@ -262,9 +261,7 @@ Here's a sample `.afignore` file:
     # don't ignore assets/js/ directory
 	!assets/js/
 
-# Manifests 
-=======
-## Manifests
+# Manifests
 
 You can use manifest documents with AppFog to simplify app deployment. These manifest documents describe apps in human-editable format. They can also describe anything from simple "Hello World" apps to complex multi-app hierarchies with inter-app dependencies and service binding information.  
 
@@ -288,7 +285,7 @@ Here’s the full list of commands that can take advantage of the manifest docum
 
 Note: For multi-app hierarchies, these will operate only on the sub-app you’re in, rather than always operating on every app in the hierarchy. To operate on every app, invoke the command from the root of the hierarchy.
 
-### Getting Started
+### Create a manifest
 
 The easiest way to get going is to generate a manifest document from basic app info. If you haven’t pushed your app yet, you can start with `af push` as usual, which will ask if you want to save the configurations as a manifest document:
 

@@ -62,6 +62,10 @@ AWS Asia Southeast:
 
     cname01.ap01.aws.af.cm
 
+CLC UC1 (Santa Clara, CA):
+
+    cname01.uc01.clc.af.cm
+
 HP Openstack AZ 2:
 
     cname01.hp.af.cm

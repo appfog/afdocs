@@ -25,7 +25,7 @@ Similarly, when you downgrade your billing cycle remains the same. When you down
 
 ### Updating Your Billing Information {#update}
 
-If you need to update your credit card or billing information, please [log in to your account](https://console.appfog.com/login), go to the profile page and update your information.
+If you need to update your credit card or billing information, please [log in to your account](https://console.appfog.com/#account), go to the profile page and update your information.
 
 
 ### Questions? {#questions}

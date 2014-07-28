@@ -150,7 +150,7 @@ Facebook.
 
     AppFog is currently working to resolve this error with the assistance of Facebook. In order to get these IP’s unblocked by Facebook, they will need to deem the IP’s as safe and non-malicious in order to put them onto their whitelist.
 
-**To workaround this issue, please clone your app to our HP or AWS-East infrastructures.
+**To workaround this issue, please clone your app to our CenturyLink Cloud or AWS-East infrastructures.
 
     $ clone <src-app-name> <dest-app-name> <infra>
 

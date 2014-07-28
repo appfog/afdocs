@@ -17,7 +17,7 @@ Create a directory for the app and change into it:
 
 ### Prepare Your Environment
 
-<!--- Create a `virtualenv` environment:
+<!-- Create a `virtualenv` environment:
 
 
     $ virtualenv venv
@@ -25,7 +25,7 @@ Create a directory for the app and change into it:
     Installing setuptools............done.
     Installing pip...............done.
 
---->
+-->
 
 Note: There is currently an issue with using `virtualenv` in an app directory, so we'll use a workaround. 
 

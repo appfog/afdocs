@@ -10,8 +10,7 @@ SSL is automatically enabled on all apps with default domain names, i.e. domain 
 * \*.aws.af.cm
 * \*.ap01.aws.af.cm
 * \*.eu01.aws.af.cm
-* \*.rs.af.cm
-* \*.hp.af.cm
+* \*.uc01.clc.af.cm
 
 #### **SSL for custom domain names is currently restricted in the following ways:**
 

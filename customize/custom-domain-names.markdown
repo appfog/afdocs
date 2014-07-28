@@ -66,10 +66,6 @@ CLC UC1 (Santa Clara, CA):
 
     cname01.uc01.clc.af.cm
 
-HP Openstack AZ 2:
-
-    cname01.hp.af.cm
-
 ---
 
 That's it! DNS propagation can take anywhere from a few minutes to 48 hours dep

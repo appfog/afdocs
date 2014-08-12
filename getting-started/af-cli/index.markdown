@@ -11,6 +11,7 @@ description: "Code deployment made easy."
 * [Installation](#installation)
     * [Mac OS X and Linux](#max-os-x-linux)
     * [Windows](#af-cli-install-windows)
+    * [Caldecott](#caldecott)
 * [Usage](#usage)
 * [Getting Started](#af-cli-getting-started)
 * [Apps](#apps)
@@ -26,7 +27,7 @@ description: "Code deployment made easy."
     * [Misc](#misc)
     * [Help](#help)
 
-## Installation {#installation}
+## Installation of AF Gem {#installation}
 
 The `af` command line tool is written in Ruby and installed as a gem: 
 
@@ -34,7 +35,7 @@ The `af` command line tool is written in Ruby and installed as a gem:
 
     $ gem install af
 
-Note: `af` requires Ruby 1.8.7 or newer.
+Note: `af` requires Ruby 1.8.7 or 1.9.3. Anything higher can cause problems. Use RVM or Rbenv to manage your ruby versions as shown on step 4.
 
 If you're on Mac OS X 10.7 Lion and you're having trouble, you may have to do the following:
 
@@ -44,21 +45,25 @@ If you're on Mac OS X 10.7 Lion and you're having trouble, you may have to do th
 
 3. Install `libksba` with homebrew.
 
-    `$ brew install libksba`
+   `$ brew install libksba`
 
 
 4. [Install RVM](https://rvm.io/rvm/install/).
 
 5. Install Ruby 1.9.3:
 
-    `$ rvm install ruby-1.9.3`
-    `$ rvm use 1.9.3`
+   ```
+   $ rvm install ruby-1.9.3
+   $ rvm use 1.9.3
+   ```
 
 
 5. Install `af`
 
-    `$ gem install af`
-    `$ af login`
+   ```
+   $ gem install af
+   $ af login
+   ```
     
 
 ### Windows {#af-cli-install-windows}
@@ -69,16 +74,27 @@ Be sure you use the Ruby-enabled command prompt window when you later install an
 
 Finally, update RubyGems from the Ruby Command Prompt:
 
-    $ gem update --system
-    $ gem install af
+   ```
+   $ gem update --system
+   $ gem install af
+   ```
 
 Login with:
 
-    $ af login
+   ```
+   $ af login
+   ```
 
 Finally from within your source code directory:
 
-    $ af update hello-node
+   ```
+   $ af update hello-node
+   ```
+   
+## [Caldecott](https://rubygems.org/gems/caldecott) {#caldecott}
+
+   You'll need to have Caldecott installed to be able tunnel into your services and access them locally.
+   To install Caldecott, you may need to first install the [Ruby Bundler](http://ruby.about.com/od/bundler/ss/What-Is-Bundler.htm) and the [Ruby      DevKit](http://rubyinstaller.org/add-ons/devkit/).
 
 ## Getting Started {#af-cli-getting-started}
 

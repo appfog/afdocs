@@ -1,3 +1,5 @@
+### Docs have been moved to Help Center. Links provided [here](https://github.com/appfog/afdocs/wiki/Links-to-Docs-in-Help-Center-Per-Document).
+
 This is the content repository for [the AppFog Documentation site](http://docs.appfog.com). 
 
 To contribute, simply create an issue on this repository, or fork, edit, and make a pull request. 
